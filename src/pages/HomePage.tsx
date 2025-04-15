@@ -63,7 +63,7 @@ export default function HomePage() {
                                   }}
                                 >
                                   <MapPin className="mr-2 h-4 w-4" />
-                                  {station.name} - {station.city}, {station.state}
+                                  {station.name}
                                 </div>
                               ))}
                             </div>
