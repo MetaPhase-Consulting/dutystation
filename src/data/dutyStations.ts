@@ -1,4 +1,3 @@
-
 // Types for CBP duty stations
 export interface DutyStation {
   id: string;
@@ -9,10 +8,9 @@ export interface DutyStation {
   sector: string;
   lat: number;
   lng: number;
-  // Adding the missing properties that are causing errors
-  region: string;      // Region information 
-  description: string; // Description of the station
-  links: {             // External resource links
+  region: string;
+  description: string;
+  links: {
     realEstate: string;
     schools: string;
     crime: string;
@@ -193,6 +191,69 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
+    id: "bl-2",
+    name: "Blaine Station",
+    city: "Blaine",
+    state: "WA",
+    zipCode: "98230",
+    sector: "Blaine Sector",
+    lat: 48.9937,
+    lng: -122.7473,
+    region: "Northwest",
+    description: "Blaine Station operates in the northwesternmost point of the contiguous United States, monitoring the busy Peace Arch border crossing and surrounding areas along the U.S.-Canada border.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Blaine_WA",
+      schools: "https://www.greatschools.org/washington/blaine/",
+      crime: "https://www.neighborhoodscout.com/wa/blaine/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/washington/blaine",
+      weather: "https://weatherspark.com/y/476/Average-Weather-in-Blaine-Washington-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Seattle-WA-USA/Blaine-WA-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-washington/"
+    }
+  },
+  {
+    id: "bl-3",
+    name: "Port Angeles Station",
+    city: "Port Angeles",
+    state: "WA",
+    zipCode: "98362",
+    sector: "Blaine Sector",
+    lat: 48.1181,
+    lng: -123.4307,
+    region: "Northwest",
+    description: "Port Angeles Station monitors maritime operations along the Strait of Juan de Fuca, providing border security for the Olympic Peninsula region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Port-Angeles_WA",
+      schools: "https://www.greatschools.org/washington/port-angeles/",
+      crime: "https://www.neighborhoodscout.com/wa/port-angeles/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/washington/port_angeles",
+      weather: "https://weatherspark.com/y/479/Average-Weather-in-Port-Angeles-Washington-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Seattle-WA-USA/Port-Angeles-WA-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-washington/"
+    }
+  },
+  {
+    id: "bl-4",
+    name: "Bellingham Station",
+    city: "Bellingham",
+    state: "WA",
+    zipCode: "98225",
+    sector: "Blaine Sector",
+    lat: 48.7519,
+    lng: -122.4787,
+    region: "Northwest",
+    description: "Bellingham Station provides border security operations in northwestern Washington state, focusing on both land and maritime borders in the Puget Sound region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Bellingham_WA",
+      schools: "https://www.greatschools.org/washington/bellingham/",
+      crime: "https://www.neighborhoodscout.com/wa/bellingham/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/washington/bellingham",
+      weather: "https://weatherspark.com/y/477/Average-Weather-in-Bellingham-Washington-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Seattle-WA-USA/Bellingham-WA-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-washington/"
+    }
+  },
+  {
     id: "bf-1",
     name: "Buffalo Station",
     city: "Buffalo",
@@ -210,6 +271,48 @@ export const dutyStations: DutyStation[] = [
       costOfLiving: "https://www.bestplaces.net/cost_of_living/city/new_york/buffalo",
       weather: "https://weatherspark.com/y/22137/Average-Weather-in-Buffalo-New-York-United-States-Year-Round",
       transit: "https://nfta.com/metro",
+      movingTips: "https://www.moving.com/tips/moving-to-new-york/"
+    }
+  },
+  {
+    id: "bf-2",
+    name: "Erie Station",
+    city: "Erie",
+    state: "PA",
+    zipCode: "16505",
+    sector: "Buffalo Sector",
+    lat: 42.1292,
+    lng: -80.0851,
+    region: "Northeast",
+    description: "Erie Station monitors border operations along Lake Erie, providing security for Pennsylvania's only Great Lakes port city and surrounding areas.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Erie_PA",
+      schools: "https://www.greatschools.org/pennsylvania/erie/",
+      crime: "https://www.neighborhoodscout.com/pa/erie/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/pennsylvania/erie",
+      weather: "https://weatherspark.com/y/22138/Average-Weather-in-Erie-Pennsylvania-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Pittsburgh-PA-USA/Erie-PA-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-pennsylvania/"
+    }
+  },
+  {
+    id: "bf-3",
+    name: "Oswego Station",
+    city: "Oswego",
+    state: "NY",
+    zipCode: "13126",
+    sector: "Buffalo Sector",
+    lat: 43.4553,
+    lng: -76.5105,
+    region: "Northeast",
+    description: "Oswego Station oversees border security operations along Lake Ontario, protecting a significant portion of New York's northern maritime border.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Oswego_NY",
+      schools: "https://www.greatschools.org/new-york/oswego/",
+      crime: "https://www.neighborhoodscout.com/ny/oswego/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/new_york/oswego",
+      weather: "https://weatherspark.com/y/22136/Average-Weather-in-Oswego-New-York-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Syracuse-NY-USA/Oswego-NY-USA",
       movingTips: "https://www.moving.com/tips/moving-to-new-york/"
     }
   },
