@@ -8,17 +8,26 @@ import { DirectoryFilters } from "@/components/directory/DirectoryFilters";
 import { StationsList } from "@/components/directory/StationsList";
 import StationMap from "@/components/StationMap";
 
-// Get unique sectors from the data to ensure we're using correct values
+// Get unique values from the data to ensure we're using correct values
 const allStations = searchDutyStations("");
 const uniqueSectors = ["All Sectors", ...new Set(allStations.map(station => station.sector))].sort();
+const uniqueRegions = ["All Regions", ...new Set(allStations.map(station => station.region))].sort();
 
-// Get unique states from the data
-const uniqueStates = ["All States", ...new Set(allStations.map(station => station.state))].sort();
+// Get unique states from the data, ensuring "All States" is first
+const uniqueStates = [
+  "All States",
+  ...new Set(allStations.map(station => station.state))
+].sort((a, b) => {
+  if (a === "All States") return -1;
+  if (b === "All States") return 1;
+  return a.localeCompare(b);
+});
 
 export default function DirectoryPage() {
   const [stations, setStations] = useState<DutyStation[]>([]);
   const [activeView, setActiveView] = useState("list");
   const [selectedSector, setSelectedSector] = useState("All Sectors");
+  const [selectedRegion, setSelectedRegion] = useState("All Regions");
   const [selectedState, setSelectedState] = useState("All States");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const location = useLocation();
@@ -26,8 +35,9 @@ export default function DirectoryPage() {
   // For debugging
   useEffect(() => {
     console.info("Selected sector:", selectedSector);
+    console.info("Selected region:", selectedRegion);
     console.info("Selected state:", selectedState);
-  }, [selectedSector, selectedState]);
+  }, [selectedSector, selectedRegion, selectedState]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -46,6 +56,14 @@ export default function DirectoryPage() {
       console.info("After sector filter, stations count:", filteredStations.length);
     }
 
+    // Apply region filter if not "All Regions"
+    if (selectedRegion !== "All Regions") {
+      filteredStations = filteredStations.filter(
+        station => station.region === selectedRegion
+      );
+      console.info("After region filter, stations count:", filteredStations.length);
+    }
+
     // Apply state filter if not "All States"
     if (selectedState !== "All States") {
       filteredStations = filteredStations.filter(
@@ -61,7 +79,7 @@ export default function DirectoryPage() {
     });
 
     setStations(filteredStations);
-  }, [location.search, selectedSector, selectedState, sortOrder]);
+  }, [location.search, selectedSector, selectedRegion, selectedState, sortOrder]);
 
   return (
     <div className="container px-4 py-8 mx-auto">
@@ -89,11 +107,14 @@ export default function DirectoryPage() {
             <DirectoryFilters
               selectedSector={selectedSector}
               setSelectedSector={setSelectedSector}
+              selectedRegion={selectedRegion}
+              setSelectedRegion={setSelectedRegion}
               selectedState={selectedState}
               setSelectedState={setSelectedState}
               sortOrder={sortOrder}
               setSortOrder={setSortOrder}
               sectors={uniqueSectors}
+              regions={uniqueRegions}
               states={uniqueStates}
             />
             <StationsList

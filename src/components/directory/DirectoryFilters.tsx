@@ -12,22 +12,28 @@ import { ArrowDownAZ, ArrowUpAZ } from "lucide-react";
 interface DirectoryFiltersProps {
   selectedSector: string;
   setSelectedSector: (sector: string) => void;
+  selectedRegion: string;
+  setSelectedRegion: (region: string) => void;
   selectedState: string;
   setSelectedState: (state: string) => void;
   sortOrder: "asc" | "desc";
   setSortOrder: (order: "asc" | "desc") => void;
   sectors: string[];
+  regions: string[];
   states: string[];
 }
 
 export function DirectoryFilters({
   selectedSector,
   setSelectedSector,
+  selectedRegion,
+  setSelectedRegion,
   selectedState,
   setSelectedState,
   sortOrder,
   setSortOrder,
   sectors,
+  regions,
   states,
 }: DirectoryFiltersProps) {
   return (
@@ -40,6 +46,19 @@ export function DirectoryFilters({
           {sectors.map(sector => (
             <SelectItem key={sector} value={sector}>
               {sector}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+
+      <Select value={selectedRegion} onValueChange={setSelectedRegion}>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Select region" />
+        </SelectTrigger>
+        <SelectContent>
+          {regions.map(region => (
+            <SelectItem key={region} value={region}>
+              {region}
             </SelectItem>
           ))}
         </SelectContent>
