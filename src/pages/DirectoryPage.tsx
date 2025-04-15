@@ -1,25 +1,10 @@
-
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { DutyStation, searchDutyStations } from "@/data/dutyStations";
-import { MapPin, Map, ArrowDownAZ, ArrowUpAZ } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardFooter, 
-  CardHeader, 
-  CardTitle 
-} from "@/components/ui/card";
+import { Map, MapPin } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { DirectoryFilters } from "@/components/directory/DirectoryFilters";
+import { StationsList } from "@/components/directory/StationsList";
 import StationMap from "@/components/StationMap";
 
 const sectors = [
@@ -68,55 +53,37 @@ export default function DirectoryPage() {
   const [selectedSector, setSelectedSector] = useState("All Sectors");
   const [selectedState, setSelectedState] = useState("All States");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const queryParam = params.get("search") || "";
     
-    // Get all duty stations based on the search query
     const allStations = searchDutyStations(queryParam);
-    
-    console.log("Initial stations count:", allStations.length);
-    console.log("Selected sector:", selectedSector);
-    console.log("Selected state:", selectedState);
-
     let filteredStations = [...allStations];
     
-    // Apply sector filter if not "All Sectors"
     if (selectedSector !== "All Sectors") {
       filteredStations = filteredStations.filter(
         station => station.region === selectedSector
       );
-      console.log("After sector filter, stations count:", filteredStations.length);
     }
 
-    // Apply state filter if not "All States"
     if (selectedState !== "All States") {
       filteredStations = filteredStations.filter(
         station => station.state === selectedState
       );
-      console.log("After state filter, stations count:", filteredStations.length);
     }
 
-    // Special case handling when "El Paso" is selected as a state
     if (selectedState === "El Paso") {
-      // Reset the state filter since El Paso is a sector
       setSelectedState("All States");
-      
-      // If sector is not already set to El Paso, set it
       if (selectedSector !== "El Paso") {
         setSelectedSector("El Paso");
       }
-      
-      // Re-apply the correct filtering
       filteredStations = allStations.filter(
         station => station.region === "El Paso"
       );
     }
 
-    // Apply sorting
     filteredStations.sort((a, b) => {
       const compareResult = a.name.localeCompare(b.name);
       return sortOrder === "asc" ? compareResult : -compareResult;
@@ -148,91 +115,21 @@ export default function DirectoryPage() {
           </TabsList>
           
           <TabsContent value="list">
-            <div className="flex flex-wrap gap-4 mb-6">
-              <Select value={selectedSector} onValueChange={setSelectedSector}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Select sector" />
-                </SelectTrigger>
-                <SelectContent>
-                  {sectors.map(sector => (
-                    <SelectItem key={sector} value={sector}>
-                      {sector}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              <Select value={selectedState} onValueChange={setSelectedState}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Select state" />
-                </SelectTrigger>
-                <SelectContent>
-                  {states.map(state => (
-                    <SelectItem key={state} value={state}>
-                      {state}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              <Button
-                variant="outline"
-                onClick={() => setSortOrder(prev => prev === "asc" ? "desc" : "asc")}
-                className="gap-2"
-              >
-                {sortOrder === "asc" ? (
-                  <>
-                    <ArrowDownAZ className="h-4 w-4" />
-                    A to Z
-                  </>
-                ) : (
-                  <>
-                    <ArrowUpAZ className="h-4 w-4" />
-                    Z to A
-                  </>
-                )}
-              </Button>
-            </div>
-
-            {stations.length === 0 ? (
-              <div className="flex flex-col items-center justify-center p-8 text-center border rounded-lg">
-                <p className="text-muted-foreground">No duty stations found matching your search.</p>
-                <Button variant="link" onClick={() => {
-                  setSelectedSector("All Sectors");
-                  setSelectedState("All States");
-                  navigate("/directory");
-                }}>
-                  Clear filters and show all
-                </Button>
-              </div>
-            ) : (
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {stations.map((station) => (
-                  <Card key={station.id} className="overflow-hidden">
-                    <CardHeader className="pb-3">
-                      <CardTitle>{station.name}</CardTitle>
-                      <CardDescription className="flex items-center">
-                        <MapPin className="h-3 w-3 mr-1" />
-                        {station.city}, {station.state}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="text-sm">
-                      <p>{station.description}</p>
-                      <div className="mt-2 text-xs font-medium">Region: {station.region}</div>
-                    </CardContent>
-                    <CardFooter>
-                      <Button 
-                        variant="outline" 
-                        className="w-full"
-                        onClick={() => navigate(`/station/${station.id}`)}
-                      >
-                        View Details
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                ))}
-              </div>
-            )}
+            <DirectoryFilters
+              selectedSector={selectedSector}
+              setSelectedSector={setSelectedSector}
+              selectedState={selectedState}
+              setSelectedState={setSelectedState}
+              sortOrder={sortOrder}
+              setSortOrder={setSortOrder}
+              sectors={sectors}
+              states={states}
+            />
+            <StationsList
+              stations={stations}
+              setSelectedSector={setSelectedSector}
+              setSelectedState={setSelectedState}
+            />
           </TabsContent>
 
           <TabsContent value="map" className="mt-6">
@@ -245,4 +142,3 @@ export default function DirectoryPage() {
     </div>
   );
 }
-
