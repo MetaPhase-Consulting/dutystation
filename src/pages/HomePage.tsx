@@ -67,7 +67,7 @@ export default function HomePage() {
                                   key={station.id}
                                   className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
                                   onClick={() => {
-                                    navigate(`/directory/${station.id}`);
+                                    navigate(`/station/${station.id}`);
                                     setSearchQuery("");
                                   }}
                                 >
