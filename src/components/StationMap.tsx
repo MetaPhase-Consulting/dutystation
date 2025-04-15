@@ -12,7 +12,6 @@ import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
 import { Style, Icon } from 'ol/style';
 import { DutyStation } from '@/data/dutyStations';
-import { buffer } from 'ol/extent';
 import { useNavigate } from 'react-router-dom';
 
 interface StationMapProps {
@@ -44,6 +43,9 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
       }),
     });
 
+    // Custom map cursor style
+    map.getTarget()?.style.setProperty('cursor', 'default');
+
     if (locations && locations.length > 0) {
       // Create features for all locations
       const features = locations.map(location => {
@@ -58,9 +60,12 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
             image: new Icon({
               anchor: [0.5, 1],
               src: `data:image/svg+xml;utf8,${encodeURIComponent(
-                '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1EAEDB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>'
+                '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="48" viewBox="0 0 32 48">' +
+                '<path d="M16 0 C 7.2 0 0 7.2 0 16 C 0 24.8 16 48 16 48 C 16 48 32 24.8 32 16 C 32 7.2 24.8 0 16 0 Z" fill="#0FA0CE"/>' + // CBP Ocean Blue
+                '<circle cx="16" cy="16" r="8" fill="white"/>' +
+                '</svg>'
               )}`,
-              scale: 1.5,
+              scale: 0.7,
             }),
           })
         );
@@ -77,7 +82,13 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
 
       map.addLayer(vectorLayer);
 
-      // Add click handler
+      // Add click handler with cursor change
+      map.on('pointermove', (event) => {
+        const hit = map.forEachFeatureAtPixel(event.pixel, () => true);
+        map.getTarget()?.style.setProperty('cursor', hit ? 'pointer' : 'default');
+      });
+
+      // Add click handler to navigate
       map.on('click', (event) => {
         map.forEachFeatureAtPixel(event.pixel, (feature) => {
           const id = feature.get('id');
@@ -109,9 +120,12 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
           image: new Icon({
             anchor: [0.5, 1],
             src: `data:image/svg+xml;utf8,${encodeURIComponent(
-              '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1EAEDB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>'
+              '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="48" viewBox="0 0 32 48">' +
+              '<path d="M16 0 C 7.2 0 0 7.2 0 16 C 0 24.8 16 48 16 48 C 16 48 32 24.8 32 16 C 32 7.2 24.8 0 16 0 Z" fill="#0FA0CE"/>' + // CBP Ocean Blue
+              '<circle cx="16" cy="16" r="8" fill="white"/>' +
+              '</svg>'
             )}`,
-            scale: 1.5,
+            scale: 0.7,
           }),
         })
       );
