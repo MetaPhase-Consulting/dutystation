@@ -18,6 +18,11 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { DutyStation } from '@/data/dutyStations';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import Feature from 'ol/Feature';
+import Point from 'ol/geom/Point';
+import { Style, Icon } from 'ol/style';
 
 interface StationMapProps {
   locations?: DutyStation[];
@@ -33,6 +38,14 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
 
   useEffect(() => {
     if (!mapRef.current) return;
+    
+    // Clean up any existing map
+    if (mapInstance.current) {
+      mapInstance.current.setTarget(undefined);
+      mapInstance.current = null;
+    }
+
+    console.log("Map container exists, initializing map", { lat, lng, locationsCount: locations?.length });
 
     // Create the map layers
     const osmLayer = new TileLayer({
@@ -48,37 +61,111 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
       visible: activeLayer === 'satellite'
     });
 
+    // Create vector source for station markers
+    const vectorSource = new VectorSource();
+
+    // If stations are provided, create features for them
+    if (locations && locations.length > 0) {
+      console.log("Adding markers for stations:", locations.length);
+      locations.forEach(station => {
+        if (station.lat && station.lng) {
+          const feature = new Feature({
+            geometry: new Point(fromLonLat([station.lng, station.lat]))
+          });
+          vectorSource.addFeature(feature);
+        }
+      });
+    }
+    // For single location from lat/lng props
+    else if (lat && lng) {
+      console.log("Adding marker for single location:", { lat, lng });
+      const feature = new Feature({
+        geometry: new Point(fromLonLat([lng, lat]))
+      });
+      vectorSource.addFeature(feature);
+    }
+
+    // Create vector layer for markers
+    const vectorLayer = new VectorLayer({
+      source: vectorSource,
+      style: new Style({
+        image: new Icon({
+          anchor: [0.5, 1],
+          src: 'https://openlayers.org/en/latest/examples/data/icon.png',
+          scale: 0.5
+        })
+      })
+    });
+
+    // Determine center and zoom based on inputs
+    let center = fromLonLat([-98.5795, 39.8283]); // Default US center
+    let zoom = 4; // Default zoom for US
+    
+    if (lat && lng) {
+      center = fromLonLat([lng, lat]);
+      zoom = 12; // Closer zoom for single station
+    } else if (locations && locations.length > 0 && locations.some(s => s.lat && s.lng)) {
+      // Use first station with coordinates as center when showing multiple
+      const stationWithCoords = locations.find(s => s.lat && s.lng);
+      if (stationWithCoords) {
+        center = fromLonLat([stationWithCoords.lng, stationWithCoords.lat]);
+        zoom = locations.length === 1 ? 12 : 5;
+      }
+    }
+
     // Create the map instance with default controls
     const map = new Map({
       target: mapRef.current,
-      layers: [osmLayer, satelliteLayer],
+      layers: [osmLayer, satelliteLayer, vectorLayer],
       controls: defaultControls({
         zoom: true,
         rotate: true,
         attribution: true
       }),
       view: new View({
-        center: lat && lng ? fromLonLat([lng, lat]) : fromLonLat([-98.5795, 39.8283]),
-        zoom: lat && lng ? 12 : 4,
+        center: center,
+        zoom: zoom,
+        minZoom: 2,
       }),
     });
+
+    // Ensure the map renders correctly by updating its size
+    setTimeout(() => {
+      map.updateSize();
+      console.log("Map size updated");
+    }, 100);
+
+    mapInstance.current = map;
 
     // Update layer visibility when activeLayer changes
     osmLayer.setVisible(activeLayer === 'osm');
     satelliteLayer.setVisible(activeLayer === 'satellite');
 
-    mapInstance.current = map;
-
     return () => {
+      console.log("Cleaning up map");
       if (mapInstance.current) {
         mapInstance.current.setTarget(undefined);
       }
       mapInstance.current = null;
     };
-  }, [lat, lng, activeLayer]);
+  }, [lat, lng, activeLayer, locations]);
+
+  // Update layer visibility when activeLayer changes
+  useEffect(() => {
+    if (!mapInstance.current) return;
+    
+    const layers = mapInstance.current.getLayers().getArray();
+    const osmLayer = layers[0];
+    const satelliteLayer = layers[1];
+    
+    osmLayer.setVisible(activeLayer === 'osm');
+    satelliteLayer.setVisible(activeLayer === 'satellite');
+    
+    console.log("Layer visibility updated:", activeLayer);
+  }, [activeLayer]);
 
   return (
-    <div className="relative">
+    <div className="relative h-full">
       <div className="absolute top-4 right-4 z-10 flex gap-2">
         <Select value={activeLayer} onValueChange={(value: 'osm' | 'satellite') => setActiveLayer(value)}>
           <SelectTrigger className="w-[140px] bg-white">
