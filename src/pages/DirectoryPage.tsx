@@ -63,80 +63,82 @@ export default function DirectoryPage() {
             <Button type="submit">Search</Button>
           </form>
 
-          <Tabs defaultValue="list" className="w-full md:w-auto" onValueChange={setActiveView}>
-            <TabsList className="grid w-full grid-cols-2 md:w-auto">
-              <TabsTrigger value="list">
-                <Building2 className="h-4 w-4 mr-2" />
-                List
-              </TabsTrigger>
-              <TabsTrigger value="map">
-                <Map className="h-4 w-4 mr-2" />
-                Map
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
+          <div className="w-full md:w-auto">
+            <Tabs defaultValue="list" value={activeView} onValueChange={setActiveView}>
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="list">
+                  <Building2 className="h-4 w-4 mr-2" />
+                  List
+                </TabsTrigger>
+                <TabsTrigger value="map">
+                  <Map className="h-4 w-4 mr-2" />
+                  Map
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="list" className="mt-6 space-y-4">
+                {stations.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center p-8 text-center border rounded-lg">
+                    <p className="text-muted-foreground">No duty stations found matching your search.</p>
+                    <Button variant="link" onClick={() => navigate("/directory")}>
+                      Clear search and show all
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {stations.map((station) => (
+                      <Card key={station.id} className="overflow-hidden">
+                        <CardHeader className="pb-3">
+                          <CardTitle>{station.name}</CardTitle>
+                          <CardDescription className="flex items-center">
+                            <MapPin className="h-3 w-3 mr-1" />
+                            {station.city}, {station.state}
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="text-sm">
+                          <p>{station.description}</p>
+                          <div className="mt-2 text-xs font-medium">Region: {station.region}</div>
+                        </CardContent>
+                        <CardFooter>
+                          <Button 
+                            variant="outline" 
+                            className="w-full"
+                            onClick={() => navigate(`/station/${station.id}`)}
+                          >
+                            View Details
+                          </Button>
+                        </CardFooter>
+                      </Card>
+                    ))}
+                  </div>
+                )}
+              </TabsContent>
 
-        <TabsContent value="list" className="mt-6 space-y-4">
-          {stations.length === 0 ? (
-            <div className="flex flex-col items-center justify-center p-8 text-center border rounded-lg">
-              <p className="text-muted-foreground">No duty stations found matching your search.</p>
-              <Button variant="link" onClick={() => navigate("/directory")}>
-                Clear search and show all
-              </Button>
-            </div>
-          ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {stations.map((station) => (
-                <Card key={station.id} className="overflow-hidden">
-                  <CardHeader className="pb-3">
-                    <CardTitle>{station.name}</CardTitle>
-                    <CardDescription className="flex items-center">
-                      <MapPin className="h-3 w-3 mr-1" />
-                      {station.city}, {station.state}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="text-sm">
-                    <p>{station.description}</p>
-                    <div className="mt-2 text-xs font-medium">Region: {station.region}</div>
-                  </CardContent>
-                  <CardFooter>
+              <TabsContent value="map" className="mt-6">
+                <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                  <div className="text-center">
+                    <p className="text-muted-foreground">Map view would display here</p>
+                    <p className="text-xs text-muted-foreground">An interactive map showing all duty station locations</p>
+                  </div>
+                </div>
+                
+                <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  {stations.map((station) => (
                     <Button 
+                      key={station.id} 
                       variant="outline" 
-                      className="w-full"
+                      className="justify-start"
                       onClick={() => navigate(`/station/${station.id}`)}
                     >
-                      View Details
+                      <MapPin className="h-4 w-4 mr-2" />
+                      <span className="truncate">{station.name}</span>
                     </Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          )}
-        </TabsContent>
-
-        <TabsContent value="map" className="mt-6">
-          <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-            <div className="text-center">
-              <p className="text-muted-foreground">Map view would display here</p>
-              <p className="text-xs text-muted-foreground">An interactive map showing all duty station locations</p>
-            </div>
+                  ))}
+                </div>
+              </TabsContent>
+            </Tabs>
           </div>
-          
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {stations.map((station) => (
-              <Button 
-                key={station.id} 
-                variant="outline" 
-                className="justify-start"
-                onClick={() => navigate(`/station/${station.id}`)}
-              >
-                <MapPin className="h-4 w-4 mr-2" />
-                <span className="truncate">{station.name}</span>
-              </Button>
-            ))}
-          </div>
-        </TabsContent>
+        </div>
       </div>
     </div>
   );
