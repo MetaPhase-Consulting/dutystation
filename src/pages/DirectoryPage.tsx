@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { DutyStation, searchDutyStations } from "@/data/dutyStations";
@@ -73,19 +74,45 @@ export default function DirectoryPage() {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const queryParam = params.get("search") || "";
+    
+    // First, get all stations based on search query
     let filteredStations = searchDutyStations(queryParam);
+    
+    console.log("Initial stations count:", filteredStations.length);
+    console.log("Selected sector:", selectedSector);
+    console.log("Selected state:", selectedState);
 
-    // Apply sector filter
+    // Apply sector filter if not "All Sectors"
     if (selectedSector !== "All Sectors") {
       filteredStations = filteredStations.filter(
         station => station.region === selectedSector
       );
+      console.log("After sector filter, stations count:", filteredStations.length);
     }
 
-    // Apply state filter
+    // Apply state filter if not "All States"
     if (selectedState !== "All States") {
       filteredStations = filteredStations.filter(
         station => station.state === selectedState
+      );
+      console.log("After state filter, stations count:", filteredStations.length);
+    }
+
+    // If El Paso is selected, make sure we're looking for the state correctly
+    if (selectedState === "El Paso") {
+      // El Paso is a sector, not a state - check if user made an error
+      console.log("El Paso is selected as a state - this is likely an error");
+      // Reset the state filter since El Paso is a sector
+      setSelectedState("All States");
+      
+      // If sector is not already set to El Paso, set it
+      if (selectedSector !== "El Paso") {
+        setSelectedSector("El Paso");
+      }
+      
+      // Re-apply the correct filtering
+      filteredStations = searchDutyStations(queryParam).filter(
+        station => station.region === "El Paso"
       );
     }
 
@@ -170,8 +197,12 @@ export default function DirectoryPage() {
             {stations.length === 0 ? (
               <div className="flex flex-col items-center justify-center p-8 text-center border rounded-lg">
                 <p className="text-muted-foreground">No duty stations found matching your search.</p>
-                <Button variant="link" onClick={() => navigate("/directory")}>
-                  Clear search and show all
+                <Button variant="link" onClick={() => {
+                  setSelectedSector("All Sectors");
+                  setSelectedState("All States");
+                  navigate("/directory");
+                }}>
+                  Clear filters and show all
                 </Button>
               </div>
             ) : (
