@@ -1,7 +1,6 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Search, Home, Map, CompassIcon, ArrowRightLeft } from "lucide-react";
+import { Menu, Search, Home, Map, CompassIcon, ArrowRightLeft, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -10,6 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
+import { searchDutyStations } from "@/data/dutyStations";
 
 export function NavBar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,6 +21,8 @@ export function NavBar() {
       navigate(`/directory?search=${encodeURIComponent(searchQuery.trim())}`);
     }
   };
+
+  const filteredStations = searchDutyStations(searchQuery);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -106,13 +108,38 @@ export function NavBar() {
 
         <div className="flex flex-1 items-center justify-end">
           <form onSubmit={handleSearch} className="flex w-full max-w-sm items-center space-x-2">
-            <Input
-              type="search"
-              placeholder="Search duty stations..."
-              className="flex-1"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+            <div className="relative flex-1">
+              <Input
+                type="search"
+                placeholder="Search duty stations..."
+                className="w-full"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery && (
+                <div className="absolute top-full left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-md border bg-popover shadow-md">
+                  {filteredStations.length === 0 ? (
+                    <div className="py-6 text-center text-sm">No results found.</div>
+                  ) : (
+                    <div className="p-1">
+                      {filteredStations.map((station) => (
+                        <div
+                          key={station.id}
+                          className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
+                          onClick={() => {
+                            navigate(`/station/${station.id}`);
+                            setSearchQuery("");
+                          }}
+                        >
+                          <MapPin className="mr-2 h-4 w-4" />
+                          {station.name} - {station.city}, {station.state}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
             <Button type="submit" size="icon" variant="ghost">
               <Search className="h-4 w-4" />
               <span className="sr-only">Search</span>
