@@ -4,7 +4,7 @@ import { Search, MapPin, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-  CommandDialog,
+  Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
@@ -15,7 +15,6 @@ import { dutyStations, searchDutyStations } from "@/data/dutyStations";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
@@ -44,20 +43,37 @@ export default function HomePage() {
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2">
-              <form onSubmit={handleSearch} className="flex w-full max-w-sm items-center space-x-2">
-                <div className="relative w-full">
-                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    type="search"
-                    placeholder="Search duty stations..."
-                    className="pl-8 w-full"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onClick={() => setOpen(true)}
-                  />
-                </div>
-                <Button type="submit">Search</Button>
-              </form>
+              <div className="relative w-full">
+                <Command className="relative border rounded-lg">
+                  <div className="flex items-center border-b px-3">
+                    <Search className="h-4 w-4 text-muted-foreground shrink-0" />
+                    <CommandInput 
+                      placeholder="Search duty stations..."
+                      value={searchQuery}
+                      onValueChange={setSearchQuery}
+                      className="flex w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                    />
+                  </div>
+                  {searchQuery && (
+                    <CommandList className="absolute top-full w-full z-50 bg-popover border rounded-b-lg mt-[-1px]">
+                      <CommandEmpty>No results found.</CommandEmpty>
+                      <CommandGroup heading="Duty Stations">
+                        {filteredStations.map((station) => (
+                          <CommandItem
+                            key={station.id}
+                            onSelect={() => {
+                              navigate(`/directory/${station.id}`);
+                            }}
+                          >
+                            <MapPin className="mr-2 h-4 w-4" />
+                            {station.name} - {station.city}, {station.state}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  )}
+                </Command>
+              </div>
               <p className="text-xs text-muted-foreground">
                 Search by city, state, or duty station name
               </p>
@@ -65,31 +81,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput 
-          placeholder="Search duty stations..." 
-          value={searchQuery}
-          onValueChange={setSearchQuery}
-        />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Duty Stations">
-            {filteredStations.map((station) => (
-              <CommandItem
-                key={station.id}
-                onSelect={() => {
-                  navigate(`/directory/${station.id}`);
-                  setOpen(false);
-                }}
-              >
-                <MapPin className="mr-2 h-4 w-4" />
-                {station.name} - {station.city}, {station.state}
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </CommandList>
-      </CommandDialog>
 
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container px-4 md:px-6">
