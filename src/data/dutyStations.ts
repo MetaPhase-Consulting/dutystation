@@ -798,6 +798,132 @@ export const dutyStations: DutyStation[] = [
       transit: "https://www.cob.us/592/Brownsville-Metro",
       movingTips: "https://www.moving.com/tips/moving-to-texas/"
     }
+  },
+  {
+    id: "sp-1",
+    name: "Spokane Station",
+    city: "Spokane",
+    state: "WA",
+    zipCode: "99201",
+    sector: "Spokane Sector",
+    lat: 47.6587,
+    lng: -117.4260,
+    region: "Northwest",
+    description: "Spokane Station serves as the headquarters for the Spokane Sector, monitoring the northern border with Canada across eastern Washington state. The station oversees operations in challenging terrain including forests and mountains.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Spokane_WA",
+      schools: "https://www.greatschools.org/washington/spokane/",
+      crime: "https://www.neighborhoodscout.com/wa/spokane/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/washington/spokane",
+      weather: "https://weatherspark.com/y/2202/Average-Weather-in-Spokane-Washington-United-States-Year-Round",
+      transit: "https://www.spokanetransit.com/",
+      movingTips: "https://www.moving.com/tips/moving-to-washington/"
+    }
+  },
+  {
+    id: "sw-1",
+    name: "Swanton Station",
+    city: "Swanton",
+    state: "VT",
+    zipCode: "05488",
+    sector: "Swanton Sector",
+    lat: 44.9168,
+    lng: -73.1277,
+    region: "Northeast",
+    description: "Swanton Station is the headquarters for the Swanton Sector, responsible for border security operations along the U.S.-Canada border in Vermont. The station manages operations in diverse terrain including forests, mountains, and waterways.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Swanton_VT",
+      schools: "https://www.greatschools.org/vermont/swanton/",
+      crime: "https://www.neighborhoodscout.com/vt/swanton/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/vermont/swanton",
+      weather: "https://weatherspark.com/y/25097/Average-Weather-in-Swanton-Vermont-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Burlington-VT-USA/Swanton-VT-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-vermont/"
+    }
+  },
+  {
+    id: "tu-1",
+    name: "Tucson Station",
+    city: "Tucson",
+    state: "AZ",
+    zipCode: "85701",
+    sector: "Tucson Sector",
+    lat: 32.2226,
+    lng: -110.9747,
+    region: "Southwest",
+    description: "Tucson Station serves as the headquarters for the Tucson Sector, one of the busiest and most challenging sectors along the southwest border. The station coordinates operations across vast stretches of desert terrain.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Tucson_AZ",
+      schools: "https://www.greatschools.org/arizona/tucson/",
+      crime: "https://www.neighborhoodscout.com/az/tucson/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/arizona/tucson",
+      weather: "https://weatherspark.com/y/2857/Average-Weather-in-Tucson-Arizona-United-States-Year-Round",
+      transit: "https://www.suntran.com/",
+      movingTips: "https://www.moving.com/tips/moving-to-arizona/"
+    }
+  },
+  {
+    id: "tu-2",
+    name: "Douglas Station",
+    city: "Douglas",
+    state: "AZ",
+    zipCode: "85607",
+    sector: "Tucson Sector",
+    lat: 31.3445,
+    lng: -109.5453,
+    region: "Southwest",
+    description: "Douglas Station monitors border operations along the Arizona-Mexico border, focusing on preventing illegal crossings and drug trafficking in challenging desert terrain.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Douglas_AZ",
+      schools: "https://www.greatschools.org/arizona/douglas/",
+      crime: "https://www.neighborhoodscout.com/az/douglas/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/arizona/douglas",
+      weather: "https://weatherspark.com/y/2858/Average-Weather-in-Douglas-Arizona-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Tucson-AZ-USA/Douglas-AZ-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-arizona/"
+    }
+  },
+  {
+    id: "yu-1",
+    name: "Yuma Station",
+    city: "Yuma",
+    state: "AZ",
+    zipCode: "85364",
+    sector: "Yuma Sector",
+    lat: 32.6927,
+    lng: -114.6277,
+    region: "Southwest",
+    description: "Yuma Station is the headquarters for the Yuma Sector, monitoring one of the most challenging sections of the southwest border. The station manages operations in extreme desert conditions and along the Colorado River.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Yuma_AZ",
+      schools: "https://www.greatschools.org/arizona/yuma/",
+      crime: "https://www.neighborhoodscout.com/az/yuma/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/arizona/yuma",
+      weather: "https://weatherspark.com/y/2290/Average-Weather-in-Yuma-Arizona-United-States-Year-Round",
+      transit: "https://www.ycat.az.gov/",
+      movingTips: "https://www.moving.com/tips/moving-to-arizona/"
+    }
+  },
+  {
+    id: "yu-2",
+    name: "Wellton Station",
+    city: "Wellton",
+    state: "AZ",
+    zipCode: "85356",
+    sector: "Yuma Sector",
+    lat: 32.6724,
+    lng: -114.1467,
+    region: "Southwest",
+    description: "Wellton Station operates in the eastern portion of the Yuma Sector, monitoring border activities in remote desert areas. The station is crucial for preventing illegal crossings in one of the harshest environments along the southern border.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Wellton_AZ",
+      schools: "https://www.greatschools.org/arizona/wellton/",
+      crime: "https://www.neighborhoodscout.com/az/wellton/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/arizona/wellton",
+      weather: "https://weatherspark.com/y/2291/Average-Weather-in-Wellton-Arizona-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Yuma-AZ-USA/Wellton-AZ-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-arizona/"
+    }
   }
 ];
 
