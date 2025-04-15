@@ -62,14 +62,14 @@ export default function HomePage() {
                             <div className="py-6 text-center text-sm">No results found.</div>
                           ) : (
                             <div className="p-1">
-                              <div className="px-2 py-1.5 text-xs font-medium text-muted-foreground">
-                                Duty Stations
-                              </div>
                               {filteredStations.map((station) => (
                                 <div
                                   key={station.id}
                                   className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
-                                  onClick={() => navigate(`/directory/${station.id}`)}
+                                  onClick={() => {
+                                    navigate(`/directory/${station.id}`);
+                                    setSearchQuery("");
+                                  }}
                                 >
                                   <MapPin className="mr-2 h-4 w-4" />
                                   {station.name} - {station.city}, {station.state}
