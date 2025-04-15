@@ -75,8 +75,9 @@ export default function DirectoryPage() {
     const params = new URLSearchParams(location.search);
     const queryParam = params.get("search") || "";
     
-    // First, get all stations based on search query
-    let filteredStations = searchDutyStations(queryParam);
+    // Get all stations first - we'll apply filters to this
+    const allStations = searchDutyStations(queryParam);
+    let filteredStations = [...allStations];
     
     console.log("Initial stations count:", filteredStations.length);
     console.log("Selected sector:", selectedSector);
@@ -98,10 +99,8 @@ export default function DirectoryPage() {
       console.log("After state filter, stations count:", filteredStations.length);
     }
 
-    // If El Paso is selected, make sure we're looking for the state correctly
+    // Handle the case when "El Paso" is used as a state (it's a sector)
     if (selectedState === "El Paso") {
-      // El Paso is a sector, not a state - check if user made an error
-      console.log("El Paso is selected as a state - this is likely an error");
       // Reset the state filter since El Paso is a sector
       setSelectedState("All States");
       
@@ -111,7 +110,7 @@ export default function DirectoryPage() {
       }
       
       // Re-apply the correct filtering
-      filteredStations = searchDutyStations(queryParam).filter(
+      filteredStations = allStations.filter(
         station => station.region === "El Paso"
       );
     }
