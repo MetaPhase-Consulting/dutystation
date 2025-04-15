@@ -10,7 +10,7 @@ import StationMap from "@/components/StationMap";
 
 // Get unique sectors from the data to ensure we're using correct values
 const allStations = searchDutyStations("");
-const uniqueSectors = ["All Sectors", ...new Set(allStations.map(station => station.region))].sort();
+const uniqueSectors = ["All Sectors", ...new Set(allStations.map(station => station.sector))].sort();
 
 // Get unique states from the data
 const uniqueStates = ["All States", ...new Set(allStations.map(station => station.state))].sort();
@@ -41,7 +41,7 @@ export default function DirectoryPage() {
     // Apply sector filter if not "All Sectors"
     if (selectedSector !== "All Sectors") {
       filteredStations = filteredStations.filter(
-        station => station.region === selectedSector
+        station => station.sector === selectedSector
       );
       console.info("After sector filter, stations count:", filteredStations.length);
     }
