@@ -1,12 +1,21 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import { dutyStations, searchDutyStations } from "@/data/dutyStations";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
@@ -15,6 +24,8 @@ export default function HomePage() {
       navigate(`/directory?search=${encodeURIComponent(searchQuery.trim())}`);
     }
   };
+
+  const filteredStations = searchDutyStations(searchQuery);
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-14rem)]">
@@ -42,6 +53,7 @@ export default function HomePage() {
                     className="pl-8 w-full"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    onClick={() => setOpen(true)}
                   />
                 </div>
                 <Button type="submit">Search</Button>
@@ -53,6 +65,31 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <CommandInput 
+          placeholder="Search duty stations..." 
+          value={searchQuery}
+          onValueChange={setSearchQuery}
+        />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Duty Stations">
+            {filteredStations.map((station) => (
+              <CommandItem
+                key={station.id}
+                onSelect={() => {
+                  navigate(`/directory/${station.id}`);
+                  setOpen(false);
+                }}
+              >
+                <MapPin className="mr-2 h-4 w-4" />
+                {station.name} - {station.city}, {station.state}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
 
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container px-4 md:px-6">
