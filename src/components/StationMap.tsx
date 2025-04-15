@@ -13,6 +13,7 @@ import Point from 'ol/geom/Point';
 import { Style, Icon } from 'ol/style';
 import { DutyStation } from '@/data/dutyStations';
 import { buffer } from 'ol/extent';
+import { useNavigate } from 'react-router-dom';
 
 interface StationMapProps {
   locations?: DutyStation[];
@@ -24,6 +25,7 @@ interface StationMapProps {
 const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<Map | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!mapRef.current) return;
@@ -48,6 +50,7 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
         const feature = new Feature({
           geometry: new Point(fromLonLat([location.lng, location.lat])),
           name: location.name,
+          id: location.id, // Add station ID to the feature
         });
 
         feature.setStyle(
@@ -73,6 +76,16 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
       });
 
       map.addLayer(vectorLayer);
+
+      // Add click handler
+      map.on('click', (event) => {
+        map.forEachFeatureAtPixel(event.pixel, (feature) => {
+          const id = feature.get('id');
+          if (id) {
+            navigate(`/station/${id}`);
+          }
+        });
+      });
 
       // Fit the view to show all markers
       const vectorSource = vectorLayer.getSource();
@@ -120,7 +133,7 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
       map.setTarget(undefined);
       mapInstance.current = null;
     };
-  }, [locations, lat, lng]);
+  }, [locations, lat, lng, navigate]);
 
   return (
     <div 
