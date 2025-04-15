@@ -40,7 +40,7 @@ const StationMap = ({ locations, className = "" }: StationMapProps) => {
     // Create vector source for station markers
     const vectorSource = new VectorSource();
 
-    // Default center of continental USA (slightly adjusted for better view)
+    // Default center of continental USA
     const defaultCenter = [-97.0, 39.5];
     const center = fromLonLat(defaultCenter);
 
@@ -52,6 +52,16 @@ const StationMap = ({ locations, className = "" }: StationMapProps) => {
             geometry: new Point(fromLonLat([station.lng, station.lat])),
             name: station.name
           });
+          
+          // Add station data as properties to the feature
+          feature.setProperties({
+            id: station.id,
+            name: station.name,
+            sector: station.sector,
+            region: station.region,
+            state: station.state
+          });
+          
           vectorSource.addFeature(feature);
         }
       });
@@ -62,7 +72,7 @@ const StationMap = ({ locations, className = "" }: StationMapProps) => {
       source: vectorSource,
       style: new Style({
         image: new Icon({
-          src: '/blue-pin.png', // Make sure to add this blue pin image to your public folder
+          src: '/blue-pin.png', // Make sure this file exists in your public folder
           anchor: [0.5, 1],
           scale: 0.7 // Adjust scale for visibility
         })
@@ -83,6 +93,30 @@ const StationMap = ({ locations, className = "" }: StationMapProps) => {
         zoom: 4, // Default zoom for US view
         minZoom: 2,
       }),
+    });
+
+    // Add click interaction to navigate to station details
+    map.on('click', function(evt) {
+      const feature = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+        return feature;
+      });
+      
+      if (feature) {
+        const stationId = feature.get('id');
+        if (stationId) {
+          window.location.href = `/station/${stationId}`;
+        }
+      }
+    });
+
+    // Change cursor style when hovering over features
+    map.on('pointermove', function(evt) {
+      if (evt.dragging) return;
+      
+      const pixel = map.getEventPixel(evt.originalEvent);
+      const hit = map.hasFeatureAtPixel(pixel);
+      
+      map.getViewport().style.cursor = hit ? 'pointer' : '';
     });
 
     // Ensure the map renders correctly
