@@ -36,8 +36,12 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
   const mapInstance = useRef<Map | null>(null);
   const [activeLayer, setActiveLayer] = useState<'osm' | 'satellite'>('osm');
 
+  // Ensure we properly clean up and initialize the map
   useEffect(() => {
-    if (!mapRef.current) return;
+    if (!mapRef.current) {
+      console.log("Map container does not exist, cannot initialize map");
+      return;
+    }
     
     // Clean up any existing map
     if (mapInstance.current) {
@@ -64,54 +68,55 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
     // Create vector source for station markers
     const vectorSource = new VectorSource();
 
+    // Default center of continental USA
+    const defaultCenter = [-97.0, 39.5]; // Slightly adjusted for better centering
+    let center = fromLonLat(defaultCenter);
+    let zoom = 4; // Default zoom for US
+
     // If stations are provided, create features for them
     if (locations && locations.length > 0) {
       console.log("Adding markers for stations:", locations.length);
       locations.forEach(station => {
         if (station.lat && station.lng) {
           const feature = new Feature({
-            geometry: new Point(fromLonLat([station.lng, station.lat]))
+            geometry: new Point(fromLonLat([station.lng, station.lat])),
+            name: station.name
           });
           vectorSource.addFeature(feature);
         }
       });
+      
+      // Only adjust center if we have stations with coordinates
+      if (locations.some(s => s.lat && s.lng)) {
+        const stationWithCoords = locations.find(s => s.lat && s.lng);
+        if (stationWithCoords) {
+          center = fromLonLat([stationWithCoords.lng, stationWithCoords.lat]);
+          zoom = locations.length === 1 ? 12 : 5;
+        }
+      }
     }
-    // For single location from lat/lng props
+    // For single location from lat/lng props (for station detail page)
     else if (lat && lng) {
       console.log("Adding marker for single location:", { lat, lng });
       const feature = new Feature({
         geometry: new Point(fromLonLat([lng, lat]))
       });
       vectorSource.addFeature(feature);
+      center = fromLonLat([lng, lat]);
+      zoom = 12; // Closer zoom for single station
     }
 
-    // Create vector layer for markers
+    // Create vector layer for markers with larger icons
     const vectorLayer = new VectorLayer({
       source: vectorSource,
       style: new Style({
         image: new Icon({
           anchor: [0.5, 1],
           src: 'https://openlayers.org/en/latest/examples/data/icon.png',
-          scale: 0.5
+          scale: 1.0 // Increased from 0.5 to make pins larger
         })
       })
     });
-
-    // Determine center and zoom based on inputs
-    let center = fromLonLat([-98.5795, 39.8283]); // Default US center
-    let zoom = 4; // Default zoom for US
-    
-    if (lat && lng) {
-      center = fromLonLat([lng, lat]);
-      zoom = 12; // Closer zoom for single station
-    } else if (locations && locations.length > 0 && locations.some(s => s.lat && s.lng)) {
-      // Use first station with coordinates as center when showing multiple
-      const stationWithCoords = locations.find(s => s.lat && s.lng);
-      if (stationWithCoords) {
-        center = fromLonLat([stationWithCoords.lng, stationWithCoords.lat]);
-        zoom = locations.length === 1 ? 12 : 5;
-      }
-    }
 
     // Create the map instance with default controls
     const map = new Map({
@@ -133,11 +138,11 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
     setTimeout(() => {
       map.updateSize();
       console.log("Map size updated");
-    }, 100);
+    }, 200); // Increased timeout for better rendering
 
     mapInstance.current = map;
 
-    // Update layer visibility when activeLayer changes
+    // Update layer visibility immediately
     osmLayer.setVisible(activeLayer === 'osm');
     satelliteLayer.setVisible(activeLayer === 'satellite');
 
