@@ -358,6 +358,132 @@ export const dutyStations: DutyStation[] = [
       movingTips: "https://www.moving.com/tips/moving-to-michigan/"
     }
   },
+  {
+    id: "dt-2",
+    name: "Gibraltar Station",
+    city: "Gibraltar",
+    state: "MI",
+    zipCode: "48173",
+    sector: "Detroit Sector",
+    lat: 42.0928,
+    lng: -83.1863,
+    region: "Midwest",
+    description: "Gibraltar Station monitors border operations along the Detroit River, providing security for a crucial stretch of the international waterway between the United States and Canada.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Gibraltar_MI",
+      schools: "https://www.greatschools.org/michigan/gibraltar/",
+      crime: "https://www.neighborhoodscout.com/mi/gibraltar/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/michigan/gibraltar",
+      weather: "https://weatherspark.com/y/17893/Average-Weather-in-Gibraltar-Michigan-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Detroit-MI-USA/Gibraltar-MI-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-michigan/"
+    }
+  },
+  {
+    id: "dt-3",
+    name: "Marysville Station",
+    city: "Marysville",
+    state: "MI",
+    zipCode: "48040",
+    sector: "Detroit Sector",
+    lat: 42.9120,
+    lng: -82.4678,
+    region: "Midwest",
+    description: "Marysville Station is responsible for border security operations along the St. Clair River, monitoring maritime traffic and potential cross-border activities in the region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Marysville_MI",
+      schools: "https://www.greatschools.org/michigan/marysville/",
+      crime: "https://www.neighborhoodscout.com/mi/marysville/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/michigan/marysville",
+      weather: "https://weatherspark.com/y/17894/Average-Weather-in-Marysville-Michigan-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Detroit-MI-USA/Marysville-MI-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-michigan/"
+    }
+  },
+  {
+    id: "dt-4",
+    name: "Sault Ste. Marie Station",
+    city: "Sault Ste. Marie",
+    state: "MI",
+    zipCode: "49783",
+    sector: "Detroit Sector",
+    lat: 46.4953,
+    lng: -84.3453,
+    region: "Midwest",
+    description: "Sault Ste. Marie Station oversees border operations at the international border between Michigan and Ontario, monitoring both land and maritime traffic through the busy Soo Locks system.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Sault-Sainte-Marie_MI",
+      schools: "https://www.greatschools.org/michigan/sault-ste-marie/",
+      crime: "https://www.neighborhoodscout.com/mi/sault-ste-marie/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/michigan/sault_ste._marie",
+      weather: "https://weatherspark.com/y/17895/Average-Weather-in-Sault-Ste.-Marie-Michigan-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Detroit-MI-USA/Sault-Ste-Marie-MI-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-michigan/"
+    }
+  },
+  {
+    id: "ep-1",
+    name: "El Paso Station",
+    city: "El Paso",
+    state: "TX",
+    zipCode: "79901",
+    sector: "El Paso Sector",
+    lat: 31.7619,
+    lng: -106.4850,
+    region: "Southwest",
+    description: "El Paso Station serves as the headquarters for the El Paso Sector, managing one of the busiest areas along the southern border. The station oversees operations in an urban environment directly adjacent to Ciudad Juárez, Mexico.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/El-Paso_TX",
+      schools: "https://www.greatschools.org/texas/el-paso/",
+      crime: "https://www.neighborhoodscout.com/tx/el-paso/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/el_paso",
+      weather: "https://weatherspark.com/y/3352/Average-Weather-in-El-Paso-Texas-United-States-Year-Round",
+      transit: "https://www.sunmetro.net/",
+      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+    }
+  },
+  {
+    id: "ep-2",
+    name: "Ysleta Station",
+    city: "El Paso",
+    state: "TX",
+    zipCode: "79907",
+    sector: "El Paso Sector",
+    lat: 31.6943,
+    lng: -106.3308,
+    region: "Southwest",
+    description: "Ysleta Station operates in the eastern El Paso metropolitan area, monitoring border activity along the Rio Grande and providing support for the Ysleta Port of Entry.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/El-Paso_TX",
+      schools: "https://www.greatschools.org/texas/el-paso/",
+      crime: "https://www.neighborhoodscout.com/tx/el-paso/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/el_paso",
+      weather: "https://weatherspark.com/y/3352/Average-Weather-in-El-Paso-Texas-United-States-Year-Round",
+      transit: "https://www.sunmetro.net/",
+      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+    }
+  },
+  {
+    id: "ep-3",
+    name: "Santa Teresa Station",
+    city: "Santa Teresa",
+    state: "NM",
+    zipCode: "88008",
+    sector: "El Paso Sector",
+    lat: 31.8536,
+    lng: -106.6435,
+    region: "Southwest",
+    description: "Santa Teresa Station monitors border operations in southern New Mexico, adjacent to the El Paso metropolitan area. The station is responsible for patrolling desert terrain and supporting operations at the Santa Teresa Port of Entry.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Santa-Teresa_NM",
+      schools: "https://www.greatschools.org/new-mexico/santa-teresa/",
+      crime: "https://www.neighborhoodscout.com/nm/santa-teresa/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/new_mexico/santa_teresa",
+      weather: "https://weatherspark.com/y/3353/Average-Weather-in-Santa-Teresa-New-Mexico-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/El-Paso-TX-USA/Santa-Teresa-NM-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-new-mexico/"
+    }
+  }
 ];
 
 // Helper function to get stations by sector
