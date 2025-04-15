@@ -43,8 +43,11 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
       }),
     });
 
-    // Custom map cursor style
-    map.getTarget()?.style.setProperty('cursor', 'default');
+    // Custom map cursor style - fix the TypeScript error by checking if target is HTMLElement
+    const targetElement = map.getTarget();
+    if (targetElement && targetElement instanceof HTMLElement) {
+      targetElement.style.cursor = 'default';
+    }
 
     if (locations && locations.length > 0) {
       // Create features for all locations
@@ -82,10 +85,13 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
 
       map.addLayer(vectorLayer);
 
-      // Add click handler with cursor change
+      // Add click handler with cursor change - fixed TypeScript error
       map.on('pointermove', (event) => {
         const hit = map.forEachFeatureAtPixel(event.pixel, () => true);
-        map.getTarget()?.style.setProperty('cursor', hit ? 'pointer' : 'default');
+        const target = map.getTarget();
+        if (target && target instanceof HTMLElement) {
+          target.style.cursor = hit ? 'pointer' : 'default';
+        }
       });
 
       // Add click handler to navigate
