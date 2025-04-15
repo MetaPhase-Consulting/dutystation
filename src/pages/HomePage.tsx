@@ -1,17 +1,8 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, MapPin, Compass } from "lucide-react";
+import { Search, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
 import { dutyStations, searchDutyStations } from "@/data/dutyStations";
 
 export default function HomePage() {
@@ -94,77 +85,55 @@ export default function HomePage() {
 
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-3">
-            <div className="flex flex-col justify-center space-y-4">
-              <div className="inline-flex items-center space-x-2 rounded-md bg-primary/10 px-3 py-1 text-sm text-primary">
-                <MapPin className="h-4 w-4" />
-                <span>Find Locations</span>
-              </div>
-              <div className="space-y-2">
-                <h2 className="text-2xl font-bold tracking-tight">
-                  Explore CBP Duty Stations
+          <div className="grid gap-8 lg:grid-cols-2 xl:gap-16">
+            <div className="flex flex-col justify-center">
+              <div className="space-y-4">
+                <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
+                  Why Choose CBP?
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                  Make a Difference at America's Frontline
                 </h2>
-                <p className="text-muted-foreground">
-                  Browse our comprehensive directory of CBP duty stations across the United States.
+                <p className="text-muted-foreground md:text-lg">
+                  Join CBP and become part of the largest law enforcement agency in the United States. 
+                  With over 60,000 employees, CBP offers diverse career opportunities and locations across the nation.
                 </p>
-              </div>
-              <div>
-                <Button variant="outline" onClick={() => navigate("/directory")}>
-                  View Directory
-                </Button>
+                <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                  <Button onClick={() => navigate("/directory")}>
+                    Explore Locations
+                  </Button>
+                  <Button variant="outline" onClick={() => navigate("/compare")}>
+                    Compare Stations
+                  </Button>
+                </div>
               </div>
             </div>
-            
-            <div className="flex flex-col justify-center space-y-4">
-              <div className="inline-flex items-center space-x-2 rounded-md bg-primary/10 px-3 py-1 text-sm text-primary">
-                <Compass className="h-4 w-4" />
-                <span>Research Resources</span>
-              </div>
-              <div className="space-y-2">
-                <h2 className="text-2xl font-bold tracking-tight">
-                  Access External Resources
-                </h2>
-                <p className="text-muted-foreground">
-                  Get information on real estate, schools, crime statistics, cost of living, and more.
-                </p>
-              </div>
-              <div>
-                <Button variant="outline" onClick={() => navigate("/directory")}>
-                  Explore Resources
-                </Button>
-              </div>
-            </div>
-            
-            <div className="flex flex-col justify-center space-y-4">
-              <div className="inline-flex items-center space-x-2 rounded-md bg-primary/10 px-3 py-1 text-sm text-primary">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="h-4 w-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-                  />
-                </svg>
-                <span>Side-by-Side Comparison</span>
-              </div>
-              <div className="space-y-2">
-                <h2 className="text-2xl font-bold tracking-tight">
-                  Compare Duty Stations
-                </h2>
-                <p className="text-muted-foreground">
-                  Use our comparison tool to evaluate two different duty stations side by side.
-                </p>
-              </div>
-              <div>
-                <Button variant="outline" onClick={() => navigate("/compare")}>
-                  Compare Stations
-                </Button>
+            <div className="flex flex-col gap-4 mt-4 lg:mt-0">
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="rounded-lg border bg-card p-6 shadow-sm">
+                  <h3 className="text-xl font-semibold mb-2">Competitive Benefits</h3>
+                  <p className="text-muted-foreground">
+                    Comprehensive health insurance, retirement plans, and paid leave packages for agents and officers.
+                  </p>
+                </div>
+                <div className="rounded-lg border bg-card p-6 shadow-sm">
+                  <h3 className="text-xl font-semibold mb-2">Career Growth</h3>
+                  <p className="text-muted-foreground">
+                    Extensive training programs and opportunities for advancement across multiple career paths.
+                  </p>
+                </div>
+                <div className="rounded-lg border bg-card p-6 shadow-sm">
+                  <h3 className="text-xl font-semibold mb-2">Location Variety</h3>
+                  <p className="text-muted-foreground">
+                    Choose from diverse duty stations across coastal, urban, and rural locations nationwide.
+                  </p>
+                </div>
+                <div className="rounded-lg border bg-card p-6 shadow-sm">
+                  <h3 className="text-xl font-semibold mb-2">Mission Impact</h3>
+                  <p className="text-muted-foreground">
+                    Protect American borders while facilitating lawful international trade and travel.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
