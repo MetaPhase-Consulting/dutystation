@@ -5,7 +5,7 @@ import { DutyStation, findDutyStationById } from "@/data/dutyStations";
 import { MapPin, Home, GraduationCap, Shield, DollarSign, CloudSun, Car, Package, ArrowLeft, ArrowRightLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import StationMap from "@/components/StationMap";
+import StationDetailMap from "@/components/StationDetailMap";
 
 export default function StationDetailPage() {
   const [station, setStation] = useState<DutyStation | null>(null);
@@ -132,10 +132,10 @@ export default function StationDetailPage() {
                 <h2 className="text-xl font-semibold mb-4">About This Location</h2>
                 <p className="mb-6">{station.description}</p>
                 
-                <div className="mb-6 rounded-md overflow-hidden border">
-                  <StationMap 
+                <div className="mb-6 rounded-md overflow-hidden">
+                  <StationDetailMap 
                     lat={station.lat} 
-                    lng={station.lng} 
+                    lng={station.lng}
                   />
                 </div>
 
