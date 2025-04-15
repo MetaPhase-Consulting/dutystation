@@ -1,10 +1,10 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DutyStation, findDutyStationById } from "@/data/dutyStations";
 import { MapPin, Home, GraduationCap, Shield, DollarSign, CloudSun, Car, Package, ArrowLeft, ArrowRightLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import StationMap from "@/components/StationMap";
 
 export default function StationDetailPage() {
   const [station, setStation] = useState<DutyStation | null>(null);
@@ -131,14 +131,11 @@ export default function StationDetailPage() {
                 <h2 className="text-xl font-semibold mb-4">About This Location</h2>
                 <p className="mb-6">{station.description}</p>
                 
-                <div className="aspect-video bg-muted rounded-lg flex items-center justify-center mb-4">
-                  <div className="text-center">
-                    <p className="text-muted-foreground">Map view would display here</p>
-                    <p className="text-xs text-muted-foreground">
-                      Interactive map showing the duty station location
-                    </p>
-                  </div>
-                </div>
+                <StationMap 
+                  lat={station.lat} 
+                  lng={station.lng} 
+                  className="mb-4"
+                />
 
                 <div className="flex justify-between">
                   <Button variant="outline" onClick={() => navigate('/directory')}>
