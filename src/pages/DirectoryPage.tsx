@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { DutyStation, searchDutyStations } from "@/data/dutyStations";
@@ -7,45 +8,12 @@ import { DirectoryFilters } from "@/components/directory/DirectoryFilters";
 import { StationsList } from "@/components/directory/StationsList";
 import StationMap from "@/components/StationMap";
 
-const sectors = [
-  "All Sectors",
-  "Big Bend",
-  "Del Rio",
-  "El Centro",
-  "El Paso",
-  "Grand Forks",
-  "Havre",
-  "Houlton",
-  "Laredo",
-  "Miami",
-  "New Orleans",
-  "Rio Grande Valley",
-  "San Diego",
-  "Spokane",
-  "Swanton",
-  "Tucson",
-  "Yuma"
-];
+// Get unique sectors from the data to ensure we're using correct values
+const allStations = searchDutyStations("");
+const uniqueSectors = ["All Sectors", ...new Set(allStations.map(station => station.region))].sort();
 
-const states = [
-  "All States",
-  "Arizona",
-  "California",
-  "Florida",
-  "Idaho",
-  "Louisiana",
-  "Maine",
-  "Michigan",
-  "Minnesota",
-  "Montana",
-  "New Hampshire",
-  "New Mexico",
-  "New York",
-  "North Dakota",
-  "Texas",
-  "Vermont",
-  "Washington"
-];
+// Get unique states from the data
+const uniqueStates = ["All States", ...new Set(allStations.map(station => station.state))].sort();
 
 export default function DirectoryPage() {
   const [stations, setStations] = useState<DutyStation[]>([]);
@@ -55,35 +23,38 @@ export default function DirectoryPage() {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const location = useLocation();
 
+  // For debugging
+  useEffect(() => {
+    console.info("Selected sector:", selectedSector);
+    console.info("Selected state:", selectedState);
+  }, [selectedSector, selectedState]);
+
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const queryParam = params.get("search") || "";
     
     const allStations = searchDutyStations(queryParam);
+    console.info("Initial stations count:", allStations.length);
+    
     let filteredStations = [...allStations];
     
+    // Apply sector filter if not "All Sectors"
     if (selectedSector !== "All Sectors") {
       filteredStations = filteredStations.filter(
         station => station.region === selectedSector
       );
+      console.info("After sector filter, stations count:", filteredStations.length);
     }
 
+    // Apply state filter if not "All States"
     if (selectedState !== "All States") {
       filteredStations = filteredStations.filter(
         station => station.state === selectedState
       );
+      console.info("After state filter, stations count:", filteredStations.length);
     }
 
-    if (selectedState === "El Paso") {
-      setSelectedState("All States");
-      if (selectedSector !== "El Paso") {
-        setSelectedSector("El Paso");
-      }
-      filteredStations = allStations.filter(
-        station => station.region === "El Paso"
-      );
-    }
-
+    // Sort stations by name
     filteredStations.sort((a, b) => {
       const compareResult = a.name.localeCompare(b.name);
       return sortOrder === "asc" ? compareResult : -compareResult;
@@ -122,8 +93,8 @@ export default function DirectoryPage() {
               setSelectedState={setSelectedState}
               sortOrder={sortOrder}
               setSortOrder={setSortOrder}
-              sectors={sectors}
-              states={states}
+              sectors={uniqueSectors}
+              states={uniqueStates}
             />
             <StationsList
               stations={stations}

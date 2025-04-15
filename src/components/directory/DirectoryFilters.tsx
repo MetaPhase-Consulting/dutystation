@@ -60,7 +60,7 @@ export function DirectoryFilters({
 
       <Button
         variant="outline"
-        onClick={() => setSortOrder(prev => prev === "asc" ? "desc" : "asc")}
+        onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
         className="gap-2"
       >
         {sortOrder === "asc" ? (
