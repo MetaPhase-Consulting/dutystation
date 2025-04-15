@@ -23,20 +23,14 @@ const StationMap = ({ locations, className = "" }: StationMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<Map | null>(null);
 
-  // Initialize map
   useEffect(() => {
-    if (!mapRef.current) {
-      console.log("Directory map container does not exist, cannot initialize map");
-      return;
-    }
+    if (!mapRef.current) return;
     
     // Clean up any existing map
     if (mapInstance.current) {
       mapInstance.current.setTarget(undefined);
       mapInstance.current = null;
     }
-
-    console.log("Directory map container exists, initializing map with stations:", locations?.length);
 
     // Create the base map layer
     const osmLayer = new TileLayer({
@@ -46,10 +40,9 @@ const StationMap = ({ locations, className = "" }: StationMapProps) => {
     // Create vector source for station markers
     const vectorSource = new VectorSource();
 
-    // Default center of continental USA
+    // Default center of continental USA (slightly adjusted for better view)
     const defaultCenter = [-97.0, 39.5];
-    let center = fromLonLat(defaultCenter);
-    let zoom = 4; // Default zoom for US
+    const center = fromLonLat(defaultCenter);
 
     // Add markers for station locations
     if (locations && locations.length > 0) {
@@ -62,15 +55,6 @@ const StationMap = ({ locations, className = "" }: StationMapProps) => {
           vectorSource.addFeature(feature);
         }
       });
-      
-      // Calculate better center point if we have stations
-      if (locations.some(s => s.lat && s.lng)) {
-        const stationWithCoords = locations.find(s => s.lat && s.lng);
-        if (stationWithCoords) {
-          center = fromLonLat([stationWithCoords.lng, stationWithCoords.lat]);
-          zoom = locations.length === 1 ? 12 : 5;
-        }
-      }
     }
 
     // Create vector layer for markers with blue pins
@@ -78,9 +62,9 @@ const StationMap = ({ locations, className = "" }: StationMapProps) => {
       source: vectorSource,
       style: new Style({
         image: new Icon({
+          src: '/blue-pin.png', // Make sure to add this blue pin image to your public folder
           anchor: [0.5, 1],
-          src: 'https://openlayers.org/en/latest/examples/data/icon.png',
-          scale: 1.0 // Larger pins
+          scale: 0.7 // Adjust scale for visibility
         })
       })
     });
@@ -96,7 +80,7 @@ const StationMap = ({ locations, className = "" }: StationMapProps) => {
       }),
       view: new View({
         center: center,
-        zoom: zoom,
+        zoom: 4, // Default zoom for US view
         minZoom: 2,
       }),
     });
@@ -104,13 +88,11 @@ const StationMap = ({ locations, className = "" }: StationMapProps) => {
     // Ensure the map renders correctly
     setTimeout(() => {
       map.updateSize();
-      console.log("Directory map size updated");
     }, 200);
 
     mapInstance.current = map;
 
     return () => {
-      console.log("Cleaning up directory map");
       if (mapInstance.current) {
         mapInstance.current.setTarget(undefined);
       }
