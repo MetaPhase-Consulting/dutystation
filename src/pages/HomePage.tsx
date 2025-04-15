@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin, Compass } from "lucide-react";
@@ -43,37 +44,46 @@ export default function HomePage() {
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2">
-              <div className="relative w-full">
-                <Command className="relative border rounded-lg">
-                  <div className="flex items-center border-b px-3">
-                    <Search className="h-4 w-4 text-muted-foreground shrink-0" />
-                    <CommandInput 
-                      placeholder="Search duty stations..."
-                      value={searchQuery}
-                      onValueChange={setSearchQuery}
-                      className="flex w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
-                    />
+              <form onSubmit={handleSearch}>
+                <div className="relative w-full">
+                  <div className="flex items-center gap-2">
+                    <div className="relative flex-1">
+                      <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                      <Input
+                        type="search"
+                        placeholder="Search duty stations..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="pl-9 w-full"
+                      />
+                      {searchQuery && (
+                        <div className="absolute top-full left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-md border bg-popover shadow-md">
+                          {filteredStations.length === 0 ? (
+                            <div className="py-6 text-center text-sm">No results found.</div>
+                          ) : (
+                            <div className="p-1">
+                              <div className="px-2 py-1.5 text-xs font-medium text-muted-foreground">
+                                Duty Stations
+                              </div>
+                              {filteredStations.map((station) => (
+                                <div
+                                  key={station.id}
+                                  className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
+                                  onClick={() => navigate(`/directory/${station.id}`)}
+                                >
+                                  <MapPin className="mr-2 h-4 w-4" />
+                                  {station.name} - {station.city}, {station.state}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    <Button type="submit">Search</Button>
                   </div>
-                  {searchQuery && (
-                    <CommandList className="absolute top-full w-full z-50 bg-popover border rounded-b-lg mt-[-1px]">
-                      <CommandEmpty>No results found.</CommandEmpty>
-                      <CommandGroup heading="Duty Stations">
-                        {filteredStations.map((station) => (
-                          <CommandItem
-                            key={station.id}
-                            onSelect={() => {
-                              navigate(`/directory/${station.id}`);
-                            }}
-                          >
-                            <MapPin className="mr-2 h-4 w-4" />
-                            {station.name} - {station.city}, {station.state}
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </CommandList>
-                  )}
-                </Command>
-              </div>
+                </div>
+              </form>
               <p className="text-xs text-muted-foreground">
                 Search by city, state, or duty station name
               </p>
