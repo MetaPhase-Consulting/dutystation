@@ -12,7 +12,7 @@ import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
 import { Style, Icon } from 'ol/style';
 import { DutyStation } from '@/data/dutyStations';
-import { extent } from 'ol/extent';
+import { buffer } from 'ol/extent';
 
 interface StationMapProps {
   locations?: DutyStation[];
