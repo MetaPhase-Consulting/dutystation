@@ -609,6 +609,195 @@ export const dutyStations: DutyStation[] = [
       transit: "https://www.rome2rio.com/s/Bangor-ME-USA/Fort-Fairfield-ME-USA",
       movingTips: "https://www.moving.com/tips/moving-to-maine/"
     }
+  },
+  {
+    id: "lr-1",
+    name: "Laredo North Station",
+    city: "Laredo",
+    state: "TX",
+    zipCode: "78045",
+    sector: "Laredo Sector",
+    lat: 27.5736,
+    lng: -99.4875,
+    region: "Southwest",
+    description: "Laredo North Station is responsible for securing the border area north of Laredo, Texas. The station operates in an urban environment with significant cross-border traffic and commerce.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Laredo_TX",
+      schools: "https://www.greatschools.org/texas/laredo/",
+      crime: "https://www.neighborhoodscout.com/tx/laredo/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/laredo",
+      weather: "https://weatherspark.com/y/7006/Average-Weather-in-Laredo-Texas-United-States-Year-Round",
+      transit: "https://www.elmetro.com/",
+      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+    }
+  },
+  {
+    id: "lr-2",
+    name: "Laredo South Station",
+    city: "Laredo",
+    state: "TX",
+    zipCode: "78046",
+    sector: "Laredo Sector",
+    lat: 27.4989,
+    lng: -99.5072,
+    region: "Southwest",
+    description: "Laredo South Station monitors border activities in southern Laredo, focusing on preventing illegal crossings and drug trafficking along the Rio Grande.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Laredo_TX",
+      schools: "https://www.greatschools.org/texas/laredo/",
+      crime: "https://www.neighborhoodscout.com/tx/laredo/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/laredo",
+      weather: "https://weatherspark.com/y/7006/Average-Weather-in-Laredo-Texas-United-States-Year-Round",
+      transit: "https://www.elmetro.com/",
+      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+    }
+  },
+  {
+    id: "lr-3",
+    name: "Zapata Station",
+    city: "Zapata",
+    state: "TX",
+    zipCode: "78076",
+    sector: "Laredo Sector",
+    lat: 26.9072,
+    lng: -99.2715,
+    region: "Southwest",
+    description: "Zapata Station oversees border security operations along Falcon Lake and the surrounding areas, monitoring both land and maritime border activities.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Zapata_TX",
+      schools: "https://www.greatschools.org/texas/zapata/",
+      crime: "https://www.neighborhoodscout.com/tx/zapata/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/zapata",
+      weather: "https://weatherspark.com/y/7007/Average-Weather-in-Zapata-Texas-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Laredo-TX-USA/Zapata-TX-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+    }
+  },
+  {
+    id: "mi-1",
+    name: "Miami Station",
+    city: "Miami",
+    state: "FL",
+    zipCode: "33131",
+    sector: "Miami Sector",
+    lat: 25.7617,
+    lng: -80.1918,
+    region: "Southeast",
+    description: "Miami Station serves as headquarters for the Miami Sector, coordinating maritime border operations along the Florida coast and responding to illegal maritime entries.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Miami_FL",
+      schools: "https://www.greatschools.org/florida/miami/",
+      crime: "https://www.neighborhoodscout.com/fl/miami/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/florida/miami",
+      weather: "https://weatherspark.com/y/18322/Average-Weather-in-Miami-Florida-United-States-Year-Round",
+      transit: "https://www.miamidade.gov/transit/",
+      movingTips: "https://www.moving.com/tips/moving-to-florida/"
+    }
+  },
+  {
+    id: "mi-2",
+    name: "West Palm Beach Station",
+    city: "West Palm Beach",
+    state: "FL",
+    zipCode: "33401",
+    sector: "Miami Sector",
+    lat: 26.7153,
+    lng: -80.0534,
+    region: "Southeast",
+    description: "West Palm Beach Station monitors maritime activities along Florida's central east coast, focusing on preventing illegal entries and drug trafficking.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/West-Palm-Beach_FL",
+      schools: "https://www.greatschools.org/florida/west-palm-beach/",
+      crime: "https://www.neighborhoodscout.com/fl/west-palm-beach/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/florida/west_palm_beach",
+      weather: "https://weatherspark.com/y/18323/Average-Weather-in-West-Palm-Beach-Florida-United-States-Year-Round",
+      transit: "https://www.palmtran.org/",
+      movingTips: "https://www.moving.com/tips/moving-to-florida/"
+    }
+  },
+  {
+    id: "no-1",
+    name: "New Orleans Station",
+    city: "New Orleans",
+    state: "LA",
+    zipCode: "70130",
+    sector: "New Orleans Sector",
+    lat: 29.9511,
+    lng: -90.0715,
+    region: "Southeast",
+    description: "New Orleans Station serves as sector headquarters, overseeing maritime border operations along the Gulf Coast and Mississippi River delta region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/New-Orleans_LA",
+      schools: "https://www.greatschools.org/louisiana/new-orleans/",
+      crime: "https://www.neighborhoodscout.com/la/new-orleans/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/louisiana/new_orleans",
+      weather: "https://weatherspark.com/y/11799/Average-Weather-in-New-Orleans-Louisiana-United-States-Year-Round",
+      transit: "https://www.norta.com/",
+      movingTips: "https://www.moving.com/tips/moving-to-louisiana/"
+    }
+  },
+  {
+    id: "no-2",
+    name: "Mobile Station",
+    city: "Mobile",
+    state: "AL",
+    zipCode: "36602",
+    sector: "New Orleans Sector",
+    lat: 30.6954,
+    lng: -88.0399,
+    region: "Southeast",
+    description: "Mobile Station monitors maritime activities in the Mobile Bay area and along the Alabama Gulf Coast, focusing on preventing illegal entries and drug trafficking.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Mobile_AL",
+      schools: "https://www.greatschools.org/alabama/mobile/",
+      crime: "https://www.neighborhoodscout.com/al/mobile/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/alabama/mobile",
+      weather: "https://weatherspark.com/y/14017/Average-Weather-in-Mobile-Alabama-United-States-Year-Round",
+      transit: "https://www.thewave.org/",
+      movingTips: "https://www.moving.com/tips/moving-to-alabama/"
+    }
+  },
+  {
+    id: "rgv-1",
+    name: "McAllen Station",
+    city: "McAllen",
+    state: "TX",
+    zipCode: "78501",
+    sector: "Rio Grande Valley Sector",
+    lat: 26.2034,
+    lng: -98.2300,
+    region: "Southwest",
+    description: "McAllen Station is one of the busiest Border Patrol stations in the country, responsible for securing a high-traffic area of the southern border with Mexico.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/McAllen_TX",
+      schools: "https://www.greatschools.org/texas/mcallen/",
+      crime: "https://www.neighborhoodscout.com/tx/mcallen/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/mcallen",
+      weather: "https://weatherspark.com/y/7805/Average-Weather-in-McAllen-Texas-United-States-Year-Round",
+      transit: "https://www.mcallen.net/metro",
+      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+    }
+  },
+  {
+    id: "rgv-2",
+    name: "Brownsville Station",
+    city: "Brownsville",
+    state: "TX",
+    zipCode: "78520",
+    sector: "Rio Grande Valley Sector",
+    lat: 25.9018,
+    lng: -97.4975,
+    region: "Southwest",
+    description: "Brownsville Station monitors the southernmost point of Texas, managing border security operations in an area known for both legal and illegal cross-border activities.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Brownsville_TX",
+      schools: "https://www.greatschools.org/texas/brownsville/",
+      crime: "https://www.neighborhoodscout.com/tx/brownsville/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/brownsville",
+      weather: "https://weatherspark.com/y/7806/Average-Weather-in-Brownsville-Texas-United-States-Year-Round",
+      transit: "https://www.cob.us/592/Brownsville-Metro",
+      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+    }
   }
 ];
 
