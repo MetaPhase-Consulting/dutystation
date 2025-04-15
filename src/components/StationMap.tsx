@@ -118,7 +118,9 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
         }
       }
     } else if (lat !== undefined && lng !== undefined) {
-      // Single location mode
+      // Single location mode - Display a single marker at the specified coordinates
+      console.log("Rendering single location map:", lat, lng);
+      
       const feature = new Feature({
         geometry: new Point(fromLonLat([lng, lat])),
       });
@@ -132,14 +134,19 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
       });
 
       map.addLayer(vectorLayer);
+      
+      // Set center and zoom for the single location
       map.getView().setCenter(fromLonLat([lng, lat]));
       map.getView().setZoom(12);
     }
 
     mapInstance.current = map;
 
+    // Clean up on unmount
     return () => {
-      map.setTarget(undefined);
+      if (mapInstance.current) {
+        mapInstance.current.setTarget(undefined);
+      }
       mapInstance.current = null;
     };
   }, [locations, lat, lng, navigate]);
@@ -148,6 +155,7 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
     <div 
       ref={mapRef} 
       className={`w-full h-full min-h-[400px] ${className}`}
+      data-testid="station-map"
     />
   );
 };

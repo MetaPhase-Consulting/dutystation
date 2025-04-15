@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DutyStation, findDutyStationById } from "@/data/dutyStations";
@@ -131,11 +132,12 @@ export default function StationDetailPage() {
                 <h2 className="text-xl font-semibold mb-4">About This Location</h2>
                 <p className="mb-6">{station.description}</p>
                 
-                <StationMap 
-                  lat={station.lat} 
-                  lng={station.lng} 
-                  className="mb-4"
-                />
+                <div className="mb-6 rounded-md overflow-hidden border">
+                  <StationMap 
+                    lat={station.lat} 
+                    lng={station.lng} 
+                  />
+                </div>
 
                 <div className="flex justify-between">
                   <Button variant="outline" onClick={() => navigate('/directory')}>
