@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { DutyStation, searchDutyStations } from "@/data/dutyStations";
@@ -22,11 +21,9 @@ export default function DirectoryPage() {
   const location = useLocation();
 
   useEffect(() => {
-    // Extract search query from URL if present
     const params = new URLSearchParams(location.search);
     const queryParam = params.get("search") || "";
     
-    // Filter stations based on search query
     setStations(searchDutyStations(queryParam));
   }, [location.search]);
 
@@ -93,20 +90,6 @@ export default function DirectoryPage() {
           <TabsContent value="map" className="mt-6">
             <div className="aspect-[16/10] rounded-lg overflow-hidden border">
               <StationMap locations={stations} />
-            </div>
-            
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {stations.map((station) => (
-                <Button 
-                  key={station.id} 
-                  variant="outline" 
-                  className="justify-start"
-                  onClick={() => navigate(`/station/${station.id}`)}
-                >
-                  <MapPin className="h-4 w-4 mr-2" />
-                  <span className="truncate">{station.name}</span>
-                </Button>
-              ))}
             </div>
           </TabsContent>
         </Tabs>
