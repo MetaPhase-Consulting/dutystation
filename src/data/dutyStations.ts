@@ -483,6 +483,132 @@ export const dutyStations: DutyStation[] = [
       transit: "https://www.rome2rio.com/s/El-Paso-TX-USA/Santa-Teresa-NM-USA",
       movingTips: "https://www.moving.com/tips/moving-to-new-mexico/"
     }
+  },
+  {
+    id: "gf-1",
+    name: "Grand Forks Station",
+    city: "Grand Forks",
+    state: "ND",
+    zipCode: "58201",
+    sector: "Grand Forks Sector",
+    lat: 47.9253,
+    lng: -97.0329,
+    region: "Northern",
+    description: "Grand Forks Station serves as the headquarters for the Grand Forks Sector, monitoring the northern border with Canada. The station oversees operations across a vast area of North Dakota and Minnesota.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Grand-Forks_ND",
+      schools: "https://www.greatschools.org/north-dakota/grand-forks/",
+      crime: "https://www.neighborhoodscout.com/nd/grand-forks/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/north_dakota/grand_forks",
+      weather: "https://weatherspark.com/y/5712/Average-Weather-in-Grand-Forks-North-Dakota-United-States-Year-Round",
+      transit: "https://www.grandforksgov.com/government/city-departments/cities-area-transit-cat",
+      movingTips: "https://www.moving.com/tips/moving-to-north-dakota/"
+    }
+  },
+  {
+    id: "gf-2",
+    name: "Pembina Station",
+    city: "Pembina",
+    state: "ND",
+    zipCode: "58271",
+    sector: "Grand Forks Sector",
+    lat: 48.9647,
+    lng: -97.2472,
+    region: "Northern",
+    description: "Pembina Station is located at one of the busiest ports of entry between the United States and Canada in North Dakota. The station monitors cross-border activities in a strategic location along Interstate 29.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Pembina_ND",
+      schools: "https://www.greatschools.org/north-dakota/pembina/",
+      crime: "https://www.neighborhoodscout.com/nd/pembina/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/north_dakota/pembina",
+      weather: "https://weatherspark.com/y/5713/Average-Weather-in-Pembina-North-Dakota-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Grand-Forks-ND-USA/Pembina-ND-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-north-dakota/"
+    }
+  },
+  {
+    id: "hv-1",
+    name: "Havre Station",
+    city: "Havre",
+    state: "MT",
+    zipCode: "59501",
+    sector: "Havre Sector",
+    lat: 48.5500,
+    lng: -109.6841,
+    region: "Northern",
+    description: "Havre Station is the headquarters for the Havre Sector, responsible for securing a vast stretch of the U.S.-Canada border in Montana. The station operates in challenging terrain and extreme weather conditions.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Havre_MT",
+      schools: "https://www.greatschools.org/montana/havre/",
+      crime: "https://www.neighborhoodscout.com/mt/havre/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/montana/havre",
+      weather: "https://weatherspark.com/y/3267/Average-Weather-in-Havre-Montana-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Great-Falls-MT-USA/Havre-MT-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-montana/"
+    }
+  },
+  {
+    id: "hv-2",
+    name: "Saint Mary Station",
+    city: "Babb",
+    state: "MT",
+    zipCode: "59411",
+    sector: "Havre Sector",
+    lat: 48.8276,
+    lng: -113.4231,
+    region: "Northern",
+    description: "Saint Mary Station operates in the stunning landscape near Glacier National Park, monitoring the border region in challenging mountainous terrain. The station plays a crucial role in preventing illegal crossings in this remote area.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Babb_MT",
+      schools: "https://www.greatschools.org/montana/babb/",
+      crime: "https://www.neighborhoodscout.com/mt/babb/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/montana/babb",
+      weather: "https://weatherspark.com/y/3268/Average-Weather-in-Babb-Montana-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Great-Falls-MT-USA/Babb-MT-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-montana/"
+    }
+  },
+  {
+    id: "ho-1",
+    name: "Houlton Station",
+    city: "Houlton",
+    state: "ME",
+    zipCode: "04730",
+    sector: "Houlton Sector",
+    lat: 46.1259,
+    lng: -67.8403,
+    region: "Northeast",
+    description: "Houlton Station serves as the headquarters for the Houlton Sector, monitoring the border with Canada in Maine. The station operates in diverse terrain including forests and agricultural areas.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Houlton_ME",
+      schools: "https://www.greatschools.org/maine/houlton/",
+      crime: "https://www.neighborhoodscout.com/me/houlton/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/maine/houlton",
+      weather: "https://weatherspark.com/y/25095/Average-Weather-in-Houlton-Maine-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Bangor-ME-USA/Houlton-ME-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-maine/"
+    }
+  },
+  {
+    id: "ho-2",
+    name: "Fort Fairfield Station",
+    city: "Fort Fairfield",
+    state: "ME",
+    zipCode: "04742",
+    sector: "Houlton Sector",
+    lat: 46.7682,
+    lng: -67.8343,
+    region: "Northeast",
+    description: "Fort Fairfield Station monitors border activities in northern Maine's agricultural region. The station is responsible for preventing illegal crossings and smuggling along the U.S.-Canada border.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Fort-Fairfield_ME",
+      schools: "https://www.greatschools.org/maine/fort-fairfield/",
+      crime: "https://www.neighborhoodscout.com/me/fort-fairfield/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/maine/fort_fairfield",
+      weather: "https://weatherspark.com/y/25096/Average-Weather-in-Fort-Fairfield-Maine-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Bangor-ME-USA/Fort-Fairfield-ME-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-maine/"
+    }
   }
 ];
 
