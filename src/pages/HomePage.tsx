@@ -25,13 +25,13 @@ export default function HomePage() {
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
-                Welcome to CBP Relocation Navigator
+                Welcome to Duty Station Relocation
               </div>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                Find Your Next CBP Duty Station
+                Find Your Next Duty Station
               </h1>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                Explore and compare CBP duty station locations before you relocate. Make informed decisions about your next career move.
+                Explore and compare duty station locations before you relocate. Make informed decisions about your next career move.
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2">
@@ -89,14 +89,14 @@ export default function HomePage() {
             <div className="flex flex-col justify-center">
               <div className="space-y-4">
                 <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
-                  Why Choose CBP?
+                  Why Choose Us?
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
                   Make a Difference at America's Frontline
                 </h2>
                 <p className="text-muted-foreground md:text-lg">
-                  Join CBP and become part of the largest law enforcement agency in the United States. 
-                  With over 60,000 employees, CBP offers diverse career opportunities and locations across the nation.
+                  Join over 60,000 dedicated professionals protecting our nation's borders. 
+                  Discover diverse career opportunities and locations across the United States.
                 </p>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Button onClick={() => navigate("/directory")}>
@@ -110,30 +110,42 @@ export default function HomePage() {
             </div>
             <div className="flex flex-col gap-4 mt-4 lg:mt-0">
               <div className="grid gap-4 md:grid-cols-2">
-                <div className="rounded-lg border bg-card p-6 shadow-sm">
-                  <h3 className="text-xl font-semibold mb-2">Competitive Benefits</h3>
+                <a href="https://careers.cbp.gov/s/career-paths/usbp" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="text-xl font-semibold mb-2">Career Paths</h3>
                   <p className="text-muted-foreground">
-                    Comprehensive health insurance, retirement plans, and paid leave packages for agents and officers.
+                    Explore various career opportunities and find your path in border protection and law enforcement.
                   </p>
-                </div>
-                <div className="rounded-lg border bg-card p-6 shadow-sm">
-                  <h3 className="text-xl font-semibold mb-2">Career Growth</h3>
+                </a>
+                <a href="https://careers.cbp.gov/s/benefits" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="text-xl font-semibold mb-2">Benefits</h3>
                   <p className="text-muted-foreground">
-                    Extensive training programs and opportunities for advancement across multiple career paths.
+                    Learn about our comprehensive benefits package including health insurance, retirement plans, and more.
                   </p>
-                </div>
-                <div className="rounded-lg border bg-card p-6 shadow-sm">
-                  <h3 className="text-xl font-semibold mb-2">Location Variety</h3>
+                </a>
+                <a href="https://careers.cbp.gov/s/applicant-resources/faq" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="text-xl font-semibold mb-2">Applicant Resources</h3>
                   <p className="text-muted-foreground">
-                    Choose from diverse duty stations across coastal, urban, and rural locations nationwide.
+                    Access FAQs and resources to help guide you through the application process.
                   </p>
-                </div>
-                <div className="rounded-lg border bg-card p-6 shadow-sm">
-                  <h3 className="text-xl font-semibold mb-2">Mission Impact</h3>
+                </a>
+                <a href="https://www.honorfirst.com/for-usbp-applicants.html" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="text-xl font-semibold mb-2">Honor First</h3>
                   <p className="text-muted-foreground">
-                    Protect American borders while facilitating lawful international trade and travel.
+                    Discover the rich history and traditions of the U.S. Border Patrol through Honor First.
                   </p>
-                </div>
+                </a>
               </div>
             </div>
           </div>
