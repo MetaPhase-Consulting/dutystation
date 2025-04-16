@@ -23,20 +23,11 @@ export function Layout() {
               href="https://github.com/MetaPhase-Consulting/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground"
-              aria-label="GitHub"
-            >
-              <Github className="h-5 w-5" />
-            </a>
-            <a
-              href="https://github.com/MetaPhase-Consulting/"
-              target="_blank"
-              rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground flex items-center"
-              aria-label="MIT License"
+              aria-label="Open Source"
             >
-              <Copyleft className="h-5 w-5 mr-1" />
-              <span className="text-sm">MIT License</span>
+              <Github className="h-5 w-5 mr-1" />
+              Open Source
             </a>
             <a
               href="https://metaphaseconsulting.com/"

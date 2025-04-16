@@ -1,5 +1,4 @@
 
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -32,7 +31,7 @@ export default function HomePage() {
                 Find Your Next Duty Station
               </h1>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                Explore and compare duty station locations before you relocate. Make informed decisions about your next career move.
+                Explore and compare CBP duty station locations before you relocate. Make informed decisions about your next career move with free online resources.
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2">
@@ -43,7 +42,7 @@ export default function HomePage() {
                       <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                       <Input
                         type="search"
-                        placeholder="Search duty stations..."
+                        placeholder="Search for Border Patrol Duty Stations"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="pl-9 w-full"
@@ -77,7 +76,7 @@ export default function HomePage() {
                 </div>
               </form>
               <p className="text-xs text-muted-foreground">
-                Search for Border Patrol Duty Stations
+                Join over 60,000 dedicated professionals protecting our nation's borders. Discover diverse career opportunities and locations across the United States.
               </p>
             </div>
           </div>
@@ -108,42 +107,62 @@ export default function HomePage() {
             </div>
             <div className="flex flex-col gap-4 mt-4 lg:mt-0">
               <div className="grid gap-4 md:grid-cols-2">
-                <a href="https://careers.cbp.gov/s/career-paths/usbp" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-xl font-semibold mb-2">Career Paths</h3>
-                  <p className="text-muted-foreground">
-                    Explore various career opportunities and find your path in border protection and law enforcement.
-                  </p>
-                </a>
-                <a href="https://careers.cbp.gov/s/benefits" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-xl font-semibold mb-2">Benefits</h3>
-                  <p className="text-muted-foreground">
-                    Learn about our comprehensive benefits package including health insurance, retirement plans, and more.
-                  </p>
-                </a>
-                <a href="https://careers.cbp.gov/s/applicant-resources/faq" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-xl font-semibold mb-2">Applicant Resources</h3>
-                  <p className="text-muted-foreground">
-                    Access FAQs and resources to help guide you through the application process.
-                  </p>
-                </a>
-                <a href="https://www.honorfirst.com/for-usbp-applicants.html" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-xl font-semibold mb-2">Honor First</h3>
-                  <p className="text-muted-foreground">
-                    Discover the rich history and traditions of the U.S. Border Patrol through Honor First.
-                  </p>
-                </a>
+                <div className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">Career Paths</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Explore various career opportunities and find your path in border protection and law enforcement.
+                    </p>
+                  </div>
+                  <Button 
+                    onClick={() => window.open("https://careers.cbp.gov/s/career-paths/usbp", "_blank")}
+                    className="self-start"
+                  >
+                    Learn More
+                  </Button>
+                </div>
+                <div className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">Benefits</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Learn about our comprehensive benefits package including health insurance, retirement plans, and more.
+                    </p>
+                  </div>
+                  <Button 
+                    onClick={() => window.open("https://careers.cbp.gov/s/benefits", "_blank")}
+                    className="self-start"
+                  >
+                    Learn More
+                  </Button>
+                </div>
+                <div className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">Applicant Resources</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Access FAQs and resources to help guide you through the application process.
+                    </p>
+                  </div>
+                  <Button 
+                    onClick={() => window.open("https://careers.cbp.gov/s/applicant-resources/faq", "_blank")}
+                    className="self-start"
+                  >
+                    Learn More
+                  </Button>
+                </div>
+                <div className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">Honor First</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Discover the rich history and traditions of the U.S. Border Patrol through Honor First.
+                    </p>
+                  </div>
+                  <Button 
+                    onClick={() => window.open("https://www.honorfirst.com/for-usbp-applicants.html", "_blank")}
+                    className="self-start"
+                  >
+                    Learn More
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
