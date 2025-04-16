@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
@@ -43,7 +42,7 @@ export default function HomePage() {
                       <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                       <Input
                         type="search"
-                        placeholder="Search by city, state, or duty station name"
+                        placeholder="Search duty stations..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="pl-9 w-full"
@@ -77,7 +76,15 @@ export default function HomePage() {
                 </div>
               </form>
               <p className="text-xs text-muted-foreground">
-                Join over 60,000 dedicated professionals protecting our nation's borders. Discover diverse career opportunities and locations across the United States.
+                Search by{" "}
+                <a 
+                  href="https://www.cbp.gov/border-security/along-us-borders/border-patrol-sectors" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="underline hover:text-primary"
+                >
+                  Border Patrol Duty Station
+                </a>
               </p>
             </div>
           </div>
