@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Search, Home, Map, CompassIcon, ArrowRightLeft, MapPin } from "lucide-react";
+import { Menu, Search, Map, CompassIcon, ArrowRightLeft, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -36,13 +36,6 @@ export function NavBar() {
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             <Link
-              to="/"
-              className="transition-colors hover:text-cbp-brightBlue flex items-center gap-1"
-            >
-              <Home className="h-4 w-4" />
-              Home
-            </Link>
-            <Link
               to="/directory"
               className="transition-colors hover:text-cbp-brightBlue flex items-center gap-1"
             >
@@ -76,13 +69,6 @@ export function NavBar() {
               <span className="font-bold">CBP Relocation Navigator</span>
             </Link>
             <nav className="flex flex-col gap-4">
-              <Link
-                to="/"
-                className="flex items-center gap-2 text-foreground hover:text-cbp-brightBlue"
-              >
-                <Home className="h-5 w-5" />
-                Home
-              </Link>
               <Link
                 to="/directory"
                 className="flex items-center gap-2 text-foreground hover:text-cbp-brightBlue"
