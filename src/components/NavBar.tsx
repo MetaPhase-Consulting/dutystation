@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Search, Map, ArrowRightLeft, MapPin } from "lucide-react";
+import { Menu, Search, Map, CompassIcon, ArrowRightLeft, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -30,11 +30,7 @@ export function NavBar() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 hidden md:flex">
           <Link to="/" className="mr-6 flex items-center space-x-2">
-            <img 
-              src="/lovable-uploads/b8eed6a8-8562-469b-9669-923f09b4479f.png"
-              alt="CBP Logo"
-              className="h-6 w-6"
-            />
+            <CompassIcon className="h-6 w-6 text-cbp-brightBlue" />
             <span className="hidden font-bold sm:inline-block">
               Duty Station Relocation
             </span>
@@ -70,11 +66,7 @@ export function NavBar() {
           </SheetTrigger>
           <SheetContent side="left" className="pr-0">
             <Link to="/" className="flex items-center gap-2 mb-8 mt-4">
-              <img 
-                src="/lovable-uploads/b8eed6a8-8562-469b-9669-923f09b4479f.png"
-                alt="CBP Logo"
-                className="h-6 w-6"
-              />
+              <CompassIcon className="h-6 w-6 text-cbp-brightBlue" />
               <span className="font-bold">Duty Station Relocation</span>
             </Link>
             <nav className="flex flex-col gap-4">
@@ -97,11 +89,7 @@ export function NavBar() {
         </Sheet>
 
         <Link to="/" className="md:hidden mr-2 flex items-center gap-2">
-          <img 
-            src="/lovable-uploads/b8eed6a8-8562-469b-9669-923f09b4479f.png"
-            alt="CBP Logo"
-            className="h-6 w-6"
-          />
+          <CompassIcon className="h-6 w-6 text-cbp-brightBlue" />
           <span className="font-bold text-sm">Duty Station Relocation</span>
         </Link>
 
