@@ -46,7 +46,7 @@ To run this application locally:
 
 ### Steps
 
-\`\`\`bash
+```sh
 # Step 1: Clone the repository
 git clone https://github.com/MetaPhase-Consulting/dutystation.git
 
@@ -58,7 +58,7 @@ npm install
 
 # Step 4: Start the development server
 npm run dev
-\`\`\`
+```
 
 The application will be available at `http://localhost:5173`.
 
