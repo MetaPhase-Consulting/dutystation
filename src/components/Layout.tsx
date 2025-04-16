@@ -34,9 +34,9 @@ export function Layout() {
               href="https://metaphaseconsulting.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm hover:text-foreground flex items-center gap-2"
+              className="text-sm hover:text-foreground flex items-center"
             >
-              Built by <span className="text-orange-500 font-semibold">MetaPhase</span>
+              Built by <span className="text-orange-500 font-semibold ml-1">MetaPhase</span>
             </a>
           </div>
         </div>
