@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Search, Map, CompassIcon, ArrowRightLeft, MapPin } from "lucide-react";
@@ -31,7 +32,7 @@ export function NavBar() {
           <Link to="/" className="mr-6 flex items-center space-x-2">
             <CompassIcon className="h-6 w-6 text-cbp-brightBlue" />
             <span className="hidden font-bold sm:inline-block">
-              CBP Relocation Navigator
+              Duty Station Relocation
             </span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
@@ -66,7 +67,7 @@ export function NavBar() {
           <SheetContent side="left" className="pr-0">
             <Link to="/" className="flex items-center gap-2 mb-8 mt-4">
               <CompassIcon className="h-6 w-6 text-cbp-brightBlue" />
-              <span className="font-bold">CBP Relocation Navigator</span>
+              <span className="font-bold">Duty Station Relocation</span>
             </Link>
             <nav className="flex flex-col gap-4">
               <Link
@@ -89,7 +90,7 @@ export function NavBar() {
 
         <Link to="/" className="md:hidden mr-2 flex items-center gap-2">
           <CompassIcon className="h-6 w-6 text-cbp-brightBlue" />
-          <span className="font-bold text-sm">CBP Relocation</span>
+          <span className="font-bold text-sm">Duty Station Relocation</span>
         </Link>
 
         <div className="flex flex-1 items-center justify-end">

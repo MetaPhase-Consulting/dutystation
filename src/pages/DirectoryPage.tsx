@@ -85,7 +85,7 @@ export default function DirectoryPage() {
     <div className="container px-4 py-8 mx-auto">
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">CBP Duty Station Directory</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Duty Station Directory</h1>
           <p className="text-muted-foreground">
             Browse and search CBP duty stations across the United States.
           </p>

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
@@ -76,7 +77,7 @@ export default function HomePage() {
                 </div>
               </form>
               <p className="text-xs text-muted-foreground">
-                Search by city, state, or duty station name
+                Search for Border Patrol Duty Stations
               </p>
             </div>
           </div>
@@ -88,9 +89,6 @@ export default function HomePage() {
           <div className="grid gap-8 lg:grid-cols-2 xl:gap-16">
             <div className="flex flex-col justify-center">
               <div className="space-y-4">
-                <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
-                  Why Choose Us?
-                </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
                   Make a Difference at America's Frontline
                 </h2>
