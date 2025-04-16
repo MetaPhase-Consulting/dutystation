@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { DutyStation, dutyStations, findDutyStationById } from "@/data/dutyStations";
@@ -18,6 +17,11 @@ export default function ComparisonPage() {
   const [station2, setStation2] = useState<DutyStation | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Sort duty stations alphabetically by name
+  const sortedDutyStations = [...dutyStations].sort((a, b) => 
+    a.name.localeCompare(b.name)
+  );
 
   useEffect(() => {
     // Extract station IDs from URL if present
@@ -142,9 +146,9 @@ export default function ComparisonPage() {
                 <SelectValue placeholder="Select first duty station" />
               </SelectTrigger>
               <SelectContent>
-                {dutyStations.map((station) => (
+                {sortedDutyStations.map((station) => (
                   <SelectItem key={station.id} value={station.id}>
-                    {station.name} ({station.city}, {station.state})
+                    {station.name}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -160,9 +164,9 @@ export default function ComparisonPage() {
                 <SelectValue placeholder="Select second duty station" />
               </SelectTrigger>
               <SelectContent>
-                {dutyStations.map((station) => (
+                {sortedDutyStations.map((station) => (
                   <SelectItem key={station.id} value={station.id}>
-                    {station.name} ({station.city}, {station.state})
+                    {station.name}
                   </SelectItem>
                 ))}
               </SelectContent>
