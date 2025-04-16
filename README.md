@@ -1,73 +1,76 @@
-# Welcome to your Lovable project
+# Duty Station Relocation
 
-## Project info
+![MIT License](https://img.shields.io/github/license/MetaPhase-Consulting/dutystation?style=flat-square)
+![Build](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)
+![Open Source](https://img.shields.io/badge/open--source-yes-blue?style=flat-square)
 
-**URL**: https://lovable.dev/projects/026cbffa-f061-4757-a963-27ed1a595a13
+## Overview
 
-## How can I edit this code?
+**Duty Station Relocation** is a public, open-source web application that helps U.S. Customs and Border Protection (CBP) job applicants explore potential duty station assignments across the country. It provides a streamlined, responsive interface for browsing, searching, and comparing Border Patrol Duty Stations — helping applicants make better-informed relocation decisions.
 
-There are several ways of editing your application.
+Users can access external resources for housing, schools, crime rates, cost of living, weather, and other key relocation factors—right from each station detail page. No login, no tracking, no personal data collected.
 
-**Use Lovable**
+**Live site**: [https://dutystation.us](https://dutystation.us)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/026cbffa-f061-4757-a963-27ed1a595a13) and start prompting.
+## Who is it for?
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Built for:** U.S. Customs and Border Protection (CBP) and its prospective job applicants  
+- **Primary Users:** Individuals who have received job offers requiring relocation  
+- **Secondary Users:** CBP HR and recruiting teams supporting workforce mobility  
 
-**Use your preferred IDE**
+## Built by MetaPhase
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+This application was developed by [MetaPhase](https://www.metaphaseconsulting.com) using our internal [OrangeAI accelerators](https://www.metaphaseconsulting.com/accelerators) to rapidly deliver government-grade generative AI solutions.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+MetaPhase delivers mission-driven digital services to federal agencies, with a focus on human-centered design, emerging technology, and secure modern platforms.
 
-Follow these steps:
+This solution was developed as a **free and open-source contribution** to support public sector innovation.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Tech Stack
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+This application is built with:
 
-# Step 3: Install the necessary dependencies.
-npm i
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.dev/) component library
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## Local Setup
+
+To run this application locally:
+
+### Prerequisites
+
+- [Node.js and npm](https://nodejs.org/) (recommended via [nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
+
+### Steps
+
+\`\`\`bash
+# Step 1: Clone the repository
+git clone https://github.com/MetaPhase-Consulting/dutystation.git
+
+# Step 2: Navigate into the project directory
+cd dutystation
+
+# Step 3: Install dependencies
+npm install
+
+# Step 4: Start the development server
 npm run dev
-```
+\`\`\`
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:5173`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Deployment
 
-**Use GitHub Codespaces**
+This project can be deployed to any modern frontend platform, including:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Vercel
+- Netlify
+- GitHub Pages
+- AWS Amplify / S3 / CloudFront (for federal use)
 
-## What technologies are used for this project?
+## License
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/026cbffa-f061-4757-a963-27ed1a595a13) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is licensed under the [MIT License](https://github.com/MetaPhase-Consulting/dutystation/blob/main/LICENSE). You are free to use, modify, and distribute this software in accordance with the terms of that license.
