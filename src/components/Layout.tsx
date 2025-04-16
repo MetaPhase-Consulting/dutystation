@@ -23,12 +23,13 @@ export function Layout() {
               href="https://github.com/MetaPhase-Consulting/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground flex items-center"
+              className="text-sm text-muted-foreground hover:text-foreground flex items-center"
               aria-label="Open Source"
             >
               <Github className="h-5 w-5 mr-1" />
               Open Source
             </a>
+            <span className="text-muted-foreground">|</span>
             <a
               href="https://metaphaseconsulting.com/"
               target="_blank"
