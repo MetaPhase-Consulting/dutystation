@@ -95,8 +95,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
-        <div className="container px-4 md:px-6">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-white relative overflow-hidden">
+        <div 
+          className="absolute inset-0 opacity-10 pointer-events-none bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/lovable-uploads/a8e7a2f9-7aef-4f4d-abe7-bd1702206038.png')",
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            transform: 'scale(1.1)',
+            filter: 'brightness(1.2) contrast(0.8)'
+          }}
+        />
+        <div className="container px-4 md:px-6 relative z-10">
           <div className="grid gap-8 lg:grid-cols-2 xl:gap-16">
             <div className="flex flex-col justify-center">
               <div className="space-y-4">
