@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { DutyStation, searchDutyStations } from "@/data/dutyStations";
@@ -85,7 +84,7 @@ export default function DirectoryPage() {
     <div className="container px-4 py-8 mx-auto">
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">Duty Station Directory</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Duty Station Directory</h1>
           <p className="text-muted-foreground">
             Browse and search CBP duty stations across the United States.
           </p>

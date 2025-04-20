@@ -20,7 +20,7 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-14rem)]">
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-[#F2FCE2]">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-[#E5EBD9]">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">

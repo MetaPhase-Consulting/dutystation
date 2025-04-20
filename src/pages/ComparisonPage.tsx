@@ -129,7 +129,7 @@ export default function ComparisonPage() {
             >
               <ArrowLeft className="h-4 w-4" />
             </Button>
-            <h1 className="text-3xl font-bold tracking-tight">Compare Duty Stations</h1>
+            <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Compare Duty Stations</h1>
           </div>
           <p className="text-muted-foreground">
             Select two duty stations to compare side by side.
