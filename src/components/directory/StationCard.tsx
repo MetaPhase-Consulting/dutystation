@@ -19,17 +19,10 @@ interface StationCardProps {
 export function StationCard({ station }: StationCardProps) {
   const navigate = useNavigate();
 
-  const handleNavigate = () => navigate(`/station/${station.id}`);
-
   return (
     <Card className="overflow-hidden">
       <CardHeader className="pb-3">
-        <CardTitle 
-          className="text-[#0A4A0A] hover:underline cursor-pointer"
-          onClick={handleNavigate}
-        >
-          {station.name}
-        </CardTitle>
+        <CardTitle className="text-[#0A4A0A]">{station.name}</CardTitle>
         <CardDescription className="flex items-center">
           <MapPin className="h-3 w-3 mr-1" />
           {station.city}, {station.state}
@@ -43,7 +36,7 @@ export function StationCard({ station }: StationCardProps) {
         <Button 
           variant="outline" 
           className="w-full"
-          onClick={handleNavigate}
+          onClick={() => navigate(`/station/${station.id}`)}
         >
           View Details
         </Button>

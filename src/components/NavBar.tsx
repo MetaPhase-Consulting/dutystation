@@ -1,7 +1,6 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Search, Map, CompassIcon, ArrowRightLeft, MapPin, BookOpen } from "lucide-react";
+import { Menu, Search, Map, CompassIcon, ArrowRightLeft, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -49,13 +48,6 @@ export function NavBar() {
               <ArrowRightLeft className="h-4 w-4" />
               Compare
             </Link>
-            <Link
-              to="/data-sources"
-              className="transition-colors hover:text-[#1F631A] text-gray-600 flex items-center gap-1"
-            >
-              <BookOpen className="h-4 w-4" />
-              Data
-            </Link>
           </nav>
         </div>
         
@@ -94,13 +86,6 @@ export function NavBar() {
                 <ArrowRightLeft className="h-5 w-5" />
                 Compare
               </Link>
-              <Link
-                to="/data-sources"
-                className="flex items-center gap-2 text-foreground hover:text-cbp-brightBlue"
-              >
-                <BookOpen className="h-5 w-5" />
-                Data
-              </Link>
             </nav>
           </SheetContent>
         </Sheet>
@@ -119,7 +104,7 @@ export function NavBar() {
             <div className="relative flex-1">
               <Input
                 type="search"
-                placeholder="Search Duty Stations..."
+                placeholder="Search duty stations..."
                 className="w-full"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
