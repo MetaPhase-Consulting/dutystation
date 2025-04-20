@@ -23,7 +23,7 @@ export interface DutyStation {
 
 export const dutyStations: DutyStation[] = [
   {
-    id: "bb-1",
+    id: "presidio-station",
     name: "Presidio Station",
     city: "Presidio",
     state: "TX",
@@ -44,7 +44,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "bb-2",
+    id: "van-horn-station",
     name: "Van Horn Station",
     city: "Van Horn",
     state: "TX",
@@ -65,7 +65,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "bb-3",
+    id: "alpine-station",
     name: "Alpine Station",
     city: "Alpine",
     state: "TX",
@@ -86,7 +86,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "bb-4",
+    id: "sierra-blanca-station",
     name: "Sierra Blanca Station",
     city: "Sierra Blanca",
     state: "TX",
@@ -107,7 +107,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "bb-5",
+    id: "fort-stockton-station",
     name: "Fort Stockton Station",
     city: "Fort Stockton",
     state: "TX",
@@ -128,7 +128,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "bb-6",
+    id: "marfa-station",
     name: "Marfa Station",
     city: "Marfa",
     state: "TX",
@@ -149,7 +149,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "bb-7",
+    id: "sanderson-station",
     name: "Sanderson Station",
     city: "Sanderson",
     state: "TX",
@@ -170,7 +170,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "bl-1",
+    id: "sumas-station",
     name: "Sumas Station",
     city: "Sumas",
     state: "WA",
@@ -191,7 +191,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "bl-2",
+    id: "blaine-station",
     name: "Blaine Station",
     city: "Blaine",
     state: "WA",
@@ -212,7 +212,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "bl-3",
+    id: "port-angeles-station",
     name: "Port Angeles Station",
     city: "Port Angeles",
     state: "WA",
@@ -233,7 +233,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "bl-4",
+    id: "bellingham-station",
     name: "Bellingham Station",
     city: "Bellingham",
     state: "WA",
@@ -254,7 +254,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "bf-1",
+    id: "buffalo-station",
     name: "Buffalo Station",
     city: "Buffalo",
     state: "NY",
@@ -275,7 +275,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "bf-2",
+    id: "erie-station",
     name: "Erie Station",
     city: "Erie",
     state: "PA",
@@ -296,7 +296,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "bf-3",
+    id: "oswego-station",
     name: "Oswego Station",
     city: "Oswego",
     state: "NY",
@@ -317,7 +317,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "dr-1",
+    id: "del-rio-station",
     name: "Del Rio Station",
     city: "Del Rio",
     state: "TX",
@@ -338,7 +338,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "dt-1",
+    id: "detroit-station",
     name: "Detroit Station",
     city: "Detroit",
     state: "MI",
@@ -359,7 +359,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "dt-2",
+    id: "gibraltar-station",
     name: "Gibraltar Station",
     city: "Gibraltar",
     state: "MI",
@@ -380,7 +380,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "dt-3",
+    id: "marysville-station",
     name: "Marysville Station",
     city: "Marysville",
     state: "MI",
@@ -401,7 +401,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "dt-4",
+    id: "sault-ste-marie-station",
     name: "Sault Ste. Marie Station",
     city: "Sault Ste. Marie",
     state: "MI",
@@ -422,7 +422,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "ep-1",
+    id: "el-paso-station",
     name: "El Paso Station",
     city: "El Paso",
     state: "TX",
@@ -443,7 +443,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "ep-2",
+    id: "ysleta-station",
     name: "Ysleta Station",
     city: "El Paso",
     state: "TX",
@@ -464,7 +464,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "ep-3",
+    id: "santa-teresa-station",
     name: "Santa Teresa Station",
     city: "Santa Teresa",
     state: "NM",
@@ -485,7 +485,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "gf-1",
+    id: "grand-forks-station",
     name: "Grand Forks Station",
     city: "Grand Forks",
     state: "ND",
@@ -506,7 +506,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "gf-2",
+    id: "pembina-station",
     name: "Pembina Station",
     city: "Pembina",
     state: "ND",
@@ -527,7 +527,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "hv-1",
+    id: "havre-station",
     name: "Havre Station",
     city: "Havre",
     state: "MT",
@@ -548,7 +548,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "hv-2",
+    id: "saint-mary-station",
     name: "Saint Mary Station",
     city: "Babb",
     state: "MT",
@@ -569,7 +569,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "ho-1",
+    id: "houlton-station",
     name: "Houlton Station",
     city: "Houlton",
     state: "ME",
@@ -590,7 +590,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "ho-2",
+    id: "fort-fairfield-station",
     name: "Fort Fairfield Station",
     city: "Fort Fairfield",
     state: "ME",
@@ -611,7 +611,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "lr-1",
+    id: "laredo-north-station",
     name: "Laredo North Station",
     city: "Laredo",
     state: "TX",
@@ -632,7 +632,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "lr-2",
+    id: "laredo-south-station",
     name: "Laredo South Station",
     city: "Laredo",
     state: "TX",
@@ -653,7 +653,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "lr-3",
+    id: "zapata-station",
     name: "Zapata Station",
     city: "Zapata",
     state: "TX",
@@ -674,7 +674,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "mi-1",
+    id: "miami-station",
     name: "Miami Station",
     city: "Miami",
     state: "FL",
@@ -695,7 +695,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "mi-2",
+    id: "west-palm-beach-station",
     name: "West Palm Beach Station",
     city: "West Palm Beach",
     state: "FL",
@@ -716,7 +716,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "no-1",
+    id: "new-orleans-station",
     name: "New Orleans Station",
     city: "New Orleans",
     state: "LA",
@@ -737,7 +737,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "no-2",
+    id: "mobile-station",
     name: "Mobile Station",
     city: "Mobile",
     state: "AL",
@@ -758,7 +758,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "rgv-1",
+    id: "mcallen-station",
     name: "McAllen Station",
     city: "McAllen",
     state: "TX",
@@ -779,7 +779,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "rgv-2",
+    id: "brownsville-station",
     name: "Brownsville Station",
     city: "Brownsville",
     state: "TX",
@@ -800,7 +800,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "sp-1",
+    id: "spokane-station",
     name: "Spokane Station",
     city: "Spokane",
     state: "WA",
@@ -821,7 +821,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "sw-1",
+    id: "swanton-station",
     name: "Swanton Station",
     city: "Swanton",
     state: "VT",
@@ -842,7 +842,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "tu-1",
+    id: "tucson-station",
     name: "Tucson Station",
     city: "Tucson",
     state: "AZ",
@@ -863,7 +863,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "tu-2",
+    id: "douglas-station",
     name: "Douglas Station",
     city: "Douglas",
     state: "AZ",
@@ -884,7 +884,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "yu-1",
+    id: "yuma-station",
     name: "Yuma Station",
     city: "Yuma",
     state: "AZ",
@@ -905,7 +905,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "yu-2",
+    id: "wellton-station",
     name: "Wellton Station",
     city: "Wellton",
     state: "AZ",
