@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
@@ -97,15 +98,11 @@ export default function HomePage() {
 
       <section className="w-full py-12 md:py-24 lg:py-32 bg-white relative overflow-hidden">
         <div 
-          className="absolute inset-0 opacity-25 pointer-events-none"
+          className="absolute inset-0 opacity-25 pointer-events-none bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/lovable-uploads/b77af6df-c367-4bf4-9263-2d9f630d5a71.png')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            zIndex: 0
+            backgroundImage: "url('/lovable-uploads/b77af6df-c367-4bf4-9263-2d9f630d5a71.png')"
           }}
-        />
+        ></div>
         <div className="container px-4 md:px-6 relative z-10">
           <div className="grid gap-8 lg:grid-cols-2 xl:gap-16">
             <div className="flex flex-col justify-center">
