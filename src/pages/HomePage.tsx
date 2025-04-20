@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
@@ -23,12 +22,12 @@ export default function HomePage() {
     <div className="flex flex-col min-h-[calc(100vh-14rem)]">
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#E5EBD9] relative overflow-hidden">
         <div 
-          className="absolute inset-0 opacity-50 pointer-events-none"
+          className="absolute inset-0 opacity-5 pointer-events-none"
           style={{
-            backgroundImage: "url('/lovable-uploads/aa74b4e4-e037-4a4d-b770-0ceeba44d2ca.png')",
+            backgroundImage: "url('/lovable-uploads/def4241e-5f5d-4287-8d7d-987f6fe7f1ae.png')",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
-            backgroundSize: "cover",
+            backgroundSize: "40%",
             transform: "rotate(-15deg)"
           }}
         />
@@ -96,8 +95,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-white relative overflow-hidden">
-        <div className="container px-4 md:px-6 relative z-10">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
+        <div className="container px-4 md:px-6">
           <div className="grid gap-8 lg:grid-cols-2 xl:gap-16">
             <div className="flex flex-col justify-center">
               <div className="space-y-4">
@@ -107,11 +106,6 @@ export default function HomePage() {
                 <p className="text-muted-foreground md:text-lg">
                   Join over 60,000 dedicated professionals protecting our nation's borders.
                 </p>
-                <img 
-                  src="/lovable-uploads/a428e542-6c28-41da-bd2a-41d2228a8167.png"
-                  alt="Border Patrol vehicle"
-                  className="w-full h-48 object-cover opacity-25"
-                />
               </div>
             </div>
             <div className="flex flex-col gap-4 mt-4 lg:mt-0">
