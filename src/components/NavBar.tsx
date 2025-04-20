@@ -119,7 +119,7 @@ export function NavBar() {
             <div className="relative flex-1">
               <Input
                 type="search"
-                placeholder="Search duty stations..."
+                placeholder="Search Duty Stations..."
                 className="w-full"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}

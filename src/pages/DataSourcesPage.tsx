@@ -4,7 +4,18 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Map, Home, Bookmark, School, Shield, Info, BookOpen } from "lucide-react";
+import { 
+  ExternalLink, 
+  Map, 
+  Home, 
+  DollarSign, 
+  School, 
+  Shield, 
+  BookOpen,
+  CloudSun,
+  TrainFront,
+  Truck
+} from "lucide-react";
 
 export default function DataSourcesPage() {
   return (
@@ -65,7 +76,7 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Home className="h-5 w-5 text-[#1F631A]" />
+                <Home className="h-5 w-5 text-[#0FA0CE]" />
                 Real Estate Data
               </CardTitle>
               <CardDescription>Housing costs and market information</CardDescription>
@@ -79,7 +90,7 @@ export default function DataSourcesPage() {
                       href="https://www.zillow.com" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#1F631A] hover:underline"
+                      className="text-[#0FA0CE] hover:underline"
                     >
                       Zillow
                     </a>
@@ -93,7 +104,7 @@ export default function DataSourcesPage() {
                       href="https://www.realtor.com" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#1F631A] hover:underline"
+                      className="text-[#0FA0CE] hover:underline"
                     >
                       Realtor.com
                     </a>
@@ -107,7 +118,7 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <School className="h-5 w-5 text-[#1F631A]" />
+                <School className="h-5 w-5 text-green-600" />
                 Schools Data
               </CardTitle>
               <CardDescription>Educational institutions and ratings</CardDescription>
@@ -121,7 +132,7 @@ export default function DataSourcesPage() {
                       href="https://www.greatschools.org" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#1F631A] hover:underline"
+                      className="text-green-600 hover:underline"
                     >
                       GreatSchools
                     </a>
@@ -135,7 +146,7 @@ export default function DataSourcesPage() {
                       href="https://nces.ed.gov" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#1F631A] hover:underline"
+                      className="text-green-600 hover:underline"
                     >
                       National Center for Education Statistics
                     </a>
@@ -149,7 +160,7 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-[#1F631A]" />
+                <Shield className="h-5 w-5 text-red-500" />
                 Crime Statistics
               </CardTitle>
               <CardDescription>Safety and crime data</CardDescription>
@@ -163,7 +174,7 @@ export default function DataSourcesPage() {
                       href="https://www.fbi.gov/services/cjis/ucr" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#1F631A] hover:underline"
+                      className="text-red-500 hover:underline"
                     >
                       FBI Uniform Crime Reporting
                     </a>
@@ -177,7 +188,7 @@ export default function DataSourcesPage() {
                       href="https://www.neighborhoodscout.com" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#1F631A] hover:underline"
+                      className="text-red-500 hover:underline"
                     >
                       NeighborhoodScout
                     </a>
@@ -233,6 +244,118 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
+                <DollarSign className="h-5 w-5 text-green-600" />
+                Cost of Living Data
+              </CardTitle>
+              <CardDescription>Local economic indicators</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                <li className="flex gap-2">
+                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                  <div>
+                    <a 
+                      href="https://www.numbeo.com" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-green-600 hover:underline"
+                    >
+                      Numbeo
+                    </a>
+                    <p className="text-sm text-muted-foreground">Cost of living data and city comparisons</p>
+                  </div>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <CloudSun className="h-5 w-5 text-blue-500" />
+                Weather Data
+              </CardTitle>
+              <CardDescription>Climate and weather information</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                <li className="flex gap-2">
+                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                  <div>
+                    <a 
+                      href="https://www.weather.gov" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:underline"
+                    >
+                      National Weather Service
+                    </a>
+                    <p className="text-sm text-muted-foreground">Official weather data and forecasts</p>
+                  </div>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <TrainFront className="h-5 w-5 text-purple-500" />
+                Transit Data
+              </CardTitle>
+              <CardDescription>Public transportation information</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                <li className="flex gap-2">
+                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                  <div>
+                    <a 
+                      href="https://www.transit.wiki" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-purple-500 hover:underline"
+                    >
+                      Transit Wiki
+                    </a>
+                    <p className="text-sm text-muted-foreground">Public transportation systems and routes</p>
+                  </div>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Truck className="h-5 w-5 text-orange-500" />
+                Moving Resources
+              </CardTitle>
+              <CardDescription>Relocation assistance and tips</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                <li className="flex gap-2">
+                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                  <div>
+                    <a 
+                      href="https://www.moving.gov" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-orange-500 hover:underline"
+                    >
+                      USA.gov Moving Guide
+                    </a>
+                    <p className="text-sm text-muted-foreground">Official government resources for relocating</p>
+                  </div>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
                 <BookOpen className="h-5 w-5 text-[#1F631A]" />
                 Applicant Resources
               </CardTitle>
@@ -266,20 +389,6 @@ export default function DataSourcesPage() {
                       CBP Careers
                     </a>
                     <p className="text-sm text-muted-foreground">Official CBP career information and job listings</p>
-                  </div>
-                </li>
-                <li className="flex gap-2">
-                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
-                  <div>
-                    <a 
-                      href="https://www.cbp.gov/careers/usbp-what-we-do" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#1F631A] hover:underline"
-                    >
-                      CBP - What We Do
-                    </a>
-                    <p className="text-sm text-muted-foreground">Information about Border Patrol mission and activities</p>
                   </div>
                 </li>
               </ul>
