@@ -1,6 +1,7 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, MapPin } from "lucide-react";
+import { Search, MapPin, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { dutyStations, searchDutyStations } from "@/data/dutyStations";
@@ -24,7 +25,12 @@ export default function HomePage() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-[#1F631A]/10 px-3 py-1 text-[#1F631A]">
+              <div className="inline-block rounded-lg bg-[#1F631A]/10 px-3 py-1 text-[#1F631A] flex items-center gap-2">
+                <img 
+                  src="/lovable-uploads/6fe69d3e-d185-4a1e-b57e-0b97ecedf7fb.png" 
+                  alt="Compass Logo" 
+                  className="h-5 w-5" 
+                />
                 Welcome to Duty Station Relocation
               </div>
               <h1 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl md:text-5xl lg:text-6xl/none">
