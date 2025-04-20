@@ -108,7 +108,7 @@ export default function HomePage() {
                   Join over 60,000 dedicated professionals protecting our nation's borders.
                 </p>
                 <img 
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+                  src="/lovable-uploads/a428e542-6c28-41da-bd2a-41d2228a8167.png"
                   alt="Border Patrol vehicle"
                   className="w-full h-48 object-cover opacity-25"
                 />
