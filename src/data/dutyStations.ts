@@ -6,8 +6,8 @@ export interface DutyStation {
   state: string;
   zipCode: string;
   sector: string;
-  lat: number;
-  lng: number;
+  lat: number | null;
+  lng: number | null;
   region: string;
   description: string;
   links: {
@@ -924,7 +924,238 @@ export const dutyStations: DutyStation[] = [
       transit: "https://www.rome2rio.com/s/Yuma-AZ-USA/Wellton-AZ-USA",
       movingTips: "https://www.moving.com/tips/moving-to-arizona/"
     }
-  }
+  },
+  {
+    id: "rochester-station",
+    name: "Rochester Station",
+    city: "Rochester",
+    state: "NY",
+    zipCode: "14617",
+    sector: "Buffalo Sector",
+    lat: null,
+    lng: null,
+    region: "Northeast",
+    description: "Rochester Station (Buffalo Sector) at 171 Pattonwood Rochester NY. Duties include monitoring border activities in the Rochester area.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Rochester_NY",
+      schools: "https://www.greatschools.org/new-york/rochester/",
+      crime: "https://www.neighborhoodscout.com/ny/rochester/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/new_york/rochester",
+      weather: "https://weatherspark.com/y/19691/Average-Weather-in-Rochester-New-York-United-States-Year-Round",
+      transit: "https://www.myrts.com/",
+      movingTips: "https://www.moving.com/tips/moving-to-new-york/"
+    }
+  },
+  {
+    id: "wolcott-station",
+    name: "Wolcott Station",
+    city: "Wolcott",
+    state: "NY",
+    zipCode: "14590",
+    sector: "Buffalo Sector",
+    lat: null,
+    lng: null,
+    region: "Northeast",
+    description: "Wolcott Station (Buffalo Sector) at 4764 Lake Road Wolcott NY. Responsible for border security operations in the Wolcott region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Wolcott_NY",
+      schools: "https://www.greatschools.org/new-york/wolcott/",
+      crime: "https://www.neighborhoodscout.com/ny/wolcott/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/new_york/wolcott",
+      weather: "https://weatherspark.com/y/19845/Average-Weather-in-Wolcott-New-York-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Rochester-NY-USA/Wolcott-NY-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-new-york/"
+    }
+  },
+  {
+    id: "niagara-falls-station",
+    name: "Niagara Falls Station",
+    city: "Niagara Falls",
+    state: "NY",
+    zipCode: "14304",
+    sector: "Buffalo Sector",
+    lat: null,
+    lng: null,
+    region: "Northeast",
+    description: "Niagara Falls Station (Buffalo Sector) at 1708 Lafayet Niagara Falls NY. Provides border security and monitoring for the Niagara Falls area.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Niagara-Falls_NY",
+      schools: "https://www.greatschools.org/new-york/niagara-falls/",
+      crime: "https://www.neighborhoodscout.com/ny/niagara-falls/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/new_york/niagara_falls",
+      weather: "https://weatherspark.com/y/19846/Average-Weather-in-Niagara-Falls-New-York-United-States-Year-Round",
+      transit: "https://www.nfta.com/",
+      movingTips: "https://www.moving.com/tips/moving-to-new-york/"
+    }
+  },
+  {
+    id: "erie-station",
+    name: "Erie Station",
+    city: "Erie",
+    state: "PA",
+    zipCode: "16509",
+    sector: "Buffalo Sector",
+    lat: null,
+    lng: null,
+    region: "Northeast",
+    description: "Erie Station (Buffalo Sector) at 2210 Broad St Erie PA. Responsible for monitoring border activities in the Erie region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Erie_PA",
+      schools: "https://www.greatschools.org/pennsylvania/erie/",
+      crime: "https://www.neighborhoodscout.com/pa/erie/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/pennsylvania/erie",
+      weather: "https://weatherspark.com/y/22138/Average-Weather-in-Erie-Pennsylvania-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Pittsburgh-PA-USA/Erie-PA-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-pennsylvania/"
+    }
+  },
+  {
+    id: "brackettville-station",
+    name: "Brackettville Station",
+    city: "Brackettville",
+    state: "TX",
+    zipCode: "78832",
+    sector: "Del Rio Sector",
+    lat: null,
+    lng: null,
+    region: "Southwest",
+    description: "Brackettville Station (Del Rio Sector) at 802 W. Spring Brackettville TX. Responsible for border security operations in the Brackettville region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Brackettville_TX",
+      schools: "https://www.greatschools.org/texas/brackettville/",
+      crime: "https://www.neighborhoodscout.com/tx/brackettville/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/brackettville",
+      weather: "https://weatherspark.com/y/26532/Average-Weather-in-Brackettville-Texas-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/San-Antonio-TX-USA/Brackettville-TX-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+    }
+  },
+  {
+    id: "comstock-station",
+    name: "Comstock Station",
+    city: "Comstock",
+    state: "TX",
+    zipCode: "78837",
+    sector: "Del Rio Sector",
+    lat: null,
+    lng: null,
+    region: "Southwest",
+    description: "Comstock Station (Del Rio Sector) at 9785 Hwy 90W Comstock TX. Responsible for border security operations in the Comstock region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Comstock_TX",
+      schools: "https://www.greatschools.org/texas/comstock/",
+      crime: "https://www.neighborhoodscout.com/tx/comstock/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/comstock",
+      weather: "https://weatherspark.com/y/26533/Average-Weather-in-Comstock-Texas-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Del-Rio-TX-USA/Comstock-TX-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+    }
+  },
+  {
+    id: "eagle-pass-station",
+    name: "Eagle Pass Station",
+    city: "Eagle Pass",
+    state: "TX",
+    zipCode: "78852",
+    sector: "Del Rio Sector",
+    lat: null,
+    lng: null,
+    region: "Southwest",
+    description: "Eagle Pass Station (Del Rio Sector) at 2295 Del Rio Eagle Pass TX. Responsible for border security operations in the Eagle Pass region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Eagle-Pass_TX",
+      schools: "https://www.greatschools.org/texas/eagle-pass/",
+      crime: "https://www.neighborhoodscout.com/tx/eagle-pass/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/eagle_pass",
+      weather: "https://weatherspark.com/y/26534/Average-Weather-in-Eagle-Pass-Texas-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Del-Rio-TX-USA/Eagle-Pass-TX-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+    }
+  },
+  {
+    id: "eagle-pass-south-station",
+    name: "Eagle Pass South Station",
+    city: "Eagle Pass",
+    state: "TX",
+    zipCode: "78852",
+    sector: "Del Rio Sector",
+    lat: null,
+    lng: null,
+    region: "Southwest",
+    description: "Eagle Pass South Station (Del Rio Sector) at 4156 El Indio Rd Eagle Pass TX. Responsible for border security operations in the southern Eagle Pass region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Eagle-Pass_TX",
+      schools: "https://www.greatschools.org/texas/eagle-pass/",
+      crime: "https://www.neighborhoodscout.com/tx/eagle-pass/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/eagle_pass",
+      weather: "https://weatherspark.com/y/26534/Average-Weather-in-Eagle-Pass-Texas-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Del-Rio-TX-USA/Eagle-Pass-TX-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+    }
+  },
+  {
+    id: "carrizo-springs-station",
+    name: "Carrizo Springs Station",
+    city: "Carrizo Springs",
+    state: "TX",
+    zipCode: "78834",
+    sector: "Del Rio Sector",
+    lat: null,
+    lng: null,
+    region: "Southwest",
+    description: "Carrizo Springs Station (Del Rio Sector) at 1868 Hwy 85 Carrizo Springs TX. Responsible for border security operations in the Carrizo Springs region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Carrizo-Springs_TX",
+      schools: "https://www.greatschools.org/texas/carrizo-springs/",
+      crime: "https://www.neighborhoodscout.com/tx/carrizo-springs/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/carrizo_springs",
+      weather: "https://weatherspark.com/y/26535/Average-Weather-in-Carrizo-Springs-Texas-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Del-Rio-TX-USA/Carrizo-Springs-TX-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+    }
+  },
+  {
+    id: "sandusky-bay-station",
+    name: "Sandusky Bay Station",
+    city: "Sandusky Bay",
+    state: "OH",
+    zipCode: "44870",
+    sector: "Detroit Sector",
+    lat: null,
+    lng: null,
+    region: "Midwest",
+    description: "Sandusky Bay Station (Detroit Sector) at General Inflow Sandusky Bay OH. Responsible for border security operations in the Sandusky Bay region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Sandusky_Bay_OH",
+      schools: "https://www.greatschools.org/ohio/sandusky/",
+      crime: "https://www.neighborhoodscout.com/oh/sandusky/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/ohio/sandusky",
+      weather: "https://weatherspark.com/y/27533/Average-Weather-in-Sandusky-Ohio-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Cleveland-OH-USA/Sandusky-OH-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-ohio/"
+    }
+  },
+  {
+    id: "saint-clair-station",
+    name: "Saint Clair Station",
+    city: "Saint Clair",
+    state: "MI",
+    zipCode: "48079",
+    sector: "Detroit Sector",
+    lat: null,
+    lng: null,
+    region: "Midwest",
+    description: "Saint Clair Station (Detroit Sector) at General Inflow Saint Clair MI. Responsible for border security operations in the Saint Clair region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Saint-Clair_MI",
+      schools: "https://www.greatschools.org/michigan/saint-clair/",
+      crime: "https://www.neighborhoodscout.com/mi/saint-clair/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/michigan/saint_clair",
+      weather: "https://weatherspark.com/y/17892/Average-Weather-in-Saint-Clair-Michigan-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/Detroit-MI-USA/Saint-Clair-MI-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-michigan/"
+    }
+  },
 ];
 
 // Helper function to get stations by sector
