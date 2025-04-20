@@ -92,17 +92,6 @@ export default function HomePage() {
                   </div>
                 </div>
               </form>
-              <p className="text-xs text-gray-600">
-                Search by{" "}
-                <a 
-                  href="https://www.cbp.gov/border-security/along-us-borders/border-patrol-sectors" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="underline hover:text-primary"
-                >
-                  Border Patrol Duty Station
-                </a>
-              </p>
             </div>
           </div>
         </div>
@@ -119,14 +108,6 @@ export default function HomePage() {
                 <p className="text-muted-foreground md:text-lg">
                   Join over 60,000 dedicated professionals protecting our nation's borders.
                 </p>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button onClick={() => navigate("/directory")}>
-                    Explore Locations
-                  </Button>
-                  <Button variant="outline" onClick={() => navigate("/compare")}>
-                    Compare Stations
-                  </Button>
-                </div>
               </div>
             </div>
             <div className="flex flex-col gap-4 mt-4 lg:mt-0">
@@ -142,7 +123,7 @@ export default function HomePage() {
                     onClick={() => navigate("/directory")}
                     className="self-start"
                   >
-                    View Directory
+                    Explore Stations
                   </Button>
                 </div>
                 <div className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
@@ -161,13 +142,13 @@ export default function HomePage() {
                 </div>
                 <div className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
                   <div>
-                    <h3 className="text-xl font-semibold mb-2">Benefits</h3>
+                    <h3 className="text-xl font-semibold mb-2">Data Sources</h3>
                     <p className="text-muted-foreground mb-4">
-                      Learn about our comprehensive benefits package including health insurance, retirement plans, and more.
+                      Learn about the data sources we use for locations, housing, schools, crime statistics, and maps to provide reliable information.
                     </p>
                   </div>
                   <Button 
-                    onClick={() => window.open("https://careers.cbp.gov/s/benefits", "_blank")}
+                    onClick={() => navigate("/data-sources")}
                     className="self-start"
                   >
                     Learn More
@@ -175,16 +156,16 @@ export default function HomePage() {
                 </div>
                 <div className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
                   <div>
-                    <h3 className="text-xl font-semibold mb-2">Honor First</h3>
+                    <h3 className="text-xl font-semibold mb-2">Applicant Resources</h3>
                     <p className="text-muted-foreground mb-4">
-                      Discover the rich history and traditions of the U.S. Border Patrol through Honor First.
+                      Discover resources for Border Patrol applicants through Honor First and other helpful links.
                     </p>
                   </div>
                   <Button 
                     onClick={() => window.open("https://www.honorfirst.com/for-usbp-applicants.html", "_blank")}
                     className="self-start"
                   >
-                    Learn More
+                    Honor First
                   </Button>
                 </div>
               </div>
