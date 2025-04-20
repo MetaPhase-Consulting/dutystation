@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
@@ -20,14 +21,30 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-14rem)]">
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#E5EBD9]">
-        <div className="container px-4 md:px-6">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#E5EBD9] relative overflow-hidden">
+        {/* Semi-transparent compass background */}
+        <div 
+          className="absolute inset-0 opacity-5 pointer-events-none"
+          style={{
+            backgroundImage: "url('/lovable-uploads/def4241e-5f5d-4287-8d7d-987f6fe7f1ae.png')",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "40%",
+            transform: "rotate(-15deg)"
+          }}
+        />
+        <div className="container px-4 md:px-6 relative">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-[#1F631A]/10 px-3 py-1 text-[#1F631A]">
                 Welcome to Duty Station Relocation
               </div>
-              <h1 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl md:text-5xl lg:text-6xl/none">
+              <h1 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl md:text-5xl lg:text-6xl/none flex items-center justify-center gap-4">
+                <img 
+                  src="/lovable-uploads/def4241e-5f5d-4287-8d7d-987f6fe7f1ae.png"
+                  alt="Compass"
+                  className="w-12 h-12 md:w-16 md:h-16 animate-pulse"
+                />
                 Find Your Next Border Duty Station
               </h1>
               <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl">
