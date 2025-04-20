@@ -100,7 +100,7 @@ export default function HomePage() {
         <div 
           className="absolute inset-0 opacity-50 pointer-events-none"
           style={{
-            backgroundImage: "url('/lovable-uploads/f69a60aa-d641-48fe-996e-7424824be7ff.png')",
+            backgroundImage: "url('/lovable-uploads/4993ae7c-8ddc-49ce-a763-8a390a5b8b8c.png')",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover"
@@ -184,3 +184,4 @@ export default function HomePage() {
     </div>
   );
 }
+
