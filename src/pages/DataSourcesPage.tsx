@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,11 +18,11 @@ import {
 
 export default function DataSourcesPage() {
   return (
-    <div className="container px-4 py-12 md:py-16 lg:py-24 mx-auto">
+    <div className="container px-4 py-8 mx-auto">
       <div className="flex flex-col space-y-6">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Data Sources</h1>
-          <p className="text-muted-foreground max-w-[900px]">
+          <p className="text-muted-foreground">
             Data used to provide accurate and helpful information about border duty stations.
           </p>
         </div>
