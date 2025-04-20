@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
@@ -99,15 +98,7 @@ export default function HomePage() {
       <section className="w-full py-12 md:py-24 lg:py-32 bg-white relative overflow-hidden">
         <div className="container px-4 md:px-6 relative z-10">
           <div className="grid gap-8 lg:grid-cols-2 xl:gap-16">
-            <div className="flex flex-col justify-center relative">
-              {/* Background image specifically for this text section */}
-              <div 
-                className="absolute inset-0 opacity-25 pointer-events-none bg-cover bg-center"
-                style={{
-                  backgroundImage: "url('/lovable-uploads/b77af6df-c367-4bf4-9263-2d9f630d5a71.png')",
-                  zIndex: -1
-                }}
-              />
+            <div className="flex flex-col justify-center">
               <div className="space-y-4">
                 <h2 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl">
                   Making a Difference at America's Frontline
@@ -115,6 +106,11 @@ export default function HomePage() {
                 <p className="text-muted-foreground md:text-lg">
                   Join over 60,000 dedicated professionals protecting our nation's borders.
                 </p>
+                <img 
+                  src="/lovable-uploads/b77af6df-c367-4bf4-9263-2d9f630d5a71.png"
+                  alt="Border Patrol vehicle"
+                  className="w-full h-48 object-cover opacity-25"
+                />
               </div>
             </div>
             <div className="flex flex-col gap-4 mt-4 lg:mt-0">
