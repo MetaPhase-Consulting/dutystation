@@ -1,3 +1,4 @@
+
 import { Outlet } from "react-router-dom";
 import { NavBar } from "@/components/NavBar";
 import { Toaster } from "@/components/ui/toaster";
@@ -14,7 +15,12 @@ export function Layout() {
       <footer className="border-t bg-muted/40">
         <div className="container flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
           <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-4 md:px-0">
-            <Link to="/" className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+            <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+              <img 
+                src="/lovable-uploads/0468490b-f245-4206-a839-d1ced067f862.png" 
+                alt="Compass Icon" 
+                className="h-5 w-5"
+              />
               <span className="font-bold text-[#1F631A]">Duty Station Relocation</span>
             </Link>
           </div>
@@ -45,3 +51,4 @@ export function Layout() {
     </div>
   );
 }
+

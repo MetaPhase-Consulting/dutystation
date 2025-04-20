@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +9,7 @@ import HomePage from "@/pages/HomePage";
 import DirectoryPage from "@/pages/DirectoryPage";
 import StationDetailPage from "@/pages/StationDetailPage";
 import ComparisonPage from "@/pages/ComparisonPage";
+import DataSourcesPage from "@/pages/DataSourcesPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +26,7 @@ const App = () => (
             <Route path="/directory" element={<DirectoryPage />} />
             <Route path="/station/:id" element={<StationDetailPage />} />
             <Route path="/compare" element={<ComparisonPage />} />
+            <Route path="/data-sources" element={<DataSourcesPage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
