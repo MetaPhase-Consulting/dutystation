@@ -20,7 +20,7 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-14rem)]">
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-[#E5EBD9]">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#E5EBD9]">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
@@ -28,10 +28,10 @@ export default function HomePage() {
                 Welcome to Duty Station Relocation
               </div>
               <h1 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl md:text-5xl lg:text-6xl/none">
-                Find Your Next Duty Station
+                Find Your Next Border Duty Station
               </h1>
               <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl">
-                Explore and compare CBP duty station locations before you relocate. Make informed decisions about your next career move with free online resources.
+                Explore and compare border duty station locations before you relocate. Make informed decisions about your next career move with free online resources.
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2">

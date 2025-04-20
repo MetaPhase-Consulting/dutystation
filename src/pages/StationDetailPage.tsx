@@ -128,7 +128,7 @@ export default function StationDetailPage() {
           <div className="w-full md:w-2/3">
             <Card>
               <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4">About This Location</h2>
+                <h2 className="text-xl font-semibold mb-4 text-[#222222]">About This Location</h2>
                 <p className="mb-6">{station.description}</p>
                 
                 <div className="mb-6 rounded-md overflow-hidden">
@@ -158,7 +158,7 @@ export default function StationDetailPage() {
           <div className="w-full md:w-1/3">
             <Card>
               <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4">External Resources</h2>
+                <h2 className="text-xl font-semibold mb-4 text-[#222222]">External Resources</h2>
                 <p className="text-sm text-muted-foreground mb-4">
                   Click on any resource below to learn more about this location.
                 </p>
@@ -176,7 +176,7 @@ export default function StationDetailPage() {
                         <resource.icon className="h-5 w-5" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-medium group-hover:text-primary transition-colors">
+                        <h3 className="font-medium text-[#222222] group-hover:text-primary transition-colors">
                           {resource.name}
                         </h3>
                         <p className="text-sm text-muted-foreground">
