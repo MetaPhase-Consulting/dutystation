@@ -25,7 +25,7 @@ export function NavBar() {
   const filteredStations = searchDutyStations(searchQuery);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container flex h-14 items-center">
         <div className="mr-4 hidden md:flex">
           <Link to="/" className="mr-6 flex items-center space-x-2">
@@ -36,14 +36,14 @@ export function NavBar() {
           <nav className="flex items-center space-x-6 text-sm font-medium">
             <Link
               to="/directory"
-              className="transition-colors hover:text-cbp-brightBlue flex items-center gap-1"
+              className="transition-colors hover:text-[#1F631A] text-gray-600 flex items-center gap-1"
             >
               <Map className="h-4 w-4" />
               Directory
             </Link>
             <Link
               to="/compare"
-              className="transition-colors hover:text-cbp-brightBlue flex items-center gap-1"
+              className="transition-colors hover:text-[#1F631A] text-gray-600 flex items-center gap-1"
             >
               <ArrowRightLeft className="h-4 w-4" />
               Compare

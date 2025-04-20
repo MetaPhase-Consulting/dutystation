@@ -20,7 +20,7 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-14rem)]">
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background to-muted">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-[#F2FCE2]">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
@@ -30,7 +30,7 @@ export default function HomePage() {
               <h1 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl md:text-5xl lg:text-6xl/none">
                 Find Your Next Duty Station
               </h1>
-              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+              <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl">
                 Explore and compare CBP duty station locations before you relocate. Make informed decisions about your next career move with free online resources.
               </p>
             </div>
@@ -39,7 +39,7 @@ export default function HomePage() {
                 <div className="relative w-full">
                   <div className="flex items-center gap-2">
                     <div className="relative flex-1">
-                      <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                      <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-600" />
                       <Input
                         type="search"
                         placeholder="Search duty stations..."
@@ -75,7 +75,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </form>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-gray-600">
                 Search by{" "}
                 <a 
                   href="https://www.cbp.gov/border-security/along-us-borders/border-patrol-sectors" 
@@ -91,7 +91,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
         <div className="container px-4 md:px-6">
           <div className="grid gap-8 lg:grid-cols-2 xl:gap-16">
             <div className="flex flex-col justify-center">

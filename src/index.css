@@ -4,23 +4,23 @@
 
 @layer base {
   :root {
-    --background: 84 38% 95%; /* Border Mist very light background */
-    --foreground: 116 57% 24%; /* Patrol Green for text */
+    --background: 0 0% 100%; /* White background */
+    --foreground: 215 16% 47%; /* Gray for regular text */
 
     --card: 0 0% 100%;
-    --card-foreground: 116 57% 24%;
+    --card-foreground: 215 16% 47%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 116 57% 24%;
+    --popover-foreground: 215 16% 47%;
 
-    --primary: 116 57% 24%;
+    --primary: 116 57% 24%; /* Patrol Green for buttons and major headings */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 112 47% 33%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 84 38% 95%;
-    --muted-foreground: 116 57% 24%;
+    --muted-foreground: 215 16% 47%;
 
     --accent: 103 35% 41%;
     --accent-foreground: 0 0% 100%;
@@ -30,7 +30,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 195 83% 49%;
+    --ring: 116 57% 24%;
 
     --radius: 0.5rem;
 
@@ -89,6 +89,6 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-gray-700;
   }
 }
