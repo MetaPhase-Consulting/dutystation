@@ -23,12 +23,12 @@ export default function HomePage() {
     <div className="flex flex-col min-h-[calc(100vh-14rem)]">
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#E5EBD9] relative overflow-hidden">
         <div 
-          className="absolute inset-0 opacity-5 pointer-events-none"
+          className="absolute inset-0 opacity-50 pointer-events-none"
           style={{
-            backgroundImage: "url('/lovable-uploads/def4241e-5f5d-4287-8d7d-987f6fe7f1ae.png')",
+            backgroundImage: "url('/lovable-uploads/aa74b4e4-e037-4a4d-b770-0ceeba44d2ca.png')",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
-            backgroundSize: "40%",
+            backgroundSize: "cover",
             transform: "rotate(-15deg)"
           }}
         />
