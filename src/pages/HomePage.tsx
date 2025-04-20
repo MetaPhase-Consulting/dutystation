@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
@@ -107,7 +108,7 @@ export default function HomePage() {
                   Join over 60,000 dedicated professionals protecting our nation's borders.
                 </p>
                 <img 
-                  src="/lovable-uploads/b77af6df-c367-4bf4-9263-2d9f630d5a71.png"
+                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
                   alt="Border Patrol vehicle"
                   className="w-full h-48 object-cover opacity-25"
                 />
