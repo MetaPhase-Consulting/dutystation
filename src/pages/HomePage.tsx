@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
@@ -28,10 +27,10 @@ export default function HomePage() {
               <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
                 Welcome to Duty Station Relocation
               </div>
-              <h1 className="text-3xl font-bold tracking-tighter text-cbp-green sm:text-4xl md:text-5xl lg:text-6xl/none">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
                 Find Your Next Duty Station
               </h1>
-              <p className="mx-auto max-w-[700px] text-foreground md:text-xl">
+              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
                 Explore and compare CBP duty station locations before you relocate. Make informed decisions about your next career move with free online resources.
               </p>
             </div>
@@ -97,10 +96,10 @@ export default function HomePage() {
           <div className="grid gap-8 lg:grid-cols-2 xl:gap-16">
             <div className="flex flex-col justify-center">
               <div className="space-y-4">
-                <h2 className="text-3xl font-bold tracking-tighter text-cbp-green sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
                   Make a Difference at America's Frontline
                 </h2>
-                <p className="text-foreground md:text-lg">
+                <p className="text-muted-foreground md:text-lg">
                   Join over 60,000 dedicated professionals protecting our nation's borders. 
                   Discover diverse career opportunities and locations across the United States.
                 </p>
@@ -108,11 +107,7 @@ export default function HomePage() {
                   <Button onClick={() => navigate("/directory")}>
                     Explore Locations
                   </Button>
-                  <Button 
-                    variant="default"
-                    onClick={() => navigate("/compare")}
-                    className="bg-cbp-green hover:bg-cbp-hover"
-                  >
+                  <Button variant="outline" onClick={() => navigate("/compare")}>
                     Compare Stations
                   </Button>
                 </div>
