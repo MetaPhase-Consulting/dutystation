@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -21,7 +20,7 @@ export default function DataSourcesPage() {
     <div className="container px-4 py-12 md:py-16 lg:py-24 mx-auto">
       <div className="flex flex-col space-y-6">
         <div className="space-y-2">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Data Sources</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Data Sources</h1>
           <p className="text-muted-foreground max-w-[900px]">
             Data used to provide accurate and helpful information about border duty stations.
           </p>
@@ -68,6 +67,94 @@ export default function DataSourcesPage() {
                       Border Patrol Sectors
                     </a>
                     <p className="text-sm text-muted-foreground">Information about U.S. Border Patrol sectors and stations</p>
+                  </div>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <div className="p-2 rounded-md bg-[#1F631A]">
+                  <BookOpen className="h-5 w-5 text-white" />
+                </div>
+                Applicant Resources
+              </CardTitle>
+              <CardDescription>Information for Border Patrol applicants</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                <li className="flex gap-2">
+                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                  <div>
+                    <a 
+                      href="https://www.honorfirst.com/for-usbp-applicants.html" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      Honor First - For USBP Applicants
+                    </a>
+                    <p className="text-sm text-muted-foreground">Resources for Border Patrol applicants</p>
+                  </div>
+                </li>
+                <li className="flex gap-2">
+                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                  <div>
+                    <a 
+                      href="https://careers.cbp.gov/s/" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      CBP Careers
+                    </a>
+                    <p className="text-sm text-muted-foreground">Official CBP career information and job listings</p>
+                  </div>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <div className="p-2 rounded-md bg-[#1F631A]">
+                  <Map className="h-5 w-5 text-white" />
+                </div>
+                Map Data
+              </CardTitle>
+              <CardDescription>Geographic information and mapping</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                <li className="flex gap-2">
+                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                  <div>
+                    <a 
+                      href="https://openlayers.org" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      OpenLayers
+                    </a>
+                    <p className="text-sm text-muted-foreground">High-performance mapping library for interactive maps</p>
+                  </div>
+                </li>
+                <li className="flex gap-2">
+                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                  <div>
+                    <a 
+                      href="https://www.openstreetmap.org" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      OpenStreetMap
+                    </a>
+                    <p className="text-sm text-muted-foreground">Collaborative mapping project providing free geographic data</p>
                   </div>
                 </li>
               </ul>
@@ -158,50 +245,6 @@ export default function DataSourcesPage() {
                       NeighborhoodScout
                     </a>
                     <p className="text-sm text-muted-foreground">Neighborhood crime statistics and safety ratings</p>
-                  </div>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <div className="p-2 rounded-md bg-[#1F631A]">
-                  <Map className="h-5 w-5 text-white" />
-                </div>
-                Map Data
-              </CardTitle>
-              <CardDescription>Geographic information and mapping</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3">
-                <li className="flex gap-2">
-                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
-                  <div>
-                    <a 
-                      href="https://openlayers.org" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
-                    >
-                      OpenLayers
-                    </a>
-                    <p className="text-sm text-muted-foreground">High-performance mapping library for interactive maps</p>
-                  </div>
-                </li>
-                <li className="flex gap-2">
-                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
-                  <div>
-                    <a 
-                      href="https://www.openstreetmap.org" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
-                    >
-                      OpenStreetMap
-                    </a>
-                    <p className="text-sm text-muted-foreground">Collaborative mapping project providing free geographic data</p>
                   </div>
                 </li>
               </ul>
@@ -327,50 +370,6 @@ export default function DataSourcesPage() {
               </ul>
             </CardContent>
           </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <div className="p-2 rounded-md bg-[#1F631A]">
-                  <BookOpen className="h-5 w-5 text-white" />
-                </div>
-                Applicant Resources
-              </CardTitle>
-              <CardDescription>Information for Border Patrol applicants</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3">
-                <li className="flex gap-2">
-                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
-                  <div>
-                    <a 
-                      href="https://www.honorfirst.com/for-usbp-applicants.html" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
-                    >
-                      Honor First - For USBP Applicants
-                    </a>
-                    <p className="text-sm text-muted-foreground">Resources for Border Patrol applicants</p>
-                  </div>
-                </li>
-                <li className="flex gap-2">
-                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
-                  <div>
-                    <a 
-                      href="https://careers.cbp.gov/s/" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
-                    >
-                      CBP Careers
-                    </a>
-                    <p className="text-sm text-muted-foreground">Official CBP career information and job listings</p>
-                  </div>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
         </div>
 
         <Separator className="my-6" />
@@ -401,4 +400,3 @@ export default function DataSourcesPage() {
     </div>
   );
 }
-
