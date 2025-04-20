@@ -35,7 +35,7 @@ export function NavBar() {
               alt="CBP Logo"
               className="h-6 w-6"
             />
-            <span className="hidden font-bold sm:inline-block">
+            <span className="hidden font-bold text-cbp-green sm:inline-block">
               Duty Station Relocation
             </span>
           </Link>
@@ -102,7 +102,7 @@ export function NavBar() {
             alt="CBP Logo"
             className="h-6 w-6"
           />
-          <span className="font-bold text-sm">Duty Station Relocation</span>
+          <span className="font-bold text-sm text-cbp-green">Duty Station Relocation</span>
         </Link>
 
         <div className="flex flex-1 items-center justify-end">
