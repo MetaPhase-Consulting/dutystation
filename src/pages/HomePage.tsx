@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
@@ -99,7 +100,7 @@ export default function HomePage() {
         <div 
           className="absolute inset-0 opacity-50 pointer-events-none"
           style={{
-            backgroundImage: "url('/lovable-uploads/0f203d72-9b84-4db3-9beb-2c3166a70ac2.png')",
+            backgroundImage: "url(https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover"
@@ -183,3 +184,4 @@ export default function HomePage() {
     </div>
   );
 }
+
