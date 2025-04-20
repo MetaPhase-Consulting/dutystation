@@ -381,6 +381,9 @@ export default function DataSourcesPage() {
               This is not an official government website. Duty Station Relocation is an open-source project designed to help individuals make informed decisions about border duty station relocations.
             </p>
             <p className="text-sm text-muted-foreground">
+              The data presented on this website is sourced from various third-party providers. All external data, copyrights, and trademarks belong to their respective owners. We make no claims of ownership over any third-party content.
+            </p>
+            <p className="text-sm text-muted-foreground">
               This project was built by{' '}
               <a 
                 href="https://metaphaseconsulting.com/" 
@@ -399,9 +402,6 @@ export default function DataSourcesPage() {
               >
                 MIT License
               </a>.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              The data presented on this website is sourced from various third-party providers. All external data, copyrights, and trademarks belong to their respective owners. We make no claims of ownership over any third-party content.
             </p>
           </div>
         </div>
