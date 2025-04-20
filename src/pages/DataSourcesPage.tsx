@@ -3,14 +3,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
 import { 
   ExternalLink, 
-  Map, 
+  Map,
   Home, 
   DollarSign, 
   School, 
-  Shield, 
+  Shield,
   BookOpen,
   CloudSun,
   TrainFront,
@@ -24,7 +23,7 @@ export default function DataSourcesPage() {
         <div className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Data Sources</h1>
           <p className="text-muted-foreground max-w-[900px]">
-            Information about the data sources we use to provide accurate and helpful information about border duty stations.
+            Data used to provide accurate and helpful information about border duty stations.
           </p>
         </div>
 
@@ -34,8 +33,10 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Map className="h-5 w-5 text-[#1F631A]" />
-                Location Data
+                <div className="p-2 rounded-md bg-[#1F631A]">
+                  <Map className="h-5 w-5 text-white" />
+                </div>
+                Duty Station Data
               </CardTitle>
               <CardDescription>Official CBP location information</CardDescription>
             </CardHeader>
@@ -48,7 +49,7 @@ export default function DataSourcesPage() {
                       href="https://www.cbp.gov/about/contact/ports" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#1F631A] hover:underline"
+                      className="text-blue-600 hover:underline"
                     >
                       CBP Ports of Entry
                     </a>
@@ -62,7 +63,7 @@ export default function DataSourcesPage() {
                       href="https://www.cbp.gov/border-security/along-us-borders/border-patrol-sectors" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#1F631A] hover:underline"
+                      className="text-blue-600 hover:underline"
                     >
                       Border Patrol Sectors
                     </a>
@@ -76,7 +77,9 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Home className="h-5 w-5 text-[#0FA0CE]" />
+                <div className="p-2 rounded-md bg-[#0FA0CE]">
+                  <Home className="h-5 w-5 text-white" />
+                </div>
                 Real Estate Data
               </CardTitle>
               <CardDescription>Housing costs and market information</CardDescription>
@@ -87,24 +90,10 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.zillow.com" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#0FA0CE] hover:underline"
-                    >
-                      Zillow
-                    </a>
-                    <p className="text-sm text-muted-foreground">Real estate and rental listings marketplace</p>
-                  </div>
-                </li>
-                <li className="flex gap-2">
-                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
-                  <div>
-                    <a 
                       href="https://www.realtor.com" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#0FA0CE] hover:underline"
+                      className="text-blue-600 hover:underline"
                     >
                       Realtor.com
                     </a>
@@ -118,7 +107,9 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <School className="h-5 w-5 text-green-600" />
+                <div className="p-2 rounded-md bg-[#22c55e]">
+                  <School className="h-5 w-5 text-white" />
+                </div>
                 Schools Data
               </CardTitle>
               <CardDescription>Educational institutions and ratings</CardDescription>
@@ -132,25 +123,11 @@ export default function DataSourcesPage() {
                       href="https://www.greatschools.org" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-green-600 hover:underline"
+                      className="text-blue-600 hover:underline"
                     >
                       GreatSchools
                     </a>
                     <p className="text-sm text-muted-foreground">School ratings and educational resources</p>
-                  </div>
-                </li>
-                <li className="flex gap-2">
-                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
-                  <div>
-                    <a 
-                      href="https://nces.ed.gov" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-green-600 hover:underline"
-                    >
-                      National Center for Education Statistics
-                    </a>
-                    <p className="text-sm text-muted-foreground">Federal education data and research</p>
                   </div>
                 </li>
               </ul>
@@ -160,7 +137,9 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-red-500" />
+                <div className="p-2 rounded-md bg-[#ea384c]">
+                  <Shield className="h-5 w-5 text-white" />
+                </div>
                 Crime Statistics
               </CardTitle>
               <CardDescription>Safety and crime data</CardDescription>
@@ -171,24 +150,10 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.fbi.gov/services/cjis/ucr" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-red-500 hover:underline"
-                    >
-                      FBI Uniform Crime Reporting
-                    </a>
-                    <p className="text-sm text-muted-foreground">National crime statistics from law enforcement agencies</p>
-                  </div>
-                </li>
-                <li className="flex gap-2">
-                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
-                  <div>
-                    <a 
                       href="https://www.neighborhoodscout.com" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-red-500 hover:underline"
+                      className="text-blue-600 hover:underline"
                     >
                       NeighborhoodScout
                     </a>
@@ -202,7 +167,9 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Map className="h-5 w-5 text-[#1F631A]" />
+                <div className="p-2 rounded-md bg-[#1F631A]">
+                  <Map className="h-5 w-5 text-white" />
+                </div>
                 Map Data
               </CardTitle>
               <CardDescription>Geographic information and mapping</CardDescription>
@@ -216,7 +183,7 @@ export default function DataSourcesPage() {
                       href="https://openlayers.org" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#1F631A] hover:underline"
+                      className="text-blue-600 hover:underline"
                     >
                       OpenLayers
                     </a>
@@ -230,7 +197,7 @@ export default function DataSourcesPage() {
                       href="https://www.openstreetmap.org" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#1F631A] hover:underline"
+                      className="text-blue-600 hover:underline"
                     >
                       OpenStreetMap
                     </a>
@@ -244,7 +211,9 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <DollarSign className="h-5 w-5 text-green-600" />
+                <div className="p-2 rounded-md bg-green-600">
+                  <DollarSign className="h-5 w-5 text-white" />
+                </div>
                 Cost of Living Data
               </CardTitle>
               <CardDescription>Local economic indicators</CardDescription>
@@ -255,12 +224,12 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.numbeo.com" 
+                      href="https://www.bestplaces.net" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-green-600 hover:underline"
+                      className="text-blue-600 hover:underline"
                     >
-                      Numbeo
+                      BestPlaces
                     </a>
                     <p className="text-sm text-muted-foreground">Cost of living data and city comparisons</p>
                   </div>
@@ -272,7 +241,9 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <CloudSun className="h-5 w-5 text-blue-500" />
+                <div className="p-2 rounded-md bg-blue-500">
+                  <CloudSun className="h-5 w-5 text-white" />
+                </div>
                 Weather Data
               </CardTitle>
               <CardDescription>Climate and weather information</CardDescription>
@@ -283,14 +254,14 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.weather.gov" 
+                      href="https://weatherspark.com" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-500 hover:underline"
+                      className="text-blue-600 hover:underline"
                     >
-                      National Weather Service
+                      WeatherSpark
                     </a>
-                    <p className="text-sm text-muted-foreground">Official weather data and forecasts</p>
+                    <p className="text-sm text-muted-foreground">Detailed weather data and climate information</p>
                   </div>
                 </li>
               </ul>
@@ -300,7 +271,9 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <TrainFront className="h-5 w-5 text-purple-500" />
+                <div className="p-2 rounded-md bg-gray-700">
+                  <TrainFront className="h-5 w-5 text-white" />
+                </div>
                 Transit Data
               </CardTitle>
               <CardDescription>Public transportation information</CardDescription>
@@ -311,14 +284,14 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.transit.wiki" 
+                      href="https://www.rome2rio.com" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-purple-500 hover:underline"
+                      className="text-blue-600 hover:underline"
                     >
-                      Transit Wiki
+                      Rome2Rio
                     </a>
-                    <p className="text-sm text-muted-foreground">Public transportation systems and routes</p>
+                    <p className="text-sm text-muted-foreground">Transportation routes and options between locations</p>
                   </div>
                 </li>
               </ul>
@@ -328,7 +301,9 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Truck className="h-5 w-5 text-orange-500" />
+                <div className="p-2 rounded-md bg-orange-500">
+                  <Truck className="h-5 w-5 text-white" />
+                </div>
                 Moving Resources
               </CardTitle>
               <CardDescription>Relocation assistance and tips</CardDescription>
@@ -339,14 +314,14 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.moving.gov" 
+                      href="https://www.moving.com/tips/" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-orange-500 hover:underline"
+                      className="text-blue-600 hover:underline"
                     >
-                      USA.gov Moving Guide
+                      Moving.com
                     </a>
-                    <p className="text-sm text-muted-foreground">Official government resources for relocating</p>
+                    <p className="text-sm text-muted-foreground">Moving tips and relocation guides</p>
                   </div>
                 </li>
               </ul>
@@ -356,7 +331,9 @@ export default function DataSourcesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <BookOpen className="h-5 w-5 text-[#1F631A]" />
+                <div className="p-2 rounded-md bg-[#1F631A]">
+                  <BookOpen className="h-5 w-5 text-white" />
+                </div>
                 Applicant Resources
               </CardTitle>
               <CardDescription>Information for Border Patrol applicants</CardDescription>
@@ -370,7 +347,7 @@ export default function DataSourcesPage() {
                       href="https://www.honorfirst.com/for-usbp-applicants.html" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#1F631A] hover:underline"
+                      className="text-blue-600 hover:underline"
                     >
                       Honor First - For USBP Applicants
                     </a>
@@ -384,7 +361,7 @@ export default function DataSourcesPage() {
                       href="https://careers.cbp.gov/s/" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#1F631A] hover:underline"
+                      className="text-blue-600 hover:underline"
                     >
                       CBP Careers
                     </a>
@@ -413,7 +390,7 @@ export default function DataSourcesPage() {
                 href="https://opensource.org/licenses/MIT" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-[#1F631A] hover:underline mx-1"
+                className="text-blue-600 hover:underline mx-1"
               >
                 MIT License
               </a>.
@@ -424,3 +401,4 @@ export default function DataSourcesPage() {
     </div>
   );
 }
+
