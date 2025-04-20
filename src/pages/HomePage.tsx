@@ -98,17 +98,8 @@ export default function HomePage() {
       <section className="w-full py-12 md:py-24 lg:py-32 bg-white relative">
         <div className="container px-4 md:px-6 relative z-10">
           <div className="grid gap-8 lg:grid-cols-2 xl:gap-16">
-            <div className="flex flex-col justify-center relative">
-              <div 
-                className="absolute inset-0 -z-10"
-                style={{
-                  backgroundImage: "url('/lovable-uploads/fc654171-1d91-4256-b11b-5ac547afc178.png')",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "center",
-                  backgroundSize: "cover"
-                }}
-              />
-              <div className="space-y-4 bg-white/90 p-6 rounded-lg">
+            <div className="flex flex-col justify-center">
+              <div className="space-y-4">
                 <h2 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl">
                   Making a Difference at America's Frontline
                 </h2>
