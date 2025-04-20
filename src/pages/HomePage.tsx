@@ -97,11 +97,10 @@ export default function HomePage() {
             <div className="flex flex-col justify-center">
               <div className="space-y-4">
                 <h2 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl">
-                  Make a Difference at America's Frontline
+                  Making a Difference at America's Frontline
                 </h2>
                 <p className="text-muted-foreground md:text-lg">
-                  Join over 60,000 dedicated professionals protecting our nation's borders. 
-                  Discover diverse career opportunities and locations across the United States.
+                  Join over 60,000 dedicated professionals protecting our nation's borders.
                 </p>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Button onClick={() => navigate("/directory")}>
@@ -117,16 +116,30 @@ export default function HomePage() {
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
                   <div>
-                    <h3 className="text-xl font-semibold mb-2">Career Paths</h3>
+                    <h3 className="text-xl font-semibold mb-2">Directory</h3>
                     <p className="text-muted-foreground mb-4">
-                      Explore various career opportunities and find your path in border protection and law enforcement.
+                      Browse duty stations with interactive list and map views. Search, sort, and filter by location, sector, and region to find your ideal station.
                     </p>
                   </div>
                   <Button 
-                    onClick={() => window.open("https://careers.cbp.gov/s/career-paths/usbp", "_blank")}
+                    onClick={() => navigate("/directory")}
                     className="self-start"
                   >
-                    Learn More
+                    View Directory
+                  </Button>
+                </div>
+                <div className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">Compare</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Side-by-side comparison tool to evaluate multiple duty stations. Compare housing costs, schools, and local amenities to make informed decisions.
+                    </p>
+                  </div>
+                  <Button 
+                    onClick={() => navigate("/compare")}
+                    className="self-start"
+                  >
+                    Compare Stations
                   </Button>
                 </div>
                 <div className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
@@ -138,20 +151,6 @@ export default function HomePage() {
                   </div>
                   <Button 
                     onClick={() => window.open("https://careers.cbp.gov/s/benefits", "_blank")}
-                    className="self-start"
-                  >
-                    Learn More
-                  </Button>
-                </div>
-                <div className="rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Applicant Resources</h3>
-                    <p className="text-muted-foreground mb-4">
-                      Access FAQs and resources to help guide you through the application process.
-                    </p>
-                  </div>
-                  <Button 
-                    onClick={() => window.open("https://careers.cbp.gov/s/applicant-resources/faq", "_blank")}
                     className="self-start"
                   >
                     Learn More
