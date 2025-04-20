@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import Map from 'ol/Map';
 import View from 'ol/View';
@@ -43,20 +42,20 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
       }),
     });
 
-    // Custom map cursor style - fix the TypeScript error by checking if target is HTMLElement
+    // Custom map cursor style
     const targetElement = map.getTarget();
     if (targetElement && targetElement instanceof HTMLElement) {
       targetElement.style.cursor = 'default';
     }
 
-    // Create the marker style
+    // Create the marker style using Border Patrol green
     const createMarkerStyle = () => {
       return new Style({
         image: new Icon({
           anchor: [0.5, 1],
           src: `data:image/svg+xml;utf8,${encodeURIComponent(
             '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="48" viewBox="0 0 32 48">' +
-            '<path d="M16 0 C 7.2 0 0 7.2 0 16 C 0 24.8 16 48 16 48 C 16 48 32 24.8 32 16 C 32 7.2 24.8 0 16 0 Z" fill="#0FA0CE"/>' + // CBP Ocean Blue
+            '<path d="M16 0 C 7.2 0 0 7.2 0 16 C 0 24.8 16 48 16 48 C 16 48 32 24.8 32 16 C 32 7.2 24.8 0 16 0 Z" fill="#0A4A0A"/>' + // Changed to Border Patrol green
             '<circle cx="16" cy="16" r="8" fill="white"/>' +
             '</svg>'
           )}`,
@@ -87,7 +86,7 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
 
       map.addLayer(vectorLayer);
 
-      // Add click handler with cursor change - fixed TypeScript error
+      // Add click handler with cursor change
       map.on('pointermove', (event) => {
         const hit = map.forEachFeatureAtPixel(event.pixel, () => true);
         const target = map.getTarget();
