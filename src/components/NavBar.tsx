@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Search, Map, CompassIcon, ArrowRightLeft, MapPin } from "lucide-react";
@@ -30,12 +29,7 @@ export function NavBar() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 hidden md:flex">
           <Link to="/" className="mr-6 flex items-center space-x-2">
-            <img 
-              src="/lovable-uploads/04a76a92-9797-4b10-99ed-0d739e9bdd05.png"
-              alt="CBP Logo"
-              className="h-6 w-6"
-            />
-            <span className="hidden font-bold sm:inline-block">
+            <span className="font-bold sm:inline-block text-[#1F631A]">
               Duty Station Relocation
             </span>
           </Link>

@@ -24,10 +24,10 @@ export default function HomePage() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
+              <div className="inline-block rounded-lg bg-[#1F631A]/10 px-3 py-1 text-[#1F631A]">
                 Welcome to Duty Station Relocation
               </div>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+              <h1 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl md:text-5xl lg:text-6xl/none">
                 Find Your Next Duty Station
               </h1>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
@@ -96,7 +96,7 @@ export default function HomePage() {
           <div className="grid gap-8 lg:grid-cols-2 xl:gap-16">
             <div className="flex flex-col justify-center">
               <div className="space-y-4">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl">
                   Make a Difference at America's Frontline
                 </h2>
                 <p className="text-muted-foreground md:text-lg">
