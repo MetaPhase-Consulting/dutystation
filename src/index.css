@@ -13,42 +13,35 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 195 83% 49%; /* CBP Bright Blue */
+    --primary: 116 58% 24%; /* Patrol Green */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 195 74% 57%; /* CBP Sky Blue */
+    --secondary: 111 46% 33%; /* Field Olive */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 85 35% 41%; /* Checkpoint Moss */
+    --muted-foreground: 0 0% 100%;
 
-    --accent: 195 86% 43%; /* CBP Ocean Blue */
+    --accent: 86 31% 51%; /* Sector Sage */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 195 83% 49%;
+    --border: 82 45% 66%; /* Light Olive */
+    --input: 82 45% 66%;
+    --ring: 116 58% 24%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
+    --sidebar-background: 83 54% 79%; /* Light Olive */
+    --sidebar-foreground: 116 58% 24%; /* Patrol Green */
+    --sidebar-primary: 111 46% 33%; /* Field Olive */
     --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 82 45% 66%; /* Light Olive */
+    --sidebar-accent-foreground: 116 58% 24%; /* Patrol Green */
+    --sidebar-border: 83 54% 79%; /* Light Olive */
+    --sidebar-ring: 111 46% 33%; /* Field Olive */
   }
 
   .dark {
