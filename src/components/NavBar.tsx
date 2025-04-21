@@ -1,7 +1,6 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Search, Map, CompassIcon, ArrowRightLeft, MapPin, BookOpen } from "lucide-react";
+import { Menu, Search, Map, ArrowRightLeft, MapPin, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -71,32 +70,29 @@ export function NavBar() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="pr-0">
-            <Link to="/" className="flex items-center gap-2 mb-8 mt-4">
-              <img 
-                src="/lovable-uploads/04a76a92-9797-4b10-99ed-0d739e9bdd05.png"
-                alt="CBP Logo"
-                className="h-6 w-6"
-              />
-              <span className="font-bold">Duty Station Relocation</span>
+            <Link to="/" className="flex items-center mb-8 mt-4">
+              <span className="font-bold text-[#1F631A] text-base">
+                Duty Station Relocation
+              </span>
             </Link>
             <nav className="flex flex-col gap-4">
               <Link
                 to="/directory"
-                className="flex items-center gap-2 text-foreground hover:text-cbp-brightBlue"
+                className="flex items-center gap-2 text-foreground hover:text-[#1F631A] transition-colors"
               >
                 <Map className="h-5 w-5" />
                 Directory
               </Link>
               <Link
                 to="/compare"
-                className="flex items-center gap-2 text-foreground hover:text-cbp-brightBlue"
+                className="flex items-center gap-2 text-foreground hover:text-[#1F631A] transition-colors"
               >
                 <ArrowRightLeft className="h-5 w-5" />
                 Compare
               </Link>
               <Link
                 to="/data-sources"
-                className="flex items-center gap-2 text-foreground hover:text-cbp-brightBlue"
+                className="flex items-center gap-2 text-foreground hover:text-[#1F631A] transition-colors"
               >
                 <BookOpen className="h-5 w-5" />
                 Data
@@ -105,13 +101,8 @@ export function NavBar() {
           </SheetContent>
         </Sheet>
 
-        <Link to="/" className="md:hidden mr-2 flex items-center gap-2">
-          <img 
-            src="/lovable-uploads/04a76a92-9797-4b10-99ed-0d739e9bdd05.png"
-            alt="CBP Logo"
-            className="h-6 w-6"
-          />
-          <span className="font-bold text-sm">Duty Station Relocation</span>
+        <Link to="/" className="md:hidden mr-2 flex items-center">
+          <span className="font-bold text-sm text-[#1F631A]">Duty Station Relocation</span>
         </Link>
 
         <div className="flex flex-1 items-center justify-end">
