@@ -1849,6 +1849,27 @@ export const dutyStations: DutyStation[] = [
       movingTips: "https://www.moving.com/tips/moving-to-texas/"
     }
   },
+  {
+    id: "eagle-pass-south-station",
+    name: "Eagle Pass South Station",
+    city: "Eagle Pass",
+    state: "TX",
+    zipCode: "78852",
+    sector: "Del Rio Sector",
+    lat: null,
+    lng: null,
+    region: "Southwest",
+    description: "Eagle Pass South Station (Del Rio Sector) at 4156 El Indio Highway, Eagle Pass, TX 78852. Responsible for border security operations in the Eagle Pass South region.",
+    links: {
+      realEstate: "https://www.realtor.com/realestateandhomes-search/Eagle-Pass_TX",
+      schools: "https://www.greatschools.org/texas/eagle-pass/",
+      crime: "https://www.neighborhoodscout.com/tx/eagle-pass/crime",
+      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/eagle_pass",
+      weather: "https://weatherspark.com/y/16802/Average-Weather-in-Eagle-Pass-Texas-United-States-Year-Round",
+      transit: "https://www.rome2rio.com/s/San-Antonio-TX-USA/Eagle-Pass-TX-USA",
+      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+    }
+  },
 ];
 
 // Helper function to get stations by sector
