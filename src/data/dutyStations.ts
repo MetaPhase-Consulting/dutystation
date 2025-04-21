@@ -1619,7 +1619,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "donna-m.-doss-station",
+    id: "donna-m-doss-station",
     name: "Donna M. Doss Station",
     city: "Donna M. Doss",
     state: "TX",
@@ -2207,7 +2207,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "theodore-l.-newton,-jr.-and-george-f.-azrak-station",
+    id: "theodore-l-newton-jr-and-george-f-azrak-station",
     name: "Theodore L. Newton, Jr. and George F. Azrak Station",
     city: "nan",
     state: "nan",
@@ -2606,7 +2606,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "brian-a.-terry-station",
+    id: "brian-a-terry-station",
     name: "Brian A. Terry Station",
     city: "Bisbee",
     state: "AZ",
