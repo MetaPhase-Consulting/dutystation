@@ -947,27 +947,6 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "wolcott-station",
-    name: "Wolcott Station",
-    city: "Wolcott",
-    state: "NY",
-    zipCode: "14590",
-    sector: "Buffalo Sector",
-    lat: null,
-    lng: null,
-    region: "Northeast",
-    description: "Wolcott Station (Buffalo Sector) at 4764 Lake Road Wolcott NY. Responsible for border security operations in the Wolcott region.",
-    links: {
-      realEstate: "https://www.realtor.com/realestateandhomes-search/Wolcott_NY",
-      schools: "https://www.greatschools.org/new-york/wolcott/",
-      crime: "https://www.neighborhoodscout.com/ny/wolcott/crime",
-      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/new_york/wolcott",
-      weather: "https://weatherspark.com/y/19845/Average-Weather-in-Wolcott-New-York-United-States-Year-Round",
-      transit: "https://www.rome2rio.com/s/Rochester-NY-USA/Wolcott-NY-USA",
-      movingTips: "https://www.moving.com/tips/moving-to-new-york/"
-    }
-  },
-  {
     id: "niagara-falls-station",
     name: "Niagara Falls Station",
     city: "Niagara Falls",
@@ -1112,27 +1091,6 @@ export const dutyStations: DutyStation[] = [
       weather: "https://weatherspark.com/y/27533/Average-Weather-in-Sandusky-Ohio-United-States-Year-Round",
       transit: "https://www.rome2rio.com/s/Cleveland-OH-USA/Sandusky-OH-USA",
       movingTips: "https://www.moving.com/tips/moving-to-ohio/"
-    }
-  },
-  {
-    id: "saint-clair-station",
-    name: "Saint Clair Station",
-    city: "Saint Clair",
-    state: "MI",
-    zipCode: "48079",
-    sector: "Detroit Sector",
-    lat: null,
-    lng: null,
-    region: "Midwest",
-    description: "Saint Clair Station (Detroit Sector) at General Inflow Saint Clair MI. Responsible for border security operations in the Saint Clair region.",
-    links: {
-      realEstate: "https://www.realtor.com/realestateandhomes-search/Saint-Clair_MI",
-      schools: "https://www.greatschools.org/michigan/saint-clair/",
-      crime: "https://www.neighborhoodscout.com/mi/saint-clair/crime",
-      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/michigan/saint_clair",
-      weather: "https://weatherspark.com/y/17892/Average-Weather-in-Saint-Clair-Michigan-United-States-Year-Round",
-      transit: "https://www.rome2rio.com/s/Detroit-MI-USA/Saint-Clair-MI-USA",
-      movingTips: "https://www.moving.com/tips/moving-to-michigan/"
     }
   },
   {
@@ -1367,7 +1325,7 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "calais-station-me",
+    id: "calais-station",
     name: "Calais Station",
     city: "Calais",
     state: "ME",
@@ -1409,27 +1367,6 @@ export const dutyStations: DutyStation[] = [
     }
   },
   {
-    id: "calais-station-tx",
-    name: "Calais Station",
-    city: "Calais",
-    state: "TX",
-    zipCode: "77640",
-    sector: "Houston Sector",
-    lat: null,
-    lng: null,
-    region: "Southwest",
-    description: "Calais Station (Houston Sector) at 87 Park Road 8 Calais TX. Responsible for border security operations in the Calais region (TX).",
-    links: {
-      realEstate: "https://www.realtor.com/realestateandhomes-search/Calais_TX",
-      schools: "https://www.greatschools.org/texas/calais/",
-      crime: "https://www.neighborhoodscout.com/tx/calais/crime",
-      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/calais",
-      weather: "https://weatherspark.com/y/16792/Average-Weather-in-Calais-Texas-United-States-Year-Round",
-      transit: "https://www.rome2rio.com/s/Houston-TX-USA/Calais-TX-USA",
-      movingTips: "https://www.moving.com/tips/moving-to-texas/"
-    }
-  },
-  {
     id: "hebbronville-station",
     name: "Hebbronville Station",
     city: "Hebbronville",
@@ -1447,27 +1384,6 @@ export const dutyStations: DutyStation[] = [
       costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/hebbronville",
       weather: "https://weatherspark.com/y/16793/Average-Weather-in-Hebbronville-Texas-United-States-Year-Round",
       transit: "https://www.rome2rio.com/s/Laredo-TX-USA/Hebbronville-TX-USA",
-      movingTips: "https://www.moving.com/tips/moving-to-texas/"
-    }
-  },
-  {
-    id: "cotulla-station",
-    name: "Cotulla Station",
-    city: "Cotulla",
-    state: "TX",
-    zipCode: "78014",
-    sector: "Laredo Sector",
-    lat: null,
-    lng: null,
-    region: "Southwest",
-    description: "Cotulla Station (Laredo Sector) at 900 N. Smith Cotulla TX. Responsible for border security operations in the Cotulla region.",
-    links: {
-      realEstate: "https://www.realtor.com/realestateandhomes-search/Cotulla_TX",
-      schools: "https://www.greatschools.org/texas/cotulla/",
-      crime: "https://www.neighborhoodscout.com/tx/cotulla/crime",
-      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/cotulla",
-      weather: "https://weatherspark.com/y/16794/Average-Weather-in-Cotulla-Texas-United-States-Year-Round",
-      transit: "https://www.rome2rio.com/s/Laredo-TX-USA/Cotulla-TX-USA",
       movingTips: "https://www.moving.com/tips/moving-to-texas/"
     }
   },
@@ -1510,27 +1426,6 @@ export const dutyStations: DutyStation[] = [
       costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/cotulla",
       weather: "https://weatherspark.com/y/16794/Average-Weather-in-Cotulla-Texas-United-States-Year-Round",
       transit: "https://www.rome2rio.com/s/Laredo-TX-USA/Cotulla-TX-USA",
-      movingTips: "https://www.moving.com/tips/moving-to-texas/"
-    }
-  },
-  {
-    id: "zapata-north-station",
-    name: "Zapata North Station",
-    city: "Zapata",
-    state: "TX",
-    zipCode: "78076",
-    sector: "Laredo Sector",
-    lat: null,
-    lng: null,
-    region: "Southwest",
-    description: "Zapata North Station (Laredo Sector) at 2004 US-83 Zapata TX. Responsible for border security operations in the northern Zapata region.",
-    links: {
-      realEstate: "https://www.realtor.com/realestateandhomes-search/Zapata_TX",
-      schools: "https://www.greatschools.org/texas/zapata/",
-      crime: "https://www.neighborhoodscout.com/tx/zapata/crime",
-      costOfLiving: "https://www.bestplaces.net/cost_of_living/city/texas/zapata",
-      weather: "https://weatherspark.com/y/16796/Average-Weather-in-Zapata-Texas-United-States-Year-Round",
-      transit: "https://www.rome2rio.com/s/Laredo-TX-USA/Zapata-TX-USA",
       movingTips: "https://www.moving.com/tips/moving-to-texas/"
     }
   },
