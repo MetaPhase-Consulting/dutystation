@@ -24,7 +24,7 @@ export default function HomePage() {
         <div 
           className="absolute inset-0 opacity-5 pointer-events-none"
           style={{
-            backgroundImage: "url('/lovable-uploads/def4241e-5f5d-4287-8d7d-987f6fe7f1ae.png')",
+            backgroundImage: "url('/greencompassicon.png')",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "40%",
@@ -39,7 +39,7 @@ export default function HomePage() {
               </div>
               <h1 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl md:text-5xl lg:text-6xl/none flex items-center justify-center gap-4">
                 <img 
-                  src="/lovable-uploads/def4241e-5f5d-4287-8d7d-987f6fe7f1ae.png"
+                  src="/greencompassicon.png"
                   alt="Compass"
                   className="w-12 h-12 md:w-16 md:h-16 animate-pulse"
                 />
