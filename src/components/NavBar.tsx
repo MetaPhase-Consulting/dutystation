@@ -72,7 +72,7 @@ export function NavBar() {
           <SheetContent side="left" className="pr-0">
             <Link to="/" className="flex items-center mb-8 mt-4">
               <span className="font-bold text-[#1F631A] text-base">
-                Duty Station Relocation
+                Duty Station
               </span>
             </Link>
             <nav className="flex flex-col gap-4">
@@ -102,7 +102,7 @@ export function NavBar() {
         </Sheet>
 
         <Link to="/" className="md:hidden mr-2 flex items-center">
-          <span className="font-bold text-sm text-[#1F631A]">Duty Station Relocation</span>
+          <span className="font-bold text-sm text-[#1F631A]">Duty Station</span>
         </Link>
 
         <div className="flex flex-1 items-center justify-end">
