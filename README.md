@@ -1,8 +1,10 @@
 # Duty Station Relocation
 
-![MIT License](https://img.shields.io/github/license/MetaPhase-Consulting/dutystation?style=flat-square)
-![Build](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)
-![Open Source](https://img.shields.io/badge/open--source-yes-blue?style=flat-square)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
+[![CivicTech](https://img.shields.io/badge/Civic-Tech-1f7a8c)](https://github.com/MetaPhase-Consulting/opencomments)
+[![LinkedIn](https://img.shields.io/badge/Linked-In-0077b5)](https://www.linkedin.com/company/metaphase-consulting-llc/)
+[![Built by MetaPhase](https://img.shields.io/badge/Built%20by-MetaPhase-fb641f)](https://metaphase.tech)
 
 ## Overview
 
