@@ -15,18 +15,21 @@ export function Layout() {
       <footer className="border-t bg-muted/40">
         <div className="container flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
           <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-4 md:px-0">
-            <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-              <img 
-                src="/lovable-uploads/greencompassimg.png" 
-                alt="Compass Icon" 
-                className="h-5 w-5"
-              />
-              <span className="font-bold text-[#1F631A]">Duty Station Relocation</span>
+            <Link to="/" className="flex flex-col items-start gap-1 text-sm text-muted-foreground hover:text-foreground">
+              <div className="flex items-center gap-2">
+                <img 
+                  src="/greencompassimg.png" 
+                  alt="Compass Icon" 
+                  className="h-5 w-5"
+                />
+                <span className="font-bold text-[#1F631A]">Duty Station Relocation</span>
+              </div>
+              <span className="text-xs text-muted-foreground">Explore and compare duty station locations</span>
             </Link>
           </div>
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/MetaPhase-Consulting/"
+              href="https://github.com/MetaPhase-Consulting/dutystation"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-muted-foreground hover:text-foreground flex items-center"
@@ -37,7 +40,7 @@ export function Layout() {
             </a>
             <span className="text-muted-foreground">|</span>
             <a
-              href="https://metaphaseconsulting.com/"
+              href="https://metaphase.tech/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-muted-foreground hover:text-foreground flex items-center"

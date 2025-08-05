@@ -118,7 +118,6 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
       }
     } else if (lat !== undefined && lng !== undefined) {
       // Single location mode - Display a single marker at the specified coordinates
-      console.log("Rendering single location map:", lat, lng);
       
       const feature = new Feature({
         geometry: new Point(fromLonLat([lng, lat])),

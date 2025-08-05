@@ -2686,7 +2686,7 @@ export const dutyStations: DutyStation[] = [
       costOfLiving: "https://www.bestplaces.net/cost_of_living/city/az/casa-grande",
       weather: "https://weatherspark.com/y/9999/Average-Weather-in-Casa+Grande-AZ-United-States-Year-Round",
       transit: "https://www.rome2rio.com/s/McAllen-TX-USA/Casa+Grande-AZ-USA",
-      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+      movingTips: "https://www.moving.com/tips/moving-to-arizona/"
     }
   },
   {
@@ -2707,7 +2707,7 @@ export const dutyStations: DutyStation[] = [
       costOfLiving: "https://www.bestplaces.net/cost_of_living/city/az/ajo-hwy-tucson",
       weather: "https://weatherspark.com/y/9999/Average-Weather-in-Ajo+Hwy+Tucson-AZ-United-States-Year-Round",
       transit: "https://www.rome2rio.com/s/McAllen-TX-USA/Ajo+Hwy+Tucson-AZ-USA",
-      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+      movingTips: "https://www.moving.com/tips/moving-to-arizona/"
     }
   },
   {
@@ -2728,7 +2728,7 @@ export const dutyStations: DutyStation[] = [
       costOfLiving: "https://www.bestplaces.net/cost_of_living/city/ca/blythe",
       weather: "https://weatherspark.com/y/9999/Average-Weather-in-Blythe-CA-United-States-Year-Round",
       transit: "https://www.rome2rio.com/s/McAllen-TX-USA/Blythe-CA-USA",
-      movingTips: "https://www.moving.com/tips/moving-to-texas/"
+      movingTips: "https://www.moving.com/tips/moving-to-california/"
     }
   }
 ];
