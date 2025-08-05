@@ -20,7 +20,7 @@ Users can access external resources for housing, schools, crime rates, cost of l
 
 ## Built by MetaPhase
 
-This application was developed by [MetaPhase](https://www.metaphaseconsulting.com) using our internal [OrangeAI accelerators](https://www.metaphaseconsulting.com/accelerators) to rapidly deliver government-grade generative AI solutions.
+This application was developed by [MetaPhase](https://metaphase.tech) using our internal [OrangeAI accelerators](https://metaphase.tech/accelerators) to rapidly deliver government-grade generative AI solutions.
 
 MetaPhase delivers mission-driven digital services to federal agencies, with a focus on human-centered design, emerging technology, and secure modern platforms.
 
@@ -60,7 +60,7 @@ npm install
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`.
+The application will be available at `http://localhost:8080`.
 
 ## Deployment
 

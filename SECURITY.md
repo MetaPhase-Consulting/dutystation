@@ -1,13 +1,8 @@
 # Security Policy
 
-## Reporting a Vulnerability
+## Reporting Security Issues
 
-If you discover a security issue in this project, please contact the maintainers privately.
-
-- **Email:** opensource@metaphaseconsulting.com
-- **Do not** file a public issue for sensitive disclosures.
-
-We will respond promptly to address all verified vulnerabilities.
+If you discover a security vulnerability within this project, please send an email to opensource@metaphase.tech. All security vulnerabilities will be promptly addressed.
 
 ## Supported Versions
 

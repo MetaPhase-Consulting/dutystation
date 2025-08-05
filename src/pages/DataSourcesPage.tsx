@@ -387,7 +387,7 @@ export default function DataSourcesPage() {
             <p className="text-sm text-muted-foreground">
               This project was built by{' '}
               <a 
-                href="https://metaphaseconsulting.com/" 
+                href="https://metaphase.tech/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-[#F97316] hover:underline"
