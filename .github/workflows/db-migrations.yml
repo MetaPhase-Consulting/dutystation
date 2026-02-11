@@ -39,8 +39,14 @@ jobs:
       - name: Apply SQL migrations
         if: steps.validate.outputs.ready == 'true'
         run: |
-          DB_URL="postgresql://postgres:${{ secrets.SUPABASE_DB_PASSWORD }}@db.${{ secrets.SUPABASE_PROJECT_REF }}.supabase.co:5432/postgres?sslmode=require"
+          export PGPASSWORD="${{ secrets.SUPABASE_DB_PASSWORD }}"
+          export PGHOST="aws-1-us-east-1.pooler.supabase.com"
+          export PGPORT="6543"
+          export PGUSER="postgres.${{ secrets.SUPABASE_PROJECT_REF }}"
+          export PGDATABASE="postgres"
+          export PGSSLMODE="require"
+
           for migration in supabase/migrations/*.sql; do
             echo "Applying ${migration}"
-            psql "$DB_URL" -v ON_ERROR_STOP=1 -f "$migration"
+            psql -v ON_ERROR_STOP=1 -f "$migration"
           done
