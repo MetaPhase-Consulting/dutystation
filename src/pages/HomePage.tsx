@@ -1,34 +1,50 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { dutyStations, searchDutyStations } from "@/data/dutyStations";
+import { useStationsQuery } from "@/lib/data/queryHooks";
+import { filterStations, sanitizeSearchTerm } from "@/lib/data/stationFilters";
+import { trackUsageEvent } from "@/lib/data/usageTracking";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const { data: stations = [] } = useStationsQuery();
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/directory?search=${encodeURIComponent(searchQuery.trim())}`);
+  const filteredStations = useMemo(() => {
+    return filterStations(stations, {
+      query: sanitizeSearchTerm(searchQuery),
+      sortOrder: "asc",
+    }).slice(0, 8);
+  }, [searchQuery, stations]);
+
+  const handleSearch = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const query = sanitizeSearchTerm(searchQuery);
+    if (!query) {
+      return;
     }
-  };
 
-  const filteredStations = searchDutyStations(searchQuery);
+    await trackUsageEvent({
+      eventName: "home_search",
+      eventMetadata: { query },
+    });
+
+    navigate(`/directory?search=${encodeURIComponent(query)}`);
+  };
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-14rem)]">
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#E5EBD9] relative overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 opacity-5 pointer-events-none"
           style={{
             backgroundImage: "url('/greencompassicon.png')",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "40%",
-            transform: "rotate(-15deg)"
+            transform: "rotate(-15deg)",
           }}
         />
         <div className="container px-4 md:px-6 relative">
@@ -38,15 +54,12 @@ export default function HomePage() {
                 Border Duty Station Relocation
               </div>
               <h1 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl md:text-5xl lg:text-6xl/none flex items-center justify-center gap-4">
-                <img 
-                  src="/greencompassicon.png"
-                  alt="Compass"
-                  className="w-12 h-12 md:w-16 md:h-16 animate-pulse"
-                />
+                <img src="/greencompassicon.png" alt="Compass" className="w-12 h-12 md:w-16 md:h-16 animate-pulse" />
                 Find Your Next Duty Station
               </h1>
               <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl">
-                Explore and compare border duty station locations before you relocate. Make informed decisions about your next career move with free online resources.
+                Explore and compare border duty station locations before you relocate. Make informed decisions about your
+                next career move with trusted resources.
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2">
@@ -59,32 +72,39 @@ export default function HomePage() {
                         type="search"
                         placeholder="Search Duty Stations..."
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={(event) => setSearchQuery(event.target.value)}
                         className="pl-9 w-full"
+                        aria-label="Search duty stations"
                       />
-                      {searchQuery && (
+                      {searchQuery ? (
                         <div className="absolute top-full left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-md border bg-popover shadow-md">
                           {filteredStations.length === 0 ? (
                             <div className="py-6 text-center text-sm">No results found.</div>
                           ) : (
-                            <div className="p-1">
+                            <div className="p-1" role="listbox" aria-label="Duty station suggestions">
                               {filteredStations.map((station) => (
-                                <div
+                                <button
                                   key={station.id}
-                                  className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
-                                  onClick={() => {
+                                  type="button"
+                                  className="w-full text-left relative flex cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
+                                  onClick={async () => {
+                                    await trackUsageEvent({
+                                      eventName: "home_suggestion_click",
+                                      stationId: station.id,
+                                      eventMetadata: { stationName: station.name },
+                                    });
                                     navigate(`/station/${station.id}`);
                                     setSearchQuery("");
                                   }}
                                 >
                                   <MapPin className="mr-2 h-4 w-4" />
                                   {station.name}
-                                </div>
+                                </button>
                               ))}
                             </div>
                           )}
                         </div>
-                      )}
+                      ) : null}
                     </div>
                     <Button type="submit">Search</Button>
                   </div>
@@ -114,13 +134,11 @@ export default function HomePage() {
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Directory</h3>
                     <p className="text-muted-foreground mb-4">
-                      Browse duty stations with interactive list and map views. Search, sort, and filter by location, sector, and region to find your ideal station.
+                      Browse duty stations with interactive list and map views. Search, sort, filter, and review
+                      incentive-eligible assignments.
                     </p>
                   </div>
-                  <Button 
-                    onClick={() => navigate("/directory")}
-                    className="self-start"
-                  >
+                  <Button onClick={() => navigate("/directory")} className="self-start">
                     Explore Stations
                   </Button>
                 </div>
@@ -128,13 +146,10 @@ export default function HomePage() {
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Compare</h3>
                     <p className="text-muted-foreground mb-4">
-                      Side-by-side comparison tool to evaluate multiple duty stations. Compare housing costs, schools, and local amenities to make informed decisions.
+                      Side-by-side comparison tool to evaluate multiple duty stations and relocation resources.
                     </p>
                   </div>
-                  <Button 
-                    onClick={() => navigate("/compare")}
-                    className="self-start"
-                  >
+                  <Button onClick={() => navigate("/compare")} className="self-start">
                     Compare Stations
                   </Button>
                 </div>
@@ -142,13 +157,10 @@ export default function HomePage() {
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Data Sources</h3>
                     <p className="text-muted-foreground mb-4">
-                      Learn about the data sources we use for locations, housing, schools, crime statistics, and maps to provide reliable information.
+                      Learn about data sources, link quality checks, accessibility standards, and security posture.
                     </p>
                   </div>
-                  <Button 
-                    onClick={() => navigate("/data-sources")}
-                    className="self-start"
-                  >
+                  <Button onClick={() => navigate("/data-sources")} className="self-start">
                     Learn More
                   </Button>
                 </div>
@@ -159,8 +171,8 @@ export default function HomePage() {
                       Discover resources for Border Patrol applicants through Honor First and other helpful links.
                     </p>
                   </div>
-                  <Button 
-                    onClick={() => window.open("https://www.honorfirst.com/for-usbp-applicants.html", "_blank")}
+                  <Button
+                    onClick={() => window.open("https://www.honorfirst.com/for-usbp-applicants.html", "_blank", "noopener")}
                     className="self-start"
                   >
                     Honor First

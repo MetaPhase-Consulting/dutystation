@@ -1,142 +1,133 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { DutyStation, dutyStations, findDutyStationById } from "@/data/dutyStations";
-import { MapPin, Home, GraduationCap, Shield, DollarSign, CloudSun, Car, Package, ArrowLeftRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  ArrowLeftRight,
+  Car,
+  CloudSun,
+  DollarSign,
+  GraduationCap,
+  Home,
+  MapPin,
+  Package,
+  Shield,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { PositionType, StationLinkCategory } from "@/types/station";
+import { useStationsQuery } from "@/lib/data/queryHooks";
+import { hasPositionType } from "@/lib/data/stationFilters";
+
+const POSITION_OPTIONS: PositionType[] = ["CBPO", "BPA", "AMO"];
+
+const resourceCategories: {
+  key: StationLinkCategory;
+  name: string;
+  description: string;
+  icon: typeof Home;
+}[] = [
+  { key: "realEstate", name: "Real Estate", description: "Housing options and property listings", icon: Home },
+  { key: "schools", name: "Schools", description: "Information about local schools", icon: GraduationCap },
+  { key: "crime", name: "Crime", description: "Crime statistics for the area", icon: Shield },
+  { key: "costOfLiving", name: "Cost of Living", description: "Cost of living metrics", icon: DollarSign },
+  { key: "weather", name: "Weather", description: "Local climate and weather patterns", icon: CloudSun },
+  { key: "transit", name: "Transit", description: "Transportation options and commute info", icon: Car },
+  { key: "movingTips", name: "Moving Tips", description: "Moving information for this location", icon: Package },
+];
 
 export default function ComparisonPage() {
-  const [station1, setStation1] = useState<DutyStation | null>(null);
-  const [station2, setStation2] = useState<DutyStation | null>(null);
+  const [station1Id, setStation1Id] = useState<string | null>(null);
+  const [station2Id, setStation2Id] = useState<string | null>(null);
+  const [selectedPositions, setSelectedPositions] = useState<PositionType[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
-
-  // Sort duty stations alphabetically by name
-  const sortedDutyStations = [...dutyStations].sort((a, b) => 
-    a.name.localeCompare(b.name)
-  );
+  const { data: stations = [], isLoading } = useStationsQuery();
 
   useEffect(() => {
-    // Extract station IDs from URL if present
     const params = new URLSearchParams(location.search);
-    const station1Id = params.get("station1");
-    const station2Id = params.get("station2");
-    
-    if (station1Id) {
-      const foundStation = findDutyStationById(station1Id);
-      if (foundStation) setStation1(foundStation);
+    const firstStation = params.get("station1");
+    const secondStation = params.get("station2");
+
+    if (firstStation) {
+      setStation1Id(firstStation);
     }
-    
-    if (station2Id) {
-      const foundStation = findDutyStationById(station2Id);
-      if (foundStation) setStation2(foundStation);
+
+    if (secondStation) {
+      setStation2Id(secondStation);
     }
   }, [location.search]);
 
-  const handleStation1Change = (stationId: string) => {
-    const station = findDutyStationById(stationId);
-    if (station) {
-      setStation1(station);
-      
-      // Update URL with selected station
-      const params = new URLSearchParams(location.search);
-      params.set("station1", stationId);
-      navigate(`/compare?${params.toString()}`);
+  const filteredStations = useMemo(() => {
+    return [...stations]
+      .filter((station) => hasPositionType(station, selectedPositions))
+      .sort((first, second) => first.name.localeCompare(second.name));
+  }, [selectedPositions, stations]);
+
+  const station1 = useMemo(
+    () => filteredStations.find((station) => station.id === station1Id) ?? null,
+    [filteredStations, station1Id]
+  );
+  const station2 = useMemo(
+    () => filteredStations.find((station) => station.id === station2Id) ?? null,
+    [filteredStations, station2Id]
+  );
+
+  const handleStationChange = (stationParam: "station1" | "station2", stationId: string) => {
+    const params = new URLSearchParams(location.search);
+    params.set(stationParam, stationId);
+    navigate(`/compare?${params.toString()}`);
+
+    if (stationParam === "station1") {
+      setStation1Id(stationId);
+      return;
     }
+
+    setStation2Id(stationId);
   };
 
-  const handleStation2Change = (stationId: string) => {
-    const station = findDutyStationById(stationId);
-    if (station) {
-      setStation2(station);
-      
-      // Update URL with selected station
-      const params = new URLSearchParams(location.search);
-      params.set("station2", stationId);
-      navigate(`/compare?${params.toString()}`);
+  const togglePosition = (position: PositionType) => {
+    if (selectedPositions.includes(position)) {
+      setSelectedPositions(selectedPositions.filter((value) => value !== position));
+      return;
     }
-  };
 
-  const resourceCategories = [
-    {
-      name: "Real Estate",
-      description: "Housing options and property listings",
-      icon: Home,
-      linkKey: "realEstate" as const,
-      color: "bg-blue-100 text-blue-700",
-    },
-    {
-      name: "Schools",
-      description: "Information about local schools",
-      icon: GraduationCap,
-      linkKey: "schools" as const,
-      color: "bg-green-100 text-green-700",
-    },
-    {
-      name: "Crime",
-      description: "Crime statistics for the area",
-      icon: Shield,
-      linkKey: "crime" as const,
-      color: "bg-red-100 text-red-700",
-    },
-    {
-      name: "Cost of Living",
-      description: "Cost of living metrics",
-      icon: DollarSign,
-      linkKey: "costOfLiving" as const,
-      color: "bg-amber-100 text-amber-700",
-    },
-    {
-      name: "Weather",
-      description: "Local climate and weather patterns",
-      icon: CloudSun,
-      linkKey: "weather" as const,
-      color: "bg-sky-100 text-sky-700",
-    },
-    {
-      name: "Transit",
-      description: "Transportation options and commute info",
-      icon: Car,
-      linkKey: "transit" as const,
-      color: "bg-purple-100 text-purple-700",
-    },
-    {
-      name: "Moving Tips",
-      description: "Moving information for this location",
-      icon: Package,
-      linkKey: "movingTips" as const,
-      color: "bg-orange-100 text-orange-700",
-    },
-  ];
+    setSelectedPositions([...selectedPositions, position]);
+  };
 
   return (
     <div className="container px-4 py-8 mx-auto">
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Compare Duty Stations</h1>
-          <p className="text-muted-foreground">
-            Select two duty stations to compare side by side.
-          </p>
+          <p className="text-muted-foreground">Select two duty stations to compare side by side.</p>
+        </div>
+
+        <div className="rounded-md border p-3">
+          <p className="text-sm font-medium mb-2">Position Type Filter</p>
+          <div className="flex flex-wrap gap-2">
+            {POSITION_OPTIONS.map((position) => (
+              <Button
+                key={position}
+                size="sm"
+                variant={selectedPositions.includes(position) ? "default" : "outline"}
+                onClick={() => togglePosition(position)}
+                aria-pressed={selectedPositions.includes(position)}
+              >
+                {position}
+              </Button>
+            ))}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <Select 
-              value={station1?.id || ""} 
-              onValueChange={handleStation1Change}
-            >
+            <Select value={station1Id ?? ""} onValueChange={(value) => handleStationChange("station1", value)}>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select first duty station" />
               </SelectTrigger>
               <SelectContent>
-                {sortedDutyStations.map((station) => (
+                {filteredStations.map((station) => (
                   <SelectItem key={station.id} value={station.id}>
                     {station.name}
                   </SelectItem>
@@ -144,17 +135,14 @@ export default function ComparisonPage() {
               </SelectContent>
             </Select>
           </div>
-          
+
           <div>
-            <Select 
-              value={station2?.id || ""} 
-              onValueChange={handleStation2Change}
-            >
+            <Select value={station2Id ?? ""} onValueChange={(value) => handleStationChange("station2", value)}>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select second duty station" />
               </SelectTrigger>
               <SelectContent>
-                {sortedDutyStations.map((station) => (
+                {filteredStations.map((station) => (
                   <SelectItem key={station.id} value={station.id}>
                     {station.name}
                   </SelectItem>
@@ -164,86 +152,76 @@ export default function ComparisonPage() {
           </div>
         </div>
 
-        {station1 && station2 ? (
+        {isLoading ? (
+          <Card>
+            <CardContent className="p-6 text-center text-muted-foreground">Loading comparison data...</CardContent>
+          </Card>
+        ) : station1 && station2 ? (
           <Card>
             <CardContent className="p-6">
               <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
                 <ArrowLeftRight className="h-5 w-5 text-primary" />
                 Comparison: {station1.name} vs. {station2.name}
               </h2>
-              
+
               <div className="grid grid-cols-1 gap-6">
-                {/* Location Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b pb-6">
-                  <div>
-                    <h3 className="font-medium text-lg mb-2">{station1.name}</h3>
-                    <div className="flex items-center mb-1">
-                      <MapPin className="h-4 w-4 mr-1 text-muted-foreground" />
-                      <span className="text-muted-foreground text-sm">
-                        {station1.city}, {station1.state}
-                      </span>
+                  {[station1, station2].map((station) => (
+                    <div key={`summary-${station.id}`}>
+                      <h3 className="font-medium text-lg mb-2">{station.name}</h3>
+                      <div className="flex items-center mb-1">
+                        <MapPin className="h-4 w-4 mr-1 text-muted-foreground" />
+                        <span className="text-muted-foreground text-sm">
+                          {station.city}, {station.state}
+                        </span>
+                      </div>
+                      <div className="text-sm mb-2">Region: {station.region}</div>
+                      <div className="mb-3 flex flex-wrap gap-2">
+                        {station.positionTypes.map((positionType) => (
+                          <Badge key={`${station.id}-${positionType}`} variant="secondary">
+                            {positionType}
+                          </Badge>
+                        ))}
+                        {station.attributes.incentiveEligible ? (
+                          <Badge className="bg-[#0A4A0A] text-white">Incentive</Badge>
+                        ) : null}
+                      </div>
+                      <p className="text-sm">{station.description}</p>
                     </div>
-                    <div className="text-sm mb-3">Region: {station1.region}</div>
-                    <p className="text-sm">{station1.description}</p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-medium text-lg mb-2">{station2.name}</h3>
-                    <div className="flex items-center mb-1">
-                      <MapPin className="h-4 w-4 mr-1 text-muted-foreground" />
-                      <span className="text-muted-foreground text-sm">
-                        {station2.city}, {station2.state}
-                      </span>
-                    </div>
-                    <div className="text-sm mb-3">Region: {station2.region}</div>
-                    <p className="text-sm">{station2.description}</p>
-                  </div>
+                  ))}
                 </div>
-                
-                {/* Resource Comparisons */}
+
                 <div>
                   <h3 className="font-medium text-lg mb-4">External Resources</h3>
-                  
+
                   <div className="grid gap-4">
                     {resourceCategories.map((category) => (
-                      <div key={category.name} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <a
-                          href={station1.links[category.linkKey]}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
-                        >
-                          <div className={`${category.color} p-2 rounded-md`}>
-                            <category.icon className="h-5 w-5" />
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="text-sm font-medium group-hover:text-primary transition-colors">
-                              {category.name}: {station1.name}
-                            </h4>
-                            <p className="text-xs text-muted-foreground">
-                              {category.description}
-                            </p>
-                          </div>
-                        </a>
-                        
-                        <a
-                          href={station2.links[category.linkKey]}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
-                        >
-                          <div className={`${category.color} p-2 rounded-md`}>
-                            <category.icon className="h-5 w-5" />
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="text-sm font-medium group-hover:text-primary transition-colors">
-                              {category.name}: {station2.name}
-                            </h4>
-                            <p className="text-xs text-muted-foreground">
-                              {category.description}
-                            </p>
-                          </div>
-                        </a>
+                      <div key={category.key} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {[station1, station2].map((station) => {
+                          const link = station.links[category.key];
+                          const warning = link.isValid === false ? "(Link may be unavailable)" : "";
+
+                          return (
+                            <a
+                              key={`${station.id}-${category.key}`}
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
+                            >
+                              <div className="bg-muted p-2 rounded-md">
+                                <category.icon className="h-5 w-5" />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="text-sm font-medium group-hover:text-primary transition-colors">
+                                  {category.name}: {station.name}
+                                </h4>
+                                <p className="text-xs text-muted-foreground">{category.description}</p>
+                                {warning ? <p className="text-xs text-amber-700 mt-1">{warning}</p> : null}
+                              </div>
+                            </a>
+                          );
+                        })}
                       </div>
                     ))}
                   </div>
@@ -256,14 +234,12 @@ export default function ComparisonPage() {
             <CardContent className="p-6 text-center">
               <div className="py-8">
                 <h2 className="text-xl font-semibold mb-2">Select Two Duty Stations to Compare</h2>
-                <p className="text-muted-foreground mb-6">
-                  Please select duty stations using the dropdown menus above.
-                </p>
-                {station1 && !station2 && (
-                  <p className="text-sm">
-                    <span className="font-medium">{station1.name}</span> selected. Please select a second station to compare.
+                <p className="text-muted-foreground mb-6">Please select duty stations using the dropdown menus above.</p>
+                {selectedPositions.length ? (
+                  <p className="text-sm text-muted-foreground">
+                    Position filter active: {selectedPositions.join(", ")}.
                   </p>
-                )}
+                ) : null}
               </div>
             </CardContent>
           </Card>

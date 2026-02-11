@@ -1,14 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
+import { screen } from '@testing-library/react'
 import { Layout } from '../Layout'
+import { renderWithRouterAndQueryClient } from '@/test/test-utils'
 
 const renderWithRouter = (component: React.ReactElement) => {
-  return render(
-    <BrowserRouter>
-      {component}
-    </BrowserRouter>
-  )
+  return renderWithRouterAndQueryClient(component)
 }
 
 describe('Layout Component', () => {

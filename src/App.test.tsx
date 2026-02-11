@@ -20,32 +20,32 @@ const renderWithProviders = (component: React.ReactElement) => {
 }
 
 describe('App Component', () => {
-  it('should render without crashing', () => {
+  it('should render without crashing', async () => {
     renderWithProviders(<App />)
-    expect(screen.getByRole('main')).toBeInTheDocument()
+    expect(await screen.findByRole('main')).toBeInTheDocument()
   })
 
-  it('should render the layout structure', () => {
+  it('should render the layout structure', async () => {
     renderWithProviders(<App />)
     
     // Check for main content area
-    expect(screen.getByRole('main')).toBeInTheDocument()
+    expect(await screen.findByRole('main')).toBeInTheDocument()
     
     // Check for footer subtitle instead of title to avoid duplicates
     expect(screen.getByText('Explore and compare duty station locations')).toBeInTheDocument()
   })
 
-  it('should have proper routing setup', () => {
+  it('should have proper routing setup', async () => {
     renderWithProviders(<App />)
     
     // The app should render without routing errors
-    expect(screen.getByRole('main')).toBeInTheDocument()
+    expect(await screen.findByRole('main')).toBeInTheDocument()
   })
 
-  it('should include QueryClient provider', () => {
+  it('should include QueryClient provider', async () => {
     renderWithProviders(<App />)
     
     // App should render with React Query context
-    expect(screen.getByRole('main')).toBeInTheDocument()
+    expect(await screen.findByRole('main')).toBeInTheDocument()
   })
-}) 
+})

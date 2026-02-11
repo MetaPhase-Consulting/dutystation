@@ -1,6 +1,5 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { 
@@ -13,7 +12,8 @@ import {
   BookOpen,
   CloudSun,
   TrainFront,
-  Truck
+  Truck,
+  Plane
 } from "lucide-react";
 
 export default function DataSourcesPage() {
@@ -371,6 +371,46 @@ export default function DataSourcesPage() {
               </ul>
             </CardContent>
           </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <div className="p-2 rounded-md bg-[#0A4A0A]">
+                  <Plane className="h-5 w-5 text-white" />
+                </div>
+                Pre-Academy Travel Resources
+              </CardTitle>
+              <CardDescription>External travel planning references</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                <li className="flex gap-2">
+                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                  <div>
+                    <a href="https://www.expedia.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                      Expedia
+                    </a>
+                  </div>
+                </li>
+                <li className="flex gap-2">
+                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                  <div>
+                    <a href="https://www.travelocity.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                      Travelocity
+                    </a>
+                  </div>
+                </li>
+                <li className="flex gap-2">
+                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                  <div>
+                    <a href="https://www.kayak.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                      Kayak
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
         </div>
 
         <Separator className="my-6" />
@@ -380,6 +420,9 @@ export default function DataSourcesPage() {
           <div className="space-y-4">
             <p className="text-sm text-muted-foreground">
               This is not an official government website. Duty Station Relocation is an open-source project designed to help individuals make informed decisions about border duty station relocations.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              CBP is not responsible for relocation costs, travel expenses, housing costs, or personal moving costs.
             </p>
             <p className="text-sm text-muted-foreground">
               The data presented on this website is sourced from various third-party providers. All external data, copyrights, and trademarks belong to their respective owners. We make no claims of ownership over any third-party content.

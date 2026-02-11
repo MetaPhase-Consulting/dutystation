@@ -9,7 +9,13 @@ export function Layout() {
   return (
     <div className="flex min-h-screen flex-col">
       <NavBar />
-      <main className="flex-1">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 rounded-md bg-white px-3 py-2 border z-50"
+      >
+        Skip to main content
+      </a>
+      <main id="main-content" className="flex-1" role="main">
         <Outlet />
       </main>
       <footer className="border-t bg-muted/40">
@@ -54,4 +60,3 @@ export function Layout() {
     </div>
   );
 }
-

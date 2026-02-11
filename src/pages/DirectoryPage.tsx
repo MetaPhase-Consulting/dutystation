@@ -1,93 +1,88 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { DutyStation, searchDutyStations } from "@/data/dutyStations";
 import { Map, MapPin } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DirectoryFilters } from "@/components/directory/DirectoryFilters";
 import { StationsList } from "@/components/directory/StationsList";
 import StationMap from "@/components/StationMap";
-
-// Get unique values from the data to ensure we're using correct values
-const allStations = searchDutyStations("");
-const uniqueSectors = ["All Sectors", ...new Set(allStations.map(station => station.sector))].sort();
-const uniqueRegions = ["All Regions", ...new Set(allStations.map(station => station.region))].sort();
-
-// Get unique states from the data, ensuring "All States" is first
-const uniqueStates = [
-  "All States",
-  ...new Set(allStations.map(station => station.state))
-].sort((a, b) => {
-  if (a === "All States") return -1;
-  if (b === "All States") return 1;
-  return a.localeCompare(b);
-});
+import { useStationsQuery } from "@/lib/data/queryHooks";
+import { filterStations, sanitizeSearchTerm, uniqueSorted } from "@/lib/data/stationFilters";
+import { PositionType } from "@/types/station";
+import { trackUsageEvent } from "@/lib/data/usageTracking";
 
 export default function DirectoryPage() {
-  const [stations, setStations] = useState<DutyStation[]>([]);
   const [activeView, setActiveView] = useState("list");
   const [selectedSector, setSelectedSector] = useState("All Sectors");
   const [selectedRegion, setSelectedRegion] = useState("All Regions");
   const [selectedState, setSelectedState] = useState("All States");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [selectedPositions, setSelectedPositions] = useState<PositionType[]>([]);
+  const [incentiveOnly, setIncentiveOnly] = useState(false);
+  const { data: stations = [], isLoading } = useStationsQuery();
   const location = useLocation();
 
-  // For debugging
-  useEffect(() => {
-    console.info("Selected sector:", selectedSector);
-    console.info("Selected region:", selectedRegion);
-    console.info("Selected state:", selectedState);
-  }, [selectedSector, selectedRegion, selectedState]);
-
-  useEffect(() => {
+  const queryParam = useMemo(() => {
     const params = new URLSearchParams(location.search);
-    const queryParam = params.get("search") || "";
-    
-    const allStations = searchDutyStations(queryParam);
-    console.info("Initial stations count:", allStations.length);
-    
-    let filteredStations = [...allStations];
-    
-    // Apply sector filter if not "All Sectors"
-    if (selectedSector !== "All Sectors") {
-      filteredStations = filteredStations.filter(
-        station => station.sector === selectedSector
-      );
-      console.info("After sector filter, stations count:", filteredStations.length);
-    }
+    return sanitizeSearchTerm(params.get("search") ?? "");
+  }, [location.search]);
 
-    // Apply region filter if not "All Regions"
-    if (selectedRegion !== "All Regions") {
-      filteredStations = filteredStations.filter(
-        station => station.region === selectedRegion
-      );
-      console.info("After region filter, stations count:", filteredStations.length);
-    }
+  const sectors = useMemo(
+    () => uniqueSorted(stations.map((station) => station.sector), "All Sectors"),
+    [stations]
+  );
+  const regions = useMemo(
+    () => uniqueSorted(stations.map((station) => station.region), "All Regions"),
+    [stations]
+  );
+  const states = useMemo(
+    () => uniqueSorted(stations.map((station) => station.state), "All States"),
+    [stations]
+  );
 
-    // Apply state filter if not "All States"
-    if (selectedState !== "All States") {
-      filteredStations = filteredStations.filter(
-        station => station.state === selectedState
-      );
-      console.info("After state filter, stations count:", filteredStations.length);
-    }
+  const filteredStations = useMemo(
+    () =>
+      filterStations(stations, {
+        query: queryParam,
+        sector: selectedSector,
+        region: selectedRegion,
+        state: selectedState,
+        positionTypes: selectedPositions,
+        incentiveOnly,
+        sortOrder,
+      }),
+    [
+      incentiveOnly,
+      queryParam,
+      selectedPositions,
+      selectedRegion,
+      selectedSector,
+      selectedState,
+      sortOrder,
+      stations,
+    ]
+  );
 
-    // Sort stations by name
-    filteredStations.sort((a, b) => {
-      const compareResult = a.name.localeCompare(b.name);
-      return sortOrder === "asc" ? compareResult : -compareResult;
+  useEffect(() => {
+    trackUsageEvent({
+      eventName: "directory_filter_change",
+      eventMetadata: {
+        queryParam,
+        selectedSector,
+        selectedRegion,
+        selectedState,
+        selectedPositions,
+        incentiveOnly,
+        sortOrder,
+      },
     });
-
-    setStations(filteredStations);
-  }, [location.search, selectedSector, selectedRegion, selectedState, sortOrder]);
+  }, [incentiveOnly, queryParam, selectedPositions, selectedRegion, selectedSector, selectedState, sortOrder]);
 
   return (
     <div className="container px-4 py-8 mx-auto">
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Duty Station Directory</h1>
-          <p className="text-muted-foreground">
-            Browse and search CBP duty stations across the United States.
-          </p>
+          <p className="text-muted-foreground">Browse and search CBP duty stations across the United States.</p>
         </div>
 
         <Tabs defaultValue="list" value={activeView} onValueChange={setActiveView}>
@@ -101,7 +96,7 @@ export default function DirectoryPage() {
               Map
             </TabsTrigger>
           </TabsList>
-          
+
           <TabsContent value="list">
             <DirectoryFilters
               selectedSector={selectedSector}
@@ -112,20 +107,34 @@ export default function DirectoryPage() {
               setSelectedState={setSelectedState}
               sortOrder={sortOrder}
               setSortOrder={setSortOrder}
-              sectors={uniqueSectors}
-              regions={uniqueRegions}
-              states={uniqueStates}
+              sectors={sectors}
+              regions={regions}
+              states={states}
+              selectedPositions={selectedPositions}
+              setSelectedPositions={setSelectedPositions}
+              incentiveOnly={incentiveOnly}
+              setIncentiveOnly={setIncentiveOnly}
             />
-            <StationsList
-              stations={stations}
-              setSelectedSector={setSelectedSector}
-              setSelectedState={setSelectedState}
-            />
+            {isLoading ? (
+              <div className="rounded-md border p-8 text-center text-muted-foreground">Loading duty station directory...</div>
+            ) : (
+              <StationsList
+                stations={filteredStations}
+                setSelectedSector={setSelectedSector}
+                setSelectedState={setSelectedState}
+              />
+            )}
           </TabsContent>
 
           <TabsContent value="map" className="mt-6">
-            <div className="aspect-[16/10] rounded-lg overflow-hidden border">
-              <StationMap locations={stations} />
+            <div className="rounded-lg overflow-hidden border p-2">
+              {isLoading ? (
+                <div className="aspect-[16/10] flex items-center justify-center text-muted-foreground">
+                  Loading map data...
+                </div>
+              ) : (
+                <StationMap locations={filteredStations} />
+              )}
             </div>
           </TabsContent>
         </Tabs>

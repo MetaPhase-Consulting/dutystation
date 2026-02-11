@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import {
   Select,
   SelectContent,
@@ -8,6 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ArrowDownAZ, ArrowUpAZ } from "lucide-react";
+import { PositionType } from "@/types/station";
 
 interface DirectoryFiltersProps {
   selectedSector: string;
@@ -21,7 +23,13 @@ interface DirectoryFiltersProps {
   sectors: string[];
   regions: string[];
   states: string[];
+  selectedPositions: PositionType[];
+  setSelectedPositions: (positions: PositionType[]) => void;
+  incentiveOnly: boolean;
+  setIncentiveOnly: (value: boolean) => void;
 }
+
+const POSITION_OPTIONS: PositionType[] = ["CBPO", "BPA", "AMO"];
 
 export function DirectoryFilters({
   selectedSector,
@@ -35,7 +43,20 @@ export function DirectoryFilters({
   sectors,
   regions,
   states,
+  selectedPositions,
+  setSelectedPositions,
+  incentiveOnly,
+  setIncentiveOnly,
 }: DirectoryFiltersProps) {
+  const togglePosition = (position: PositionType) => {
+    if (selectedPositions.includes(position)) {
+      setSelectedPositions(selectedPositions.filter((value) => value !== position));
+      return;
+    }
+
+    setSelectedPositions([...selectedPositions, position]);
+  };
+
   return (
     <div className="flex flex-wrap gap-4 mb-6">
       <Select value={selectedSector} onValueChange={setSelectedSector}>
@@ -94,6 +115,30 @@ export function DirectoryFilters({
           </>
         )}
       </Button>
+
+      <div className="flex items-center gap-3 rounded-md border px-3 py-2">
+        <span className="text-sm">Incentive Eligible Only</span>
+        <Switch
+          checked={incentiveOnly}
+          onCheckedChange={setIncentiveOnly}
+          aria-label="Toggle incentive eligible stations only"
+        />
+      </div>
+
+      <div className="flex items-center gap-2 rounded-md border px-2 py-1">
+        {POSITION_OPTIONS.map((position) => (
+          <Button
+            key={position}
+            size="sm"
+            type="button"
+            variant={selectedPositions.includes(position) ? "default" : "outline"}
+            onClick={() => togglePosition(position)}
+            aria-pressed={selectedPositions.includes(position)}
+          >
+            {position}
+          </Button>
+        ))}
+      </div>
     </div>
   );
 }
