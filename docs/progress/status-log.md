@@ -33,7 +33,7 @@
   - `npm run data:audit:links:sync` completed after expansion (4,165 station links audited and synchronized)
 - Added CI/CD and automation workflows:
   - `.github/workflows/ci.yml` (lint/typecheck/test/build/audit)
-  - `.github/workflows/security.yml` (CodeQL)
+  - `.github/workflows/security.yml` (dependency audit + dependency review)
   - `.github/workflows/cd.yml` (GitHub Pages deployment)
   - `.github/workflows/db-migrations.yml` (Supabase migration push)
   - `.github/workflows/data-maintenance.yml` (scheduled link audit + enrichment sync)

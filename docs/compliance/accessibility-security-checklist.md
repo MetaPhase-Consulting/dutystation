@@ -18,7 +18,7 @@ Best-effort Phase 1 compliance baseline for Section 508, WCAG 2.1 AA, and securi
 - [x] Input sanitization utility for search query handling (`stationFilters.ts`).
 - [x] Security headers configured in Vite server config.
 - [x] Dependency audit command added (`npm run audit:deps`).
-- [x] CI security analysis configured (`.github/workflows/security.yml`, CodeQL).
+- [x] CI security analysis configured (`.github/workflows/security.yml`, dependency audit/review).
 - [x] DB access model uses RLS policies for public read paths.
 - [x] Service-role key usage isolated to scripts, not frontend runtime.
 - [ ] CSP hardening for production host environment (deployment-level).

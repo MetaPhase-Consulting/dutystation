@@ -136,7 +136,7 @@ npm run audit:deps
 
 GitHub Actions workflows:
 - `CI`: lint, typecheck, tests, build, dependency audit
-- `Security`: CodeQL static analysis
+- `Security`: dependency audit and dependency review
 - `CD`: deploy static build to GitHub Pages
 - `DB Migrations`: push `supabase/migrations` to linked Supabase project
 - `Data Maintenance`: scheduled link audit sync + CSV enrichment sync
