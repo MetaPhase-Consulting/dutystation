@@ -148,7 +148,6 @@ Required repository secrets for full automation:
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `SUPABASE_PROJECT_REF`
 - `SUPABASE_DB_PASSWORD`
-- `SUPABASE_ACCESS_TOKEN`
 
 ## Program Documentation
 
