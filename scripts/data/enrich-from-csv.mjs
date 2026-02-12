@@ -189,6 +189,36 @@ function inferPositionTypes(row) {
   return ["CBPO"];
 }
 
+function classifyComponent(row) {
+  const text = `${row.duty_station} ${row.type} ${row.parent} ${row.address}`.toLowerCase();
+
+  if (text.includes("air") || text.includes("marine") || text.includes("amo")) {
+    return "AMO";
+  }
+
+  if (row.type === "Port of Entry" || row.type === "Field Office") {
+    return "OFO";
+  }
+
+  if (row.type === "Station" && String(row.parent || "").toLowerCase().includes("sector")) {
+    return "USBP";
+  }
+
+  if (row.type === "Sector") {
+    return "USBP";
+  }
+
+  return "OFO";
+}
+
+function classifyFacilityType(row) {
+  if (row.type === "Port of Entry") return "Port of Entry";
+  if (row.type === "Field Office") return "Field Office";
+  if (row.type === "Station") return "Station";
+  if (row.type === "Sector") return "Sector";
+  return "Other";
+}
+
 function generatedLinks(city, state) {
   const citySlug = city.replace(/\./g, "").replace(/\s+/g, "-");
   const cityUnderscore = city.replace(/\./g, "").replace(/\s+/g, "_");
@@ -311,6 +341,10 @@ async function buildEnrichedStations() {
       acc[category] = {
         category,
         url,
+        originalUrl: url,
+        isRemediated: false,
+        remediationReason: null,
+        remediatedAt: null,
         isValid: status.is_valid,
         statusCode: status.http_status,
         lastCheckedAt: null,
@@ -339,6 +373,11 @@ async function buildEnrichedStations() {
       lng: coords.lng,
       region,
       description: `${row.duty_station} is listed by CBP as a ${String(row.type || "duty location").toLowerCase()}${row.parent ? ` under ${row.parent}` : ""}.`,
+      componentType: classifyComponent(row),
+      facilityType: classifyFacilityType(row),
+      sourceType: row.type || null,
+      sourceParent: row.parent || null,
+      sourceUrl: row.url || null,
       positionTypes: inferPositionTypes(row),
       attributes: {
         incentiveEligible: false,
@@ -393,6 +432,11 @@ async function syncToSupabase(stations) {
     lng: station.lng,
     region: station.region,
     description: station.description,
+    component_type: station.componentType,
+    facility_type: station.facilityType,
+    source_type: station.sourceType,
+    source_parent: station.sourceParent,
+    source_url: station.sourceUrl,
   }));
 
   await chunk("stations", stationRows, "legacy_id");
@@ -443,6 +487,10 @@ async function syncToSupabase(stations) {
       station_id: idMap.get(station.id),
       category,
       url: link.url,
+      original_url: link.originalUrl ?? link.url,
+      is_remediated: link.isRemediated,
+      remediation_reason: link.remediationReason,
+      remediated_at: link.remediatedAt,
       is_valid: link.isValid,
       http_status: link.statusCode,
       last_checked_at: null,

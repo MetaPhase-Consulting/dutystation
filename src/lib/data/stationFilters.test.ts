@@ -26,6 +26,28 @@ describe("stationFilters", () => {
     expect(results).toEqual([]);
   });
 
+  it("filters by component type", () => {
+    const usbpResults = filterStations(legacyStations, {
+      componentTypes: ["USBP"],
+    });
+
+    const ofoResults = filterStations(legacyStations, {
+      componentTypes: ["OFO"],
+    });
+
+    expect(usbpResults.length).toBe(legacyStations.length);
+    expect(ofoResults).toEqual([]);
+  });
+
+  it("filters by facility type", () => {
+    const results = filterStations(legacyStations, {
+      facilityTypes: ["Station"],
+    });
+
+    expect(results.length).toBe(legacyStations.length);
+    expect(results.every((station) => station.facilityType === "Station")).toBe(true);
+  });
+
   it("sorts descending when requested", () => {
     const results = filterStations(legacyStations, {
       sortOrder: "desc",

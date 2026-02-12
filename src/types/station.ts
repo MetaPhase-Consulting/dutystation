@@ -10,10 +10,16 @@ export const STATION_LINK_CATEGORIES = [
 
 export type StationLinkCategory = (typeof STATION_LINK_CATEGORIES)[number];
 export type PositionType = "CBPO" | "BPA" | "AMO";
+export type ComponentType = "USBP" | "OFO" | "AMO";
+export type FacilityType = "Station" | "Port of Entry" | "Field Office" | "Sector" | "Other";
 
 export interface StationLink {
   category: StationLinkCategory;
   url: string;
+  originalUrl: string | null;
+  isRemediated: boolean;
+  remediationReason: string | null;
+  remediatedAt: string | null;
   isValid: boolean | null;
   lastCheckedAt: string | null;
   statusCode: number | null;
@@ -46,6 +52,11 @@ export interface DutyStation {
   lng: number;
   region: string;
   description: string;
+  componentType: ComponentType;
+  facilityType: FacilityType;
+  sourceType: string | null;
+  sourceParent: string | null;
+  sourceUrl: string | null;
   positionTypes: PositionType[];
   attributes: StationAttributes;
   links: Record<StationLinkCategory, StationLink>;
@@ -66,6 +77,8 @@ export interface StationListFilters {
   sector?: string;
   region?: string;
   state?: string;
+  componentTypes?: ComponentType[];
+  facilityTypes?: FacilityType[];
   positionTypes?: PositionType[];
   incentiveOnly?: boolean;
   sortOrder?: "asc" | "desc";

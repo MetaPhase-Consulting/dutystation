@@ -172,6 +172,11 @@ async function seed() {
       lng: station.lng,
       region: station.region,
       description: station.description,
+      component_type: "USBP",
+      facility_type: "Station",
+      source_type: "Station",
+      source_parent: station.sector,
+      source_url: null,
     }));
 
   await upsertInChunks("stations", stations, "legacy_id");
@@ -218,6 +223,10 @@ async function seed() {
         station_id: stationId,
         category,
         url,
+        original_url: url,
+        is_remediated: false,
+        remediation_reason: null,
+        remediated_at: null,
         is_valid: status.is_valid,
         http_status: status.http_status,
         last_checked_at: null,

@@ -1,4 +1,4 @@
-import { DutyStation, PositionType, StationListFilters } from "@/types/station";
+import { ComponentType, DutyStation, FacilityType, PositionType, StationListFilters } from "@/types/station";
 
 export function sanitizeSearchTerm(value: string): string {
   return value.replace(/[<>"'`]/g, "").trim();
@@ -37,12 +37,30 @@ export function hasPositionType(station: DutyStation, selectedPositions: Positio
   return selectedPositions.some((positionType) => station.positionTypes.includes(positionType));
 }
 
+export function hasComponentType(station: DutyStation, selectedComponents: ComponentType[]): boolean {
+  if (!selectedComponents.length) {
+    return true;
+  }
+
+  return selectedComponents.includes(station.componentType);
+}
+
+export function hasFacilityType(station: DutyStation, selectedFacilities: FacilityType[]): boolean {
+  if (!selectedFacilities.length) {
+    return true;
+  }
+
+  return selectedFacilities.includes(station.facilityType);
+}
+
 export function filterStations(stations: DutyStation[], filters: StationListFilters): DutyStation[] {
   const {
     query = "",
     sector,
     region,
     state,
+    componentTypes = [],
+    facilityTypes = [],
     positionTypes = [],
     incentiveOnly = false,
     sortOrder = "asc",
@@ -66,6 +84,14 @@ export function filterStations(stations: DutyStation[], filters: StationListFilt
     }
 
     if (!hasPositionType(station, positionTypes)) {
+      return false;
+    }
+
+    if (!hasComponentType(station, componentTypes)) {
+      return false;
+    }
+
+    if (!hasFacilityType(station, facilityTypes)) {
       return false;
     }
 
