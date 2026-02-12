@@ -26,6 +26,11 @@ jobs:
             echo "Skipping DB migration push because one or more required secrets are missing."
             exit 0
           fi
+          if [[ "$SUPABASE_ACCESS_TOKEN" != sbp_* ]]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping DB migration push because SUPABASE_ACCESS_TOKEN must use the sbp_ format."
+            exit 0
+          fi
           echo "ready=true" >> "$GITHUB_OUTPUT"
 
       - name: Checkout
