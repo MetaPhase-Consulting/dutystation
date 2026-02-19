@@ -99,6 +99,11 @@
   - `docs/governance/engineering-harness-standard.md`
   - `docs/governance/release-gates-and-slos.md`
   - Updated `README.md` documentation index
+- Resolved open GitHub Dependabot runtime alert for `minimatch` (`GHSA-3ppc-4f35-3m26`) by:
+  - moving `tailwindcss-animate` from runtime dependencies to dev-only scope
+  - upgrading lint toolchain packages and lockfile (`eslint`, `typescript-eslint`, related plugins)
+  - confirming no runtime `minimatch` path remains (`npm ls minimatch --omit=dev`)
+  - confirming production dependency audit is clean (`npm audit --omit=dev`)
 
 ### Current Quality Baseline
 - `npm run test:run` passes (43 tests).
