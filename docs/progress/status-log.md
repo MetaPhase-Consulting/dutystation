@@ -95,6 +95,10 @@
   - Added integration tests for map-first directory rendering and component filtering.
   - Added legal rendering test for data-sources page.
   - Updated app/home/layout tests for revised CBP-wide copy.
+- Added governance documentation package aligned to engineering harness best practices:
+  - `docs/governance/engineering-harness-standard.md`
+  - `docs/governance/release-gates-and-slos.md`
+  - Updated `README.md` documentation index
 
 ### Current Quality Baseline
 - `npm run test:run` passes (43 tests).

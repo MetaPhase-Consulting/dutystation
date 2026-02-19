@@ -176,6 +176,8 @@ Required repository secrets for full automation:
 - Requirements traceability: `docs/requirements/traceability-matrix.md`
 - Progress log: `docs/progress/status-log.md`
 - Architecture decisions: `docs/architecture/adr-001-data-platform.md`
+- Engineering harness standard: `docs/governance/engineering-harness-standard.md`
+- Release gates and SLO policy: `docs/governance/release-gates-and-slos.md`
 - Link operations runbook: `docs/operations/link-quality-runbook.md`
 - Accessibility/security checklist: `docs/compliance/accessibility-security-checklist.md`
 

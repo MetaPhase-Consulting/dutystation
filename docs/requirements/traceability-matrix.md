@@ -34,6 +34,7 @@
 | Client Request | Travel links | `src/lib/data/legacyStationData.ts`, `src/pages/StationDetailPage.tsx` | Station detail test | Done |
 | Client Request | Recreation info | `src/lib/data/legacyStationData.ts`, `src/pages/StationDetailPage.tsx` | Station detail test | Done |
 | Client Request | External link reliability + remediation | `scripts/data/audit-external-links.mjs`, `scripts/data/remediate-links.mjs`, `scripts/data/validate-link-audit.mjs`, `.github/workflows/data-maintenance.yml` | audit/remediation reports + maintenance gate | Done |
+| Engineering Standard | Agent-first harness governance and release controls | `docs/governance/engineering-harness-standard.md`, `docs/governance/release-gates-and-slos.md` | Governance docs + workflow evidence | Done |
 
 ## Open Items
 - Full 508/WCAG AA conformance audit is not complete yet.
