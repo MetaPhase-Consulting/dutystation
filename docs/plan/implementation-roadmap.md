@@ -1,7 +1,7 @@
 # DutyStation Modernization Roadmap
 
 ## Program Metadata
-- Last updated: 2026-02-11
+- Last updated: 2026-02-19
 - Program type: Website modernization (database migration + quality hardening)
 - Delivery style: Iterative, phase-based
 - Tracking source of truth: `docs/progress/status-log.md`
@@ -39,6 +39,7 @@
 - Target dates: 2026-03-04 to 2026-03-18
 - Scope:
   - Link quality automation and reporting
+  - Automated link remediation + threshold validation for fallback categories
   - Accessibility uplift (best effort) against WCAG 2.1 AA / 508 baseline
   - Security baseline improvements (dependency checks, header validation, sanitization)
   - Performance budgets and route-level optimization
@@ -71,7 +72,7 @@
 ## Milestones
 - M1: Repository + schema merged (Done)
 - M2: Phase 1 feature parity complete (Done)
-- M3: Quality hardening complete (In Progress)
+- M3: Quality hardening complete (In Progress; link remediation policy automation complete)
 - M4: Expansion pipeline complete (In Progress)
 - M5: Operational handoff complete (Planned)
 

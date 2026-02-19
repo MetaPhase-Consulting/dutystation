@@ -10,14 +10,14 @@ const renderWithRouter = (component: React.ReactElement) => {
 describe('HomePage Component', () => {
   it('should render the main heading', () => {
     renderWithRouter(<HomePage />)
-    expect(screen.getByText(/Find Your Next Duty Station/i)).toBeInTheDocument()
+    expect(screen.getByText(/Explore Your Next CBP Assignment/i)).toBeInTheDocument()
   })
 
   it('should render the search functionality', () => {
     renderWithRouter(<HomePage />)
     
     // Check for search input
-    const searchInput = screen.getByPlaceholderText(/Search Duty Stations/i)
+    const searchInput = screen.getByPlaceholderText(/Search CBP Duty Locations/i)
     expect(searchInput).toBeInTheDocument()
   })
 
@@ -38,7 +38,7 @@ describe('HomePage Component', () => {
     renderWithRouter(<HomePage />)
     
     // Should display information about duty stations - check for specific text
-    expect(screen.getByText(/Browse duty stations with interactive list/i)).toBeInTheDocument()
+    expect(screen.getByText(/Browse CBP duty locations with a map-first experience/i)).toBeInTheDocument()
   })
 
   it('should have proper accessibility attributes', () => {
@@ -49,7 +49,7 @@ describe('HomePage Component', () => {
     expect(mainHeading).toBeInTheDocument()
     
     // Check for search input accessibility
-    const searchInput = screen.getByPlaceholderText(/Search Duty Stations/i)
+    const searchInput = screen.getByPlaceholderText(/Search CBP Duty Locations/i)
     expect(searchInput).toHaveAttribute('type', 'search')
   })
 

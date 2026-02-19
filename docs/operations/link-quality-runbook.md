@@ -8,6 +8,14 @@ Maintain reliability of external links (housing, schools, crime, weather, transi
 - Fallback source: `src/data/dutyStations.ts`
 
 ## Commands
+- Dry remediation plan (no DB writes):
+```bash
+SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... npm run data:remediate:links
+```
+- Apply remediations and sync URL replacements:
+```bash
+SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... npm run data:remediate:links:apply
+```
 - Dry audit report (local/file output):
 ```bash
 npm run data:audit:links
@@ -20,11 +28,17 @@ SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... npm run data:audit:links:sync
 ```bash
 node scripts/data/audit-external-links.mjs --out docs/progress/link-audit-latest.json
 ```
+- Validate policy threshold after audit:
+```bash
+npm run data:validate:link-audit -- --report docs/progress/link-audit-latest.json --maxUnknownRate 0.35
+```
 
 ## Result Artifacts
 - JSON report file (default): `docs/progress/link-audit-latest.json`
+- JSON remediation report: `docs/progress/link-remediation-latest.json`
 - DB audit rows: `link_audit_results`
 - Updated latest status on `station_links` (`is_valid`, `http_status`, `last_checked_at`)
+- Updated remediation metadata on `station_links` (`original_url`, `is_remediated`, `remediation_reason`, `remediated_at`)
 
 ## Classification Policy
 - `200-399`: valid (`is_valid = true`)
@@ -36,6 +50,12 @@ node scripts/data/audit-external-links.mjs --out docs/progress/link-audit-latest
 - Critical (broken core categories for multiple stations): triage within 1 business day
 - Moderate (single station broken link): triage within 3 business days
 - Unknown/rate-limited: recheck in next scheduled run; do not auto-remove
+
+## Remediation Policy
+- Categories with global fallback policy: `movingTips`, `weather`, `transit`, `schools`, `crime`, `costOfLiving`, `realEstate`.
+- Policy action: auto-replace hard-failing links with stable provider roots/search URLs, mark record as remediated, then re-audit.
+- Quality gate: `0` unresolved hard failures in fallback categories after remediation run.
+- Unknown-rate handling: threshold alerting only; unknown links do not automatically fail maintenance runs unless hard-fail criteria are met.
 
 ## UI Behavior Requirements
 - For invalid or unknown links, UI shows warning text and still exposes source link.

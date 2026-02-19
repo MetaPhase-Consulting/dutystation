@@ -28,9 +28,9 @@ export function Layout() {
                   alt="Compass Icon" 
                   className="h-5 w-5"
                 />
-                <span className="font-bold text-[#1F631A]">Duty Station Relocation</span>
+                <span className="font-bold text-[#1F631A]">CBP Duty Location Explorer</span>
               </div>
-              <span className="text-xs text-muted-foreground">Explore and compare duty station locations</span>
+              <span className="text-xs text-muted-foreground">Explore and compare CBP duty locations</span>
             </Link>
           </div>
           <div className="flex items-center gap-4">

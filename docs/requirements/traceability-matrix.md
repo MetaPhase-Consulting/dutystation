@@ -27,10 +27,13 @@
 | Client Request | Incentive highlighting | `src/components/directory/StationCard.tsx`, `src/pages/StationDetailPage.tsx` | UI + tests | Done |
 | Client Request | Pin hover name | `src/components/StationMap.tsx` tooltip overlay | Manual validation in map view | Done |
 | Client Request | CBP relocation disclaimer | `src/pages/StationDetailPage.tsx`, `src/pages/DataSourcesPage.tsx` | Station detail test | Done |
+| Client Request | CBP-wide language modernization | `src/pages/HomePage.tsx`, `src/components/NavBar.tsx`, `README.md` | Updated copy + Home/App tests | Done |
+| Client Request | Map-first directory experience | `src/pages/DirectoryPage.tsx`, `src/components/StationMap.tsx` | `src/pages/__tests__/DirectoryPage.test.tsx` | Done |
+| Client Request | Component toggle (USBP/OFO/AMO) | `src/components/directory/DirectoryFilters.tsx`, `src/pages/ComparisonPage.tsx`, `src/lib/data/stationFilters.ts` | Filter unit tests + directory integration test | Done |
 | Client Request | Position toggles | `src/components/directory/DirectoryFilters.tsx`, `src/pages/ComparisonPage.tsx` | Filter tests | Done |
 | Client Request | Travel links | `src/lib/data/legacyStationData.ts`, `src/pages/StationDetailPage.tsx` | Station detail test | Done |
 | Client Request | Recreation info | `src/lib/data/legacyStationData.ts`, `src/pages/StationDetailPage.tsx` | Station detail test | Done |
-| Client Request | External link reliability | `scripts/data/audit-external-links.mjs`, `station_links` metadata fields | audit report + runbook | Done |
+| Client Request | External link reliability + remediation | `scripts/data/audit-external-links.mjs`, `scripts/data/remediate-links.mjs`, `scripts/data/validate-link-audit.mjs`, `.github/workflows/data-maintenance.yml` | audit/remediation reports + maintenance gate | Done |
 
 ## Open Items
 - Full 508/WCAG AA conformance audit is not complete yet.

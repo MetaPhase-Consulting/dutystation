@@ -22,7 +22,10 @@
     "data:enrich:csv": "node scripts/data/enrich-from-csv.mjs",
     "data:enrich:csv:sync": "node scripts/data/enrich-from-csv.mjs --sync",
     "data:audit:links": "node scripts/data/audit-external-links.mjs",
-    "data:audit:links:sync": "node scripts/data/audit-external-links.mjs --sync"
+    "data:audit:links:sync": "node scripts/data/audit-external-links.mjs --sync",
+    "data:remediate:links": "node scripts/data/remediate-links.mjs",
+    "data:remediate:links:apply": "node scripts/data/remediate-links.mjs --apply",
+    "data:validate:link-audit": "node scripts/data/validate-link-audit.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

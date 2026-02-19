@@ -15,15 +15,17 @@ import {
   Truck,
   Plane
 } from "lucide-react";
+import { LEGAL_DISCLAIMER_POINTS, LEGAL_DISCLAIMER_TITLE } from "@/content/legal";
 
 export default function DataSourcesPage() {
   return (
     <div className="container px-4 py-8 mx-auto">
       <div className="flex flex-col space-y-6">
         <div className="space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Data Sources</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">CBP Duty Location Data Sources</h1>
           <p className="text-muted-foreground">
-            Data used to provide accurate and helpful information about border duty stations.
+            Data sources used to provide accurate and helpful information for CBP duty locations across USBP, OFO,
+            and AMO.
           </p>
         </div>
 
@@ -36,7 +38,7 @@ export default function DataSourcesPage() {
                 <div className="p-2 rounded-md bg-[#1F631A]">
                   <Map className="h-5 w-5 text-white" />
                 </div>
-                Duty Station Data
+                Duty Location Data
               </CardTitle>
               <CardDescription>Official CBP location information</CardDescription>
             </CardHeader>
@@ -82,7 +84,7 @@ export default function DataSourcesPage() {
                 </div>
                 Applicant Resources
               </CardTitle>
-              <CardDescription>Information for Border Patrol applicants</CardDescription>
+              <CardDescription>Information for CBP applicants across components</CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-3">
@@ -95,9 +97,9 @@ export default function DataSourcesPage() {
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:underline"
                     >
-                      Honor First - For USBP Applicants
+                      Honor First - USBP Applicant Community
                     </a>
-                    <p className="text-sm text-muted-foreground">Resources for Border Patrol applicants</p>
+                    <p className="text-sm text-muted-foreground">Unofficial third-party community resource for USBP applicants</p>
                   </div>
                 </li>
                 <li className="flex gap-2">
@@ -208,14 +210,14 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.greatschools.org" 
+                      href="https://nces.ed.gov/ccd/schoolsearch/" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:underline"
                     >
-                      GreatSchools
+                      NCES School Search
                     </a>
-                    <p className="text-sm text-muted-foreground">School ratings and educational resources</p>
+                    <p className="text-sm text-muted-foreground">Federal school directory and educational reference data</p>
                   </div>
                 </li>
               </ul>
@@ -238,14 +240,14 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.neighborhoodscout.com" 
+                      href="https://www.city-data.com/crime/" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:underline"
                     >
-                      NeighborhoodScout
+                      City-Data Crime
                     </a>
-                    <p className="text-sm text-muted-foreground">Neighborhood crime statistics and safety ratings</p>
+                    <p className="text-sm text-muted-foreground">Public crime-data reference pages by location</p>
                   </div>
                 </li>
               </ul>
@@ -298,14 +300,14 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://weatherspark.com" 
+                      href="https://www.weather.gov/" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:underline"
                     >
-                      WeatherSpark
+                      National Weather Service
                     </a>
-                    <p className="text-sm text-muted-foreground">Detailed weather data and climate information</p>
+                    <p className="text-sm text-muted-foreground">Official U.S. weather forecasts and alerts</p>
                   </div>
                 </li>
               </ul>
@@ -328,14 +330,14 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.rome2rio.com" 
+                      href="https://www.google.com/maps/search/public+transit" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:underline"
                     >
-                      Rome2Rio
+                      Google Maps Transit Search
                     </a>
-                    <p className="text-sm text-muted-foreground">Transportation routes and options between locations</p>
+                    <p className="text-sm text-muted-foreground">Public transit discovery and route planning reference</p>
                   </div>
                 </li>
               </ul>
@@ -358,14 +360,14 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.moving.com/tips/" 
+                      href="https://www.usa.gov/moving" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:underline"
                     >
-                      Moving.com
+                      USA.gov Moving Guide
                     </a>
-                    <p className="text-sm text-muted-foreground">Moving tips and relocation guides</p>
+                    <p className="text-sm text-muted-foreground">Federal relocation and moving guidance</p>
                   </div>
                 </li>
               </ul>
@@ -416,17 +418,15 @@ export default function DataSourcesPage() {
         <Separator className="my-6" />
         
         <div className="bg-muted/30 p-6 rounded-lg border">
-          <h2 className="text-xl font-semibold mb-4">Disclaimers</h2>
+          <h2 className="text-xl font-semibold mb-4">{LEGAL_DISCLAIMER_TITLE}</h2>
           <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">
-              This is not an official government website. Duty Station Relocation is an open-source project designed to help individuals make informed decisions about border duty station relocations.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              CBP is not responsible for relocation costs, travel expenses, housing costs, or personal moving costs.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              The data presented on this website is sourced from various third-party providers. All external data, copyrights, and trademarks belong to their respective owners. We make no claims of ownership over any third-party content.
-            </p>
+            <ul className="space-y-2">
+              {LEGAL_DISCLAIMER_POINTS.map((point) => (
+                <li key={point} className="text-sm text-muted-foreground">
+                  {point}
+                </li>
+              ))}
+            </ul>
             <p className="text-sm text-muted-foreground">
               This project was built by{' '}
               <a 

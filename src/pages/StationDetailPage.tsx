@@ -23,6 +23,7 @@ import StationDetailMap from "@/components/StationDetailMap";
 import { useStationByIdQuery, useTravelResourcesQuery } from "@/lib/data/queryHooks";
 import { StationLinkCategory } from "@/types/station";
 import { trackUsageEvent } from "@/lib/data/usageTracking";
+import { LEGAL_DISCLAIMER_POINTS, LEGAL_DISCLAIMER_TITLE } from "@/content/legal";
 
 const linkIconByCategory: Record<StationLinkCategory, typeof Home> = {
   realEstate: Home,
@@ -131,6 +132,8 @@ export default function StationDetailPage() {
             </span>
           </div>
           <div className="flex flex-wrap gap-2">
+            <Badge variant="outline">{station.componentType}</Badge>
+            <Badge variant="outline">{station.facilityType}</Badge>
             {station.positionTypes.map((positionType) => (
               <Badge key={positionType} variant="secondary">
                 {positionType}
@@ -141,11 +144,16 @@ export default function StationDetailPage() {
 
         {station.attributes.disclaimerApplies ? (
           <Card className="border-amber-300 bg-amber-50">
-            <CardContent className="p-4 flex items-start gap-2 text-sm">
-              <AlertTriangle className="h-4 w-4 mt-0.5 text-amber-700" />
-              <p className="text-amber-900">
-                CBP is not responsible for any relocation costs, travel expenses, or associated personal expenses.
-              </p>
+            <CardContent className="p-4 text-sm">
+              <h2 className="font-semibold text-amber-900 mb-2">{LEGAL_DISCLAIMER_TITLE}</h2>
+              <ul className="space-y-2">
+                {LEGAL_DISCLAIMER_POINTS.map((point) => (
+                  <li key={point} className="flex items-start gap-2 text-amber-900">
+                    <AlertTriangle className="mt-0.5 h-4 w-4 text-amber-700" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
             </CardContent>
           </Card>
         ) : null}
@@ -249,6 +257,9 @@ export default function StationDetailPage() {
                             {resource.name}
                           </h3>
                           <p className="text-sm text-muted-foreground">{resource.description}</p>
+                          {resource.link.isRemediated ? (
+                            <p className="text-xs text-blue-700 mt-1">Updated source</p>
+                          ) : null}
                           {warning ? (
                             <p className="text-xs text-amber-700 mt-1">{warning}</p>
                           ) : null}

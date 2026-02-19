@@ -8,8 +8,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowDownAZ, ArrowUpAZ } from "lucide-react";
-import { PositionType } from "@/types/station";
+import { ArrowDownAZ, ArrowUpAZ, Building2, Plane, Shield } from "lucide-react";
+import { ComponentType, FacilityType, PositionType } from "@/types/station";
 
 interface DirectoryFiltersProps {
   selectedSector: string;
@@ -25,11 +25,17 @@ interface DirectoryFiltersProps {
   states: string[];
   selectedPositions: PositionType[];
   setSelectedPositions: (positions: PositionType[]) => void;
+  selectedComponents: ComponentType[];
+  setSelectedComponents: (components: ComponentType[]) => void;
+  selectedFacilityType: string;
+  setSelectedFacilityType: (facility: string) => void;
+  facilityTypes: string[];
   incentiveOnly: boolean;
   setIncentiveOnly: (value: boolean) => void;
 }
 
 const POSITION_OPTIONS: PositionType[] = ["CBPO", "BPA", "AMO"];
+const COMPONENT_OPTIONS: ComponentType[] = ["USBP", "OFO", "AMO"];
 
 export function DirectoryFilters({
   selectedSector,
@@ -45,6 +51,11 @@ export function DirectoryFilters({
   states,
   selectedPositions,
   setSelectedPositions,
+  selectedComponents,
+  setSelectedComponents,
+  selectedFacilityType,
+  setSelectedFacilityType,
+  facilityTypes,
   incentiveOnly,
   setIncentiveOnly,
 }: DirectoryFiltersProps) {
@@ -57,8 +68,47 @@ export function DirectoryFilters({
     setSelectedPositions([...selectedPositions, position]);
   };
 
+  const toggleComponent = (component: ComponentType) => {
+    if (selectedComponents.includes(component)) {
+      setSelectedComponents(selectedComponents.filter((value) => value !== component));
+      return;
+    }
+
+    setSelectedComponents([...selectedComponents, component]);
+  };
+
+  const iconByComponent = {
+    USBP: Shield,
+    OFO: Building2,
+    AMO: Plane,
+  };
+
   return (
-    <div className="flex flex-wrap gap-4 mb-6">
+    <div className="space-y-4">
+      <div className="rounded-md border p-3">
+        <p className="mb-2 text-sm font-medium">CBP Component</p>
+        <div className="flex flex-wrap gap-2">
+          {COMPONENT_OPTIONS.map((component) => {
+            const Icon = iconByComponent[component];
+            return (
+              <Button
+                key={component}
+                size="sm"
+                type="button"
+                variant={selectedComponents.includes(component) ? "default" : "outline"}
+                onClick={() => toggleComponent(component)}
+                aria-pressed={selectedComponents.includes(component)}
+                className="gap-1"
+              >
+                <Icon className="h-3.5 w-3.5" />
+                {component}
+              </Button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-3">
       <Select value={selectedSector} onValueChange={setSelectedSector}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select sector" />
@@ -98,6 +148,19 @@ export function DirectoryFilters({
         </SelectContent>
       </Select>
 
+        <Select value={selectedFacilityType} onValueChange={setSelectedFacilityType}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Select facility type" />
+          </SelectTrigger>
+          <SelectContent>
+            {facilityTypes.map((facility) => (
+              <SelectItem key={facility} value={facility}>
+                {facility}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
       <Button
         variant="outline"
         onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
@@ -116,13 +179,14 @@ export function DirectoryFilters({
         )}
       </Button>
 
-      <div className="flex items-center gap-3 rounded-md border px-3 py-2">
-        <span className="text-sm">Incentive Eligible Only</span>
+        <div className="flex items-center gap-3 rounded-md border px-3 py-2">
+          <span className="text-sm">Incentive Eligible Only</span>
         <Switch
           checked={incentiveOnly}
           onCheckedChange={setIncentiveOnly}
           aria-label="Toggle incentive eligible stations only"
         />
+        </div>
       </div>
 
       <div className="flex items-center gap-2 rounded-md border px-2 py-1">

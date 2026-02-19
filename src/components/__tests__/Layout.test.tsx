@@ -12,7 +12,7 @@ describe('Layout Component', () => {
     renderWithRouter(<Layout />)
     
     // Check for subtitle
-    expect(screen.getByText('Explore and compare duty station locations')).toBeInTheDocument()
+    expect(screen.getByText('Explore and compare CBP duty locations')).toBeInTheDocument()
     
     // Check for Open Source link
     expect(screen.getByText('Open Source')).toBeInTheDocument()
@@ -50,7 +50,7 @@ describe('Layout Component', () => {
     renderWithRouter(<Layout />)
     
     // Find the footer title specifically by looking for the subtitle first, then finding the title in the same container
-    const subtitle = screen.getByText('Explore and compare duty station locations')
+    const subtitle = screen.getByText('Explore and compare CBP duty locations')
     const footerContainer = subtitle.closest('a')
     const footerTitle = footerContainer?.querySelector('span.font-bold')
     

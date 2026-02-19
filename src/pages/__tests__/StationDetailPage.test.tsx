@@ -21,6 +21,11 @@ vi.mock("@/lib/data/queryHooks", () => ({
       lng: -98,
       region: "Southwest",
       description: "A test station.",
+      componentType: "USBP",
+      facilityType: "Station",
+      sourceType: "Station",
+      sourceParent: "Test Sector",
+      sourceUrl: null,
       positionTypes: ["BPA"],
       attributes: {
         incentiveEligible: true,
@@ -28,13 +33,13 @@ vi.mock("@/lib/data/queryHooks", () => ({
         disclaimerApplies: true,
       },
       links: {
-        realEstate: { category: "realEstate", url: "https://example.com/realestate", isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
-        schools: { category: "schools", url: "https://example.com/schools", isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
-        crime: { category: "crime", url: "https://example.com/crime", isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
-        costOfLiving: { category: "costOfLiving", url: "https://example.com/cost", isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
-        weather: { category: "weather", url: "https://example.com/weather", isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
-        transit: { category: "transit", url: "https://example.com/transit", isValid: false, lastCheckedAt: null, statusCode: 404, resolvedUrl: null },
-        movingTips: { category: "movingTips", url: "https://example.com/moving", isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
+        realEstate: { category: "realEstate", url: "https://example.com/realestate", originalUrl: "https://example.com/realestate", isRemediated: false, remediationReason: null, remediatedAt: null, isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
+        schools: { category: "schools", url: "https://example.com/schools", originalUrl: "https://example.com/schools", isRemediated: false, remediationReason: null, remediatedAt: null, isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
+        crime: { category: "crime", url: "https://example.com/crime", originalUrl: "https://example.com/crime", isRemediated: false, remediationReason: null, remediatedAt: null, isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
+        costOfLiving: { category: "costOfLiving", url: "https://example.com/cost", originalUrl: "https://example.com/cost", isRemediated: false, remediationReason: null, remediatedAt: null, isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
+        weather: { category: "weather", url: "https://example.com/weather", originalUrl: "https://example.com/weather", isRemediated: false, remediationReason: null, remediatedAt: null, isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
+        transit: { category: "transit", url: "https://example.com/transit", originalUrl: "https://example.com/transit", isRemediated: true, remediationReason: "Updated source", remediatedAt: "2026-02-12T00:00:00.000Z", isValid: false, lastCheckedAt: null, statusCode: 404, resolvedUrl: null },
+        movingTips: { category: "movingTips", url: "https://example.com/moving", originalUrl: "https://example.com/moving", isRemediated: false, remediationReason: null, remediatedAt: null, isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
       },
       recreation: [
         {
@@ -72,10 +77,11 @@ describe("StationDetailPage", () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText("CBP is not responsible for any relocation costs, travel expenses, or associated personal expenses.")).toBeInTheDocument();
+    expect(screen.getByText("Legal and Disclaimer Notice")).toBeInTheDocument();
     expect(screen.getByText("Pre-Academy Travel Resources")).toBeInTheDocument();
     expect(screen.getByText("Expedia")).toBeInTheDocument();
     expect(screen.getByText("Link may be unavailable")).toBeInTheDocument();
+    expect(screen.getByText("Updated source")).toBeInTheDocument();
     expect(screen.getByText("Recreation Highlights")).toBeInTheDocument();
   });
 });

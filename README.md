@@ -8,9 +8,9 @@
 
 ## Overview
 
-**Duty Station Relocation** is a public, open-source web application that helps U.S. Customs and Border Protection (CBP) job applicants explore potential duty station assignments across the country. It provides a streamlined, responsive interface for browsing, searching, and comparing Border Patrol Duty Stations — helping applicants make better-informed relocation decisions.
+**Duty Station Relocation** is a public, open-source web application that helps U.S. Customs and Border Protection (CBP) job applicants explore potential CBP duty location assignments across the country. It provides a streamlined, responsive interface for browsing, searching, mapping, and comparing assignments across USBP, OFO (ports and field offices), and AMO.
 
-Users can access external resources for housing, schools, crime rates, cost of living, weather, and other key relocation factors—right from each station detail page. No login is required and no personal user profiles are collected.
+Users can access external resources for housing, schools, crime rates, cost of living, weather, and other key relocation factors directly from each location detail page. No login is required and no personal user profiles are collected.
 
 **Live site**: [https://dutystation.us](https://dutystation.us)
 
@@ -73,7 +73,13 @@ npm install
 npm run dev
 ```
 
-The application will be available at `http://localhost:8080`.
+The application will be available at `http://localhost:5173`.
+
+If you need a fixed localhost/port for testing:
+```sh
+npm run dev:secure
+```
+This starts on `http://localhost:8080`.
 
 ## Environment Variables
 
@@ -108,9 +114,24 @@ SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... npm run data:seed:supabase
 npm run data:audit:links -- --out docs/progress/link-audit-latest.json
 ```
 
+- Dry-run automated link remediation plan:
+```sh
+SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... npm run data:remediate:links
+```
+
+- Apply link remediations to Supabase:
+```sh
+SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... npm run data:remediate:links:apply
+```
+
 - Run link audit and sync status to Supabase:
 ```sh
 SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... npm run data:audit:links:sync
+```
+
+- Validate link quality gate from latest report:
+```sh
+npm run data:validate:link-audit -- --report docs/progress/link-audit-latest.json --maxUnknownRate 0.35
 ```
 
 - Generate enriched stations from CBP CSV:
@@ -139,7 +160,7 @@ GitHub Actions workflows:
 - `Security`: dependency audit and dependency review
 - `CD`: deploy static build to GitHub Pages
 - `DB Migrations`: push `supabase/migrations` to linked Supabase project
-- `Data Maintenance`: scheduled link audit sync + CSV enrichment sync
+- `Data Maintenance`: scheduled link remediation + audit quality gate + CSV enrichment sync
 
 Required repository secrets for full automation:
 - `VITE_SUPABASE_URL`

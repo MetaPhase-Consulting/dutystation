@@ -29,7 +29,7 @@ export function NavBar() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 hidden md:flex">
           <Link to="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold sm:inline-block text-[#1F631A]">Duty Station Relocation</span>
+            <span className="font-bold sm:inline-block text-[#1F631A]">CBP Duty Location Explorer</span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium" aria-label="Primary">
             <Link to="/directory" className="transition-colors hover:text-[#1F631A] text-gray-600 flex items-center gap-1">
@@ -53,10 +53,10 @@ export function NavBar() {
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="pr-0">
-            <Link to="/" className="flex items-center mb-8 mt-4">
-              <span className="font-bold text-[#1F631A] text-base">Duty Station</span>
-            </Link>
+        <SheetContent side="left" className="pr-0">
+          <Link to="/" className="flex items-center mb-8 mt-4">
+            <span className="font-bold text-[#1F631A] text-base">CBP Explorer</span>
+          </Link>
             <nav className="flex flex-col gap-4" aria-label="Mobile Primary">
               <Link to="/directory" className="flex items-center gap-2 text-foreground hover:text-[#1F631A] transition-colors">
                 <Map className="h-5 w-5" />
@@ -75,7 +75,7 @@ export function NavBar() {
         </Sheet>
 
         <Link to="/" className="md:hidden mr-2 flex items-center">
-          <span className="font-bold text-sm text-[#1F631A]">Duty Station</span>
+          <span className="font-bold text-sm text-[#1F631A]">CBP Explorer</span>
         </Link>
 
         <div className="flex flex-1 items-center justify-end">
@@ -83,18 +83,18 @@ export function NavBar() {
             <div className="relative flex-1">
               <Input
                 type="search"
-                placeholder="Search Duty Stations..."
+                placeholder="Search CBP Duty Locations..."
                 className="w-full"
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
-                aria-label="Search duty stations"
+                aria-label="Search CBP duty locations"
               />
               {searchQuery ? (
                 <div className="absolute top-full left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-md border bg-popover shadow-md">
                   {filteredStations.length === 0 ? (
                     <div className="py-6 text-center text-sm">No results found.</div>
                   ) : (
-                    <div className="p-1" role="listbox" aria-label="Duty station suggestions">
+                    <div className="p-1" role="listbox" aria-label="CBP duty location suggestions">
                       {filteredStations.map((station) => (
                         <button
                           key={station.id}

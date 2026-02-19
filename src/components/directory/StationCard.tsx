@@ -45,6 +45,8 @@ export function StationCard({ station }: StationCardProps) {
         <p>{station.description}</p>
         <div className="mt-2 text-xs font-medium">Region: {station.region}</div>
         <div className="mt-2 flex flex-wrap gap-2">
+          <Badge variant="outline">{station.componentType}</Badge>
+          <Badge variant="outline">{station.facilityType}</Badge>
           {station.positionTypes.map((positionType) => (
             <Badge key={positionType} variant="secondary">
               {positionType}

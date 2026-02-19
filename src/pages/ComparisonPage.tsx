@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   ArrowLeftRight,
+  Building2,
   Car,
   CloudSun,
   DollarSign,
@@ -9,17 +10,19 @@ import {
   Home,
   MapPin,
   Package,
+  Plane,
   Shield,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PositionType, StationLinkCategory } from "@/types/station";
+import { ComponentType, PositionType, StationLinkCategory } from "@/types/station";
 import { useStationsQuery } from "@/lib/data/queryHooks";
 import { hasPositionType } from "@/lib/data/stationFilters";
 
 const POSITION_OPTIONS: PositionType[] = ["CBPO", "BPA", "AMO"];
+const COMPONENT_OPTIONS: ComponentType[] = ["USBP", "OFO", "AMO"];
 
 const resourceCategories: {
   key: StationLinkCategory;
@@ -40,6 +43,7 @@ export default function ComparisonPage() {
   const [station1Id, setStation1Id] = useState<string | null>(null);
   const [station2Id, setStation2Id] = useState<string | null>(null);
   const [selectedPositions, setSelectedPositions] = useState<PositionType[]>([]);
+  const [selectedComponents, setSelectedComponents] = useState<ComponentType[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
   const { data: stations = [], isLoading } = useStationsQuery();
@@ -61,8 +65,9 @@ export default function ComparisonPage() {
   const filteredStations = useMemo(() => {
     return [...stations]
       .filter((station) => hasPositionType(station, selectedPositions))
+      .filter((station) => !selectedComponents.length || selectedComponents.includes(station.componentType))
       .sort((first, second) => first.name.localeCompare(second.name));
-  }, [selectedPositions, stations]);
+  }, [selectedComponents, selectedPositions, stations]);
 
   const station1 = useMemo(
     () => filteredStations.find((station) => station.id === station1Id) ?? null,
@@ -95,12 +100,48 @@ export default function ComparisonPage() {
     setSelectedPositions([...selectedPositions, position]);
   };
 
+  const toggleComponent = (component: ComponentType) => {
+    if (selectedComponents.includes(component)) {
+      setSelectedComponents(selectedComponents.filter((value) => value !== component));
+      return;
+    }
+
+    setSelectedComponents([...selectedComponents, component]);
+  };
+
+  const iconByComponent = {
+    USBP: Shield,
+    OFO: Building2,
+    AMO: Plane,
+  };
+
   return (
     <div className="container px-4 py-8 mx-auto">
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Compare Duty Stations</h1>
-          <p className="text-muted-foreground">Select two duty stations to compare side by side.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Compare CBP Duty Locations</h1>
+          <p className="text-muted-foreground">Select two CBP duty locations to compare side by side.</p>
+        </div>
+
+        <div className="rounded-md border p-3">
+          <p className="text-sm font-medium mb-2">Component Filter</p>
+          <div className="flex flex-wrap gap-2">
+            {COMPONENT_OPTIONS.map((component) => {
+              const Icon = iconByComponent[component];
+              return (
+                <Button
+                  key={component}
+                  size="sm"
+                  variant={selectedComponents.includes(component) ? "default" : "outline"}
+                  onClick={() => toggleComponent(component)}
+                  aria-pressed={selectedComponents.includes(component)}
+                >
+                  <Icon className="mr-1 h-3.5 w-3.5" />
+                  {component}
+                </Button>
+              );
+            })}
+          </div>
         </div>
 
         <div className="rounded-md border p-3">
@@ -177,6 +218,8 @@ export default function ComparisonPage() {
                       </div>
                       <div className="text-sm mb-2">Region: {station.region}</div>
                       <div className="mb-3 flex flex-wrap gap-2">
+                        <Badge variant="outline">{station.componentType}</Badge>
+                        <Badge variant="outline">{station.facilityType}</Badge>
                         {station.positionTypes.map((positionType) => (
                           <Badge key={`${station.id}-${positionType}`} variant="secondary">
                             {positionType}
@@ -217,6 +260,9 @@ export default function ComparisonPage() {
                                   {category.name}: {station.name}
                                 </h4>
                                 <p className="text-xs text-muted-foreground">{category.description}</p>
+                                {link.isRemediated ? (
+                                  <p className="text-xs text-blue-700 mt-1">Updated source</p>
+                                ) : null}
                                 {warning ? <p className="text-xs text-amber-700 mt-1">{warning}</p> : null}
                               </div>
                             </a>
@@ -238,6 +284,11 @@ export default function ComparisonPage() {
                 {selectedPositions.length ? (
                   <p className="text-sm text-muted-foreground">
                     Position filter active: {selectedPositions.join(", ")}.
+                  </p>
+                ) : null}
+                {selectedComponents.length ? (
+                  <p className="text-sm text-muted-foreground">
+                    Component filter active: {selectedComponents.join(", ")}.
                   </p>
                 ) : null}
               </div>

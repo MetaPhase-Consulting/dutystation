@@ -32,7 +32,7 @@ describe('App Component', () => {
     expect(await screen.findByRole('main')).toBeInTheDocument()
     
     // Check for footer subtitle instead of title to avoid duplicates
-    expect(screen.getByText('Explore and compare duty station locations')).toBeInTheDocument()
+    expect(screen.getByText('Explore and compare CBP duty locations')).toBeInTheDocument()
   })
 
   it('should have proper routing setup', async () => {

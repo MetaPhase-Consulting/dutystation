@@ -51,15 +51,15 @@ export default function HomePage() {
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-[#1F631A]/10 px-3 py-1 text-[#1F631A]">
-                Border Duty Station Relocation
+                CBP Duty Location Explorer
               </div>
               <h1 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl md:text-5xl lg:text-6xl/none flex items-center justify-center gap-4">
                 <img src="/greencompassicon.png" alt="Compass" className="w-12 h-12 md:w-16 md:h-16 animate-pulse" />
-                Find Your Next Duty Station
+                Explore Your Next CBP Assignment
               </h1>
               <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl">
-                Explore and compare border duty station locations before you relocate. Make informed decisions about your
-                next career move with trusted resources.
+                Explore and compare CBP duty locations across USBP, OFO ports and field offices, and AMO operations before
+                you relocate. Make informed assignment decisions with trusted resources.
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2">
@@ -70,18 +70,18 @@ export default function HomePage() {
                       <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-600" />
                       <Input
                         type="search"
-                        placeholder="Search Duty Stations..."
+                        placeholder="Search CBP Duty Locations..."
                         value={searchQuery}
                         onChange={(event) => setSearchQuery(event.target.value)}
                         className="pl-9 w-full"
-                        aria-label="Search duty stations"
+                        aria-label="Search CBP duty locations"
                       />
                       {searchQuery ? (
                         <div className="absolute top-full left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-md border bg-popover shadow-md">
                           {filteredStations.length === 0 ? (
                             <div className="py-6 text-center text-sm">No results found.</div>
                           ) : (
-                            <div className="p-1" role="listbox" aria-label="Duty station suggestions">
+                            <div className="p-1" role="listbox" aria-label="CBP duty location suggestions">
                               {filteredStations.map((station) => (
                                 <button
                                   key={station.id}
@@ -121,10 +121,10 @@ export default function HomePage() {
             <div className="flex flex-col justify-center">
               <div className="space-y-4">
                 <h2 className="text-3xl font-bold tracking-tighter text-[#1F631A] sm:text-4xl">
-                  Making a Difference at America's Frontline
+                  Mission-Ready Location Planning for CBP
                 </h2>
                 <p className="text-muted-foreground md:text-lg">
-                  Join over 60,000 dedicated professionals protecting our nation's borders.
+                  Evaluate assignment options across CBP components with a map-first workflow and validated resources.
                 </p>
               </div>
             </div>
@@ -134,8 +134,8 @@ export default function HomePage() {
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Directory</h3>
                     <p className="text-muted-foreground mb-4">
-                      Browse duty stations with interactive list and map views. Search, sort, filter, and review
-                      incentive-eligible assignments.
+                      Browse CBP duty locations with a map-first experience. Search, sort, and filter by component,
+                      position type, and incentive eligibility.
                     </p>
                   </div>
                   <Button onClick={() => navigate("/directory")} className="self-start">
@@ -146,7 +146,7 @@ export default function HomePage() {
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Compare</h3>
                     <p className="text-muted-foreground mb-4">
-                      Side-by-side comparison tool to evaluate multiple duty stations and relocation resources.
+                      Side-by-side comparison tool to evaluate multiple CBP duty locations and relocation resources.
                     </p>
                   </div>
                   <Button onClick={() => navigate("/compare")} className="self-start">
@@ -168,7 +168,7 @@ export default function HomePage() {
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Applicant Resources</h3>
                     <p className="text-muted-foreground mb-4">
-                      Discover resources for Border Patrol applicants through Honor First and other helpful links.
+                      Discover CBP applicant resources and third-party references for relocation planning.
                     </p>
                   </div>
                   <Button
