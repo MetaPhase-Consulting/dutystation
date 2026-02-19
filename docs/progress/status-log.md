@@ -69,3 +69,57 @@
 - Run manual browser/device verification matrix and record results in compliance docs.
 - Refine external-link generation rules for station-level accuracy where providers support deep links.
 - Add nearby-community (100-mile) data model and ingestion path for future phase alignment.
+
+## 2026-02-19
+### Completed
+- Implemented CBP-wide classification and UI support:
+  - Added component/facility model support (USBP/OFO/AMO and Station/Port/Field Office taxonomy) in DB and app types.
+  - Added primary component toggles in directory and compare flows.
+  - Added component and facility badges on cards/detail/compare.
+- Switched directory UX to map-first:
+  - Default view is map.
+  - Increased map prominence and added map legend + incentive ring styling.
+  - Preserved keyboard-accessible location list for non-pointer workflows.
+- Finalized legal/disclaimer architecture:
+  - Added centralized legal copy source (`src/content/legal.ts`).
+  - Rendered legal block on station detail and data-sources pages only.
+- Added link remediation workflow and policy enforcement:
+  - Added remediation metadata fields on `station_links`.
+  - Added automated remediation script (`scripts/data/remediate-links.mjs`).
+  - Added audit validation script (`scripts/data/validate-link-audit.mjs`) for fallback-category hard-fail thresholding.
+  - Updated scheduled GitHub workflow to run remediation -> audit -> policy validation -> enrichment.
+- Modernized CBP-wide language and resource reliability defaults:
+  - Updated home/nav/search copy to “CBP duty locations”.
+  - Updated data-sources references to stable fallback providers (USA.gov moving, weather.gov, NCES, City-Data, Google Maps transit).
+- Expanded automated test coverage:
+  - Added integration tests for map-first directory rendering and component filtering.
+  - Added legal rendering test for data-sources page.
+  - Updated app/home/layout tests for revised CBP-wide copy.
+
+### Current Quality Baseline
+- `npm run test:run` passes (43 tests).
+- `npm run typecheck` passes.
+- `npm run build` passes.
+- `npm run lint` passes with warnings only (no errors).
+- Link remediation + audit status (`docs/progress/link-remediation-latest.json`, `docs/progress/link-audit-latest.json`):
+  - 851 remediations applied
+  - 4,165 links checked
+  - 1,824 unique URLs
+  - 3,525 valid, 0 invalid, 640 unknown
+  - 0 unresolved hard failures in fallback categories (`data:validate:link-audit`)
+
+### Remote Data Verification (`xpaoufzwerburtieotxg`)
+- stations: 595
+- station_links: 4,165
+- component distribution: OFO 266, USBP 232, AMO 97
+- facility distribution includes OFO field offices and ports:
+  - Port of Entry: 339
+  - Field Office: 20
+  - Station: 103
+  - Sector: 4
+  - Other: 129
+
+### Remaining Gaps
+- Full manual browser/device matrix evidence still pending in compliance checklist.
+- Formal external legal counsel review of disclaimer text is still pending.
+- Accessibility hardening for all page-level interaction paths requires additional manual verification.
