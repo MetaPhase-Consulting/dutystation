@@ -29,7 +29,7 @@ jobs:
 
       - name: Checkout
         if: steps.validate.outputs.ready == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
         if: steps.validate.outputs.ready == 'true'
@@ -82,7 +82,7 @@ jobs:
 
       - name: Checkout
         if: steps.validate.outputs.ready == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
         if: steps.validate.outputs.ready == 'true'
@@ -139,7 +139,7 @@ jobs:
 
       - name: Checkout
         if: steps.validate.outputs.ready == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
         if: steps.validate.outputs.ready == 'true'
