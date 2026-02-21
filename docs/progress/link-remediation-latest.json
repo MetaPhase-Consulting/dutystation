@@ -1,346 +1,3858 @@
 {
-  "generatedAt": "2026-02-20T06:47:01.879Z",
+  "generatedAt": "2026-02-21T06:45:29.867Z",
   "applied": true,
   "totalLinks": 4165,
-  "hardFailCandidates": 171,
-  "remediationsPlanned": 42,
-  "remediationsApplied": 42,
+  "hardFailCandidates": 610,
+  "remediationsPlanned": 481,
+  "remediationsApplied": 481,
   "updates": [
     {
-      "stationId": "be6b79be-ab29-4340-a9a2-349f0b3c7247",
-      "stationName": "Mobile Station",
-      "category": "transit",
-      "fromUrl": "https://www.thewave.org/",
-      "toUrl": "https://www.google.com/maps/search/public+transit+Mobile%2C%20AL",
-      "reason": "Replaced broken transit links with location-based transit search."
+      "stationId": "e87db340-ff1a-45e0-9c74-735cf1bc1422",
+      "stationName": "Brunswick, Georgia - 1701",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Brunswick_GA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "200b31fa-d583-4d6b-bea8-54c0dd5628ad",
-      "stationName": "Marfa Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/3153/Average-Weather-in-Marfa-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "518a8afc-5180-4237-a75d-339fee8a2c37",
+      "stationName": "Charlotte, North Carolina - 1512",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Charlotte_NC",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "062ef917-3e79-4cd3-a422-15eb74c4b530",
-      "stationName": "Fort Stockton Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/3942/Average-Weather-in-Fort-Stockton-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "cec925bc-1b01-498e-bea4-3c8cf44245d1",
+      "stationName": "Beecher Falls, Vermont - 0206",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Beecher-Falls_VT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "3dcec73e-33be-4d23-ba03-ca9c4ee0ad75",
-      "stationName": "Indio Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/1012/Average-Weather-in-Indio-California-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "1f23493d-a00c-4237-973a-39a8e3117fc6",
+      "stationName": "San Francisco",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Francisco_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "31d125f2-743f-44dd-93a6-6083e9c3dde1",
-      "stationName": "Calexico Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/1004/Average-Weather-in-Calexico-California-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "c8030991-8df7-4c1a-8d27-aa7df477a500",
+      "stationName": "Havre Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Havre_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "0ff13f15-4927-4c71-916e-44164dd54aa9",
-      "stationName": "Del Rio Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/5308/Average-Weather-in-Del-Rio-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "4d8def0f-f78f-47e5-b11d-2d810a47d0f3",
+      "stationName": "Houlton Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Houlton_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "1b546c6c-5202-4849-97ba-d48b2f1ef043",
-      "stationName": "Scobey Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Scobey-MT-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "814d21ab-6ce1-4e72-8423-b5f8a9823bf9",
+      "stationName": "Marathon Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fat-Deer-KeyMarathon_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "39d5a943-af52-4a71-a463-8169c199ee2e",
-      "stationName": "Sweetgrass Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Sweetgrass-MT-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "c4bb8634-e9a7-4e80-87e7-8ceb7c3fd9d9",
+      "stationName": "Blythe Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Blythe_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "33b112d9-de40-4abb-ad26-384baf8068f9",
-      "stationName": "Donna M. Doss Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/16803/Average-Weather-in-Rocksprings-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "ab81caa5-11ba-4337-8377-1e56cc0c503f",
+      "stationName": "Duluth, MN and Superior, WI, Minnesota - 3510",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Duluth_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "35cf2f24-8655-474b-97c1-67aa7873adc4",
-      "stationName": "Uvalde Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Uvalde-TX-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "b0815511-f138-4667-8775-34821ba7c506",
+      "stationName": "Saipan, Northern Mariana Islands - 3211",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Dandan_MP",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "d2e511a3-1a80-4d51-a0a3-d9028bf8276a",
-      "stationName": "Fort Brown Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/16801/Average-Weather-in-Brownsville-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "f453c510-423b-429a-ab6d-582138c3f50d",
+      "stationName": "Plentywood Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Plentywood_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "fdce6d10-b5b2-448c-9f03-f27f16e29b9e",
-      "stationName": "Comstock Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/26533/Average-Weather-in-Comstock-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "beb2f5b2-8867-4eb8-9186-9b1e34f38518",
+      "stationName": "Jacksonville Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Jacksonville_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "23e65df3-e9e3-4eda-bf27-9f04775febfd",
-      "stationName": "Sierra Blanca Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/3105/Average-Weather-in-Sierra-Blanca-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "a222faf3-b903-4bec-8af7-ffb700693ba5",
-      "stationName": "Tucson Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/2857/Average-Weather-in-Tucson-Arizona-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "dc55b58c-af39-4f8b-8525-4f88257a99d1",
-      "stationName": "International Falls Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-International+Falls-MN-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "05b77521-24ca-44e1-afe6-fca9da99467a",
-      "stationName": "Sault Sainte Marie Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Sault+Sainte+Marie-MI-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "ba017ea5-b1bb-4b11-9e5f-a273767e90ea",
-      "stationName": "El Centro Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Aten+RoadImperial-CA-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "825288a8-e317-4366-a1bf-006c566a32ac",
-      "stationName": "Laredo West Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Laredo+West-TX-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "e93fb86b-59ca-4ffa-854c-d6d9b0b8562d",
-      "stationName": "Van Buren Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Van+Buren-ME-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "4ced77dd-1ba1-476b-899a-0ef16f0f6d96",
-      "stationName": "Duluth Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/14829/Average-Weather-in-Duluth-Minnesota-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "ec767f43-f6c0-4d73-b921-14a530b7f56a",
-      "stationName": "Hebbronville Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/16793/Average-Weather-in-Hebbronville-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "fc02fde5-fd31-48e6-8998-b1cde9790468",
-      "stationName": "Tampa Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Tampa-FL-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "77e31bc1-cafa-41d2-9e8b-09baaa998227",
-      "stationName": "St. Mary Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/16489/Average-Weather-in-Saint-Mary-Montana-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "101cafec-15a0-4d24-bcfd-0df3e7eb27ce",
-      "stationName": "Wellton Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/2291/Average-Weather-in-Wellton-Arizona-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "e21c7b60-ffff-40b8-a569-cba0b8d9c439",
-      "stationName": "Oswego Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/22136/Average-Weather-in-Oswego-New-York-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "aaac2d1e-d98b-43e0-8074-530e0dcf4eab",
-      "stationName": "Harlingen Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/16800/Average-Weather-in-Harlingen-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "3e888258-9b45-402b-9f17-7c53ad3ce154",
-      "stationName": "Freer Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/16795/Average-Weather-in-Freer-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "4be50a66-f561-4722-956b-5d20ef74b970",
-      "stationName": "Cotulla South Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/16794/Average-Weather-in-Cotulla-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "6489e8a7-9074-4c69-8690-4f030dd152d0",
-      "stationName": "Weslaco Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/16802/Average-Weather-in-Weslaco-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
-    },
-    {
-      "stationId": "6e721347-7874-463f-a797-eed8265aa37e",
+      "stationId": "78261361-f556-4b57-8f1b-18da9f445391",
       "stationName": "Dania Beach Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Dania+Beach-FL-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Dania-Beach_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "8f708819-7be0-4d4b-8714-4de71b641391",
-      "stationName": "Lake Charles Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Lake+Charles-LA-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "9d852430-3f52-4daf-9d5f-6cc7e398d422",
+      "stationName": "St. Louis, Missouri - 4503",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/St-Louis_MO",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "0b23cdb9-0869-4b79-8935-787ff17a0b6c",
-      "stationName": "Sanderson Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/4933/Average-Weather-in-Sanderson-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "08fd6ac2-5e85-433b-aa8c-e353c804356d",
+      "stationName": "DuPage Airport, West Chicago, Illinois - 3984",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Chicago_IL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "84899cb8-1d5d-4275-9669-309ca44edfe3",
-      "stationName": "San Angelo Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-San+Angelo-TX-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "739f461a-5081-4bc0-8433-4cfd7f87ab58",
+      "stationName": "Massena, New York - 0704",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Rooseveltown_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "d0eb82b8-0c04-4339-9247-d976026c8547",
-      "stationName": "Abilene Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Abilene-TX-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "c3c18812-d41c-4343-888b-1562f0811988",
+      "stationName": "Tulsa, Oklahoma - 5505",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Tulsa_OK",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "38601088-4023-4ca7-b03f-b041d50b84b1",
+      "stationId": "6420efca-6987-430d-bb1e-c75ad50a08a8",
+      "stationName": "Morgan City, Louisiana - 2001",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Houma_LA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d8b48230-a677-49b7-9536-39b803c46a65",
+      "stationName": "Boston",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Boston_MA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "b9e6ea85-d4e0-4d87-8308-5f2fa1eaa926",
+      "stationName": "Bridgewater, Maine - 0127",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Bridgewater_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "76fd2032-11cb-478a-aab2-1f19e2617bb2",
+      "stationName": "Houlton, Maine - 0106",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Houlton_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "a8bef43c-011a-4226-9cdd-c395269f38a4",
+      "stationName": "Waterbury Oxford Airport - 0482",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Oxford_CT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "431a5d1e-ad65-42da-9c32-7fd9d6d75c47",
+      "stationName": "Port of Manitowoc, Manitowoc, Wisconsin - 3706",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Green-Bay_WI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "63ad9a9b-9467-44e3-bd4b-fb84edbb3b0c",
+      "stationName": "Morristown Airport, New Jersey - 4681",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Morristown_NJ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "334aaab2-dfd2-48bf-a2e0-3efe47a707db",
+      "stationName": "Wichita, Kansas - 4504",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Wichita_KS",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "44b42f26-e4ae-448a-af0d-cf8fb2b25041",
+      "stationName": "Andrade - Class A, California - 2502",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Winterhaven_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e95d1ece-9fca-4546-9c59-d9077a219788",
+      "stationName": "Helena Regional Airport, Montana - 3348",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Helena_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "70fa74a2-4944-4e4d-80f7-f96bb844c038",
+      "stationName": "Manchester (User Fee Airport), New Hampshire - 0182",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Manchester_NH",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "2ce734bd-d2c3-462d-870a-a4d6e83774fa",
+      "stationName": "Buffalo",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Buffalo_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "59ff1a51-829c-4626-ab66-3f1ae01af29b",
+      "stationName": "Hilo, Hawaii - 3202",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Hilo_HI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3a947d7b-377a-4e62-881d-f2f86bc332d6",
+      "stationName": "Great Falls International Airport, Montana - 3304",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Great-Falls_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "b7f7fac4-65fc-4674-be09-d05f2e60d0bc",
+      "stationName": "Buffalo, New York - 0901",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Buffalo_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c061415d-a6fc-45a4-8f38-e398c672efa1",
+      "stationName": "El Paso",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/El-Paso_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "167deddc-aa8b-4842-9b74-1c5da4ef3dbe",
+      "stationName": "Midland, Texas - 5582",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Midland_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "bada382a-b0fc-4123-bfcb-d68b1f47ae85",
+      "stationName": "Del Bonita, MT, Montana - 3322",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Cut-Bank_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "83739bba-2004-4be0-8321-ac8f83e0a8a3",
+      "stationName": "Trout River, New York - 0715",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Constable_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3f811970-60d6-4537-9246-657cdd1387b1",
+      "stationName": "Racine, Wisconsin - 3708",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Racine_WI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "77c3ade0-5be5-4362-ad89-c5032c243147",
+      "stationName": "Las Vegas, Nevada - 2722",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Las-Vegas_NV",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f9055ac6-a99a-4094-8976-79b658531d2c",
+      "stationName": "Cotulla Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Cotulla_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c9a37e0c-599e-417c-b43d-3d4e78877576",
+      "stationName": "Presidio, Texas - 2403",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Presidio_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ebaff508-5937-4b7c-81d9-ed1c50266c9c",
+      "stationName": "Marcelino Serna, Tornillo, Texas - 2404",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Tornillo_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "6d4faebd-4c78-4c82-805f-49aea4777228",
+      "stationName": "El Paso, Texas - 2402",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/El-Paso_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "49a7bf2e-135a-40a8-bdf4-320593ec78cb",
+      "stationName": "Port Arthur-Beaumont, Texas - 2101",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Port-Arthur_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "4f49ab4a-104f-47d0-ad49-12d6dcf88029",
+      "stationName": "McKinney, Texas - 5585",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Mckinney_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "4c3a8e9b-cd18-4860-8db5-9cf1e6ad880e",
+      "stationName": "Palm Springs, California - 2781",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Palm-Springs_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "02752ed1-c69a-4865-905a-10b701f5a5ef",
+      "stationName": "Providence, Rhode Island - 0502",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Warwick_RI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ea7be4ba-a672-492f-bf2e-1a06bab3a2a3",
+      "stationName": "Ysleta, El Paso, Texas - 2401",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/El-Paso_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "8955eaa7-9f51-4b0b-8369-b8341c05f590",
+      "stationName": "Houston Seaport, Texas - 5301",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Houston_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "fa71c384-bf39-4af4-bec9-2366e1d3f16b",
+      "stationName": "Calais, Maine - 0115",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Calais_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "014e39c8-e0b8-4909-ab0a-292e4298f9ac",
+      "stationName": "Port Lavaca-Point Comfort, Texas - 5313",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Corpus-Christi_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "7e0165ff-c527-4635-8e54-67aa3b832458",
+      "stationName": "Port Huron, Michigan - 3802",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Port-Huron_MI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "b8a66301-e1c0-4892-913b-f0fae0e2afeb",
+      "stationName": "Limestone, Maine - 0118",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Limestone_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "bea2fd52-e372-4c32-96bb-09f4dc6ba8ae",
+      "stationName": "New London (New Haven), Connecticut - 0413",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Middletown_CT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "71f826bb-d2be-40ae-aa34-2bfba83c6508",
+      "stationName": "Lexington, Kentucky - 4184",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Lexington_KY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0c36fda4-709c-4d08-b0be-d4499aaa7118",
+      "stationName": "Fort Wayne, Indiana - 4183",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fort-Wayne_IN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d4159a23-23f4-418b-80b0-2a60fa155ecd",
+      "stationName": "Alexandria Bay, New York - 0708",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Alexandria-Bay_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "5b5e97c8-db3c-46dd-827c-e6741ebd490d",
+      "stationName": "Capital Region International Airport Lansing, Michigan - 3883",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Lansing_MI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "6e6c0b08-ed3f-4afc-aa29-8d38566867d4",
+      "stationName": "Ashtabula/Conneaut, Ohio - 4122",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Ashtabula_OH",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "51eb0292-4490-4339-8d87-4946d27e92bf",
+      "stationName": "Columbus, Ohio - 4103",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Groveport_OH",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0f833e74-bcd9-43f6-af90-f48ee0f5d958",
+      "stationName": "Minneapolis-St. Paul, Minnesota - 3501",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Bloomington_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0e3f8b11-d825-42cc-b9ea-fa84a1d4cdaa",
+      "stationName": "Detroit",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Detroit_MI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "065cea2c-4889-436c-b1fa-ba78d43e2cb6",
+      "stationName": "Erie, Pennsylvania - 4106",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Erie_PA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1145f2bd-e5cd-49fb-86bb-419bb4fa2180",
+      "stationName": "John F. Kennedy International Airport, New York - 4701",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Jamaica_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "2b52e723-5896-4a19-a8d6-52de19629be5",
+      "stationName": "Omaha, Nebraska - 3512",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Omaha_NE",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "eec094b7-fd6e-4cff-8853-dffa2668a07b",
+      "stationName": "Chicago Executive Airport, Wheeling, Illinois - 3983",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Wheeling_IL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "86e695bd-406a-499c-9b4c-ce2191c880cd",
+      "stationName": "Chicago, Illinois - 3901",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Rosemont_IL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3bf33b4e-5702-43a0-beff-84bd8bd4d047",
+      "stationName": "Honolulu, Hawaii - 3201",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Honolulu_HI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "174e4a9c-60ad-47e8-a297-f058def7d88e",
+      "stationName": "Roma, Texas - 2310",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Roma_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "8d4d0c82-beda-465e-ae32-a660bd030eac",
+      "stationName": "Coos Bay, Oregon - 2903",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/North-Bend_OR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "6bd736fb-3c4f-495a-b8df-bcc2f777d726",
+      "stationName": "Detroit, Michigan - 3801",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Detroit_MI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1da43cc0-5a6e-4c49-bd38-117e13943482",
+      "stationName": "Knoxville, Tennessee - 2016",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Knoxville_TN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0fc1088b-74d3-4ff4-a12a-0e51dfe63f6d",
+      "stationName": "New Orleans, Louisiana - 2002",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/New-Orleans_LA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "efa9c7ae-be70-46e1-a514-1873c78e7122",
+      "stationName": "Oklahoma City, Oklahoma - 5504",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Oklahoma-City_OK",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "849983e0-9e14-4e86-975c-a9dd727d96de",
+      "stationName": "New Haven, Connecticut - 0412",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Middletown_CT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "7c66bc82-2cb5-4a6b-a71e-64a4617ed446",
+      "stationName": "Williston Basin International Airport, Williston, ND - 3433",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Williston_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "63bd39a8-7386-4dbf-be4a-697471c15436",
+      "stationName": "Bellingham Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Bellingham_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "421b0ed2-9aa1-48e3-9a0b-c15bc25c000d",
+      "stationName": "Grand Forks Sector North Dakota",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Grand-Forks_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "6ad6f188-004a-4c50-9635-47e88d3660d8",
+      "stationName": "El Centro Sector California",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Imperial_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "11c5eef4-6cf5-4a70-a6a4-e729c8eb5357",
+      "stationName": "Eastport, Maine - 0103",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Eastport_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e1faac3d-86b7-48e6-b59d-1622227864fa",
+      "stationName": "Jackman, Maine - 0104",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sandy-Bay-Twp_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "cc6fe692-5579-4e79-be92-de51becabd26",
+      "stationName": "Portsmouth, New Hampshire - 0131",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Portsmouth_NH",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "260cd990-0b63-4a75-88c9-5df5b1a79b87",
+      "stationName": "Duluth Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Duluth_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "99a75a78-3e11-46cb-b320-b1f4bcd71e3d",
+      "stationName": "Boulevard Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Boulevard_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "cd288ead-663a-4bb9-8a35-58ef37504f93",
+      "stationName": "Albuquerque, New Mexico - 2407",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Albuquerque_NM",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "213b23f8-d1ab-46c4-aa57-d8ffa2a176d8",
+      "stationName": "Fort Fairfield, Maine - 0107",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fort-Fairfield_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "705f5474-274d-4812-8012-efb55bdd73b8",
+      "stationName": "Jonesport (Calais), Maine - 0122",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Calais_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0e05edef-6f93-4f62-9bd5-b79b866b229c",
+      "stationName": "Santa Teresa, New Mexico - 2408",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Santa-Teresa_NM",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "6d6a6891-6d22-49ee-8bf5-8a66a5e0b935",
+      "stationName": "Columbus, New Mexico - 2406",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Columbus_NM",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "8e08db5a-8534-4d41-825b-328ce3d3c4f1",
+      "stationName": "San Ysidro - Class A, California - 2504",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Ysidro_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "5b6da72d-bec0-4fb5-bb09-5fd175b4fa01",
+      "stationName": "Hebbronville Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Hebbronville_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "490824a4-2d2d-4eea-9f5e-c6c25414bce7",
+      "stationName": "Blaine, Washington - 3004",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Blaine_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0d57d9cf-4248-4d86-8ba9-ac800d740170",
+      "stationName": "El Centro Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Aten-RoadImperial_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "8d55c97e-2754-4ed2-a314-72bfa4b0c7df",
+      "stationName": "Calexico Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Calexico_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e0dff665-96c4-4386-b74f-9a6243dba418",
+      "stationName": "Laredo South Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Laredo_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "95030d7e-81ed-4d94-86b9-9900a2050389",
+      "stationName": "Newport, Oregon - 2902",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Newport_OR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "083c45e9-956a-40e2-8f25-a19e676b343b",
+      "stationName": "Zapata Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Zapata_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3f8ec5c5-7a37-4524-a053-f75b48fa79e6",
+      "stationName": "Bozeman Yellowstone User Fee Airport, Montana - 3386",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Belgrade_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "36153fba-0461-4385-b51b-afc89e98f588",
+      "stationName": "Houston",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Houston_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "76c7a8d5-9ee7-4401-9026-85a9b346f60c",
+      "stationName": "Malta Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Malta_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3acc9dbf-8413-4cac-8bb0-e3b1ad1fdd47",
+      "stationName": "Seattle",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Seattle_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "80bccad1-1f27-45b4-b6d0-4291373150cb",
+      "stationName": "Champlain Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Champlain_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e70f69c7-29c9-4bb0-a0ab-ce47fb9a2101",
+      "stationName": "St. Mary Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/St-Mary_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "fa349b76-4645-44ad-8e90-dbfbc8127d9f",
+      "stationName": "Burke Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Burke_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ceda3250-3f72-4647-89b7-2531e1f9058e",
+      "stationName": "Ogdensburg, New York - 0701",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Ogdensburg_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d81e382a-3ded-4968-8286-e37c13628017",
       "stationName": "Gulfport Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Gulfport-MS-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Gulfport_MS",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "18a27d85-bb37-4a64-aff1-fab2b7c5f593",
-      "stationName": "Port Angeles Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/479/Average-Weather-in-Port-Angeles-Washington-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "dcb51546-7978-4baa-ac91-f5ca0bd36c79",
+      "stationName": "Madawaska, Maine - 0109",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Madawaska_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "f3befa84-309c-4050-9fc6-25fa3666db83",
+      "stationId": "ee1fb376-d93d-4ce1-9160-e58c00ed3fdf",
+      "stationName": "Port of Marinette, Marinette, Wisconsin - 3702",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Green-Bay_WI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "017b7081-7e76-4e93-8634-b4ba7f06a080",
+      "stationName": "Rio Grande City Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/er-Patrol-LaneRio-Grande-City_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "bfa0fc13-7f7b-4de1-b677-7319db74a297",
+      "stationName": "Des Moines, Iowa - 3513",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Des-Moines_IA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "8b98644f-89cf-4529-b5b3-3c751b943e42",
+      "stationName": "Dayton, Ohio - 4104",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Vandalia_OH",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d5c6f94e-a1fc-4556-a2a9-0a578ceaedaa",
+      "stationName": "Sault Sainte Marie, Michigan - 3803",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sault-Sainte-Marie_MI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0d763dd2-8d4f-472c-8fc4-8fb57b8e2846",
+      "stationName": "Detroit Metropolitan Airport, Michigan - 3807",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Detroit_MI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c1c5ae62-24b4-4540-a61a-23abe8157708",
+      "stationName": "San Diego, California - 2501",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Diego_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "48467c48-3927-46b9-ba73-624cb5470704",
+      "stationName": "Weslaco Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Weslaco_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0db8bbc7-ed35-46e1-984a-2294190be2ee",
+      "stationName": "Kingsville Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Kingsville_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1a926754-ffe5-495c-aa2b-275e09bf6578",
+      "stationName": "St. Petersburg, Florida - 1814",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Clearwater_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "37ad6aa2-4219-4f41-b179-0a387f82d8c6",
+      "stationName": "Oswego Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Schuyler-StreetOswego_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "922acaf5-03a9-481d-9089-df6c9abe008a",
+      "stationName": "Tampa Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Tampa_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "b54360c3-4139-4b37-8d60-f92f2a2eddb2",
+      "stationName": "Hartford, Connecticut - 0411",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Windsor-Locks_CT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f84791d9-cecf-4130-9542-fa7bb3267564",
+      "stationName": "Newport, Rhode Island - 0501",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Warwick_RI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "8d542ef7-abcc-41a6-9fa9-ef164e2ea7b2",
+      "stationName": "Bridgeport, Connecticut - 0410",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Middletown_CT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1b6a9dea-6121-4a51-ba69-088d714de467",
+      "stationName": "Orlando Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Orlando_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c71a06aa-037b-4fec-86f1-c508337eafe8",
+      "stationName": "Richford Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Richford_VT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "5491246d-cf3f-4f84-a351-f6e233bc0459",
+      "stationName": "Chula Vista Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Chula-Vista_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "96ebcc52-b8c9-4f8d-a4d0-e2c705ee3f36",
+      "stationName": "Rochester, New York - 0903",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Rochester_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ac659d9c-1cd2-4869-a92b-4110b314366d",
+      "stationName": "Grand Marais Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Grand-Marais_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c5021341-dd05-45af-97c5-1dea04794b66",
+      "stationName": "Ramey Station",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/puerto-rico/ramey/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "a06f26f5-79b4-4473-9cc5-e877e0190893",
+      "stationName": "International Falls Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/International-Falls_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "9d972627-35ed-453c-97b5-c474f5a79787",
+      "stationName": "West Palm Beach Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Riviera-Beach_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "41fed670-aa4e-4160-ab8e-fc3cc1bba70a",
+      "stationName": "Binghamton, New York - 0981",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Johnson-City_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "947d4728-176e-497c-bfa0-8f8573ba4ad3",
+      "stationName": "South Bend International Airport, South Bend, Indiana – 3986",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/SouthBend_IN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f0235ea7-ccdb-4cf7-94bc-343223000459",
+      "stationName": "Sheboygan County Memorial Airport, Wisconsin - 3782",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sheboygan-Falls_WI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "7eddb794-e834-4b43-b23d-e503601b54b9",
+      "stationName": "San Jose International Airport, California - 2834",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Jose_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c0eea06b-aff2-4625-b5d0-3856cfa13ae4",
+      "stationName": "San Antonio Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Antonio_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "91dae2ef-33f4-414d-bf1f-f2ae04c14f67",
+      "stationName": "Indianapolis, Indiana - 4110",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Indianapolis_IN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1f4c76a4-1cec-4434-b0b3-737e0b07a537",
+      "stationName": "Appleton International Airport, Appleton, Wisconsin - 3781",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Appleton_WI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "6e042808-5071-4004-ba0b-ba8fe1af912e",
+      "stationName": "Calexico East - Class A, California - 2507",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Calexico_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "15f5e308-b7bb-4e34-8fad-f12c45cbb849",
+      "stationName": "Grand Rapids, Michigan - 3806",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Grand-Rapids_MI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3de31e82-3ea3-4bd0-b068-aa0c58dee2e1",
+      "stationName": "Valdez, Alaska - 3107",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Anchorage_AK",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ae47966b-cc0c-489f-b5dd-6da6a18c8ae3",
+      "stationName": "Saginaw/Bay City/Flint, Michigan - 3804",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Freeland_MI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "efabf768-d150-4f6d-9247-7ce7efc223e8",
+      "stationName": "Amarillo, Texas - 5502",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Amarillo_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3bbb0f42-09b1-4326-9997-63191bc87812",
+      "stationName": "San Antonio, Texas - 5507",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Antonio_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c5021341-dd05-45af-97c5-1dea04794b66",
+      "stationName": "Ramey Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Ramey_PR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "a5a69915-8d41-4309-bad7-9d820eb01548",
       "stationName": "Douglas Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/2858/Average-Weather-in-Douglas-Arizona-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Douglas_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "a90b1ed6-4ea5-4f3f-a389-dd7ca7039dbb",
-      "stationName": "Grand Forks Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/5712/Average-Weather-in-Grand-Forks-North-Dakota-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "e4f9fd96-0919-4058-93c6-8fcda8175e25",
+      "stationName": "Three Points Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Ajo-Hwy-Tucson_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "7e085b64-12a4-4437-9250-d879ef187082",
+      "stationId": "349e475d-08a2-449e-9f65-cd744864c570",
+      "stationName": "Rochester Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Rochester_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e77c390b-30a3-4bf6-b73a-0536802ee28e",
+      "stationName": "Scobey Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Scobey_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "41fab038-3e5b-4b23-80fa-996c76c7bada",
+      "stationName": "Spokane Sector Washington",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Spokane_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "990d31f0-d9d4-4ecb-9ab9-d4cc8797337b",
+      "stationName": "Owensboro, KY / Evansville, IN - 4116",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Evansville_IN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ccf32de4-0ac2-4680-a4e4-a2ddcd572af5",
+      "stationName": "Cleveland, Ohio - 4101",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Middleburg-Heights_OH",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "4717965e-5e6b-4528-b0e7-ad6ebee5e29e",
+      "stationName": "Lakeland Linder Airport, Florida - 1881",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Lakeland_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "559b4ce9-abd1-4bb5-af3c-4b514b55c110",
+      "stationName": "Miami Seaport, Florida - 5201",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Miami_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f35b0bfc-7a48-4d97-87da-0d3ea78f0ce8",
+      "stationName": "Minot - Minot International Airport, North Dakota - 3434",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Minot_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "9d69a567-97cc-42f1-ad9d-9e642c7f4333",
+      "stationName": "Melbourne Orlando International Airport (UFA), Florida - 1885",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Melbourne_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "cddd2c6f-489c-4bde-9b14-3dc7a0a4b3d9",
+      "stationName": "Tucson Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Tucson_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "47ea961a-3cb5-4354-8834-5eb5a4991a92",
+      "stationName": "Kansas City, Missouri - 4501",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Kansas-City_MO",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "5aa8efd9-fcef-4a86-a773-86a156c5dc80",
+      "stationName": "Alliance Airport, Texas - 5583",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fort-Worth_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "123846c2-d2b8-4825-a0b7-c0a8c2a38517",
+      "stationName": "Abilene Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/rial-BlvdAbilene_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "68973229-a1fb-4a81-9ef6-d412c903e9e3",
+      "stationName": "Van Buren Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Van-Buren_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f75ca222-5b18-4cce-a0bd-0b45f9628dd7",
+      "stationName": "Lancaster, Minnesota - 3430",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Lancaster_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "21bba579-6bca-4503-af97-a7cb1ac157a5",
+      "stationName": "Leesburg International Airport (UFA), Florida - 1887",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Leesburg_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "db812826-77e5-41ab-a248-f1cf5ef31f0a",
+      "stationName": "Sumas Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sumas_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "96a78c2d-9177-4d3b-a3de-1483f44c1f73",
+      "stationName": "Sandusky Bay Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sandusky-Bay_OH",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d7d8cc8d-acc8-4c29-b72a-f38a85ac250b",
+      "stationName": "Louisville, Kentucky - 4115",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Louisville_KY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c19fc0fd-5ac6-4a68-8a38-4d679d4da3c8",
+      "stationName": "Bellingham - 3005",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Bellingham_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "63bf05d3-682a-4f70-8e0c-5ae394889e0c",
+      "stationName": "Alpine Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Alpine_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0d272959-351b-4102-990e-047cdd3e4b50",
       "stationName": "Niagara Falls Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/19846/Average-Weather-in-Niagara-Falls-New-York-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Niagara-Falls_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "299e78bc-2ae4-44d8-a2ff-d25739feea77",
-      "stationName": "Brackettville Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/26532/Average-Weather-in-Brackettville-Texas-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "43e3c5c9-ac44-41b9-a369-494b298b58d7",
+      "stationName": "Marysville Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Marysville_MI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "bf0b6f11-54b7-4808-af67-5a173e12b597",
-      "stationName": "Yuma Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/2290/Average-Weather-in-Yuma-Arizona-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "stationId": "4a6f15a6-6cf6-4ac0-aef2-c560841d8437",
+      "stationName": "Fort Brown Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fort-Brown_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     },
     {
-      "stationId": "c1e61d30-95b4-49bc-9791-4bd775c2cd9b",
+      "stationId": "2b81b7a4-5374-433f-b087-397167dbbf2f",
+      "stationName": "Mobile Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Mobile_AL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "9a93071a-8e66-42f3-8a02-40cd84e3d91a",
       "stationName": "Erie Station",
-      "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/22138/Average-Weather-in-Erie-Pennsylvania-United-States-Year-Round",
-      "toUrl": "https://www.weather.gov/",
-      "reason": "Normalized weather links to a stable federal weather source."
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fairview_PA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f237e064-cbb2-4e75-913d-da7c124535f4",
+      "stationName": "Rockland (Belfast), Maine - 0121",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Bangor_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f8dfb6d8-c8ad-4497-9151-b2274bdb8493",
+      "stationName": "Gary Chicago International Airport, Gary, Indiana - 3905",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Gary_IN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d808028f-b511-406b-8e8b-7ad3bc3c5b0b",
+      "stationName": "Ketchikan, Alaska - 3102",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Ketchikan_AK",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e2fd1648-aaaf-4381-b51c-715f4709ecbe",
+      "stationName": "Searsport, Maine - 0152",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Bangor_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f484f3cc-667b-45d7-b4f5-93cba7fc4c03",
+      "stationName": "Green Bay, Wisconsin - 3703",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Green-Bay_WI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "b284376a-9999-479b-83a9-01bd8930d0fe",
+      "stationName": "Eureka, California - 2802",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Eureka_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "01845189-50bc-4f8b-b0b8-8c4af678fa7b",
+      "stationName": "Presidio Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Presidio_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "632fac75-7a5e-472e-beaa-21bcc15712a2",
+      "stationName": "Warroad Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Warroad_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "08cd30e6-466b-4c15-9940-0ae318a6cf4b",
+      "stationName": "Alcan, Alaska - 3104",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Alcan_AK",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "a13e6e6d-4a7f-4046-9bf9-9ad54f505407",
+      "stationName": "Toledo-Sandusky-Port Clinton, Ohio - 4105",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Port-Clinton_OH",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d123b895-4137-4959-b9de-61636114fee6",
+      "stationName": "Cincinnati, OH-Erlanger, KY, Kentucky - 4102",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Erlanger_KY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "81796a72-4902-404a-b7de-7274e4ebfe7a",
+      "stationName": "University of Illinois Willard Airport - 3987",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Savoy_IL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "16c3081e-da8b-4414-8cb6-66db1c8dbcb4",
+      "stationName": "Panama City, Florida - 1818",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Panama-City-Beach_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "fdb68d09-66d2-4a59-b89f-82476c9f49c8",
+      "stationName": "Tacoma, Washington, Washington - 3002",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fife_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "7203a3d9-e757-4573-8af0-ca37b72ceb9c",
+      "stationName": "Brian A. Terry Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Bisbee_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "9353b9b0-a670-4d94-8e9b-c41205304a4d",
+      "stationName": "Lubbock, Texas - 5503",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Lubbock_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "6ef97ee8-e875-4472-84c8-ea2efaa4644a",
+      "stationName": "Dallas Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Euless_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "556a5ffa-4987-4b86-9f0b-f68ac3557ee6",
+      "stationName": "Noonan, North Dakota - 3420",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Noonan_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "a576c969-37d0-49ea-b383-91c7c4c6bf2f",
+      "stationName": "San Juan",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Juan_PR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "a576c969-37d0-49ea-b383-91c7c4c6bf2f",
+      "stationName": "San Juan",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/puerto-rico/san-juan/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "d36abd29-03b7-42df-8e40-f0e0c4b1eab5",
+      "stationName": "Hansboro, North Dakota - 3415",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Hansboro_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "94c20931-a15d-4835-925a-6c1c0d926339",
+      "stationName": "Curlew Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Curlew_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "dd6a3f81-32ba-4fa4-b02f-0b90ff036d05",
+      "stationName": "Whitlash, Montana - 3321",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Whitlash_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "6ada5c9e-5f26-4a2b-93c7-42ca1f6cf1d6",
+      "stationName": "Port of Sweetgrass, Montana - 3310",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sweetgrass_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c77df711-f62d-45f1-bea8-20899568fa9c",
+      "stationName": "Sault Sainte Marie Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sault-Sainte-Marie_MI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d877b20b-64ba-4ff4-b95d-a1e18a2d477e",
+      "stationName": "Rangeley Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Rangeley_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "cac91b62-1dd0-492e-9279-58d9b2ee02e2",
+      "stationName": "Falfurrias Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Falfurrias_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e7fa3e93-1b2a-4d79-b14f-4a29cd96b554",
+      "stationName": "Waukegan National Airport, Waukegan, Illinois - 3981",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Waukegan_IL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "84540f75-19ab-4c68-9b2b-627906829039",
+      "stationName": "Rockford, Illinois - 3909",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Rockford_IL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3f3be246-531f-4e6f-9f25-bb3e0bcbdb61",
+      "stationName": "Baton Rouge, Louisiana - 2004",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Baton-Rouge_LA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "49e61057-7370-450a-ae14-d178f8acaf48",
+      "stationName": "Vanceboro, Maine - 0105",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Vanceboro_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "fc1c6419-242a-4df1-a0ff-25f842339dbb",
+      "stationName": "Bangor, Maine - 0102",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Bangor_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "11127a4c-7419-4790-8635-c1ae0eabb286",
+      "stationName": "Champlain, New York - 0712",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Champlain_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "10f1b522-d656-4cf4-a971-f9c8a95fcf42",
+      "stationName": "Albany, New York - 1002",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Albany_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d8fd5f92-91fe-4f53-b7b7-b367ebaf4ac1",
+      "stationName": "Cape Vincent, New York - 706",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Cape-Vincent_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "2802fbaa-7c6a-4c53-8015-39acf03167c0",
+      "stationName": "Mobile (Including Theodore), Alabama - 1901",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Mobile_AL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0bd58857-a2be-4574-8492-b57666465ba8",
+      "stationName": "Chicago",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Chicago_IL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "377e0472-a6f9-4fab-9322-7e883edb5093",
+      "stationName": "Rochester International Airport, Rochester, Minnesota - 3581",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Rochester_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "03e9d202-c20a-419c-9b98-61c1d302d5ad",
+      "stationName": "MidAmerica St. Louis Airport, Mascoutah, Illinois – 4581",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Mascoutah_IL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e4a5eb54-a4c2-4952-9117-bc157ca8b716",
+      "stationName": "Davenport, IA-Moline and Rock Island, IL, Illinois - 3908",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Moline_IL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "59a73d87-fb48-47e6-8fd2-f9abdb71ea60",
+      "stationName": "Campo Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Campo_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e519b935-bc32-4b28-9c8d-0f58af123975",
+      "stationName": "Yuma Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Yuma_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c07204ca-c62c-42a2-9794-3df4b56398ce",
+      "stationName": "Milwaukee, Wisconsin - 3701",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Milwaukee_WI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f6ef2a83-2c93-4e4f-adfa-e06dc5ae505c",
+      "stationName": "Ontario Airport, California - 2721",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Ontario_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c2f9bb32-a391-40d5-96aa-f7fa790badeb",
+      "stationName": "Orlando Sanford International Airport, Florida - 1809",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sanford_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "4ab002b2-c9a6-4304-8241-b84a6038fef4",
+      "stationName": "Nogales Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/La-Quinta-RoadNogales_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "09508185-b2c9-4a8b-b8c2-515c2bde323e",
+      "stationName": "Plymouth (New Bedford), Massachusetts - 0406",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/New-Bedford_MA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "9006f12d-83a4-4d56-ac4a-0e3edeaa3504",
+      "stationName": "Springfield, Massachusetts - 0402",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Springfield_MA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "9fe27937-c32a-49d7-8a7d-ec68ff03dab0",
+      "stationName": "Lawrence (Gloucester), Massachusetts - 0416",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Beverly_MA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "99997ee7-91ed-4150-bf73-868db63aef51",
+      "stationName": "Syracuse, New York - 0906",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/N-Syracuse_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "22b37abc-63b8-4e18-90d2-e8403b03fada",
+      "stationName": "Burlington International Airport, Vermont - 0207",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/South-Burlington_VT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "00ffb67d-d0d7-4088-a527-2ed3da971238",
+      "stationName": "Tinian, Northern Mariana Islands - 3212",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Tinian_MP",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "00ffb67d-d0d7-4088-a527-2ed3da971238",
+      "stationName": "Tinian, Northern Mariana Islands - 3212",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/mp/tinian/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "6a0ca7d9-9989-499b-97a2-bc266ff7784d",
+      "stationName": "Freeport, Texas - 5311",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Freeport_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "b323f40f-a2d9-4e48-957c-3661c50e57e7",
+      "stationName": "Los Angeles International Airport-Cargo Operations, California - 2720",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Los-Angeles_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "2f98d001-1195-4ca5-85d2-3e5f6622c3b8",
+      "stationName": "Centennial Airport, Colorado - 3384",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Englewood_CO",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1080b881-5aee-4e98-9f69-526ea743985e",
+      "stationName": "Eagle County Regional Airport, Colorado - 3385",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Gypsum_CO",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1f07efed-70e7-4a3b-ba90-e7d23d0b9a27",
+      "stationName": "Eastport, ID, Idaho - 3302",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Eastport_ID",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d320d16c-2a75-4ee4-9ee1-f3144696d5a8",
+      "stationName": "Walhalla, North Dakota - 3407",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Walhalla_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "78f3808b-fda6-4b00-b311-af02a8b3955d",
+      "stationName": "Bar Harbor, Maine - 0112",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Bangor_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f60c10a7-3da3-49d6-8b62-32a95ba8d3d4",
+      "stationName": "Seattle, Washington - 3001",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Seattle_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1644edd5-c794-48a0-8335-e824e257900a",
+      "stationName": "West Palm Beach, Florida - 5204",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Riviera-Beach_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "8610716c-ec92-4e12-8dc4-03347a6a642d",
+      "stationName": "Sierra Blanca Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sierra-Blanca_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e31de458-02a8-45ef-81f8-c6f09ef5f648",
+      "stationName": "New Bedford, Massachusetts - 0405",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/New-Bedford_MA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "6dc24426-ead7-428d-851f-eb5ab34af6b8",
+      "stationName": "Phoenix, Arizona - 2605",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Phoenix_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "63629f85-d572-40b5-a336-bf2a0afac86c",
+      "stationName": "Scottsdale Airport, Arizona - 2681",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Scottsdale,_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "11f55dc7-86c5-4484-a596-a4b9e0e7eade",
+      "stationName": "Harrisburg, Pennsylvania - 1109",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Mechanicsburg_PA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "5d3163a3-94ce-4886-a142-04f0a5bdba98",
+      "stationName": "Laredo",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Laredo_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "6930cdf2-d8eb-4f45-ae8c-0c72290aeeb3",
+      "stationName": "Brownsville, Texas - 2301",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Brownsville_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "42d8a52b-b4b2-4433-a117-d1f076717abc",
+      "stationName": "Longview, Washington - 2905",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Longview_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ca40fb8b-4870-4909-aa6e-a02be216b69f",
+      "stationName": "Natrona County Airport, Wyoming - 3332",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Casper_WY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "17144533-6ab7-4cb9-8d4f-c7d68c9004af",
+      "stationName": "Douglas, Arizona - 2601",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Douglas_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "380ac080-74b6-4810-8492-43d87f0ba39c",
+      "stationName": "Tucson, Arizona - 2609",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Tucson_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1ef60b6c-8901-4711-938d-b11a87633e83",
+      "stationName": "Carrizo Springs Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Carrizo-Springs_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "da19d2c1-e0a6-4145-8774-011318d52d12",
+      "stationName": "Gloucester, Massachusetts - 0404",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Beverly_MA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "546d0177-1129-424e-ac3e-ed2746b14645",
+      "stationName": "Kona, Hawaii - 3206",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Kailua-Kona_HI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "5a1a9e27-f335-432e-8648-25dc08158f11",
+      "stationName": "Ajo Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Ajo_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c6ef86b3-1ca8-49d3-9e6d-28b616fcad18",
+      "stationName": "Boston, Massachusetts - 0401",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Boston_MA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "41ba8e3c-b4e6-44ae-98bc-0a391970a92e",
+      "stationName": "Salem (Gloucester), Massachusetts - 0408",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Beverly_MA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d7ac223d-a6b8-41ef-8d0a-efdbc68fb8ce",
+      "stationName": "Comstock Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Comstock_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ff9b3f5c-82fc-454f-bd35-f693d02f3279",
+      "stationName": "Sanderson Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sanderson_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "95a3a98b-229e-45f8-b831-c2e9734d7c2b",
+      "stationName": "Portland, Maine - 0101",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/South-Portland_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1503f7ad-38e7-48ee-8a42-18759f89ed36",
+      "stationName": "Peoria, Illinois - 3902",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Peoria_IL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "7e9c9a7d-21b9-4193-90ca-5a936c144d50",
+      "stationName": "Battle Creek, Michigan - 3805",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Battle-Creek_MI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "532b468c-e51f-482b-ad62-a6dbfc9fa17a",
+      "stationName": "Addison Airport, Texas - 5584",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Addison_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1fef3ddc-9a3e-49fc-a9a3-0dd821b89f5e",
+      "stationName": "Eagle Pass, Texas - 2303",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Eagle-Pass_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "85790daa-936c-4947-91b0-8444647313ea",
+      "stationName": "Sasabe, Arizona - 2606",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sasabe_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "7a23633e-7ad3-416d-aa2a-72bba32ef0c0",
+      "stationName": "Nogales, Arizona - 2604",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Nogales_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ed64a088-b9ac-45f9-8465-66bc4cee698d",
+      "stationName": "Van Horn Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Van-Horn_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "75b259ae-1c1d-4f85-a7f8-2d96743e64df",
+      "stationName": "Port Angeles Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Port-Angeles_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e15a7910-84eb-449f-8a4f-3bc50bd29b49",
+      "stationName": "Juneau, Alaska - 3101",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Juneau_AK",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "9965f79e-b5a7-4396-9094-03f965bca11c",
+      "stationName": "Otay Mesa, California - 2506",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Diego_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1badbb93-1b23-42fe-9b12-6e52d9e9f36f",
+      "stationName": "Skagway, Alaska - 3103",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Skagway_AK",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "6b2810a8-2ba2-4d1a-9dc0-dad6a03c61b5",
+      "stationName": "Port Everglades/Fort Lauderdale, Florida - 5203",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fort-Lauderdale_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e9b3fa98-7f84-4dfa-be4f-a568e336df85",
+      "stationName": "Luis Munoz Marin International Airport, Puerto Rico - 4913",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Juan_PR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e9b3fa98-7f84-4dfa-be4f-a568e336df85",
+      "stationName": "Luis Munoz Marin International Airport, Puerto Rico - 4913",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/puerto-rico/san-juan/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "7674a7b2-129a-460c-b4eb-2ec51caf0ce1",
+      "stationName": "Nawiliwili-Port Allen, Hawaii - 3204",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Lihue_HI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "57b5e2a4-37ef-40eb-8fe1-d0b076c30478",
+      "stationName": "Phoenix-Mesa Gateway Airport, Arizona - 2682",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Mesa_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "a36fbc0b-09f6-444b-b2cf-538e9ef2ba2d",
+      "stationName": "Pembina Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Pembina_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e98c9788-02cb-4422-980d-74aca4fa07ca",
+      "stationName": "Charleston, South Carolina - 1601",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Charleston_SC",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "83d31345-a84c-4770-885d-79162c4f9c84",
+      "stationName": "Kahului, Hawaii - 3203",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Kahului_HI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f3495486-4c95-4bf9-8344-d615d9ee960d",
+      "stationName": "Tampa",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Tampa_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0ec45ddd-79fd-44d5-a87e-829b1132f220",
+      "stationName": "Portal Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/EastPortal_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "56f74f77-14d8-4c73-b6a3-7809e0d2843e",
+      "stationName": "Bottineau Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Bottineau_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "b0ec90c5-6a23-453a-b3b8-952ea9d80267",
+      "stationName": "Kodiak, Alaska - 3127",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Anchorage_AK",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "04b89a47-2b6a-404f-86c3-ffe72c9d6a47",
+      "stationName": "Rota, Northern Mariana Islands - 3213",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Rota_MP",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "04b89a47-2b6a-404f-86c3-ffe72c9d6a47",
+      "stationName": "Rota, Northern Mariana Islands - 3213",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/mp/rota/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "d666aa95-ecb2-4a62-9272-7f9d8d86b60c",
+      "stationName": "Hagatna, Guam, Guam - 3207",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Tamuning_GU",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "9b24a8d2-9bc5-4f12-bf2d-d08cae8a3cb9",
+      "stationName": "Daniel K. Inouye International Airport - 3205",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Honolulu_HI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "7a33bdc8-cf58-472e-82a7-5b07e83aa33f",
+      "stationName": "Port of Jackson - 2015",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Flowood_MS",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "91b92b24-2f5b-4114-94c8-5efb75c332f6",
+      "stationName": "Oroville, WA, Washington - 3019",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Oroville_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "25b8a734-19dc-4d00-80e9-5230f81c3c06",
+      "stationName": "Jackman Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Jackman_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "358518f8-9caf-475f-b9f6-5a1a1ebfd5c1",
+      "stationName": "Dallas/Ft. Worth, Texas - 5501",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Irving_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "5bc6f336-d503-47f9-8bc3-bc7a0aa6d052",
+      "stationName": "Gramercy, Louisiana - 2010",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Gramercy_LA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ae20eb99-93cd-4873-a937-3f09d6440b31",
+      "stationName": "Tecate - Class A, California - 2505",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Tecate_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "16a607c3-5e13-4530-af80-754105344466",
+      "stationName": "Fort Fairfield Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/one-RoadFort-Fairfield_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "055e28b2-f19e-4831-8c8b-6a1798837984",
+      "stationName": "Little Rock-North Little Rock, Arkansas - 2003",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Little-Rock_AR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3cdc88e6-1774-4532-af23-e02d3b480902",
+      "stationName": "San Francisco, California - 2809",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Francisco_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c88ff264-26be-48a5-a527-fd1a0e220d77",
+      "stationName": "Victorville - S. California Logistics Airport, California - 2783",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Victorville_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "60e1150f-73e8-4c75-a604-e02a813195a3",
+      "stationName": "Rogers Airport, Arkansas - 2084",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Rogers_AR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0c00867b-7c37-4ec0-8359-a1164359df2b",
+      "stationName": "Orlando International Airport, Florida - 1808",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Orlando_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "11e68911-f57a-4857-a41f-316dbfab55f6",
+      "stationName": "San Juan, PR (Area Port), Puerto Rico - 4909",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/puerto-rico/san-juan/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "25d0228c-68d3-47ff-92bc-64cb957b3b00",
+      "stationName": "San Angelo Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Angelo_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "9870308f-ef9c-42b6-b210-9445fb8d5901",
+      "stationName": "Pascagoula, Mississippi - 1903",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Pascagoula_MS",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e1895809-f551-42a7-a121-21ffcea9ed24",
+      "stationName": "Del Rio Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Del-Rio_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e81efdcb-2eeb-42f0-8389-f4008f287124",
+      "stationName": "Columbia, South Carolina - 1604",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/West-Columbia_SC",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "11e68911-f57a-4857-a41f-316dbfab55f6",
+      "stationName": "San Juan, PR (Area Port), Puerto Rico - 4909",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Juan_PR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ce912344-3c33-4c92-9e43-6caf1521647f",
+      "stationName": "Westhope, North Dakota - 3419",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Westhope_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ed3773c0-0497-4925-8c82-6eeae5d7c779",
+      "stationName": "Portal, North Dakota - 3403",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Portal_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "a3bb353e-cb24-4c21-9b10-df734d79e56c",
+      "stationName": "Brackettville Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Brackettville_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "b4e9299d-045c-492a-9e5f-3f7edbfc335f",
+      "stationName": "Myrtle Beach International Airport, South Carolina - 1681",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Myrtle-Beach_SC",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3c1cf60a-d99a-4a1e-943c-f316bab0e7f2",
+      "stationName": "New Orleans Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/New-Orleans_LA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "8ba48cce-21c9-4040-b997-b70847d3efce",
+      "stationName": "Sugar Land, Texas - 5381",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sugar-Land_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "8f31f002-b643-4cd7-8ffe-46f96bd0d8de",
+      "stationName": "Grand Forks - Mark Andrews International Airport, North Dakota - 3427",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Grand-Forks_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "2d0e309c-947b-4b70-b0b6-9e2a05ee7e9d",
+      "stationName": "Baudette, Minnesota - 3424",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Baudette_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "24973020-a22a-4082-be7c-1423ab41cac7",
+      "stationName": "Roosville, Montana - 3318",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Eureka_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "aae8a538-98d6-4148-9ff8-07142095d998",
+      "stationName": "Daytona Beach International Airport (UFA), Florida - 1884",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Daytona-Beach_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1ed641a0-7cd1-4a09-8196-5b921c08ba02",
+      "stationName": "Butte Airport, MT, Montana - 3305",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Butte_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3862bef2-a081-47a0-8d9d-ff7f94d7206a",
+      "stationName": "Naples, Florida - 1880",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Naples_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "4a4f00dc-d935-4b8f-bca7-36a9e23e92f1",
+      "stationName": "Los Angeles/Long Beach Seaport, California - 2704",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Long-Beach_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "2fbdec84-6c32-43e8-84e5-2617d47f446d",
+      "stationName": "Gibraltar Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Gibraltar_MI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "25021dbf-3316-4296-abe3-486d47ace7cb",
+      "stationName": "Birmingham, Alabama - 1904",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Birmingham_AL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "328f8016-2514-47f1-b7ce-66276ae08f6d",
+      "stationName": "Area Port of Tampa, Florida - 1801",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Tampa_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1de9fb05-3029-43a3-b5b5-9a32e8e2c96b",
+      "stationName": "Corpus Christi, Texas - 5312",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Corpus-Christi_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "a19e313b-a33c-4bd2-8bfb-043fe496447c",
+      "stationName": "New York/Newark, New Jersey - 4601",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Elizabeth_NJ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "414a5910-ae13-402a-913e-973a1370e79e",
+      "stationName": "Rocky Mountain Metropolitan Airport, Colorado - 3383",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Broomfield_CO",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "312f1765-0b9f-4ed9-ad29-bf67460d37c2",
+      "stationName": "Fortuna, North Dakota - 3417",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fortuna_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d2a0319f-c888-477b-82be-e7819012545e",
+      "stationName": "Greenville-Spartanburg, South Carolina - 1603",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Greer_SC",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "8a09259c-9d08-4449-b700-0612ce03b9ac",
+      "stationName": "Perth Amboy, New Jersey - 4602",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Perth-Amboy_NJ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "267802f1-3594-42ad-be93-fffa2ecf6075",
+      "stationName": "Nome, Alaska - 3128",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Nome_AK",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "a13b17db-bc0f-4951-99b6-ad3155303453",
+      "stationName": "Sitka, Alaska - 3115",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sitka_AK",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "b0815511-f138-4667-8775-34821ba7c506",
+      "stationName": "Saipan, Northern Mariana Islands - 3211",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/mp/dandan/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "ceea043f-9a80-4904-ac1d-31a41692ef4c",
+      "stationName": "Fresno (2803/2882), California - 2803",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fresno_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "38b847c5-0d34-4af8-987b-877935fb7c56",
+      "stationName": "Georgetown, South Carolina - 1602",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Georgetown_SC",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "bb4832bf-e2a2-4072-9712-e69486364378",
+      "stationName": "Progreso, Texas - 2309",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Progreso_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ea34a7dd-d2dd-4c69-a023-bdd995795c19",
+      "stationName": "Pembina - (Area Port), North Dakota - 3401",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Pembina_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "da3d739b-1192-4dbc-8a9b-4b55f2cae82c",
+      "stationName": "Piegan, MT, Montana - 3316",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Babb_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "70adf091-2e21-41e5-a727-6038dded01f7",
+      "stationName": "Dunseith, North Dakota - 3422",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Dunseith_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ac20bcef-698b-464a-bbc3-39964d086407",
+      "stationName": "Saint John, North Dakota - 3405",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/St-John_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "16a3b994-8d71-4940-bc9f-aaf3a23c182d",
+      "stationName": "Cruz Bay (St. John), Virgin Islands - 5102",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/St-John_VI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f666c585-83bb-4624-b2fa-e310eee046f8",
+      "stationName": "Hillsboro, Oregon - 2983",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Hillsboro_OR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "2ec7d7aa-7400-4a02-9852-ce50c7814e93",
+      "stationName": "Port Manatee, Florida - 1821",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/PALMETTO_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "16a3b994-8d71-4940-bc9f-aaf3a23c182d",
+      "stationName": "Cruz Bay (St. John), Virgin Islands - 5102",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/vi/st-john/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "11485f78-0d19-4c91-9fda-8ec09975b288",
+      "stationName": "St. Augustine, Florida - 1889",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/St-Augustine_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1ea2fedb-158b-4b51-b252-adb2db898bf9",
+      "stationName": "Morgan, MT, Montana - 3319",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Loring_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "2b578516-1b73-4537-baa8-f69d85f98747",
+      "stationName": "Willow Creek, Montana - 3325",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Havre_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3a903507-d212-4b44-a79a-6ac5a2a166c3",
+      "stationName": "Maida, North Dakota - 3416",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Langdon_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d8942a02-02a5-497d-a629-5a1023a52765",
+      "stationName": "Sacramento, California - 2835",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sacramento_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "799429dc-e15d-439f-ac76-44df3050866c",
+      "stationName": "Orlando Executive Airport (UFA), Florida - 1888",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Orlando_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "006c1c3a-7af3-4d13-b33b-f53c00149308",
+      "stationName": "San Luis, Arizona - 2608",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Luis_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "af34d7fd-6bc2-4964-ac73-c559525c3348",
+      "stationName": "Buffalo Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Tonawanda_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0d073676-0b7f-4249-9d29-a684fc7f868b",
+      "stationName": "Savannah, Georgia - 1703",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Savannah_GA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "65b0c6d4-e9f1-4032-8e16-fa56423032d7",
+      "stationName": "Aguadilla, Puerto Rico - 4901",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/puerto-rico/aguadilla/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "1858393b-874b-49de-9008-9d2d4a236287",
+      "stationName": "Fajardo, Puerto Rico - 4904",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Puerto-Real_PR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "408fc890-8961-4333-a5bd-e5e47f28b8d5",
+      "stationName": "Greensboro/Winston-Salem, North Carolina - 1502",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Greensboro_NC",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e4f1fa9e-e50f-4c2d-aec8-c498533c1ccd",
+      "stationName": "Raleigh-Durham, North Carolina - 1503",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Morrisville_NC",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0d838e56-a2bd-4ee2-97f2-beb4972e5ae4",
+      "stationName": "Pinecreek, Minnesota - 3425",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Roseau_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "a0a53059-dc8f-438e-bcde-90eafdcf1507",
+      "stationName": "Denver, Colorado - 3307",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Denver_CO",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c47c3b81-3f66-4656-b766-ed2402defca6",
+      "stationName": "Sweetgrass Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sweetgrass_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0bb5fc7b-bdfd-4405-a59c-61c56bf904d0",
+      "stationName": "Glacier Park International Airport, Montana (Kalispell) - 3324",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Kalispell_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3c6ed11a-43b8-4546-98f7-a1f64878cb1e",
+      "stationName": "Pensacola, Florida, Florida - 1819",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Pensacola_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "a36a0ff6-7f2d-4544-bea9-c8d94ec7bfef",
+      "stationName": "Wilmington, North Carolina - 1501",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Wilmington_NC",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f58f51e3-1a7f-4558-9174-d210cce9be62",
+      "stationName": "Morehead City - Beaufort, North Carolina - 1511",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Morehead-City_NC",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "58f48461-9729-47b2-bab6-7df8e0311ce8",
+      "stationName": "Baltimore Field Office",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Baltimore_MD",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "116dd208-0eeb-403a-a034-c962ea9e2b61",
+      "stationName": "Whitefish Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Whitefish_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "4eb20eb7-a5ae-4f30-9633-2081ca3d2438",
+      "stationName": "Blaine Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Blaine_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "2315ecc0-ea92-44c8-a65d-8d728d80f007",
+      "stationName": "Donna M. Doss Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Donna-M-Doss_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "bfd338f5-2955-4b66-97c7-2a8b38213acf",
+      "stationName": "Baltimore, Maryland - 1303",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Baltimore_MD",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "a759cf93-3456-4b85-a04d-1cda94141429",
+      "stationName": "Neche, North Dakota - 3404",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Neche_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3deb272c-8a37-43ec-9713-24f2652f8640",
+      "stationName": "Port Canaveral, Florida - 1816",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Cape-Canaveral_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3395f7eb-2e40-4574-b15b-2d77c76545c2",
+      "stationName": "Lake Charles Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Lake-Charles_LA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1dda1a97-b5d2-4ff7-8b08-ce9f13f6c0b9",
+      "stationName": "San Diego",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Diego_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "17edb104-3593-4b65-bf5b-b25b12d7aad8",
+      "stationName": "Buffalo Sector New York",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Grand-Island_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "55416b7a-1fa7-4ebe-be81-ba534c07ecbd",
+      "stationName": "New Orleans",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/New-Orleans_LA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f416774b-9af5-4187-98ac-6f546297d409",
+      "stationName": "Huntsville, Alabama - 1910",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Huntsville_AL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "959b9c8a-b952-474f-9cef-bff46e395199",
+      "stationName": "Fargo - Hector International Airport, North Dakota - 3411",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fargo_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "414e4f15-69d5-4bbc-80dd-8523aad2673f",
+      "stationName": "Wilmington, Delaware - 1103",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/New-Castle_DE",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "4fd4ae1f-dc6c-4711-b3a9-d42bd678edb3",
+      "stationName": "Port Hueneme, California - 2713",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Oxnard_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "67703a3b-d594-4b7c-a021-10d7a60fbaca",
+      "stationName": "Warroad, Minnesota - 3423",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Warroad_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "83ac87b1-00e9-40e1-8606-459a4abb3860",
+      "stationName": "International Falls, Minnesota - 3604",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/International-Falls_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "77bbc9f1-b690-41bf-9a99-85684823ac34",
+      "stationName": "Ponce, Puerto Rico - 4908",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Ponce_PR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "77bbc9f1-b690-41bf-9a99-85684823ac34",
+      "stationName": "Ponce, Puerto Rico - 4908",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/puerto-rico/ponce/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "078dfa29-272f-426c-8a05-25147023c928",
+      "stationName": "Tucson",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Tucson_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1ad08af6-ae88-482a-ae14-9ab248da0502",
+      "stationName": "Naco, Arizona - 2603",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Naco_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f8bac87e-7b20-4604-a160-fcd2d2351048",
+      "stationName": "Del Rio, Texas - 2302",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Del-Rio_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "6e1c916c-28b7-41e1-bc1d-ab4732e0e231",
+      "stationName": "Wrangell, Alaska - 3105",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Wrangell_AK",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f46baace-92e6-4cc9-8a6b-b1087719e311",
+      "stationName": "Port of Washington-Dulles, Virginia - 5401",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sterling_VA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "baf4fb3e-c004-4986-a25c-5b8761eba5f1",
+      "stationName": "Charleston, West Virginia - 1409",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Charleston_WV",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "7e37c1d4-27fd-43ca-a631-e43bfbd01f42",
+      "stationName": "Portland",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Francisco_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "5edbda4e-6353-4f0d-ad5f-477289f84e4b",
+      "stationName": "Roseau, Minnesota - 3426",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Roseau_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ab70563c-776f-482c-a2cc-872dea058ca3",
+      "stationName": "Austin, Texas - 5506",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Austin_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "fd7b3a8f-6e67-4cbd-b37a-ae2319957ed3",
+      "stationName": "San Bernardino International Airport, California - 2782",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Bernardino_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "b84d9636-08b4-400c-83ed-47c0d91117c5",
+      "stationName": "Miami",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Miami_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "cb421fd0-09ca-4bd9-bb5f-17eb36b0a98e",
+      "stationName": "Charlotte Amalie (Area Port of St. Thomas), Virgin Islands - 5101",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/St-Thomas_VI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "cb421fd0-09ca-4bd9-bb5f-17eb36b0a98e",
+      "stationName": "Charlotte Amalie (Area Port of St. Thomas), Virgin Islands - 5101",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/vi/st-thomas/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "0bac99ae-be8f-4dfa-a0f1-d3ce9276cebb",
+      "stationName": "Anchorage, Alaska - 3126",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Anchorage_AK",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1fa0ad83-ef99-43d0-9b71-14a026611db3",
+      "stationName": "Fort Myers, Florida - 1822",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fort-Myers_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "176bf967-d242-4346-a00d-45500c41e2b4",
+      "stationName": "Nashville, Tennessee - 2007",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Nashville_TN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f3e7d7dd-9955-4e61-a925-864a964faebc",
+      "stationName": "New York",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/New-York_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "64a27868-48b8-4852-91c0-97533bed325b",
+      "stationName": "Boise, Idaho - 2907",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Boise_ID",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "5593dfe8-af48-4d08-8b81-556874e55daa",
+      "stationName": "Lukeville, Arizona - 2602",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Lukeville_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "9a8126a6-324e-4739-87ea-62d9cb41e2fc",
+      "stationName": "Memphis, Tennessee - 2006",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Memphis_TN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "687795b0-793e-4f26-8c9e-57d0c9e87e6c",
+      "stationName": "Chattanooga, Tennessee - 2008",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Chattanooga_TN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "07d3c018-ee77-45c8-bbe5-ebed632291a1",
+      "stationName": "Hannah, North Dakota - 3408",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Hannah_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e9952909-8daf-4266-bcd5-16875f10162e",
+      "stationName": "Norfolk-Newport News, Virginia - 1401",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Norfolk_VA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "8163f4a3-94df-47c1-a0d6-2a9f2785482e",
+      "stationName": "Tri-Cities, Tennessee - 2027",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Blountville_TN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "b7c4bdd6-ec78-4d27-87e5-c0d5c4e933eb",
+      "stationName": "Fort Stockton Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/ockton_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "82b7eb48-2bd6-4bd0-8afe-d6132f084666",
+      "stationName": "Richmond - Petersburg, Virginia - 1404",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Richmond_VA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "529047dd-2e8b-468d-bbf7-762ce9451bb3",
+      "stationName": "New River Valley Airport, Virginia - 1412",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Dublin_VA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f3fbbfb5-a0df-4492-9411-a3d1388a3185",
+      "stationName": "Astoria, Oregon - 2901",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Astoria_OR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "8201b388-3060-4339-bdf3-ab9471460478",
+      "stationName": "Lake Charles, Louisiana - 2017",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Lake-Charles_LA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "92e00759-2ecd-432d-8b06-c93cbe36c6c8",
+      "stationName": "Sonoita Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sonoita_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "fa4e4797-8d14-4237-bc01-88b5b456c425",
+      "stationName": "Sherwood, North Dakota - 3414",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sherwood_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "7c16f0d9-5f9d-4597-a818-3c06fd91a65e",
+      "stationName": "Shreveport-Bossier City, Louisiana - 2018",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Shreveport_LA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "65b0c6d4-e9f1-4032-8e16-fa56423032d7",
+      "stationName": "Aguadilla, Puerto Rico - 4901",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Aguadilla_PR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "b7deab8b-d795-4019-8b8c-4723e6a99cb9",
+      "stationName": "Area Port of Jacksonville, Florida - 1803",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Jacksonville_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0bfad9e7-fb8a-4b15-b984-ed4719f13cb6",
+      "stationName": "Pittsburgh, Pennsylvania - 1104",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Pittsburgh_PA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "77c58f67-3e7a-4059-abbc-1799790bccb2",
+      "stationName": "McAllen Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Military-HighwayMcAllen_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "97f3499d-2d6e-47b0-8392-7d70c62d9f23",
+      "stationName": "Derby Line, Vermont - 0209",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Derby-Line_VT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "572bc1cc-1d9a-4873-b955-e54dea6103f1",
+      "stationName": "Calais Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Baring_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "93e6923b-e583-4dd3-9083-cf7fd9223190",
+      "stationName": "St. Albans, Vermont - 0201",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/St-Albans_VT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ed2815e1-4e6e-4676-80f9-8d93c3d39452",
+      "stationName": "Richford, Vermont - 0203",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Richford_VT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "fb89fb99-e7cb-4c8b-8df5-cf003abdae3d",
+      "stationName": "Fall River (New Bedford), Massachusetts - 0407",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/New-Bedford_MA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "88ca4e86-b57d-42a7-bedc-67616d266cbb",
+      "stationName": "Uvalde Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Uvalde_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "46b106d9-2d0f-457f-a562-298644b31720",
+      "stationName": "Baton Rouge Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Baton-Rouge_LA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "30ae685e-2ce0-487d-aacf-75287c069cd7",
+      "stationName": "Worcester, Massachusetts - 0403",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Worcester_MA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "52e33a74-a641-4582-b91a-d263ce2054e2",
+      "stationName": "Van Buren, Maine - 0108",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Van-Buren_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "9cc67b3d-29be-4491-999e-f35b7ec83b65",
+      "stationName": "Bath, Maine - 0111",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/South-Portland_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "b440e13d-b4d0-428c-9c5b-b982db4d1756",
+      "stationName": "Harlingen Airport (Valley International Airport) – 2383",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Harlingen_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "2e855bc9-509b-4648-9cf2-30132e9fabbb",
+      "stationName": "Ambrose, North Dakota - 3410",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Ambrose_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1e5064df-f47a-4e46-92a4-5f9fb7aef4da",
+      "stationName": "Fort Kent, Maine - 0110",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fort-Kent_ME",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "791b399a-7350-4b1c-85e3-8f6709d4faea",
+      "stationName": "South Dakota Sioux Falls Regional Airport – Joe Foss Field - 3502",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sioux-Falls_SD",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "ad4c77e0-f620-4646-ae5e-c0137c3c6054",
+      "stationName": "Spirit of St. Louis Airport, Missouri - 4506",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Chesterfield_MO",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "6f81289b-3e07-4ecd-a386-8619d9443b01",
+      "stationName": "Springfield, Missouri - 4505",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Springfield_MO",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "2d567ce4-ac9f-4fc1-ae56-efb12e6e5e46",
+      "stationName": "Fernandina Beach, Florida - 1805",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Fernandina-Beach_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0ca00e34-e0cf-412b-a672-12fe05f9017f",
+      "stationName": "Ogdensburg Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/StreetOgdensburg_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "27a38b0b-6290-4c1e-a199-4d073b7fd4f4",
+      "stationName": "Raymond, Montana - 3301",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Raymond_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d0c1c161-3b5a-4668-a75e-3779dd8e3aee",
+      "stationName": "Newport Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Derby_VT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "867c131c-e9de-44f3-bcf3-597e69a7a90f",
+      "stationName": "Gulfport, Mississippi - 1902",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Gulfport_MS",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "00b902dd-7a09-4fcc-91ee-786ac0b2a9bb",
+      "stationName": "Wellesley Island Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Wellesley-Island_NY",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e534a6e7-8e1f-45bb-80f0-cc04eb9e0fe6",
+      "stationName": "Houston Airport, Texas - 5309",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Houston_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "2b33f842-46b7-4fcf-8eb7-27828a14ba1f",
+      "stationName": "Sabine, Texas - 2102",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Pt-Arthur_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "466d36d1-4a38-48b9-8863-c607f1ec2cf6",
+      "stationName": "Conroe, Texas - 5382",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Conroe_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "95731adf-720a-40f8-99f9-ab228cd58c56",
+      "stationName": "Key West, Florida - 5202",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Key-West_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "90024b30-fdb5-4243-b7db-c00eabc5c060",
+      "stationName": "Opheim, MT, Montana - 3317",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Opheim_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "67a82abe-5d00-42a2-86f9-1c7e8acce4e6",
+      "stationName": "Hidalgo, Texas - 2305",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Pharr_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "61d697c2-33b0-4512-8b13-ee2874640226",
+      "stationName": "Wellton Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Wellton_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e10cdd85-1eca-4637-a8e2-b4d37a755e77",
+      "stationName": "South Texas International Airport at Edinburg - 2381",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Edinburg_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "cc87053b-77b4-482c-81cb-debc37e83ee2",
+      "stationName": "Los Angeles",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Long-Beach_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "27b21cc9-c825-4272-9765-c766299253aa",
+      "stationName": "Northgate, North Dakota - 3406",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Flaxton_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "cec9f2ba-566f-42e1-8caf-156b4b02bfc5",
+      "stationName": "Miami International Airport, Florida - 5206",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Miami_FL",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "0b46dc68-ca63-4664-9aee-5a2435d2b83e",
+      "stationName": "Calexico West - Class A, California - 2503",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Calexico_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d666aa95-ecb2-4a62-9272-7f9d8d86b60c",
+      "stationName": "Hagatna, Guam, Guam - 3207",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/gu/tamuning/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "3b1dc956-4ac3-4942-8387-9b63997c1dad",
+      "stationName": "Salt Lake City, Utah - 3303",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Salt-Lake-City_UT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "bd12ad68-8506-4e78-aa5f-9c7c281aa823",
+      "stationName": "Reno, Nevada - 2833",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Reno_NV",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "648b3d39-b8fd-4afd-b2cf-8698aa6c8d6e",
+      "stationName": "Mayaguez, Puerto Rico - 4907",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Mayaguez_PR",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "648b3d39-b8fd-4afd-b2cf-8698aa6c8d6e",
+      "stationName": "Mayaguez, Puerto Rico - 4907",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/puerto-rico/mayaguez/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "44a81c1c-31f8-4a35-b170-8600ea8b4bde",
+      "stationName": "Saint Croix, Virgin Islands - 5104",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Kingshill_VI",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "44a81c1c-31f8-4a35-b170-8600ea8b4bde",
+      "stationName": "Saint Croix, Virgin Islands - 5104",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/vi/kingshill/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "367fecdb-82f3-4e96-b86b-38821e969cb6",
+      "stationName": "Porthill, ID, Idaho - 3308",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Porthill_ID",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "627a3042-2fc4-415f-8065-db32c3a4de9f",
+      "stationName": "Laredo West Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Laredo-West_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "bf261a8a-2763-4859-ae6b-5bf0fc1d127f",
+      "stationName": "Rio Grande City, Texas - 2307",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Rio-Grande-City_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "16e88016-6b6b-4ae3-b8eb-569402a4b809",
+      "stationName": "Freer Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Freer_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d276b25e-ecff-42b3-bbd6-89638f3633e0",
+      "stationName": "Grand Portage, Minnesota - 3613",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Grand-Portage_MN",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "a1594354-a7ed-4f4f-921f-4947799246aa",
+      "stationName": "Scobey, MT, Montana - 3309",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Scobey_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "c70d6a6b-3501-4721-af14-1d2427045da8",
+      "stationName": "San Francisco International Airport, California - 2801",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/San-Francisco_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3eb761ca-ac48-4a34-820c-710974fac6db",
+      "stationName": "Laredo North Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Laredo_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f92a5763-20d5-4a08-8667-6bae20f7a202",
+      "stationName": "Wild Horse, MT, Montana - 3323",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Havre_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "4bb726e7-6845-4c3d-a3c4-d60819321f8e",
+      "stationName": "Carbury, North Dakota - 3421",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Souris_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "60c38527-a108-4c3d-8282-8d5d17a86e7a",
+      "stationName": "Laredo, Texas - 2304",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Laredo_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "783b58a4-a1ac-4a20-b871-a700a6b11dab",
+      "stationName": "Anacortes - 3010",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Anacortes_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "16b2ebfe-1f2e-4b32-9430-d90ab3394983",
+      "stationName": "Friday Harbor - 3014",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Friday-Harbor_WA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "417e1422-eb81-402c-93fa-125aa27a99ac",
+      "stationName": "Marfa Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Marfa_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e473c3cd-6d86-4754-be22-fb905bc74638",
+      "stationName": "Eagle Pass Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Eagle-Pass_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "00f9a6ea-c5ab-4326-ad29-b79ea0f52702",
+      "stationName": "Eagle Pass South Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Eagle-Pass_TX",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "518fa379-9881-43c2-93f9-91e116063ac3",
+      "stationName": "Indio Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Indio_CA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "87e9f636-a219-4904-b628-d3df6656185f",
+      "stationName": "Casa Grande Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Casa-Grande_AZ",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "3bc7cf1d-c6d9-4287-8b8f-725789debab4",
+      "stationName": "Beecher Falls Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Beecher-Falls_VT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "1858393b-874b-49de-9008-9d2d4a236287",
+      "stationName": "Fajardo, Puerto Rico - 4904",
+      "category": "schools",
+      "fromUrl": "https://www.greatschools.org/puerto-rico/puerto-real/",
+      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
+      "reason": "Replaced broken school links with NCES public school search."
+    },
+    {
+      "stationId": "caecac77-0301-4563-9d73-5df686538452",
+      "stationName": "Sarles, North Dakota - 3409",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Sarles_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d19ba603-24a5-45db-a079-ebbb92619134",
+      "stationName": "Swanton Station",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/n-Drive-Swanton_VT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "cd9af868-d812-4a01-9fe1-6e15cea316c5",
+      "stationName": "Dalton Cache, Alaska - 3106",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Dalton-Cache_AK",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "7edfbb09-98fa-442d-b1a1-b6a496ec2149",
+      "stationName": "Antler, North Dakota - 3413",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Antler_ND",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "d4541816-d508-421c-adf8-73e7f346635e",
+      "stationName": "Highgate Springs, Vermont - 0212",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Highgate-Springs_VT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "7b27627d-6e7a-40b9-8472-cc8225ba7ab1",
+      "stationName": "Logan Airport, Massachusetts - 0417",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/East-Boston_MA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "074c7852-f693-4a69-8acd-fc15b8b83c25",
+      "stationName": "Turner, MT, Montana - 3306",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Turner_MT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "e32a1ed0-18e5-4f47-a928-14a815eb2a41",
+      "stationName": "Norton, Vermont - 0211",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Norton_VT",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f4dcc10b-1554-4775-a21a-a79db5babd67",
+      "stationName": "Atlanta",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Atlanta_GA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "f78e6097-f160-4def-86e9-79faf1d00c68",
+      "stationName": "Front Royal, Virginia - 1410",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Front-Royal_VA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
+    },
+    {
+      "stationId": "983ff33e-d9ed-4aa2-95ec-08c2abf78139",
+      "stationName": "Philadelphia, Pennsylvania - 1101",
+      "category": "realEstate",
+      "fromUrl": "https://www.realtor.com/realestateandhomes-search/Philadelphia_PA",
+      "toUrl": "https://www.realtor.com/",
+      "reason": "Replaced broken real-estate links with stable provider root."
     }
   ]
 }
