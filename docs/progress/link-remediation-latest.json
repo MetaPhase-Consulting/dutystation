@@ -1,9 +1,34 @@
 {
-  "generatedAt": "2026-02-23T06:49:08.038Z",
+  "generatedAt": "2026-02-24T06:47:45.756Z",
   "applied": true,
   "totalLinks": 4165,
-  "hardFailCandidates": 595,
-  "remediationsPlanned": 0,
-  "remediationsApplied": 0,
-  "updates": []
+  "hardFailCandidates": 598,
+  "remediationsPlanned": 3,
+  "remediationsApplied": 3,
+  "updates": [
+    {
+      "stationId": "cac8cdcb-5fba-4824-873c-967818d2701d",
+      "stationName": "Sumas Station",
+      "category": "weather",
+      "fromUrl": "https://weatherspark.com/y/478/Average-Weather-in-Sumas-Washington-United-States-Year-Round",
+      "toUrl": "https://www.weather.gov/",
+      "reason": "Normalized weather links to a stable federal weather source."
+    },
+    {
+      "stationId": "311aed73-009d-4118-a593-8a04c72a3cf0",
+      "stationName": "Saint Mary Station",
+      "category": "weather",
+      "fromUrl": "https://weatherspark.com/y/3268/Average-Weather-in-Babb-Montana-United-States-Year-Round",
+      "toUrl": "https://www.weather.gov/",
+      "reason": "Normalized weather links to a stable federal weather source."
+    },
+    {
+      "stationId": "bc1c80a7-178a-44a1-85ef-7a29798e1a0c",
+      "stationName": "Chula Vista Station",
+      "category": "weather",
+      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Chula+Vista-CA-United-States-Year-Round",
+      "toUrl": "https://www.weather.gov/",
+      "reason": "Normalized weather links to a stable federal weather source."
+    }
+  ]
 }
