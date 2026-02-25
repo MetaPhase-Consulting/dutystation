@@ -1,34 +1,178 @@
 {
-  "generatedAt": "2026-02-24T06:47:45.756Z",
+  "generatedAt": "2026-02-25T06:47:36.127Z",
   "applied": true,
   "totalLinks": 4165,
-  "hardFailCandidates": 598,
-  "remediationsPlanned": 3,
-  "remediationsApplied": 3,
+  "hardFailCandidates": 616,
+  "remediationsPlanned": 21,
+  "remediationsApplied": 21,
   "updates": [
     {
-      "stationId": "cac8cdcb-5fba-4824-873c-967818d2701d",
-      "stationName": "Sumas Station",
+      "stationId": "3f5c6451-b26d-49cc-ae32-3d675e0c8eb3",
+      "stationName": "Curlew Station",
       "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/478/Average-Weather-in-Sumas-Washington-United-States-Year-Round",
+      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Curlew-WA-United-States-Year-Round",
       "toUrl": "https://www.weather.gov/",
       "reason": "Normalized weather links to a stable federal weather source."
     },
     {
-      "stationId": "311aed73-009d-4118-a593-8a04c72a3cf0",
-      "stationName": "Saint Mary Station",
+      "stationId": "546d0177-1129-424e-ac3e-ed2746b14645",
+      "stationName": "Kona, Hawaii - 3206",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/hawaii/kailua-kona",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "2e855bc9-509b-4648-9cf2-30132e9fabbb",
+      "stationName": "Ambrose, North Dakota - 3410",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/north_dakota/ambrose",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "783b58a4-a1ac-4a20-b871-a700a6b11dab",
+      "stationName": "Anacortes - 3010",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/washington/anacortes",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "e98c9788-02cb-4422-980d-74aca4fa07ca",
+      "stationName": "Charleston, South Carolina - 1601",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/south_carolina/charleston",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "30ae685e-2ce0-487d-aacf-75287c069cd7",
+      "stationName": "Worcester, Massachusetts - 0403",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/massachusetts/worcester",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "f666c585-83bb-4624-b2fa-e310eee046f8",
+      "stationName": "Hillsboro, Oregon - 2983",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/oregon/hillsboro",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "9a93071a-8e66-42f3-8a02-40cd84e3d91a",
+      "stationName": "Erie Station",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/pennsylvania/fairview",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "d123b895-4137-4959-b9de-61636114fee6",
+      "stationName": "Cincinnati, OH-Erlanger, KY, Kentucky - 4102",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/kentucky/erlanger",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "8ba48cce-21c9-4040-b997-b70847d3efce",
+      "stationName": "Sugar Land, Texas - 5381",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/texas/sugar_land",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "532b468c-e51f-482b-ad62-a6dbfc9fa17a",
+      "stationName": "Addison Airport, Texas - 5584",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/texas/addison",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "556a5ffa-4987-4b86-9f0b-f68ac3557ee6",
+      "stationName": "Noonan, North Dakota - 3420",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/north_dakota/noonan",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "648b3d39-b8fd-4afd-b2cf-8698aa6c8d6e",
+      "stationName": "Mayaguez, Puerto Rico - 4907",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/puerto_rico/mayaguez",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "77e31bc1-cafa-41d2-9e8b-09baaa998227",
+      "stationName": "St. Mary Station",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/montana/saint_mary",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "062ef917-3e79-4cd3-a422-15eb74c4b530",
+      "stationName": "Fort Stockton Station",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/texas/fort_stockton",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "e21c7b60-ffff-40b8-a569-cba0b8d9c439",
+      "stationName": "Oswego Station",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/new_york/oswego",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "ba017ea5-b1bb-4b11-9e5f-a273767e90ea",
+      "stationName": "El Centro Station",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/ca/aten-roadimperial",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "e87d4d4c-397a-4f92-85b7-d976a29f5f18",
+      "stationName": "Wellesley Island Station",
       "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/3268/Average-Weather-in-Babb-Montana-United-States-Year-Round",
+      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Wellesley+Island-NY-United-States-Year-Round",
       "toUrl": "https://www.weather.gov/",
       "reason": "Normalized weather links to a stable federal weather source."
     },
     {
-      "stationId": "bc1c80a7-178a-44a1-85ef-7a29798e1a0c",
-      "stationName": "Chula Vista Station",
+      "stationId": "72ae0c88-e754-4d90-bac9-3e3e21734cc0",
+      "stationName": "Rochester Station",
       "category": "weather",
-      "fromUrl": "https://weatherspark.com/y/9999/Average-Weather-in-Chula+Vista-CA-United-States-Year-Round",
+      "fromUrl": "https://weatherspark.com/y/19691/Average-Weather-in-Rochester-New-York-United-States-Year-Round",
       "toUrl": "https://www.weather.gov/",
       "reason": "Normalized weather links to a stable federal weather source."
+    },
+    {
+      "stationId": "90024b30-fdb5-4243-b7db-c00eabc5c060",
+      "stationName": "Opheim, MT, Montana - 3317",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/montana/opheim",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
+    },
+    {
+      "stationId": "dc55b58c-af39-4f8b-8525-4f88257a99d1",
+      "stationName": "International Falls Station",
+      "category": "costOfLiving",
+      "fromUrl": "https://www.bestplaces.net/cost_of_living/city/mn/international-falls",
+      "toUrl": "https://www.bestplaces.net/cost_of_living/",
+      "reason": "Replaced broken cost-of-living links with stable provider root."
     }
   ]
 }
