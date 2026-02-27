@@ -1,9 +1,18 @@
 {
-  "generatedAt": "2026-02-26T06:47:17.075Z",
+  "generatedAt": "2026-02-27T06:46:10.398Z",
   "applied": true,
   "totalLinks": 4165,
-  "hardFailCandidates": 595,
-  "remediationsPlanned": 0,
-  "remediationsApplied": 0,
-  "updates": []
+  "hardFailCandidates": 596,
+  "remediationsPlanned": 1,
+  "remediationsApplied": 1,
+  "updates": [
+    {
+      "stationId": "a222faf3-b903-4bec-8af7-ffb700693ba5",
+      "stationName": "Tucson Station",
+      "category": "transit",
+      "fromUrl": "https://www.suntran.com/",
+      "toUrl": "https://www.google.com/maps/search/public+transit+Tucson%2C%20AZ",
+      "reason": "Replaced broken transit links with location-based transit search."
+    }
+  ]
 }
