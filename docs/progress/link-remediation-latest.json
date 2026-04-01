@@ -1,18 +1,9 @@
 {
-  "generatedAt": "2026-03-31T06:53:55.207Z",
+  "generatedAt": "2026-04-01T06:59:30.579Z",
   "applied": true,
   "totalLinks": 4165,
-  "hardFailCandidates": 596,
-  "remediationsPlanned": 1,
-  "remediationsApplied": 1,
-  "updates": [
-    {
-      "stationId": "6850588e-1819-49d3-bd68-f878f9897c83",
-      "stationName": "Brownsville Station",
-      "category": "transit",
-      "fromUrl": "https://www.cob.us/592/Brownsville-Metro",
-      "toUrl": "https://www.google.com/maps/search/public+transit+Brownsville%2C%20TX",
-      "reason": "Replaced broken transit links with location-based transit search."
-    }
-  ]
+  "hardFailCandidates": 595,
+  "remediationsPlanned": 0,
+  "remediationsApplied": 0,
+  "updates": []
 }
