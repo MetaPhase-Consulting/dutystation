@@ -1,34 +1,9 @@
 {
-  "generatedAt": "2026-04-02T06:53:16.243Z",
+  "generatedAt": "2026-04-03T06:51:36.454Z",
   "applied": true,
   "totalLinks": 4165,
-  "hardFailCandidates": 598,
-  "remediationsPlanned": 3,
-  "remediationsApplied": 3,
-  "updates": [
-    {
-      "stationId": "9965f79e-b5a7-4396-9094-03f965bca11c",
-      "stationName": "Otay Mesa, California - 2506",
-      "category": "schools",
-      "fromUrl": "https://www.greatschools.org/california/san-diego/",
-      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
-      "reason": "Replaced broken school links with NCES public school search."
-    },
-    {
-      "stationId": "c1c5ae62-24b4-4540-a61a-23abe8157708",
-      "stationName": "San Diego, California - 2501",
-      "category": "schools",
-      "fromUrl": "https://www.greatschools.org/california/san-diego/",
-      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
-      "reason": "Replaced broken school links with NCES public school search."
-    },
-    {
-      "stationId": "1dda1a97-b5d2-4ff7-8b08-ce9f13f6c0b9",
-      "stationName": "San Diego",
-      "category": "schools",
-      "fromUrl": "https://www.greatschools.org/california/san-diego/",
-      "toUrl": "https://nces.ed.gov/ccd/schoolsearch/",
-      "reason": "Replaced broken school links with NCES public school search."
-    }
-  ]
+  "hardFailCandidates": 595,
+  "remediationsPlanned": 0,
+  "remediationsApplied": 0,
+  "updates": []
 }
