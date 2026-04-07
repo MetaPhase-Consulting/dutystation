@@ -1,9 +1,130 @@
 {
-  "generatedAt": "2026-04-06T07:04:36.803Z",
+  "generatedAt": "2026-04-07T06:56:09.979Z",
   "applied": true,
   "totalLinks": 4165,
-  "hardFailCandidates": 595,
-  "remediationsPlanned": 0,
-  "remediationsApplied": 0,
-  "updates": []
+  "hardFailCandidates": 610,
+  "remediationsPlanned": 15,
+  "remediationsApplied": 15,
+  "updates": [
+    {
+      "stationId": "c7d297a9-1b75-4455-b84e-15384f07e878",
+      "stationName": "Brown Field Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "6d2d4b0d-0706-462a-bdc9-548a953e6909",
+      "stationName": "Oroville Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "73a7660d-00df-4107-891f-d9da66cb27e5",
+      "stationName": "San Clemente Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "2dd59c6c-3aff-405e-befe-7c80dc9e3916",
+      "stationName": "Imperial Beach Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "41ae3f4d-838c-4d8b-8b79-535f09e3762c",
+      "stationName": "Bonners Ferry Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-idaho/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "3dcec73e-33be-4d23-ba03-ca9c4ee0ad75",
+      "stationName": "Indio Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "8400803b-c0ff-488a-aa64-7fde8fb400f9",
+      "stationName": "Ogdensburg Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-new-york/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "9f9f61d5-ffe6-4baf-a7a4-8f5960b6069f",
+      "stationName": "El Cajon Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "9d95dc0a-9d85-4ab6-97e4-ff2999d51e02",
+      "stationName": "Buffalo Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-new-york/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "14831369-8312-424a-9bbb-d3cfb1b23750",
+      "stationName": "Blythe Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "30cb2388-2d1d-4ae1-bf94-e5c250c4b34d",
+      "stationName": "Theodore L. Newton, Jr. and George F. Azrak Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "7e085b64-12a4-4437-9250-d879ef187082",
+      "stationName": "Niagara Falls Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-new-york/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "72ae0c88-e754-4d90-bac9-3e3e21734cc0",
+      "stationName": "Rochester Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-new-york/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "e21c7b60-ffff-40b8-a569-cba0b8d9c439",
+      "stationName": "Oswego Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-new-york/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    },
+    {
+      "stationId": "31d125f2-743f-44dd-93a6-6083e9c3dde1",
+      "stationName": "Calexico Station",
+      "category": "movingTips",
+      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
+      "toUrl": "https://www.usa.gov/moving",
+      "reason": "Moving.com and similar moving links returned hard failures."
+    }
+  ]
 }
