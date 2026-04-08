@@ -1,130 +1,74 @@
 {
-  "generatedAt": "2026-04-07T06:56:09.979Z",
+  "generatedAt": "2026-04-08T06:57:37.430Z",
   "applied": true,
   "totalLinks": 4165,
-  "hardFailCandidates": 610,
-  "remediationsPlanned": 15,
-  "remediationsApplied": 15,
+  "hardFailCandidates": 603,
+  "remediationsPlanned": 8,
+  "remediationsApplied": 8,
   "updates": [
     {
       "stationId": "c7d297a9-1b75-4455-b84e-15384f07e878",
       "stationName": "Brown Field Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
+      "category": "crime",
+      "fromUrl": "https://www.neighborhoodscout.com/ca/brown-field/crime",
+      "toUrl": "https://www.city-data.com/crime/",
+      "reason": "Replaced broken crime links with stable public crime resource."
     },
     {
-      "stationId": "6d2d4b0d-0706-462a-bdc9-548a953e6909",
-      "stationName": "Oroville Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
+      "stationId": "0d57d9cf-4248-4d86-8ba9-ac800d740170",
+      "stationName": "El Centro Station",
+      "category": "crime",
+      "fromUrl": "https://www.neighborhoodscout.com/ca/aten-roadimperial/crime",
+      "toUrl": "https://www.city-data.com/crime/",
+      "reason": "Replaced broken crime links with stable public crime resource."
     },
     {
-      "stationId": "73a7660d-00df-4107-891f-d9da66cb27e5",
-      "stationName": "San Clemente Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
+      "stationId": "f75ca222-5b18-4cce-a0bd-0b45f9628dd7",
+      "stationName": "Lancaster, Minnesota - 3430",
+      "category": "crime",
+      "fromUrl": "https://www.neighborhoodscout.com/mn/lancaster/crime",
+      "toUrl": "https://www.city-data.com/crime/",
+      "reason": "Replaced broken crime links with stable public crime resource."
     },
     {
-      "stationId": "2dd59c6c-3aff-405e-befe-7c80dc9e3916",
-      "stationName": "Imperial Beach Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
+      "stationId": "ba017ea5-b1bb-4b11-9e5f-a273767e90ea",
+      "stationName": "El Centro Station",
+      "category": "crime",
+      "fromUrl": "https://www.neighborhoodscout.com/ca/aten-roadimperial/crime",
+      "toUrl": "https://www.city-data.com/crime/",
+      "reason": "Replaced broken crime links with stable public crime resource."
     },
     {
-      "stationId": "41ae3f4d-838c-4d8b-8b79-535f09e3762c",
-      "stationName": "Bonners Ferry Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-idaho/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
+      "stationId": "27a38b0b-6290-4c1e-a199-4d073b7fd4f4",
+      "stationName": "Raymond, Montana - 3301",
+      "category": "crime",
+      "fromUrl": "https://www.neighborhoodscout.com/mt/raymond/crime",
+      "toUrl": "https://www.city-data.com/crime/",
+      "reason": "Replaced broken crime links with stable public crime resource."
     },
     {
-      "stationId": "3dcec73e-33be-4d23-ba03-ca9c4ee0ad75",
-      "stationName": "Indio Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
+      "stationId": "1ad08af6-ae88-482a-ae14-9ab248da0502",
+      "stationName": "Naco, Arizona - 2603",
+      "category": "crime",
+      "fromUrl": "https://www.neighborhoodscout.com/az/naco/crime",
+      "toUrl": "https://www.city-data.com/crime/",
+      "reason": "Replaced broken crime links with stable public crime resource."
     },
     {
-      "stationId": "8400803b-c0ff-488a-aa64-7fde8fb400f9",
-      "stationName": "Ogdensburg Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-new-york/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
+      "stationId": "d4541816-d508-421c-adf8-73e7f346635e",
+      "stationName": "Highgate Springs, Vermont - 0212",
+      "category": "crime",
+      "fromUrl": "https://www.neighborhoodscout.com/vt/highgate-springs/crime",
+      "toUrl": "https://www.city-data.com/crime/",
+      "reason": "Replaced broken crime links with stable public crime resource."
     },
     {
-      "stationId": "9f9f61d5-ffe6-4baf-a7a4-8f5960b6069f",
-      "stationName": "El Cajon Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
-    },
-    {
-      "stationId": "9d95dc0a-9d85-4ab6-97e4-ff2999d51e02",
-      "stationName": "Buffalo Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-new-york/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
-    },
-    {
-      "stationId": "14831369-8312-424a-9bbb-d3cfb1b23750",
-      "stationName": "Blythe Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
-    },
-    {
-      "stationId": "30cb2388-2d1d-4ae1-bf94-e5c250c4b34d",
-      "stationName": "Theodore L. Newton, Jr. and George F. Azrak Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
-    },
-    {
-      "stationId": "7e085b64-12a4-4437-9250-d879ef187082",
-      "stationName": "Niagara Falls Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-new-york/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
-    },
-    {
-      "stationId": "72ae0c88-e754-4d90-bac9-3e3e21734cc0",
-      "stationName": "Rochester Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-new-york/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
-    },
-    {
-      "stationId": "e21c7b60-ffff-40b8-a569-cba0b8d9c439",
-      "stationName": "Oswego Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-new-york/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
-    },
-    {
-      "stationId": "31d125f2-743f-44dd-93a6-6083e9c3dde1",
-      "stationName": "Calexico Station",
-      "category": "movingTips",
-      "fromUrl": "https://www.moving.com/tips/moving-to-california/",
-      "toUrl": "https://www.usa.gov/moving",
-      "reason": "Moving.com and similar moving links returned hard failures."
+      "stationId": "648b3d39-b8fd-4afd-b2cf-8698aa6c8d6e",
+      "stationName": "Mayaguez, Puerto Rico - 4907",
+      "category": "crime",
+      "fromUrl": "https://www.neighborhoodscout.com/pr/mayaguez/crime",
+      "toUrl": "https://www.city-data.com/crime/",
+      "reason": "Replaced broken crime links with stable public crime resource."
     }
   ]
 }
