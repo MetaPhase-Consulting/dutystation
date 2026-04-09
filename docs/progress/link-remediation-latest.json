@@ -1,74 +1,9 @@
 {
-  "generatedAt": "2026-04-08T06:57:37.430Z",
+  "generatedAt": "2026-04-09T06:58:42.004Z",
   "applied": true,
   "totalLinks": 4165,
-  "hardFailCandidates": 603,
-  "remediationsPlanned": 8,
-  "remediationsApplied": 8,
-  "updates": [
-    {
-      "stationId": "c7d297a9-1b75-4455-b84e-15384f07e878",
-      "stationName": "Brown Field Station",
-      "category": "crime",
-      "fromUrl": "https://www.neighborhoodscout.com/ca/brown-field/crime",
-      "toUrl": "https://www.city-data.com/crime/",
-      "reason": "Replaced broken crime links with stable public crime resource."
-    },
-    {
-      "stationId": "0d57d9cf-4248-4d86-8ba9-ac800d740170",
-      "stationName": "El Centro Station",
-      "category": "crime",
-      "fromUrl": "https://www.neighborhoodscout.com/ca/aten-roadimperial/crime",
-      "toUrl": "https://www.city-data.com/crime/",
-      "reason": "Replaced broken crime links with stable public crime resource."
-    },
-    {
-      "stationId": "f75ca222-5b18-4cce-a0bd-0b45f9628dd7",
-      "stationName": "Lancaster, Minnesota - 3430",
-      "category": "crime",
-      "fromUrl": "https://www.neighborhoodscout.com/mn/lancaster/crime",
-      "toUrl": "https://www.city-data.com/crime/",
-      "reason": "Replaced broken crime links with stable public crime resource."
-    },
-    {
-      "stationId": "ba017ea5-b1bb-4b11-9e5f-a273767e90ea",
-      "stationName": "El Centro Station",
-      "category": "crime",
-      "fromUrl": "https://www.neighborhoodscout.com/ca/aten-roadimperial/crime",
-      "toUrl": "https://www.city-data.com/crime/",
-      "reason": "Replaced broken crime links with stable public crime resource."
-    },
-    {
-      "stationId": "27a38b0b-6290-4c1e-a199-4d073b7fd4f4",
-      "stationName": "Raymond, Montana - 3301",
-      "category": "crime",
-      "fromUrl": "https://www.neighborhoodscout.com/mt/raymond/crime",
-      "toUrl": "https://www.city-data.com/crime/",
-      "reason": "Replaced broken crime links with stable public crime resource."
-    },
-    {
-      "stationId": "1ad08af6-ae88-482a-ae14-9ab248da0502",
-      "stationName": "Naco, Arizona - 2603",
-      "category": "crime",
-      "fromUrl": "https://www.neighborhoodscout.com/az/naco/crime",
-      "toUrl": "https://www.city-data.com/crime/",
-      "reason": "Replaced broken crime links with stable public crime resource."
-    },
-    {
-      "stationId": "d4541816-d508-421c-adf8-73e7f346635e",
-      "stationName": "Highgate Springs, Vermont - 0212",
-      "category": "crime",
-      "fromUrl": "https://www.neighborhoodscout.com/vt/highgate-springs/crime",
-      "toUrl": "https://www.city-data.com/crime/",
-      "reason": "Replaced broken crime links with stable public crime resource."
-    },
-    {
-      "stationId": "648b3d39-b8fd-4afd-b2cf-8698aa6c8d6e",
-      "stationName": "Mayaguez, Puerto Rico - 4907",
-      "category": "crime",
-      "fromUrl": "https://www.neighborhoodscout.com/pr/mayaguez/crime",
-      "toUrl": "https://www.city-data.com/crime/",
-      "reason": "Replaced broken crime links with stable public crime resource."
-    }
-  ]
+  "hardFailCandidates": 595,
+  "remediationsPlanned": 0,
+  "remediationsApplied": 0,
+  "updates": []
 }
