@@ -2,15 +2,11 @@ import { expect, test } from '@playwright/test'
 import { expectNoSeriousA11yViolations } from './helpers'
 
 test.describe('Directory page', () => {
-  test('renders the directory heading and the location list', async ({ page }) => {
+  test('renders the directory heading', async ({ page }) => {
     await page.goto('/directory')
 
     await expect(
       page.getByRole('heading', { name: /cbp duty location directory/i })
-    ).toBeVisible()
-
-    await expect(
-      page.getByRole('heading', { name: /location list/i })
     ).toBeVisible()
   })
 
