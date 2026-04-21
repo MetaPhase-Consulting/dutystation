@@ -110,7 +110,7 @@ export function DirectoryFilters({
 
       <div className="flex flex-wrap gap-3">
       <Select value={selectedSector} onValueChange={setSelectedSector}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px]" aria-label="Filter by sector">
           <SelectValue placeholder="Select sector" />
         </SelectTrigger>
         <SelectContent>
@@ -123,7 +123,7 @@ export function DirectoryFilters({
       </Select>
 
       <Select value={selectedRegion} onValueChange={setSelectedRegion}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px]" aria-label="Filter by region">
           <SelectValue placeholder="Select region" />
         </SelectTrigger>
         <SelectContent>
@@ -136,7 +136,7 @@ export function DirectoryFilters({
       </Select>
 
       <Select value={selectedState} onValueChange={setSelectedState}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px]" aria-label="Filter by state">
           <SelectValue placeholder="Select state" />
         </SelectTrigger>
         <SelectContent>
@@ -149,7 +149,7 @@ export function DirectoryFilters({
       </Select>
 
         <Select value={selectedFacilityType} onValueChange={setSelectedFacilityType}>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px]" aria-label="Filter by facility type">
             <SelectValue placeholder="Select facility type" />
           </SelectTrigger>
           <SelectContent>

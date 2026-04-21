@@ -164,7 +164,7 @@ export default function ComparisonPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <Select value={station1Id ?? ""} onValueChange={(value) => handleStationChange("station1", value)}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full" aria-label="First duty station to compare">
                 <SelectValue placeholder="Select first duty station" />
               </SelectTrigger>
               <SelectContent>
@@ -179,7 +179,7 @@ export default function ComparisonPage() {
 
           <div>
             <Select value={station2Id ?? ""} onValueChange={(value) => handleStationChange("station2", value)}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full" aria-label="Second duty station to compare">
                 <SelectValue placeholder="Select second duty station" />
               </SelectTrigger>
               <SelectContent>

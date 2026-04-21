@@ -21,9 +21,7 @@ test.describe('Directory page', () => {
     await expect(page.locator('canvas').first()).toBeVisible({ timeout: 15_000 })
   })
 
-  // Known failing: unlabeled buttons on the directory page (button-name, critical).
-  // Tracked as a follow-up a11y fix — see Phase 5 in the hardening plan.
-  test.fixme('meets WCAG 2.1 AA on the directory page', async ({ page }, testInfo) => {
+  test('meets WCAG 2.1 AA on the directory page', async ({ page }, testInfo) => {
     await page.goto('/directory')
     await page.locator('canvas').first().waitFor({ state: 'visible', timeout: 15_000 })
     await expectNoSeriousA11yViolations(page, testInfo, 'directory')

@@ -29,9 +29,7 @@ test.describe('Station detail', () => {
     await expect(page.getByText(/application error/i)).toHaveCount(0)
   })
 
-  // Known failing: station detail currently has a11y violations (button-name +
-  // related). Follow-up fix tracked in the hardening plan's Phase 5.
-  test.fixme('meets WCAG 2.1 AA on station detail', async ({ page }, testInfo) => {
+  test('meets WCAG 2.1 AA on station detail', async ({ page }, testInfo) => {
     await page.goto(`/station/${SMOKE_STATION_ID}`)
     await page.getByRole('heading', { name: /presidio/i }).first().waitFor()
     await expectNoSeriousA11yViolations(page, testInfo, 'station-detail')

@@ -51,7 +51,7 @@ export function Layout() {
               rel="noopener noreferrer"
               className="text-sm text-muted-foreground hover:text-foreground flex items-center"
             >
-              Built by <span className="text-orange-500 font-semibold ml-1">MetaPhase</span>
+              Built by <span className="text-orange-800 font-semibold ml-1 underline decoration-dotted underline-offset-2">MetaPhase</span>
             </a>
           </div>
         </div>

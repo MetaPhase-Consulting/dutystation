@@ -51,7 +51,7 @@ export default function DataSourcesPage() {
                       href="https://www.cbp.gov/about/contact/ports" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       CBP Ports of Entry
                     </a>
@@ -65,7 +65,7 @@ export default function DataSourcesPage() {
                       href="https://www.cbp.gov/border-security/along-us-borders/border-patrol-sectors" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       Border Patrol Sectors
                     </a>
@@ -95,7 +95,7 @@ export default function DataSourcesPage() {
                       href="https://www.honorfirst.com/for-usbp-applicants.html" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       Honor First - USBP Applicant Community
                     </a>
@@ -109,7 +109,7 @@ export default function DataSourcesPage() {
                       href="https://careers.cbp.gov/s/" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       CBP Careers
                     </a>
@@ -139,7 +139,7 @@ export default function DataSourcesPage() {
                       href="https://openlayers.org" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       OpenLayers
                     </a>
@@ -153,7 +153,7 @@ export default function DataSourcesPage() {
                       href="https://www.openstreetmap.org" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       OpenStreetMap
                     </a>
@@ -183,7 +183,7 @@ export default function DataSourcesPage() {
                       href="https://www.realtor.com" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       Realtor.com
                     </a>
@@ -213,7 +213,7 @@ export default function DataSourcesPage() {
                       href="https://nces.ed.gov/ccd/schoolsearch/" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       NCES School Search
                     </a>
@@ -243,7 +243,7 @@ export default function DataSourcesPage() {
                       href="https://www.city-data.com/crime/" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       City-Data Crime
                     </a>
@@ -273,7 +273,7 @@ export default function DataSourcesPage() {
                       href="https://www.bestplaces.net" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       BestPlaces
                     </a>
@@ -303,7 +303,7 @@ export default function DataSourcesPage() {
                       href="https://www.weather.gov/" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       National Weather Service
                     </a>
@@ -333,7 +333,7 @@ export default function DataSourcesPage() {
                       href="https://www.google.com/maps/search/public+transit" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       Google Maps Transit Search
                     </a>
@@ -363,7 +363,7 @@ export default function DataSourcesPage() {
                       href="https://www.usa.gov/moving" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       USA.gov Moving Guide
                     </a>
@@ -389,7 +389,7 @@ export default function DataSourcesPage() {
                 <li className="flex gap-2">
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
-                    <a href="https://www.expedia.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                    <a href="https://www.expedia.com/" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline underline-offset-2 hover:no-underline">
                       Expedia
                     </a>
                   </div>
@@ -397,7 +397,7 @@ export default function DataSourcesPage() {
                 <li className="flex gap-2">
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
-                    <a href="https://www.travelocity.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                    <a href="https://www.travelocity.com/" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline underline-offset-2 hover:no-underline">
                       Travelocity
                     </a>
                   </div>
@@ -405,7 +405,7 @@ export default function DataSourcesPage() {
                 <li className="flex gap-2">
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
-                    <a href="https://www.kayak.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                    <a href="https://www.kayak.com/" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline underline-offset-2 hover:no-underline">
                       Kayak
                     </a>
                   </div>
@@ -433,7 +433,7 @@ export default function DataSourcesPage() {
                 href="https://metaphase.tech/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-[#F97316] hover:underline"
+                className="text-orange-800 underline underline-offset-2 hover:no-underline"
               >
                 MetaPhase
               </a>{' '}
@@ -442,7 +442,7 @@ export default function DataSourcesPage() {
                 href="https://github.com/MetaPhase-Consulting/dutystation/blob/main/LICENSE" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-blue-600 hover:underline"
+                className="text-blue-700 underline underline-offset-2 hover:no-underline"
               >
                 MIT License
               </a>.
