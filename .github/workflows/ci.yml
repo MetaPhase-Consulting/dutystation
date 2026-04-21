@@ -3,42 +3,368 @@ name: CI
 on:
   pull_request:
   push:
-    branches:
-      - "**"
+    branches: [dev, main]
+  workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
-  quality:
+  # -------------------------------------------------------------------------
+  # Stage 1: Lint & Type Check
+  # -------------------------------------------------------------------------
+  lint-typecheck:
+    name: Lint & Type Check
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-
+    timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
+      - name: Install deps
+        run: npm ci --legacy-peer-deps
       - name: Typecheck
         run: npm run typecheck
-
       - name: Lint
         run: npm run lint
 
-      - name: Unit tests
-        run: npm run test:run
+  # -------------------------------------------------------------------------
+  # Stage 2: Unit Tests + Coverage
+  # -------------------------------------------------------------------------
+  unit-tests:
+    name: Unit Tests + Coverage
+    runs-on: ubuntu-latest
+    needs: lint-typecheck
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install deps
+        run: npm ci --legacy-peer-deps
+      - name: Run tests with coverage
+        run: npm run test:coverage
+      - name: Coverage summary
+        if: always()
+        run: |
+          echo "## Coverage" >> $GITHUB_STEP_SUMMARY
+          if [ -f coverage/coverage-summary.json ]; then
+            node -e "
+              const s = require('./coverage/coverage-summary.json').total;
+              console.log('| Metric | Coverage |');
+              console.log('|---|---|');
+              ['lines','statements','functions','branches'].forEach(k => console.log('| ' + k + ' | ' + s[k].pct + '% |'));
+            " >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No coverage summary found." >> $GITHUB_STEP_SUMMARY
+          fi
+      - name: Upload coverage artifact
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage
+          path: coverage/
+          retention-days: 7
 
+  # -------------------------------------------------------------------------
+  # Stage 3: Build + Bundle Size
+  # -------------------------------------------------------------------------
+  build:
+    name: Build + Bundle Size
+    runs-on: ubuntu-latest
+    needs: unit-tests
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install deps
+        run: npm ci --legacy-peer-deps
       - name: Build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: npm run build
+      - name: Bundle size report
+        run: |
+          echo "## Bundle Size" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          du -sh dist/ >> $GITHUB_STEP_SUMMARY
+          find dist/assets -name '*.js' -exec du -sh {} \; | sort -rh | head -15 >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+          retention-days: 3
 
-      - name: Dependency audit
-        run: npm run audit:deps
+  # -------------------------------------------------------------------------
+  # Stage 4: Security (npm audit + dependency review)
+  # -------------------------------------------------------------------------
+  security-audit:
+    name: Security — Dependencies
+    runs-on: ubuntu-latest
+    needs: lint-typecheck
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install deps
+        run: npm ci --legacy-peer-deps
+      - name: npm audit (prod only)
+        run: npm run test:audit
+
+  dependency-review:
+    name: Security — Dependency Review
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: lint-typecheck
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
+
+  # -------------------------------------------------------------------------
+  # Stage 5: Accessibility (axe-core CLI)
+  # -------------------------------------------------------------------------
+  accessibility:
+    name: Accessibility (axe-core)
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 15
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install deps
+        run: npm ci --legacy-peer-deps
+      - name: Run axe-core CLI
+        run: npm run test:a11y
+
+  # -------------------------------------------------------------------------
+  # Stage 6: Lighthouse CI
+  # -------------------------------------------------------------------------
+  lighthouse:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 15
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install deps
+        run: npm ci --legacy-peer-deps
+      - name: Build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+        run: npm run build
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: .lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+  # -------------------------------------------------------------------------
+  # Stage 7: E2E Smoke (Playwright)
+  # -------------------------------------------------------------------------
+  e2e-smoke:
+    name: E2E Smoke (Playwright)
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install deps
+        run: npm ci --legacy-peer-deps
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      - name: Run Playwright
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+        run: npm run test:e2e
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+  # -------------------------------------------------------------------------
+  # Stage 8: OWASP ZAP Baseline (DAST)
+  # -------------------------------------------------------------------------
+  zap-baseline:
+    name: OWASP ZAP Baseline
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 15
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install deps
+        run: npm ci --legacy-peer-deps
+      - name: Build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+        run: npm run build
+      - name: Serve dist
+        run: |
+          npx serve -s dist -l 5178 &
+          for i in {1..30}; do
+            curl -fsS http://localhost:5178/ >/dev/null && break || sleep 1;
+          done
+      - name: ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          target: http://localhost:5178/
+          rules_file_name: .zap-rules.tsv
+          fail_action: false
+          allow_issue_writing: false
+          cmd_options: "-I"
+
+  # -------------------------------------------------------------------------
+  # Stage 9: Migration Validation
+  # -------------------------------------------------------------------------
+  migration-validation:
+    name: Migration Validation
+    runs-on: ubuntu-latest
+    needs: lint-typecheck
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check migration file format
+        run: |
+          set -e
+          shopt -s nullglob
+          found_any=false
+          for f in supabase/migrations/*.sql; do
+            found_any=true
+            base=$(basename "$f")
+            if ! [[ "$base" =~ ^[0-9]{14}_.+\.sql$ ]]; then
+              echo "::error file=$f::Migration filename must match YYYYMMDDHHMMSS_description.sql"
+              exit 1
+            fi
+            # Unterminated-string sanity check: single quotes should pair.
+            q=$(tr -cd "'" < "$f" | wc -c)
+            if (( q % 2 != 0 )); then
+              echo "::error file=$f::Odd number of single quotes — possible unterminated string."
+              exit 1
+            fi
+          done
+          if ! $found_any; then
+            echo "No migrations found; skipping."
+          fi
+
+  # -------------------------------------------------------------------------
+  # Stage 10: Link-Quality Gate
+  # -------------------------------------------------------------------------
+  link-quality:
+    name: Link-Quality Gate
+    runs-on: ubuntu-latest
+    needs: lint-typecheck
+    timeout-minutes: 5
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install deps
+        run: npm ci --legacy-peer-deps
+      - name: Validate link audit
+        run: |
+          if [ -f docs/progress/link-audit-latest.json ]; then
+            npm run data:validate:link-audit -- --report docs/progress/link-audit-latest.json --maxUnknownRate 0.35
+          else
+            echo "No link audit report found; data-maintenance workflow will regenerate."
+          fi
+
+  # -------------------------------------------------------------------------
+  # Deploy: Supabase migrations (push to dev/main only)
+  # -------------------------------------------------------------------------
+  push-migrations:
+    name: Push Supabase Migrations
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    needs: [unit-tests, build, migration-validation]
+    timeout-minutes: 10
+    steps:
+      - name: Validate required secrets
+        id: validate
+        env:
+          SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: |
+          if [ -z "$SUPABASE_PROJECT_REF" ] || [ -z "$SUPABASE_ACCESS_TOKEN" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping DB migration push because one or more required secrets are missing."
+            exit 0
+          fi
+          if [[ "$SUPABASE_ACCESS_TOKEN" != sbp_* ]]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping DB migration push because SUPABASE_ACCESS_TOKEN must use the sbp_ format."
+            exit 0
+          fi
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout
+        if: steps.validate.outputs.ready == 'true'
+        uses: actions/checkout@v6
+
+      - name: Setup Supabase CLI
+        if: steps.validate.outputs.ready == 'true'
+        uses: supabase/setup-cli@v1
+        with:
+          version: 2.51.0
+
+      - name: Link project
+        if: steps.validate.outputs.ready == 'true'
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: supabase link --project-ref "${{ secrets.SUPABASE_PROJECT_REF }}"
+
+      - name: Push migrations
+        if: steps.validate.outputs.ready == 'true'
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: supabase db push --linked --include-all --yes
