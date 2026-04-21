@@ -11,8 +11,10 @@ import VectorSource from "ol/source/Vector";
 import Feature from "ol/Feature";
 import Point from "ol/geom/Point";
 import { Style, Icon } from "ol/style";
+import { X } from "lucide-react";
 import { DutyStation } from "@/types/station";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 interface StationMapProps {
   locations?: DutyStation[];
@@ -21,11 +23,19 @@ interface StationMapProps {
   className?: string;
 }
 
+// Continental US center, zoom sized to show CONUS comfortably at ~1280x720.
+const CONUS_CENTER: [number, number] = [-98.5795, 39.8283];
+const CONUS_ZOOM = 4;
+const SELECTED_ZOOM = 10;
+
 const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const tooltipRef = useRef<HTMLDivElement>(null);
+  const hoverTooltipRef = useRef<HTMLDivElement>(null);
+  const selectedCardRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<OLMap | null>(null);
+  const selectedOverlayRef = useRef<Overlay | null>(null);
   const [hoveredStationId, setHoveredStationId] = useState<string | null>(null);
+  const [selectedStationId, setSelectedStationId] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const stationById = useMemo(() => {
@@ -45,19 +55,28 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
         }),
       ],
       view: new View({
-        center: fromLonLat([-98.5795, 39.8283]),
-        zoom: 4,
+        center: fromLonLat(CONUS_CENTER),
+        zoom: CONUS_ZOOM,
       }),
     });
 
-    const overlay = new Overlay({
-      element: tooltipRef.current ?? undefined,
+    const hoverOverlay = new Overlay({
+      element: hoverTooltipRef.current ?? undefined,
       offset: [0, -16],
       positioning: "bottom-center",
       stopEvent: false,
     });
+    map.addOverlay(hoverOverlay);
 
-    map.addOverlay(overlay);
+    const selectedOverlay = new Overlay({
+      element: selectedCardRef.current ?? undefined,
+      offset: [0, -44],
+      positioning: "bottom-center",
+      // Swallow clicks so View Details / close don't bubble to the map.
+      stopEvent: true,
+    });
+    map.addOverlay(selectedOverlay);
+    selectedOverlayRef.current = selectedOverlay;
 
     const componentColorMap: Record<string, string> = {
       USBP: "#0A4A0A",
@@ -116,31 +135,42 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
 
         if (!feature) {
           setHoveredStationId(null);
-          overlay.setPosition(undefined);
+          hoverOverlay.setPosition(undefined);
           return;
         }
 
         const stationId = feature.get("id") as string;
         setHoveredStationId(stationId);
-        overlay.setPosition(event.coordinate);
+        hoverOverlay.setPosition(event.coordinate);
       });
 
       map.on("click", (event) => {
+        let matched = false;
         map.forEachFeatureAtPixel(event.pixel, (feature) => {
-          const id = feature.get("id");
-          if (id) {
-            navigate(`/station/${id}`);
-          }
-        });
-      });
+          const id = feature.get("id") as string;
+          if (!id) return;
+          matched = true;
 
-      const vectorSource = vectorLayer.getSource();
-      if (vectorSource) {
-        map.getView().fit(vectorSource.getExtent(), {
-          padding: [50, 50, 50, 50],
-          maxZoom: 16,
+          setSelectedStationId(id);
+          // Hover tooltip would overlap the selected card — clear it.
+          setHoveredStationId(null);
+          hoverOverlay.setPosition(undefined);
+
+          const coord = (feature.getGeometry() as Point).getCoordinates();
+          selectedOverlay.setPosition(coord);
+          map.getView().animate({
+            center: coord,
+            zoom: Math.max(map.getView().getZoom() ?? SELECTED_ZOOM, SELECTED_ZOOM),
+            duration: 400,
+          });
         });
-      }
+
+        if (!matched) {
+          // Clicked empty map space — dismiss any open selection.
+          setSelectedStationId(null);
+          selectedOverlay.setPosition(undefined);
+        }
+      });
     } else if (lat !== undefined && lng !== undefined) {
       const feature = new Feature({
         geometry: new Point(fromLonLat([lng, lat])),
@@ -165,10 +195,17 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
         mapInstance.current.setTarget(undefined);
       }
       mapInstance.current = null;
+      selectedOverlayRef.current = null;
     };
   }, [lat, lng, locations, navigate]);
 
   const hoveredStation = hoveredStationId ? stationById.get(hoveredStationId) : null;
+  const selectedStation = selectedStationId ? stationById.get(selectedStationId) : null;
+
+  const closeSelected = () => {
+    setSelectedStationId(null);
+    selectedOverlayRef.current?.setPosition(undefined);
+  };
 
   return (
     <div className="relative">
@@ -179,14 +216,67 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
         role="application"
         aria-label="Duty station map"
       />
+
+      {/* Hover tooltip (cheap quick label). */}
       <div
-        ref={tooltipRef}
+        ref={hoverTooltipRef}
         className={`pointer-events-none rounded-md bg-black/80 px-3 py-2 text-xs text-white shadow ${
-          hoveredStation ? "block" : "hidden"
+          hoveredStation && !selectedStation ? "block" : "hidden"
         }`}
-        aria-hidden={!hoveredStation}
+        aria-hidden={!hoveredStation || !!selectedStation}
       >
         {hoveredStation ? `${hoveredStation.name} (${hoveredStation.city}, ${hoveredStation.state})` : ""}
+      </div>
+
+      {/* Click-selected station card. OL positions this via Overlay. */}
+      <div
+        ref={selectedCardRef}
+        className={selectedStation ? "block" : "hidden"}
+        aria-live="polite"
+      >
+        {selectedStation ? (
+          <div className="w-64 rounded-md border bg-white shadow-lg">
+            <div className="flex items-start justify-between gap-2 p-3 pb-2">
+              <h3 className="font-semibold text-[#0A4A0A] leading-tight">
+                {selectedStation.name}
+              </h3>
+              <button
+                type="button"
+                onClick={closeSelected}
+                aria-label="Close station info"
+                className="text-muted-foreground hover:text-foreground"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="px-3 pb-3 space-y-2">
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                {selectedStation.city}, {selectedStation.state} · {selectedStation.region} Region
+              </p>
+              <div className="flex flex-wrap gap-1">
+                <span className="text-[11px] bg-muted rounded px-2 py-0.5 font-medium">
+                  {selectedStation.componentType}
+                </span>
+                <span className="text-[11px] bg-muted rounded px-2 py-0.5 font-medium">
+                  {selectedStation.facilityType}
+                </span>
+                {selectedStation.attributes.incentiveEligible ? (
+                  <span className="text-[11px] bg-[#0A4A0A] text-white rounded px-2 py-0.5 font-medium">
+                    Incentive
+                  </span>
+                ) : null}
+              </div>
+              <Button
+                type="button"
+                size="sm"
+                className="w-full mt-1"
+                onClick={() => navigate(`/station/${selectedStation.id}`)}
+              >
+                View Details
+              </Button>
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );
