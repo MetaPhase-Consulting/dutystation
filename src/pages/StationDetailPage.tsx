@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft,
   ArrowRightLeft,
@@ -276,6 +276,19 @@ export default function StationDetailPage() {
           </div>
         </div>
 
+        <p className="text-xs text-muted-foreground pt-4 border-t">
+          This website is an informational, non-official resource and is not an
+          official U.S. government system. CBP is not responsible for
+          relocation costs. Information is provided for planning reference
+          only.{" "}
+          <Link
+            to="/disclaimer"
+            className="underline underline-offset-2 hover:text-foreground"
+          >
+            Full disclaimer
+          </Link>
+          .
+        </p>
       </div>
     </div>
   );

@@ -26,8 +26,6 @@ const footerColumns: Array<{
 ];
 
 export function Layout() {
-  const year = new Date().getFullYear();
-
   return (
     <div className="flex min-h-screen flex-col">
       <NavBar />
@@ -41,9 +39,24 @@ export function Layout() {
         <Outlet />
       </main>
       <footer className="border-t bg-muted/40 print:hidden" role="contentinfo">
-        <div className="container mx-auto px-4 py-10">
-          <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-start">
-            {/* Nav columns */}
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-10">
+            {/* Left: brand */}
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground shrink-0"
+            >
+              <img
+                src="/greencompassimg.png"
+                alt="Compass Icon"
+                className="h-5 w-5"
+              />
+              <span className="font-bold text-[#1F631A]">
+                Duty Station Relocation
+              </span>
+            </Link>
+
+            {/* Middle: nav columns */}
             <div className="flex flex-wrap gap-10 sm:gap-14 flex-1">
               {footerColumns.map((column) => (
                 <div key={column.title}>
@@ -66,22 +79,9 @@ export function Layout() {
               ))}
             </div>
 
-            {/* Brand + attribution */}
+            {/* Right: attribution */}
             <div className="shrink-0 lg:text-right">
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
-              >
-                <img
-                  src="/greencompassimg.png"
-                  alt="Compass Icon"
-                  className="h-5 w-5"
-                />
-                <span className="font-bold text-[#1F631A]">
-                  Duty Station Relocation
-                </span>
-              </Link>
-              <p className="text-sm text-muted-foreground mt-3 flex items-center gap-2 lg:justify-end">
+              <p className="text-sm text-muted-foreground flex flex-wrap items-center gap-2 lg:justify-end">
                 <a
                   href="https://github.com/MetaPhase-Consulting/dutystation"
                   target="_blank"
@@ -108,25 +108,7 @@ export function Layout() {
                   </span>
                 </a>
               </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                &copy; {year} &middot; MIT License
-              </p>
             </div>
-          </div>
-
-          {/* Site-wide disclaimer bar */}
-          <div className="border-t mt-8 pt-4">
-            <p className="text-xs text-muted-foreground">
-              This website is an informational, non-official resource and is
-              not an official U.S. government system.{" "}
-              <Link
-                to="/disclaimer"
-                className="underline underline-offset-2 hover:text-foreground"
-              >
-                Full disclaimer
-              </Link>
-              .
-            </p>
           </div>
         </div>
       </footer>
