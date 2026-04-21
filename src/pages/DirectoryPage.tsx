@@ -120,10 +120,29 @@ export default function DirectoryPage() {
     () => uniqueSorted(stations.map((station) => station.state), "All States"),
     [stations]
   );
-  const facilityTypes = useMemo(
-    () => uniqueSorted(stations.map((station) => station.facilityType), "All Facility Types"),
-    [stations]
-  );
+  // Facility types scoped to the currently selected components. When no
+  // component filter is active, surface every facility type in the dataset.
+  const facilityTypes = useMemo(() => {
+    const relevantStations =
+      selectedComponents.length === 0
+        ? stations
+        : stations.filter((station) => selectedComponents.includes(station.componentType));
+    return uniqueSorted(
+      relevantStations.map((station) => station.facilityType),
+      "All Facility Types"
+    );
+  }, [stations, selectedComponents]);
+
+  // Reset facility selection if it's no longer available under the current
+  // component filter (mirrors the sector-reset effect above).
+  useEffect(() => {
+    if (
+      selectedFacilityType !== "All Facility Types" &&
+      !facilityTypes.includes(selectedFacilityType)
+    ) {
+      setSelectedFacilityType("All Facility Types");
+    }
+  }, [facilityTypes, selectedFacilityType]);
 
   const filteredStations = useMemo(
     () =>

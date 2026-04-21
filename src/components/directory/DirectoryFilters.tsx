@@ -71,7 +71,9 @@ export function DirectoryFilters({
               onClick={() => toggleComponent(component)}
               aria-pressed={active}
               className={`h-8 px-3 text-xs font-semibold ${
-                active ? accent.buttonClass : accent.text
+                active
+                  ? accent.buttonClass
+                  : `${accent.text} ${accent.inactiveHoverClass}`
               }`}
             >
               {component}
