@@ -17,7 +17,7 @@ interface DirectoryFiltersProps {
   setSelectedRegion: (region: string) => void;
   selectedState: string;
   setSelectedState: (state: string) => void;
-  sectors: string[];
+  sectorOptions: Array<{ value: string; label: string }>;
   regions: string[];
   states: string[];
   selectedComponents: ComponentType[];
@@ -44,7 +44,7 @@ export function DirectoryFilters({
   setSelectedRegion,
   selectedState,
   setSelectedState,
-  sectors,
+  sectorOptions,
   regions,
   states,
   selectedComponents,
@@ -91,19 +91,6 @@ export function DirectoryFilters({
         })}
       </div>
 
-      <Select value={selectedSector} onValueChange={setSelectedSector}>
-        <SelectTrigger className="w-[160px]" aria-label="Filter by sector">
-          <SelectValue placeholder="Select sector" />
-        </SelectTrigger>
-        <SelectContent>
-          {sectors.map((sector) => (
-            <SelectItem key={sector} value={sector}>
-              {sector}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
       <Select value={selectedRegion} onValueChange={setSelectedRegion}>
         <SelectTrigger className="w-[160px]" aria-label="Filter by region">
           <SelectValue placeholder="Select region" />
@@ -112,6 +99,19 @@ export function DirectoryFilters({
           {regions.map((region) => (
             <SelectItem key={region} value={region}>
               {region}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+
+      <Select value={selectedSector} onValueChange={setSelectedSector}>
+        <SelectTrigger className="w-[210px]" aria-label="Filter by sector">
+          <SelectValue placeholder="Select sector" />
+        </SelectTrigger>
+        <SelectContent>
+          {sectorOptions.map((option) => (
+            <SelectItem key={option.value} value={option.value}>
+              {option.label}
             </SelectItem>
           ))}
         </SelectContent>
@@ -144,11 +144,11 @@ export function DirectoryFilters({
       </Select>
 
       <div className="flex items-center gap-2 rounded-md border bg-background px-3 py-1.5">
-        <span className="text-sm whitespace-nowrap">Incentive Eligible</span>
+        <span className="text-sm whitespace-nowrap">Incentive</span>
         <Switch
           checked={incentiveOnly}
           onCheckedChange={setIncentiveOnly}
-          aria-label="Toggle incentive eligible stations only"
+          aria-label="Toggle incentive stations only"
         />
       </div>
     </div>

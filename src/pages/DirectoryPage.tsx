@@ -29,10 +29,49 @@ export default function DirectoryPage() {
     return sanitizeSearchTerm(params.get("search") ?? "");
   }, [location.search]);
 
-  const sectors = useMemo(
-    () => uniqueSorted(stations.map((station) => station.sector), "All Sectors"),
-    [stations]
-  );
+  // Map of raw sector string -> componentType so we can label sectors with
+  // their component (e.g. "Laredo Sector (USBP)") and filter the dropdown
+  // to sectors belonging to the currently selected components.
+  const sectorComponents = useMemo(() => {
+    const map = new Map<string, ComponentType>();
+    stations.forEach((station) => {
+      if (!map.has(station.sector)) {
+        map.set(station.sector, station.componentType);
+      }
+    });
+    return map;
+  }, [stations]);
+
+  const sectorOptions = useMemo(() => {
+    const raw = Array.from(sectorComponents.entries());
+    const filtered =
+      selectedComponents.length === 0
+        ? raw
+        : raw.filter(([, component]) => selectedComponents.includes(component));
+    return [
+      { value: "All Sectors", label: "All Sectors" },
+      ...filtered
+        .map(([sector, component]) => {
+          // "Laredo Sector Texas" -> "Laredo Sector"; keep everything up to
+          // and including the first " Sector " token.
+          const cleaned = sector.split(" Sector ")[0] + " Sector";
+          return { value: sector, label: `${cleaned} (${component})` };
+        })
+        .sort((a, b) => a.label.localeCompare(b.label)),
+    ];
+  }, [sectorComponents, selectedComponents]);
+
+  // If the currently selected sector isn't available for the active
+  // component filter (e.g. switched from USBP to OFO-only), reset.
+  useEffect(() => {
+    if (
+      selectedSector !== "All Sectors" &&
+      !sectorOptions.some((option) => option.value === selectedSector)
+    ) {
+      setSelectedSector("All Sectors");
+    }
+  }, [sectorOptions, selectedSector]);
+
   const regions = useMemo(
     () => uniqueSorted(stations.map((station) => station.region), "All Regions"),
     [stations]
@@ -120,7 +159,7 @@ export default function DirectoryPage() {
           selectedFacilityType={selectedFacilityType}
           setSelectedFacilityType={setSelectedFacilityType}
           facilityTypes={facilityTypes}
-          sectors={sectors}
+          sectorOptions={sectorOptions}
           regions={regions}
           states={states}
           selectedComponents={selectedComponents}
