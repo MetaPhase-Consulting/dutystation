@@ -138,7 +138,11 @@ export default function StationDetailPage() {
                 <p className="mb-6">{station.description}</p>
 
                 <div className="mb-6 rounded-md overflow-hidden">
-                  <StationDetailMap lat={station.lat} lng={station.lng} />
+                  <StationDetailMap
+                    lat={station.lat}
+                    lng={station.lng}
+                    componentType={station.componentType}
+                  />
                 </div>
 
                 <div className="flex justify-between">
