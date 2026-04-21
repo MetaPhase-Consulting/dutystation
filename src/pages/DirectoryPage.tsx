@@ -140,7 +140,7 @@ export default function DirectoryPage() {
         <div className="flex flex-col space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Duty Station Directory</h1>
           <p className="text-muted-foreground">
-            Browse and search duty stations across USBP, OFO (ports and field offices), and AMO.
+            Browse and search duty stations, including ports, field offices, and stations across USBP, OFO, and AMO.
           </p>
         </div>
 
