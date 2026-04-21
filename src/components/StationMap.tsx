@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import OLMap from "ol/Map";
 import Overlay from "ol/Overlay";
 import View from "ol/View";
@@ -13,7 +13,6 @@ import Point from "ol/geom/Point";
 import { Style, Icon } from "ol/style";
 import { DutyStation } from "@/types/station";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 
 interface StationMapProps {
   locations?: DutyStation[];
@@ -172,66 +171,23 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
   const hoveredStation = hoveredStationId ? stationById.get(hoveredStationId) : null;
 
   return (
-    <div>
-      <div className="relative">
-        <div
-          ref={mapRef}
-          className={`w-full h-full min-h-[400px] ${className}`}
-          data-testid="station-map"
-          role="application"
-          aria-label="Duty station map"
-        />
-        <div
-          ref={tooltipRef}
-          className={`pointer-events-none rounded-md bg-black/80 px-3 py-2 text-xs text-white shadow ${
-            hoveredStation ? "block" : "hidden"
-          }`}
-          aria-hidden={!hoveredStation}
-        >
-          {hoveredStation ? `${hoveredStation.name} (${hoveredStation.city}, ${hoveredStation.state})` : ""}
-        </div>
+    <div className="relative">
+      <div
+        ref={mapRef}
+        className={`w-full h-full min-h-[400px] ${className}`}
+        data-testid="station-map"
+        role="application"
+        aria-label="Duty station map"
+      />
+      <div
+        ref={tooltipRef}
+        className={`pointer-events-none rounded-md bg-black/80 px-3 py-2 text-xs text-white shadow ${
+          hoveredStation ? "block" : "hidden"
+        }`}
+        aria-hidden={!hoveredStation}
+      >
+        {hoveredStation ? `${hoveredStation.name} (${hoveredStation.city}, ${hoveredStation.state})` : ""}
       </div>
-
-      {locations?.length ? (
-        <div className="mt-3 space-y-3 rounded-md border p-3">
-          <div className="rounded-md bg-muted/40 p-2">
-            <h3 className="text-sm font-semibold text-[#0A4A0A]">Map Legend</h3>
-            <div className="mt-2 flex flex-wrap gap-3 text-xs">
-              <span className="inline-flex items-center gap-2">
-                <span className="inline-block h-3 w-3 rounded-full bg-[#0A4A0A]" />
-                USBP
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <span className="inline-block h-3 w-3 rounded-full bg-[#0B4A8B]" />
-                OFO
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <span className="inline-block h-3 w-3 rounded-full bg-[#0F766E]" />
-                AMO
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <span className="inline-block h-3 w-3 rounded-full border-2 border-[#C88A04] bg-white" />
-                Incentive Highlight
-              </span>
-            </div>
-          </div>
-
-          <h3 className="text-sm font-semibold text-[#0A4A0A]">Keyboard-Accessible Pin List</h3>
-          <p className="text-xs text-muted-foreground mb-2">Use this list as an alternative to map hover interactions.</p>
-          <div className="max-h-40 overflow-auto flex flex-wrap gap-2">
-            {locations.map((location) => (
-              <Button
-                key={`map-list-${location.id}`}
-                size="sm"
-                variant="outline"
-                onClick={() => navigate(`/station/${location.id}`)}
-              >
-                {location.name}
-              </Button>
-            ))}
-          </div>
-        </div>
-      ) : null}
     </div>
   );
 };

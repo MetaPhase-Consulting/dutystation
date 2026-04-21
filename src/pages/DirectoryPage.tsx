@@ -3,11 +3,13 @@ import { useLocation } from "react-router-dom";
 import { List, Map as MapIcon } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DirectoryFilters } from "@/components/directory/DirectoryFilters";
+import { MapLegend } from "@/components/directory/MapLegend";
+import { SortControl } from "@/components/directory/SortControl";
 import { StationsList } from "@/components/directory/StationsList";
 import StationMap from "@/components/StationMap";
 import { useStationsQuery } from "@/lib/data/queryHooks";
 import { filterStations, sanitizeSearchTerm, uniqueSorted } from "@/lib/data/stationFilters";
-import { ComponentType, PositionType } from "@/types/station";
+import { ComponentType } from "@/types/station";
 import { trackUsageEvent } from "@/lib/data/usageTracking";
 
 export default function DirectoryPage() {
@@ -17,7 +19,6 @@ export default function DirectoryPage() {
   const [selectedState, setSelectedState] = useState("All States");
   const [selectedFacilityType, setSelectedFacilityType] = useState("All Facility Types");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-  const [selectedPositions, setSelectedPositions] = useState<PositionType[]>([]);
   const [selectedComponents, setSelectedComponents] = useState<ComponentType[]>([]);
   const [incentiveOnly, setIncentiveOnly] = useState(false);
   const { data: stations = [], isLoading } = useStationsQuery();
@@ -57,7 +58,7 @@ export default function DirectoryPage() {
             ? []
             : [selectedFacilityType as "Station" | "Port of Entry" | "Field Office" | "Sector" | "Other"],
         componentTypes: selectedComponents,
-        positionTypes: selectedPositions,
+        positionTypes: [],
         incentiveOnly,
         sortOrder,
       }),
@@ -66,7 +67,6 @@ export default function DirectoryPage() {
       queryParam,
       selectedComponents,
       selectedFacilityType,
-      selectedPositions,
       selectedRegion,
       selectedSector,
       selectedState,
@@ -85,7 +85,6 @@ export default function DirectoryPage() {
         selectedState,
         selectedFacilityType,
         selectedComponents,
-        selectedPositions,
         incentiveOnly,
         sortOrder,
       },
@@ -95,7 +94,6 @@ export default function DirectoryPage() {
     queryParam,
     selectedComponents,
     selectedFacilityType,
-    selectedPositions,
     selectedRegion,
     selectedSector,
     selectedState,
@@ -122,13 +120,9 @@ export default function DirectoryPage() {
           selectedFacilityType={selectedFacilityType}
           setSelectedFacilityType={setSelectedFacilityType}
           facilityTypes={facilityTypes}
-          sortOrder={sortOrder}
-          setSortOrder={setSortOrder}
           sectors={sectors}
           regions={regions}
           states={states}
-          selectedPositions={selectedPositions}
-          setSelectedPositions={setSelectedPositions}
           selectedComponents={selectedComponents}
           setSelectedComponents={setSelectedComponents}
           incentiveOnly={incentiveOnly}
@@ -136,18 +130,26 @@ export default function DirectoryPage() {
         />
 
         <Tabs value={activeView} onValueChange={(value) => setActiveView(value as "map" | "list")}>
-          <TabsList className="grid w-full max-w-sm grid-cols-2 text-slate-700">
-            <TabsTrigger value="map">
-              <MapIcon className="h-4 w-4 mr-2" />
-              Map
-            </TabsTrigger>
-            <TabsTrigger value="list">
-              <List className="h-4 w-4 mr-2" />
-              List
-            </TabsTrigger>
-          </TabsList>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <TabsList className="grid w-full max-w-sm grid-cols-2 text-slate-700">
+              <TabsTrigger value="map">
+                <MapIcon className="h-4 w-4 mr-2" />
+                Map
+              </TabsTrigger>
+              <TabsTrigger value="list">
+                <List className="h-4 w-4 mr-2" />
+                List
+              </TabsTrigger>
+            </TabsList>
 
-          <TabsContent value="map" className="mt-6">
+            {activeView === "map" ? (
+              <MapLegend />
+            ) : (
+              <SortControl sortOrder={sortOrder} setSortOrder={setSortOrder} />
+            )}
+          </div>
+
+          <TabsContent value="map" className="mt-4">
             {isLoading ? (
               <div className="aspect-[16/10] flex items-center justify-center text-muted-foreground border rounded-lg">
                 Loading map data...
@@ -159,7 +161,7 @@ export default function DirectoryPage() {
             )}
           </TabsContent>
 
-          <TabsContent value="list" className="mt-6">
+          <TabsContent value="list" className="mt-4">
             {isLoading ? (
               <div className="rounded-md border p-8 text-center text-muted-foreground">
                 Loading duty stations…
