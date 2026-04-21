@@ -26,3 +26,6 @@ scripts/data/.cache/
 *.njsproj
 *.sln
 *.sw?
+
+# Local Netlify folder
+.netlify
