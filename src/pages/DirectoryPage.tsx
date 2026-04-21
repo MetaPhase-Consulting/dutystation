@@ -136,7 +136,7 @@ export default function DirectoryPage() {
         />
 
         <Tabs value={activeView} onValueChange={(value) => setActiveView(value as "map" | "list")}>
-          <TabsList className="grid w-full max-w-sm grid-cols-2">
+          <TabsList className="grid w-full max-w-sm grid-cols-2 text-slate-700">
             <TabsTrigger value="map">
               <MapIcon className="h-4 w-4 mr-2" />
               Map

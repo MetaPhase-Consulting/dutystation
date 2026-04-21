@@ -191,7 +191,7 @@ export default function StationDetailPage() {
                           </h3>
                           <p className="text-sm text-muted-foreground">{resource.description}</p>
                           {source ? (
-                            <p className="text-[10px] text-muted-foreground/70 mt-1">Source: {source}</p>
+                            <p className="text-[11px] text-muted-foreground mt-1">Source: {source}</p>
                           ) : null}
                         </div>
                       </a>
@@ -228,7 +228,7 @@ export default function StationDetailPage() {
                             </h3>
                             <p className="text-sm text-muted-foreground">{resource.description}</p>
                             {source ? (
-                              <p className="text-[10px] text-muted-foreground/70 mt-1">Source: {source}</p>
+                              <p className="text-[11px] text-muted-foreground mt-1">Source: {source}</p>
                             ) : null}
                           </div>
                         </a>
@@ -263,7 +263,7 @@ export default function StationDetailPage() {
                             </h3>
                             <p className="text-sm text-muted-foreground">{resource.description}</p>
                             {source ? (
-                              <p className="text-[10px] text-muted-foreground/70 mt-1">Source: {source}</p>
+                              <p className="text-[11px] text-muted-foreground mt-1">Source: {source}</p>
                             ) : null}
                           </div>
                         </a>
@@ -276,11 +276,6 @@ export default function StationDetailPage() {
           </div>
         </div>
 
-        {station.attributes.disclaimerApplies ? (
-          <p className="text-xs text-muted-foreground pt-4 border-t">
-            CBP is not responsible for relocation costs. Information is provided for planning reference only.
-          </p>
-        ) : null}
       </div>
     </div>
   );

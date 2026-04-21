@@ -12,6 +12,9 @@ const DirectoryPage = lazy(() => import("@/pages/DirectoryPage"));
 const StationDetailPage = lazy(() => import("@/pages/StationDetailPage"));
 const ComparisonPage = lazy(() => import("@/pages/ComparisonPage"));
 const DataSourcesPage = lazy(() => import("@/pages/DataSourcesPage"));
+const DisclaimerPage = lazy(() => import("@/pages/DisclaimerPage"));
+const PrivacyPage = lazy(() => import("@/pages/PrivacyPage"));
+const AccessibilityPage = lazy(() => import("@/pages/AccessibilityPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -45,6 +48,9 @@ const App = () => (
               <Route path="/station/:id" element={<StationDetailPage />} />
               <Route path="/compare" element={<ComparisonPage />} />
               <Route path="/data-sources" element={<DataSourcesPage />} />
+              <Route path="/disclaimer" element={<DisclaimerPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/accessibility" element={<AccessibilityPage />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

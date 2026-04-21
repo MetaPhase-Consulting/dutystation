@@ -77,9 +77,9 @@ describe("StationDetailPage", () => {
       </MemoryRouter>
     );
 
-    expect(
-      screen.getByText(/CBP is not responsible for relocation costs/i)
-    ).toBeInTheDocument();
+    // Per-station inline disclaimer moved to the site-wide footer (covered by
+    // Layout test). Station detail no longer renders its own disclaimer.
+    expect(screen.queryByText(/CBP is not responsible for relocation costs/i)).toBeNull();
     expect(screen.getAllByText("Travel").length).toBeGreaterThan(0);
     expect(screen.getByText("Recreation")).toBeInTheDocument();
     // Source attribution (derived from URL hostname) now shows under each link.
