@@ -1,11 +1,12 @@
 
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "@/components/Layout";
+import { Spinner } from "@/components/Spinner";
 
 const HomePage = lazy(() => import("@/pages/HomePage"));
 const DirectoryPage = lazy(() => import("@/pages/DirectoryPage"));
@@ -19,12 +20,23 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
+// Most lazy-route loads resolve in well under 200ms. Showing any loading UI
+// for those brief loads causes a visible flicker on refresh. Delay the
+// spinner by 200ms so fast loads render nothing, and only genuinely slow
+// loads show the indicator.
 function RouteLoadingFallback() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const id = setTimeout(() => setShow(true), 200);
+    return () => clearTimeout(id);
+  }, []);
+  if (!show) return null;
   return (
-    <div className="container px-4 py-8 mx-auto">
-      <div className="rounded-md border p-8 text-center text-muted-foreground">
-        Loading page content...
-      </div>
+    <div
+      className="flex min-h-[50vh] items-center justify-center"
+      aria-busy="true"
+    >
+      <Spinner size="lg" label="Loading page" />
     </div>
   );
 }
