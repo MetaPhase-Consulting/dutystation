@@ -174,7 +174,7 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
     <div className="relative">
       <div
         ref={mapRef}
-        className={`w-full h-full min-h-[400px] ${className}`}
+        className={`w-full min-h-[400px] ${className}`}
         data-testid="station-map"
         role="application"
         aria-label="Duty station map"
