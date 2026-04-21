@@ -65,14 +65,56 @@ export default function StationDetailPage() {
       return [];
     }
 
-    return (Object.keys(station.links) as StationLinkCategory[]).map((category) => ({
-      category,
-      name: linkLabelByCategory[category],
-      description: linkDescriptionByCategory[category],
-      icon: linkIconByCategory[category],
-      link: station.links[category],
-    }));
-  }, [station]);
+    type ResourceRow = {
+      key: string;
+      trackingCategory: string;
+      name: string;
+      description: string;
+      icon: typeof Home;
+      url: string;
+    };
+
+    const rows: ResourceRow[] = (Object.keys(station.links) as StationLinkCategory[]).map(
+      (category) => ({
+        key: `link-${category}`,
+        trackingCategory: category,
+        name: linkLabelByCategory[category],
+        description: linkDescriptionByCategory[category],
+        icon: linkIconByCategory[category],
+        url: station.links[category].url,
+      })
+    );
+
+    // Fold recreation + travel into the same list so every external
+    // resource renders with identical chrome and a "Source: X" footer.
+    // Recreation can have multiple entries per station — take the first
+    // as the representative link. Travel is a single global resource.
+    const firstRecreation = station.recreation[0];
+    if (firstRecreation?.url) {
+      rows.push({
+        key: `recreation-${firstRecreation.id}`,
+        trackingCategory: "recreation",
+        name: "Recreation",
+        description: firstRecreation.description || "Parks, trails, and outdoor activities nearby",
+        icon: Trees,
+        url: firstRecreation.url,
+      });
+    }
+
+    const firstTravel = travelResources[0];
+    if (firstTravel?.url) {
+      rows.push({
+        key: `travel-${firstTravel.id}`,
+        trackingCategory: "travel",
+        name: "Travel",
+        description: firstTravel.description || "Flights, hotels, and rental cars",
+        icon: Plane,
+        url: firstTravel.url,
+      });
+    }
+
+    return rows;
+  }, [station, travelResources]);
 
   if (isLoading) {
     return (
@@ -169,11 +211,11 @@ export default function StationDetailPage() {
 
                 <div className="grid gap-3">
                   {resourceLinks.map((resource) => {
-                    const source = getSourceName(resource.link.url);
+                    const source = getSourceName(resource.url);
                     return (
                       <a
-                        key={resource.category}
-                        href={resource.link.url}
+                        key={resource.key}
+                        href={resource.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
@@ -182,8 +224,8 @@ export default function StationDetailPage() {
                             eventName: "external_resource_click",
                             stationId: station.id,
                             eventMetadata: {
-                              category: resource.category,
-                              url: resource.link.url,
+                              category: resource.trackingCategory,
+                              url: resource.url,
                             },
                           });
                         }}
@@ -206,81 +248,6 @@ export default function StationDetailPage() {
                 </div>
               </CardContent>
             </Card>
-
-            {station.recreation.length ? (
-              <Card>
-                <CardContent className="p-6">
-                  <h2 className="text-xl font-semibold mb-4 text-[#222222] flex items-center gap-2">
-                    <Trees
-                      className={`h-5 w-5 ${componentAccent[station.componentType].iconClass}`}
-                    />
-                    Recreation
-                  </h2>
-                  <div className="grid gap-3">
-                    {station.recreation.map((resource) => {
-                      const source = getSourceName(resource.url);
-                      return (
-                        <a
-                          key={resource.id}
-                          href={resource.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
-                        >
-                          <div className="bg-muted p-2 rounded-md">
-                            <Trees className="h-5 w-5" />
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="font-medium text-[#222222] group-hover:text-primary transition-colors">
-                              {resource.name}
-                            </h3>
-                            <p className="text-sm text-muted-foreground">{resource.description}</p>
-                            {source ? (
-                              <p className="text-[11px] text-muted-foreground mt-1">Source: {source}</p>
-                            ) : null}
-                          </div>
-                        </a>
-                      );
-                    })}
-                  </div>
-                </CardContent>
-              </Card>
-            ) : null}
-
-            {travelResources.length ? (
-              <Card>
-                <CardContent className="p-6">
-                  <h2 className="text-xl font-semibold mb-4 text-[#222222]">Travel</h2>
-                  <div className="grid gap-3">
-                    {travelResources.map((resource) => {
-                      const source = getSourceName(resource.url);
-                      return (
-                        <a
-                          key={resource.id}
-                          href={resource.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
-                        >
-                          <div className="bg-muted p-2 rounded-md">
-                            <Plane className="h-5 w-5" />
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="font-medium text-[#222222] group-hover:text-primary transition-colors">
-                              {resource.name}
-                            </h3>
-                            <p className="text-sm text-muted-foreground">{resource.description}</p>
-                            {source ? (
-                              <p className="text-[11px] text-muted-foreground mt-1">Source: {source}</p>
-                            ) : null}
-                          </div>
-                        </a>
-                      );
-                    })}
-                  </div>
-                </CardContent>
-              </Card>
-            ) : null}
           </div>
         </div>
 
