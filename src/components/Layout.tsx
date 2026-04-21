@@ -57,8 +57,8 @@ export function Layout() {
                 </span>
               </Link>
               <p className="mt-3 text-xs italic text-muted-foreground leading-relaxed">
-                Scout every duty station before you accept — the location,
-                housing, cost of living, and what's actually around it.
+                Every duty station — its location, housing, cost of living,
+                and what's actually around it — before you accept.
               </p>
             </div>
 
