@@ -57,8 +57,8 @@ export function Layout() {
                 </span>
               </Link>
               <p className="mt-3 text-xs italic text-muted-foreground leading-relaxed">
-                Helping every relocating family choose their next duty station
-                with clarity, open data, and real community context.
+                Scout every duty station before you accept — the location,
+                housing, cost of living, and what's actually around it.
               </p>
             </div>
 
