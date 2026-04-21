@@ -87,7 +87,7 @@ export function NavBar() {
                 className="w-full"
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
-                aria-label="Search CBP duty locations"
+                aria-label="Quick-search CBP duty locations"
               />
               {searchQuery ? (
                 <div className="absolute top-full left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-md border bg-popover shadow-md">
