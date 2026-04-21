@@ -7,6 +7,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ComponentType } from "@/types/station";
+import { componentAccent } from "@/lib/componentColors";
 
 interface DirectoryFiltersProps {
   selectedSector: string;
@@ -60,6 +61,7 @@ export function DirectoryFilters({
       >
         {COMPONENT_OPTIONS.map((component) => {
           const active = selectedComponents.includes(component);
+          const accent = componentAccent[component];
           return (
             <Button
               key={component}
@@ -68,7 +70,9 @@ export function DirectoryFilters({
               variant={active ? "default" : "outline"}
               onClick={() => toggleComponent(component)}
               aria-pressed={active}
-              className="h-8 px-3 text-xs font-semibold"
+              className={`h-8 px-3 text-xs font-semibold ${
+                active ? accent.buttonClass : accent.text
+              }`}
             >
               {component}
             </Button>
