@@ -92,28 +92,12 @@ const REGION_RECREATION: Record<
 
 export const DEFAULT_TRAVEL_RESOURCES: TravelResource[] = [
   {
-    id: "travel-expedia",
-    category: "flight",
-    name: "Expedia",
-    description: "Flight search and booking options for pre-academy travel planning.",
-    url: "https://www.expedia.com/",
-    displayOrder: 1,
-  },
-  {
-    id: "travel-travelocity",
-    category: "hotel",
-    name: "Travelocity",
-    description: "Hotel and lodging options for pre-academy relocation travel.",
-    url: "https://www.travelocity.com/",
-    displayOrder: 2,
-  },
-  {
-    id: "travel-kayak",
-    category: "car-rental",
-    name: "Kayak",
-    description: "Rental car and transportation comparison across carriers.",
+    id: "travel",
+    category: "trip-planner",
+    name: "Travel",
+    description: "Compare flights, hotels, and rental cars for relocation planning.",
     url: "https://www.kayak.com/",
-    displayOrder: 3,
+    displayOrder: 1,
   },
 ];
 

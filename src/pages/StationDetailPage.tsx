@@ -8,7 +8,6 @@ import {
   DollarSign,
   GraduationCap,
   Home,
-  Hotel,
   MapPin,
   Package,
   Plane,
@@ -22,6 +21,7 @@ import StationDetailMap from "@/components/StationDetailMap";
 import { useStationByIdQuery, useTravelResourcesQuery } from "@/lib/data/queryHooks";
 import { StationLinkCategory } from "@/types/station";
 import { trackUsageEvent } from "@/lib/data/usageTracking";
+import { getSourceName } from "@/lib/sourceName";
 
 const linkIconByCategory: Record<StationLinkCategory, typeof Home> = {
   realEstate: Home,
@@ -154,39 +154,6 @@ export default function StationDetailPage() {
                 </div>
               </CardContent>
             </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4 text-[#222222] flex items-center gap-2">
-                  <Trees className="h-5 w-5 text-[#0A4A0A]" />
-                  Recreation Highlights
-                </h2>
-                {station.recreation.length ? (
-                  <div className="grid gap-3">
-                    {station.recreation.map((resource) => (
-                      <a
-                        key={resource.id}
-                        href={resource.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-md border p-3 hover:border-primary transition-colors"
-                      >
-                        <div className="flex items-center justify-between gap-2">
-                          <h3 className="font-medium text-[#222222]">{resource.name}</h3>
-                          <Badge variant="outline">{resource.category}</Badge>
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-1">{resource.description}</p>
-                        {resource.distanceMiles !== null ? (
-                          <p className="text-xs text-muted-foreground mt-2">Approx. {resource.distanceMiles} miles</p>
-                        ) : null}
-                      </a>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-sm text-muted-foreground">Recreation information is being expanded for this location.</p>
-                )}
-              </CardContent>
-            </Card>
           </div>
 
           <div className="w-full md:w-1/3 space-y-6">
@@ -195,64 +162,113 @@ export default function StationDetailPage() {
                 <h2 className="text-xl font-semibold mb-4 text-[#222222]">External Resources</h2>
 
                 <div className="grid gap-3">
-                  {resourceLinks.map((resource) => (
-                    <a
-                      key={resource.category}
-                      href={resource.link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
-                      onClick={() => {
-                        trackUsageEvent({
-                          eventName: "external_resource_click",
-                          stationId: station.id,
-                          eventMetadata: {
-                            category: resource.category,
-                            url: resource.link.url,
-                          },
-                        });
-                      }}
-                    >
-                      <div className="bg-muted p-2 rounded-md">
-                        <resource.icon className="h-5 w-5" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-medium text-[#222222] group-hover:text-primary transition-colors">
-                          {resource.name}
-                        </h3>
-                        <p className="text-sm text-muted-foreground">{resource.description}</p>
-                      </div>
-                    </a>
-                  ))}
+                  {resourceLinks.map((resource) => {
+                    const source = getSourceName(resource.link.url);
+                    return (
+                      <a
+                        key={resource.category}
+                        href={resource.link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
+                        onClick={() => {
+                          trackUsageEvent({
+                            eventName: "external_resource_click",
+                            stationId: station.id,
+                            eventMetadata: {
+                              category: resource.category,
+                              url: resource.link.url,
+                            },
+                          });
+                        }}
+                      >
+                        <div className="bg-muted p-2 rounded-md">
+                          <resource.icon className="h-5 w-5" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-medium text-[#222222] group-hover:text-primary transition-colors">
+                            {resource.name}
+                          </h3>
+                          <p className="text-sm text-muted-foreground">{resource.description}</p>
+                          {source ? (
+                            <p className="text-[10px] text-muted-foreground/70 mt-1">Source: {source}</p>
+                          ) : null}
+                        </div>
+                      </a>
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>
+
+            {station.recreation.length ? (
+              <Card>
+                <CardContent className="p-6">
+                  <h2 className="text-xl font-semibold mb-4 text-[#222222] flex items-center gap-2">
+                    <Trees className="h-5 w-5 text-[#0A4A0A]" />
+                    Recreation
+                  </h2>
+                  <div className="grid gap-3">
+                    {station.recreation.map((resource) => {
+                      const source = getSourceName(resource.url);
+                      return (
+                        <a
+                          key={resource.id}
+                          href={resource.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
+                        >
+                          <div className="bg-muted p-2 rounded-md">
+                            <Trees className="h-5 w-5" />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="font-medium text-[#222222] group-hover:text-primary transition-colors">
+                              {resource.name}
+                            </h3>
+                            <p className="text-sm text-muted-foreground">{resource.description}</p>
+                            {source ? (
+                              <p className="text-[10px] text-muted-foreground/70 mt-1">Source: {source}</p>
+                            ) : null}
+                          </div>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </CardContent>
+              </Card>
+            ) : null}
 
             {travelResources.length ? (
               <Card>
                 <CardContent className="p-6">
                   <h2 className="text-xl font-semibold mb-4 text-[#222222]">Travel</h2>
                   <div className="grid gap-3">
-                    {travelResources.map((resource) => (
-                      <a
-                        key={resource.id}
-                        href={resource.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors"
-                      >
-                        <div className="bg-muted p-2 rounded-md">
-                          {resource.category === "hotel" ? <Hotel className="h-5 w-5" /> : null}
-                          {resource.category === "flight" ? <Plane className="h-5 w-5" /> : null}
-                          {resource.category === "car-rental" ? <Car className="h-5 w-5" /> : null}
-                          {resource.category === "trip-planner" ? <Plane className="h-5 w-5" /> : null}
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-medium text-[#222222]">{resource.name}</h3>
-                          <p className="text-sm text-muted-foreground">{resource.description}</p>
-                        </div>
-                      </a>
-                    ))}
+                    {travelResources.map((resource) => {
+                      const source = getSourceName(resource.url);
+                      return (
+                        <a
+                          key={resource.id}
+                          href={resource.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
+                        >
+                          <div className="bg-muted p-2 rounded-md">
+                            <Plane className="h-5 w-5" />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="font-medium text-[#222222] group-hover:text-primary transition-colors">
+                              {resource.name}
+                            </h3>
+                            <p className="text-sm text-muted-foreground">{resource.description}</p>
+                            {source ? (
+                              <p className="text-[10px] text-muted-foreground/70 mt-1">Source: {source}</p>
+                            ) : null}
+                          </div>
+                        </a>
+                      );
+                    })}
                   </div>
                 </CardContent>
               </Card>

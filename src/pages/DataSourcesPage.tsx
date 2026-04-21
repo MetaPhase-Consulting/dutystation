@@ -389,25 +389,10 @@ export default function DataSourcesPage() {
                 <li className="flex gap-2">
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
-                    <a href="https://www.expedia.com/" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline underline-offset-2 hover:no-underline">
-                      Expedia
-                    </a>
-                  </div>
-                </li>
-                <li className="flex gap-2">
-                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
-                  <div>
-                    <a href="https://www.travelocity.com/" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline underline-offset-2 hover:no-underline">
-                      Travelocity
-                    </a>
-                  </div>
-                </li>
-                <li className="flex gap-2">
-                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
-                  <div>
                     <a href="https://www.kayak.com/" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline underline-offset-2 hover:no-underline">
-                      Kayak
+                      Travel planner
                     </a>
+                    <p className="text-sm text-muted-foreground">Flights, hotels, and rental cars for relocation planning</p>
                   </div>
                 </li>
               </ul>

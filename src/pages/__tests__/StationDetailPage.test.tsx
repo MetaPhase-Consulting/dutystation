@@ -56,11 +56,11 @@ vi.mock("@/lib/data/queryHooks", () => ({
   useTravelResourcesQuery: () => ({
     data: [
       {
-        id: "travel-expedia",
-        category: "flight",
-        name: "Expedia",
-        description: "Travel planning",
-        url: "https://www.expedia.com/",
+        id: "travel",
+        category: "trip-planner",
+        name: "Travel",
+        description: "Compare flights, hotels, and rental cars for relocation planning.",
+        url: "https://www.kayak.com/",
         displayOrder: 1,
       },
     ],
@@ -80,9 +80,10 @@ describe("StationDetailPage", () => {
     expect(
       screen.getByText(/CBP is not responsible for relocation costs/i)
     ).toBeInTheDocument();
-    expect(screen.getByText("Travel")).toBeInTheDocument();
-    expect(screen.getByText("Expedia")).toBeInTheDocument();
-    expect(screen.getByText("Recreation Highlights")).toBeInTheDocument();
+    expect(screen.getAllByText("Travel").length).toBeGreaterThan(0);
+    expect(screen.getByText("Recreation")).toBeInTheDocument();
+    // Source attribution (derived from URL hostname) now shows under each link.
+    expect(screen.getAllByText(/Source:/).length).toBeGreaterThan(0);
 
     // The removed "Link may be unavailable" / "Updated source" UI should no
     // longer render — bad links are remediated in the data pipeline, not
