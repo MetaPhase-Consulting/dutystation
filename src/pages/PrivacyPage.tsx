@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Eye, Lock, Shield, UserX } from "lucide-react";
+import { PageMeta } from "@/components/PageMeta";
 
 const principles = [
   {
@@ -31,6 +32,11 @@ const principles = [
 export default function PrivacyPage() {
   return (
     <div className="bg-white">
+      <PageMeta
+        title="Privacy Policy"
+        description="Duty Station Relocation does not collect personal information from visitors. Plain-language privacy policy covering analytics, cookies, and third-party links."
+        path="/privacy"
+      />
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-4xl px-4">
           <div className="text-center">

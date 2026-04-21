@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PageMeta } from "@/components/PageMeta";
 import { useStationsQuery } from "@/lib/data/queryHooks";
 import { filterStations, sanitizeSearchTerm } from "@/lib/data/stationFilters";
 import { trackUsageEvent } from "@/lib/data/usageTracking";
@@ -36,6 +37,11 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-14rem)]">
+      <PageMeta
+        title="Duty Station Relocation"
+        description="An open directory of every U.S. Customs and Border Protection duty station. Explore and compare locations, housing, schools, crime, cost of living, weather, and transit before you relocate."
+        path="/"
+      />
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#E5EBD9] relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-5 pointer-events-none"

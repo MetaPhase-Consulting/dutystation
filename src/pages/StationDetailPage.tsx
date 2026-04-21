@@ -23,6 +23,7 @@ import { StationLinkCategory } from "@/types/station";
 import { trackUsageEvent } from "@/lib/data/usageTracking";
 import { getSourceName } from "@/lib/sourceName";
 import { componentAccent } from "@/lib/componentColors";
+import { PageMeta } from "@/components/PageMeta";
 
 const linkIconByCategory: Record<StationLinkCategory, typeof Home> = {
   realEstate: Home,
@@ -143,6 +144,11 @@ export default function StationDetailPage() {
 
   return (
     <div className="container px-4 py-8 mx-auto">
+      <PageMeta
+        title={`${station.name} (${station.city}, ${station.state})`}
+        description={`${station.name} is a ${station.componentType} ${station.facilityType.toLowerCase()} in ${station.city}, ${station.state}. Explore housing, schools, cost of living, and other local resources.`}
+        path={`/station/${station.id}`}
+      />
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
           <div className="flex items-center gap-2">
@@ -164,11 +170,6 @@ export default function StationDetailPage() {
           <div className="flex flex-wrap gap-2">
             <Badge variant="outline">{station.componentType}</Badge>
             <Badge variant="outline">{station.facilityType}</Badge>
-            {station.positionTypes.map((positionType) => (
-              <Badge key={positionType} variant="secondary">
-                {positionType}
-              </Badge>
-            ))}
           </div>
         </div>
 

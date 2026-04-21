@@ -2,6 +2,7 @@
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { PageMeta } from "@/components/PageMeta";
 import { 
   ExternalLink, 
   Map,
@@ -20,6 +21,11 @@ import { LEGAL_DISCLAIMER_POINTS, LEGAL_DISCLAIMER_TITLE } from "@/content/legal
 export default function DataSourcesPage() {
   return (
     <div className="container px-4 py-8 mx-auto">
+      <PageMeta
+        title="Data Sources"
+        description="Third-party sources used to provide duty station information — housing, schools, crime, cost of living, weather, transit, and travel references."
+        path="/data-sources"
+      />
       <div className="flex flex-col space-y-6">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Data Sources</h1>

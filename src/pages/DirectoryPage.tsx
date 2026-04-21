@@ -11,6 +11,7 @@ import { useStationsQuery } from "@/lib/data/queryHooks";
 import { filterStations, sanitizeSearchTerm, uniqueSorted } from "@/lib/data/stationFilters";
 import { ComponentType } from "@/types/station";
 import { trackUsageEvent } from "@/lib/data/usageTracking";
+import { PageMeta } from "@/components/PageMeta";
 
 type MapView = { lng: number; lat: number; zoom: number };
 
@@ -244,6 +245,11 @@ export default function DirectoryPage() {
 
   return (
     <div className="container px-4 py-8 mx-auto">
+      <PageMeta
+        title="Duty Station Directory"
+        description="Map and list of every U.S. Customs and Border Protection duty station across USBP, OFO, and AMO. Filter by component, region, sector, state, or facility type."
+        path="/directory"
+      />
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Duty Station Directory</h1>

@@ -28,7 +28,8 @@ export function NavBar() {
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container flex h-14 items-center">
         <div className="mr-4 hidden md:flex">
-          <Link to="/" className="mr-6 flex items-center space-x-2">
+          <Link to="/" className="mr-6 flex items-center gap-2">
+            <img src="/greencompassimg.png" alt="" className="h-6 w-6" aria-hidden="true" />
             <span className="font-bold sm:inline-block text-[#1F631A]">Duty Station Relocation</span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium" aria-label="Primary">
@@ -54,7 +55,8 @@ export function NavBar() {
             </Button>
           </SheetTrigger>
         <SheetContent side="left" className="pr-0">
-          <Link to="/" className="flex items-center mb-8 mt-4">
+          <Link to="/" className="flex items-center gap-2 mb-8 mt-4">
+            <img src="/greencompassimg.png" alt="" className="h-6 w-6" aria-hidden="true" />
             <span className="font-bold text-[#1F631A] text-base">Duty Station Relocation</span>
           </Link>
             <nav className="flex flex-col gap-4" aria-label="Mobile Primary">
@@ -74,7 +76,8 @@ export function NavBar() {
           </SheetContent>
         </Sheet>
 
-        <Link to="/" className="md:hidden mr-2 flex items-center">
+        <Link to="/" className="md:hidden mr-2 flex items-center gap-1.5">
+          <img src="/greencompassimg.png" alt="" className="h-5 w-5" aria-hidden="true" />
           <span className="font-bold text-sm text-[#1F631A]">Duty Station Relocation</span>
         </Link>
 

@@ -1,0 +1,26 @@
+{
+  "name": "Duty Station Relocation",
+  "short_name": "Duty Station",
+  "description": "Explore and compare border duty stations across the country before you relocate.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0A4A0A",
+  "background_color": "#fafcf8",
+  "categories": ["government", "reference", "utilities"],
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/greencompassicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

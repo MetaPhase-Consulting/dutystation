@@ -9,8 +9,10 @@
   "scripts": {
     "dev": "vite",
     "dev:secure": "vite --host localhost --port 8080",
+    "prebuild": "node scripts/data/generate-sitemap.mjs",
     "build": "vite build",
     "build:dev": "vite build --mode development",
+    "data:sitemap": "node scripts/data/generate-sitemap.mjs",
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

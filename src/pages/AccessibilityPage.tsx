@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { PageMeta } from "@/components/PageMeta";
 import {
   Contrast,
   Keyboard,
@@ -50,6 +51,11 @@ const features = [
 export default function AccessibilityPage() {
   return (
     <div className="bg-white">
+      <PageMeta
+        title="Accessibility"
+        description="Duty Station Relocation targets WCAG 2.1 AA and Section 508 conformance. Keyboard navigation, screen reader support, color contrast, touch targets, readable typography, responsive design."
+        path="/accessibility"
+      />
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-4xl px-4">
           <div className="text-center">

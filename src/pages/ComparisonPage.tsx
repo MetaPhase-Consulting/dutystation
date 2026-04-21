@@ -20,6 +20,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ComponentType, PositionType, StationLinkCategory } from "@/types/station";
 import { useStationsQuery } from "@/lib/data/queryHooks";
 import { hasPositionType } from "@/lib/data/stationFilters";
+import { PageMeta } from "@/components/PageMeta";
 
 const POSITION_OPTIONS: PositionType[] = ["CBPO", "BPA", "AMO"];
 const COMPONENT_OPTIONS: ComponentType[] = ["USBP", "OFO", "AMO"];
@@ -117,6 +118,11 @@ export default function ComparisonPage() {
 
   return (
     <div className="container px-4 py-8 mx-auto">
+      <PageMeta
+        title="Compare Duty Stations"
+        description="Side-by-side comparison of two U.S. CBP duty stations: location, component, sector, and external resources for housing, schools, crime, cost of living, weather, and transit."
+        path="/compare"
+      />
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Compare Duty Stations</h1>

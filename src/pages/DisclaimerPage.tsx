@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { AlertTriangle, ExternalLink, Info, Scale } from "lucide-react";
+import { PageMeta } from "@/components/PageMeta";
 
 const principles = [
   {
@@ -31,6 +32,11 @@ const principles = [
 export default function DisclaimerPage() {
   return (
     <div className="bg-white">
+      <PageMeta
+        title="Disclaimer"
+        description="Duty Station Relocation is an informational, non-official resource and not a U.S. government system. Plain-language terms on how to use the site."
+        path="/disclaimer"
+      />
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-4xl px-4">
           <div className="text-center">
