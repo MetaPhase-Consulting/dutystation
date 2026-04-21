@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { List, Map as MapIcon } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DirectoryFilters } from "@/components/directory/DirectoryFilters";
@@ -12,25 +12,69 @@ import { filterStations, sanitizeSearchTerm, uniqueSorted } from "@/lib/data/sta
 import { ComponentType } from "@/types/station";
 import { trackUsageEvent } from "@/lib/data/usageTracking";
 
+type MapView = { lng: number; lat: number; zoom: number };
+
+const isComponentType = (value: string): value is ComponentType =>
+  value === "USBP" || value === "OFO" || value === "AMO";
+
 export default function DirectoryPage() {
-  const [activeView, setActiveView] = useState<"map" | "list">("map");
-  const [selectedSector, setSelectedSector] = useState("All Sectors");
-  const [selectedRegion, setSelectedRegion] = useState("All Regions");
-  const [selectedState, setSelectedState] = useState("All States");
-  const [selectedFacilityType, setSelectedFacilityType] = useState("All Facility Types");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-  const [selectedComponents, setSelectedComponents] = useState<ComponentType[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Initial state is hydrated from the URL once, on mount. Subsequent state
+  // changes flow the other direction (state -> URL), see the sync effect
+  // below. This keeps the URL as the durable "share-this-view" link without
+  // binding every state read through useSearchParams.
+  const initialQuery = useMemo(
+    () => sanitizeSearchTerm(searchParams.get("search") ?? ""),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+  const [activeView, setActiveView] = useState<"map" | "list">(
+    () => (searchParams.get("view") === "list" ? "list" : "map")
+  );
+  const [selectedSector, setSelectedSector] = useState(
+    () => searchParams.get("sector") ?? "All Sectors"
+  );
+  const [selectedRegion, setSelectedRegion] = useState(
+    () => searchParams.get("region") ?? "All Regions"
+  );
+  const [selectedState, setSelectedState] = useState(
+    () => searchParams.get("state") ?? "All States"
+  );
+  const [selectedFacilityType, setSelectedFacilityType] = useState(
+    () => searchParams.get("facility") ?? "All Facility Types"
+  );
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">(
+    () => (searchParams.get("sort") === "desc" ? "desc" : "asc")
+  );
+  const [selectedComponents, setSelectedComponents] = useState<ComponentType[]>(
+    () => {
+      const raw = searchParams.get("component");
+      if (!raw) return [];
+      return raw.split(",").filter(isComponentType) as ComponentType[];
+    }
+  );
+  const [mapView, setMapView] = useState<MapView | null>(() => {
+    const lat = Number(searchParams.get("lat"));
+    const lng = Number(searchParams.get("lng"));
+    const zoom = Number(searchParams.get("zoom"));
+    return Number.isFinite(lat) && Number.isFinite(lng) && Number.isFinite(zoom)
+      ? { lat, lng, zoom }
+      : null;
+  });
+  // Captured once on mount — used to seed StationMap's initial viewport so
+  // the map doesn't reset on every filter re-render.
+  const [initialMapView] = useState<MapView | null>(() => mapView);
+
   const { data: stations = [], isLoading } = useStationsQuery();
-  const location = useLocation();
 
-  const queryParam = useMemo(() => {
-    const params = new URLSearchParams(location.search);
-    return sanitizeSearchTerm(params.get("search") ?? "");
-  }, [location.search]);
+  // queryParam stays read-through on `?search` so NavBar search still flows
+  // into the directory.
+  const queryParam = useMemo(
+    () => sanitizeSearchTerm(searchParams.get("search") ?? initialQuery),
+    [searchParams, initialQuery]
+  );
 
-  // Map of raw sector string -> componentType so we can label sectors with
-  // their component (e.g. "Laredo Sector (USBP)") and filter the dropdown
-  // to sectors belonging to the currently selected components.
   const sectorComponents = useMemo(() => {
     const map = new Map<string, ComponentType>();
     stations.forEach((station) => {
@@ -51,8 +95,6 @@ export default function DirectoryPage() {
       { value: "All Sectors", label: "All Sectors" },
       ...filtered
         .map(([sector, component]) => {
-          // "Laredo Sector Texas" -> "Laredo Sector"; keep everything up to
-          // and including the first " Sector " token.
           const cleaned = sector.split(" Sector ")[0] + " Sector";
           return { value: sector, label: `${cleaned} (${component})` };
         })
@@ -60,8 +102,6 @@ export default function DirectoryPage() {
     ];
   }, [sectorComponents, selectedComponents]);
 
-  // If the currently selected sector isn't available for the active
-  // component filter (e.g. switched from USBP to OFO-only), reset.
   useEffect(() => {
     if (
       selectedSector !== "All Sectors" &&
@@ -109,6 +149,74 @@ export default function DirectoryPage() {
       sortOrder,
       stations,
     ]
+  );
+
+  // Build the canonical search string from current state. Keeps URL tidy by
+  // omitting default values ("All X", "asc", "map"). Map viewport lives on
+  // separate keys so the same builder can be used for filter-only pushes
+  // and map-only replaces.
+  const buildParams = useCallback(
+    (view: MapView | null): URLSearchParams => {
+      const next = new URLSearchParams();
+      if (queryParam) next.set("search", queryParam);
+      if (selectedComponents.length) next.set("component", selectedComponents.join(","));
+      if (selectedRegion !== "All Regions") next.set("region", selectedRegion);
+      if (selectedSector !== "All Sectors") next.set("sector", selectedSector);
+      if (selectedState !== "All States") next.set("state", selectedState);
+      if (selectedFacilityType !== "All Facility Types") next.set("facility", selectedFacilityType);
+      if (sortOrder !== "asc") next.set("sort", sortOrder);
+      if (activeView !== "map") next.set("view", activeView);
+      if (view) {
+        next.set("lat", view.lat.toFixed(4));
+        next.set("lng", view.lng.toFixed(4));
+        next.set("zoom", view.zoom.toFixed(2));
+      }
+      return next;
+    },
+    [
+      activeView,
+      queryParam,
+      selectedComponents,
+      selectedFacilityType,
+      selectedRegion,
+      selectedSector,
+      selectedState,
+      sortOrder,
+    ]
+  );
+
+  // Filter/sort/view sync — push history so the back button walks through
+  // filter changes. Keeps the map viewport in sync too (same params), but
+  // the map-specific effect below (replace: true) handles the frequent
+  // pan/zoom case so we don't spam history.
+  useEffect(() => {
+    const next = buildParams(mapView);
+    if (next.toString() !== searchParams.toString()) {
+      setSearchParams(next, { replace: false });
+    }
+  }, [buildParams, mapView, searchParams, setSearchParams]);
+
+  // Map viewport callback from StationMap. Replace history so the back
+  // button doesn't step through every pan.
+  const handleMapViewChange = useCallback(
+    (view: MapView) => {
+      setMapView((prev) => {
+        if (
+          prev &&
+          Math.abs(prev.lat - view.lat) < 0.0001 &&
+          Math.abs(prev.lng - view.lng) < 0.0001 &&
+          Math.abs(prev.zoom - view.zoom) < 0.01
+        ) {
+          return prev;
+        }
+        const next = buildParams(view);
+        if (next.toString() !== searchParams.toString()) {
+          setSearchParams(next, { replace: true });
+        }
+        return view;
+      });
+    },
+    [buildParams, searchParams, setSearchParams]
   );
 
   useEffect(() => {
@@ -188,7 +296,12 @@ export default function DirectoryPage() {
               </div>
             ) : (
               <div className="rounded-lg overflow-hidden border shadow-sm">
-                <StationMap locations={filteredStations} className="h-[70vh]" />
+                <StationMap
+                  locations={filteredStations}
+                  className="h-[70vh]"
+                  initialView={initialMapView}
+                  onViewChange={handleMapViewChange}
+                />
               </div>
             )}
           </TabsContent>

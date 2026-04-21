@@ -4,7 +4,7 @@ import Overlay from "ol/Overlay";
 import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
 import OSM from "ol/source/OSM";
-import { fromLonLat } from "ol/proj";
+import { fromLonLat, toLonLat } from "ol/proj";
 import "ol/ol.css";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
@@ -17,11 +17,22 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { componentAccent } from "@/lib/componentColors";
 
+interface MapView {
+  lng: number;
+  lat: number;
+  zoom: number;
+}
+
 interface StationMapProps {
   locations?: DutyStation[];
   lat?: number;
   lng?: number;
   className?: string;
+  // Optional viewport restore from URL (directory page only).
+  initialView?: MapView | null;
+  // Fires after the user pans/zooms, debounced to ~400ms, so the parent can
+  // persist the viewport into the URL.
+  onViewChange?: (view: MapView) => void;
 }
 
 // Continental US center, zoom sized to show CONUS comfortably at ~1280x720.
@@ -29,7 +40,14 @@ const CONUS_CENTER: [number, number] = [-98.5795, 39.8283];
 const CONUS_ZOOM = 4;
 const SELECTED_ZOOM = 10;
 
-const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) => {
+const StationMap = ({
+  locations,
+  lat,
+  lng,
+  className = "",
+  initialView,
+  onViewChange,
+}: StationMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const hoverTooltipRef = useRef<HTMLDivElement>(null);
   const selectedCardRef = useRef<HTMLDivElement>(null);
@@ -38,6 +56,14 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
   const [hoveredStationId, setHoveredStationId] = useState<string | null>(null);
   const [selectedStationId, setSelectedStationId] = useState<string | null>(null);
   const navigate = useNavigate();
+
+  // Keep the latest onViewChange in a ref so moveend handlers (captured in
+  // a long-lived OL map) don't need to tear down and rebuild when the
+  // callback identity changes.
+  const onViewChangeRef = useRef(onViewChange);
+  useEffect(() => {
+    onViewChangeRef.current = onViewChange;
+  }, [onViewChange]);
 
   const stationById = useMemo(() => {
     return new globalThis.Map((locations ?? []).map((location) => [location.id, location]));
@@ -48,6 +74,11 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
       return;
     }
 
+    const startCenter: [number, number] = initialView
+      ? [initialView.lng, initialView.lat]
+      : CONUS_CENTER;
+    const startZoom = initialView?.zoom ?? CONUS_ZOOM;
+
     const map = new OLMap({
       target: mapRef.current,
       layers: [
@@ -56,8 +87,8 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
         }),
       ],
       view: new View({
-        center: fromLonLat(CONUS_CENTER),
-        zoom: CONUS_ZOOM,
+        center: fromLonLat(startCenter),
+        zoom: startZoom,
       }),
     });
 
@@ -185,15 +216,36 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
       map.getView().setZoom(12);
     }
 
+    // Emit viewport changes (pan/zoom) to the parent, debounced so we don't
+    // flood the URL on every inertial scroll tick.
+    let moveTimer: ReturnType<typeof setTimeout> | null = null;
+    map.on("moveend", () => {
+      if (!onViewChangeRef.current) return;
+      if (moveTimer) clearTimeout(moveTimer);
+      moveTimer = setTimeout(() => {
+        const view = map.getView();
+        const center = view.getCenter();
+        const zoom = view.getZoom();
+        if (!center || zoom === undefined) return;
+        const [lng, lat] = toLonLat(center);
+        onViewChangeRef.current?.({ lng, lat, zoom });
+      }, 350);
+    });
+
     mapInstance.current = map;
 
     return () => {
+      if (moveTimer) clearTimeout(moveTimer);
       if (mapInstance.current) {
         mapInstance.current.setTarget(undefined);
       }
       mapInstance.current = null;
       selectedOverlayRef.current = null;
     };
+    // `initialView` is intentionally excluded — it's a first-render snapshot
+    // and shouldn't re-create the map instance on URL changes we're emitting
+    // ourselves.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lat, lng, locations, navigate]);
 
   const hoveredStation = hoveredStationId ? stationById.get(hoveredStationId) : null;
