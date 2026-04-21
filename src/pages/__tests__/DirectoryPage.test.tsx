@@ -120,7 +120,12 @@ describe("DirectoryPage", () => {
 
     await user.click(screen.getByRole("button", { name: "OFO" }));
 
+    // Map view is default: verify filter narrowed the marker count.
     expect(screen.getByTestId("station-map-mock")).toHaveTextContent("Map count: 1");
+
+    // Switch to List tab and verify the same filter applied there too.
+    await user.click(screen.getByRole("tab", { name: /List/i }));
+
     expect(screen.getByText("OFO Port Example")).toBeInTheDocument();
     expect(screen.queryByText("USBP Example")).not.toBeInTheDocument();
     expect(screen.queryByText("AMO Air Example")).not.toBeInTheDocument();

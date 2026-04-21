@@ -86,7 +86,7 @@ export function DirectoryFilters({
   return (
     <div className="space-y-4">
       <div className="rounded-md border p-3">
-        <p className="mb-2 text-sm font-medium">CBP Component</p>
+        <p className="mb-2 text-sm font-medium">Component</p>
         <div className="flex flex-wrap gap-2">
           {COMPONENT_OPTIONS.map((component) => {
             const Icon = iconByComponent[component];

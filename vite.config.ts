@@ -18,8 +18,13 @@ export default defineConfig(({ mode }) => ({
       'Cross-Origin-Opener-Policy': 'same-origin',
       'X-DNS-Prefetch-Control': 'off',
       'Content-Security-Policy': mode === 'development'
-        ? "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; object-src 'none'; frame-ancestors 'none'; base-uri 'self';"
-        : "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.supabase.co https:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; upgrade-insecure-requests;",
+        // Dev CSP — looser to accommodate Vite HMR (ws://) and Google
+        // Analytics (gtag). Production CSP lives in netlify.toml and is
+        // stricter.
+        ? "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https: ws://localhost:* ws://127.0.0.1:*; object-src 'none'; frame-ancestors 'none'; base-uri 'self';"
+        // Kept for `vite preview` only; Netlify applies its own CSP at the
+        // edge via netlify.toml.
+        : "default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; upgrade-insecure-requests;",
       'Referrer-Policy': 'strict-origin-when-cross-origin',
       'Permissions-Policy': 'geolocation=(), microphone=(), camera=()',
     },

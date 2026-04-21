@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { LayoutPanelLeft, List, Map as MapIcon } from "lucide-react";
+import { List, Map as MapIcon } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DirectoryFilters } from "@/components/directory/DirectoryFilters";
 import { StationsList } from "@/components/directory/StationsList";
 import StationMap from "@/components/StationMap";
@@ -8,8 +9,6 @@ import { useStationsQuery } from "@/lib/data/queryHooks";
 import { filterStations, sanitizeSearchTerm, uniqueSorted } from "@/lib/data/stationFilters";
 import { ComponentType, PositionType } from "@/types/station";
 import { trackUsageEvent } from "@/lib/data/usageTracking";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 
 export default function DirectoryPage() {
   const [activeView, setActiveView] = useState<"map" | "list">("map");
@@ -21,7 +20,6 @@ export default function DirectoryPage() {
   const [selectedPositions, setSelectedPositions] = useState<PositionType[]>([]);
   const [selectedComponents, setSelectedComponents] = useState<ComponentType[]>([]);
   const [incentiveOnly, setIncentiveOnly] = useState(false);
-  const [showDesktopListPanel, setShowDesktopListPanel] = useState(true);
   const { data: stations = [], isLoading } = useStationsQuery();
   const location = useLocation();
 
@@ -104,105 +102,77 @@ export default function DirectoryPage() {
     sortOrder,
   ]);
 
-  const listContent = isLoading ? (
-    <div className="rounded-md border p-8 text-center text-muted-foreground">Loading CBP duty location directory...</div>
-  ) : (
-    <StationsList
-      stations={filteredStations}
-      setSelectedSector={setSelectedSector}
-      setSelectedState={setSelectedState}
-    />
-  );
-
-  const mapContent = isLoading ? (
-    <div className="aspect-[16/10] flex items-center justify-center text-muted-foreground">Loading map data...</div>
-  ) : (
-    <StationMap locations={filteredStations} className="min-h-[70vh]" />
-  );
-
   return (
     <div className="container px-4 py-8 mx-auto">
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Duty Station Directory</h1>
           <p className="text-muted-foreground">
-            Explore duty stations across USBP, OFO (ports and field offices), and AMO assignments.
+            Browse and search duty stations across USBP, OFO (ports and field offices), and AMO.
           </p>
         </div>
 
-        <div className="flex gap-2 lg:hidden">
-          <Button
-            variant={activeView === "map" ? "default" : "outline"}
-            className="flex-1"
-            onClick={() => setActiveView("map")}
-          >
-            <MapIcon className="mr-2 h-4 w-4" />
-            Map
-          </Button>
-          <Button
-            variant={activeView === "list" ? "default" : "outline"}
-            className="flex-1"
-            onClick={() => setActiveView("list")}
-          >
-            <List className="mr-2 h-4 w-4" />
-            List
-          </Button>
-        </div>
+        <DirectoryFilters
+          selectedSector={selectedSector}
+          setSelectedSector={setSelectedSector}
+          selectedRegion={selectedRegion}
+          setSelectedRegion={setSelectedRegion}
+          selectedState={selectedState}
+          setSelectedState={setSelectedState}
+          selectedFacilityType={selectedFacilityType}
+          setSelectedFacilityType={setSelectedFacilityType}
+          facilityTypes={facilityTypes}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+          sectors={sectors}
+          regions={regions}
+          states={states}
+          selectedPositions={selectedPositions}
+          setSelectedPositions={setSelectedPositions}
+          selectedComponents={selectedComponents}
+          setSelectedComponents={setSelectedComponents}
+          incentiveOnly={incentiveOnly}
+          setIncentiveOnly={setIncentiveOnly}
+        />
 
-        <div className="grid gap-4 lg:grid-cols-[360px_1fr] lg:items-start">
-          <div className="space-y-4">
-            <DirectoryFilters
-              selectedSector={selectedSector}
-              setSelectedSector={setSelectedSector}
-              selectedRegion={selectedRegion}
-              setSelectedRegion={setSelectedRegion}
-              selectedState={selectedState}
-              setSelectedState={setSelectedState}
-              selectedFacilityType={selectedFacilityType}
-              setSelectedFacilityType={setSelectedFacilityType}
-              facilityTypes={facilityTypes}
-              sortOrder={sortOrder}
-              setSortOrder={setSortOrder}
-              sectors={sectors}
-              regions={regions}
-              states={states}
-              selectedPositions={selectedPositions}
-              setSelectedPositions={setSelectedPositions}
-              selectedComponents={selectedComponents}
-              setSelectedComponents={setSelectedComponents}
-              incentiveOnly={incentiveOnly}
-              setIncentiveOnly={setIncentiveOnly}
-            />
+        <Tabs value={activeView} onValueChange={(value) => setActiveView(value as "map" | "list")}>
+          <TabsList className="grid w-full max-w-sm grid-cols-2">
+            <TabsTrigger value="map">
+              <MapIcon className="h-4 w-4 mr-2" />
+              Map
+            </TabsTrigger>
+            <TabsTrigger value="list">
+              <List className="h-4 w-4 mr-2" />
+              List
+            </TabsTrigger>
+          </TabsList>
 
-            <Card className="hidden lg:block">
-              <CardContent className="p-3">
-                <div className="mb-3 flex items-center justify-between">
-                  <h2 className="text-sm font-semibold text-[#0A4A0A]">Location List</h2>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => setShowDesktopListPanel((current) => !current)}
-                  >
-                    <LayoutPanelLeft className="mr-1 h-4 w-4" />
-                    {showDesktopListPanel ? "Collapse" : "Expand"}
-                  </Button>
-                </div>
-                {showDesktopListPanel ? (
-                  <div className="max-h-[55vh] overflow-auto pr-1">{listContent}</div>
-                ) : (
-                  <p className="text-sm text-muted-foreground">List collapsed. Use map markers to explore locations.</p>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="space-y-4">
-            {(activeView === "map" || typeof window === "undefined") && (
-              <div className="rounded-lg overflow-hidden border p-2 shadow-sm">{mapContent}</div>
+          <TabsContent value="map" className="mt-6">
+            {isLoading ? (
+              <div className="aspect-[16/10] flex items-center justify-center text-muted-foreground border rounded-lg">
+                Loading map data...
+              </div>
+            ) : (
+              <div className="rounded-lg overflow-hidden border shadow-sm">
+                <StationMap locations={filteredStations} className="h-[70vh]" />
+              </div>
             )}
-            {activeView === "list" && <div className="lg:hidden">{listContent}</div>}
-          </div>
-        </div>
+          </TabsContent>
+
+          <TabsContent value="list" className="mt-6">
+            {isLoading ? (
+              <div className="rounded-md border p-8 text-center text-muted-foreground">
+                Loading duty stations…
+              </div>
+            ) : (
+              <StationsList
+                stations={filteredStations}
+                setSelectedSector={setSelectedSector}
+                setSelectedState={setSelectedState}
+              />
+            )}
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
