@@ -84,18 +84,14 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
       AMO: "#0F766E",
     };
 
-    const createMarkerStyle = (componentType: string, isIncentive: boolean) => {
+    const createMarkerStyle = (componentType: string) => {
       const pinColor = componentColorMap[componentType] ?? "#0A4A0A";
-      const highlight = isIncentive
-        ? "<circle cx='16' cy='16' r='11' fill='none' stroke='#C88A04' stroke-width='3'/>"
-        : "";
       return new Style({
         image: new Icon({
           anchor: [0.5, 1],
           src: `data:image/svg+xml;utf8,${encodeURIComponent(
             `<svg xmlns='http://www.w3.org/2000/svg' width='32' height='48' viewBox='0 0 32 48'>` +
               `<path d='M16 0 C 7.2 0 0 7.2 0 16 C 0 24.8 16 48 16 48 C 16 48 32 24.8 32 16 C 32 7.2 24.8 0 16 0 Z' fill='${pinColor}'/>` +
-              highlight +
               "<circle cx='16' cy='16' r='8' fill='white'/>" +
             "</svg>"
           )}`,
@@ -115,7 +111,7 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
           componentType: location.componentType,
         });
 
-        feature.setStyle(createMarkerStyle(location.componentType, location.attributes.incentiveEligible));
+        feature.setStyle(createMarkerStyle(location.componentType));
         return feature;
       });
 
@@ -176,7 +172,7 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
         geometry: new Point(fromLonLat([lng, lat])),
       });
 
-      feature.setStyle(createMarkerStyle("USBP", false));
+      feature.setStyle(createMarkerStyle("USBP"));
 
       map.addLayer(
         new VectorLayer({
@@ -260,11 +256,6 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
                 <span className="text-[11px] bg-muted rounded px-2 py-0.5 font-medium">
                   {selectedStation.facilityType}
                 </span>
-                {selectedStation.attributes.incentiveEligible ? (
-                  <span className="text-[11px] bg-[#0A4A0A] text-white rounded px-2 py-0.5 font-medium">
-                    Incentive
-                  </span>
-                ) : null}
               </div>
               <Button
                 type="button"

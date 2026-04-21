@@ -62,7 +62,6 @@ export function filterStations(stations: DutyStation[], filters: StationListFilt
     componentTypes = [],
     facilityTypes = [],
     positionTypes = [],
-    incentiveOnly = false,
     sortOrder = "asc",
   } = filters;
 
@@ -92,10 +91,6 @@ export function filterStations(stations: DutyStation[], filters: StationListFilt
     }
 
     if (!hasFacilityType(station, facilityTypes)) {
-      return false;
-    }
-
-    if (incentiveOnly && !station.attributes.incentiveEligible) {
       return false;
     }
 

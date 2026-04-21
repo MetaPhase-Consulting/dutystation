@@ -7,14 +7,16 @@ describe("stationFilters", () => {
     expect(sanitizeSearchTerm(`<script>alert('x')</script>`)).toBe("scriptalert(x)/script");
   });
 
-  it("filters by query and incentive eligibility", () => {
-    const results = filterStations(legacyStations, {
-      query: "Ajo",
-      incentiveOnly: true,
-    });
+  it("filters by query", () => {
+    const results = filterStations(legacyStations, { query: "Ajo" });
 
     expect(results.length).toBeGreaterThan(0);
-    expect(results.every((station) => station.attributes.incentiveEligible)).toBe(true);
+    expect(
+      results.every((station) =>
+        station.name.toLowerCase().includes("ajo") ||
+        station.city.toLowerCase().includes("ajo")
+      )
+    ).toBe(true);
   });
 
   it("filters by selected position type", () => {

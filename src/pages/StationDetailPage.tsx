@@ -107,9 +107,6 @@ export default function StationDetailPage() {
               <ArrowLeft className="h-4 w-4" />
             </Button>
             <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">{station.name}</h1>
-            {station.attributes.incentiveEligible ? (
-              <Badge className="bg-[#0A4A0A] text-white">{station.attributes.incentiveLabel ?? "Incentive Eligible"}</Badge>
-            ) : null}
           </div>
           <div className="flex items-center text-muted-foreground">
             <MapPin className="h-4 w-4 mr-1" />

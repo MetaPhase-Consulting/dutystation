@@ -135,7 +135,7 @@ export default function HomePage() {
                     <h3 className="text-xl font-semibold mb-2">Directory</h3>
                     <p className="text-muted-foreground mb-4">
                       Browse duty stations with a map-first experience. Search, sort, and filter by component,
-                      position type, and incentive eligibility.
+                      region, and facility type.
                     </p>
                   </div>
                   <Button onClick={() => navigate("/directory")} className="self-start">

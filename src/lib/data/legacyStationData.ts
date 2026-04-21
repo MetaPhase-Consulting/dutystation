@@ -10,20 +10,10 @@ import {
 
 const DEFAULT_POSITION_TYPES: PositionType[] = ["BPA"];
 
-const INCENTIVE_STATIONS = new Set([
-  "ajo-station",
-  "douglas-station",
-  "three-points-station",
-  "rangeley-station",
-  "warroad-station",
-  "sanderson-station",
-  "presidio-station",
-  "sonoita-station",
-  "houlton-station",
-  "havre-station",
-  "blythe-station",
-  "fort-kent-station",
-]);
+// Incentive-eligible station flagging was removed from the UI in April 2026
+// pending an authoritative public list. See docs/backlog/icebox.md for
+// context and the surfaces to restore if/when a sourced list is available.
+const INCENTIVE_STATIONS = new Set<string>();
 
 const REGION_RECREATION: Record<
   string,

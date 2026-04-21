@@ -20,7 +20,6 @@ export default function DirectoryPage() {
   const [selectedFacilityType, setSelectedFacilityType] = useState("All Facility Types");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [selectedComponents, setSelectedComponents] = useState<ComponentType[]>([]);
-  const [incentiveOnly, setIncentiveOnly] = useState(false);
   const { data: stations = [], isLoading } = useStationsQuery();
   const location = useLocation();
 
@@ -98,11 +97,9 @@ export default function DirectoryPage() {
             : [selectedFacilityType as "Station" | "Port of Entry" | "Field Office" | "Sector" | "Other"],
         componentTypes: selectedComponents,
         positionTypes: [],
-        incentiveOnly,
         sortOrder,
       }),
     [
-      incentiveOnly,
       queryParam,
       selectedComponents,
       selectedFacilityType,
@@ -124,12 +121,10 @@ export default function DirectoryPage() {
         selectedState,
         selectedFacilityType,
         selectedComponents,
-        incentiveOnly,
         sortOrder,
       },
     });
   }, [
-    incentiveOnly,
     queryParam,
     selectedComponents,
     selectedFacilityType,
@@ -164,8 +159,6 @@ export default function DirectoryPage() {
           states={states}
           selectedComponents={selectedComponents}
           setSelectedComponents={setSelectedComponents}
-          incentiveOnly={incentiveOnly}
-          setIncentiveOnly={setIncentiveOnly}
         />
 
         <Tabs value={activeView} onValueChange={(value) => setActiveView(value as "map" | "list")}>

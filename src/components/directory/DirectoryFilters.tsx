@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
 import {
   Select,
   SelectContent,
@@ -7,7 +6,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Building2, Plane, Shield } from "lucide-react";
 import { ComponentType } from "@/types/station";
 
 interface DirectoryFiltersProps {
@@ -25,17 +23,9 @@ interface DirectoryFiltersProps {
   selectedFacilityType: string;
   setSelectedFacilityType: (facility: string) => void;
   facilityTypes: string[];
-  incentiveOnly: boolean;
-  setIncentiveOnly: (value: boolean) => void;
 }
 
 const COMPONENT_OPTIONS: ComponentType[] = ["USBP", "OFO", "AMO"];
-
-const iconByComponent = {
-  USBP: Shield,
-  OFO: Building2,
-  AMO: Plane,
-};
 
 export function DirectoryFilters({
   selectedSector,
@@ -52,8 +42,6 @@ export function DirectoryFilters({
   selectedFacilityType,
   setSelectedFacilityType,
   facilityTypes,
-  incentiveOnly,
-  setIncentiveOnly,
 }: DirectoryFiltersProps) {
   const toggleComponent = (component: ComponentType) => {
     if (selectedComponents.includes(component)) {
@@ -65,14 +53,12 @@ export function DirectoryFilters({
 
   return (
     <div className="flex flex-wrap items-center gap-3 rounded-md border bg-muted/30 p-3">
-      {/* Component toggle group */}
       <div
         className="flex flex-wrap items-center gap-1.5"
         role="group"
         aria-label="Filter by component"
       >
         {COMPONENT_OPTIONS.map((component) => {
-          const Icon = iconByComponent[component];
           const active = selectedComponents.includes(component);
           return (
             <Button
@@ -82,9 +68,8 @@ export function DirectoryFilters({
               variant={active ? "default" : "outline"}
               onClick={() => toggleComponent(component)}
               aria-pressed={active}
-              className="gap-1.5"
+              className="h-8 px-3 text-xs font-semibold"
             >
-              <Icon className="h-3.5 w-3.5" />
               {component}
             </Button>
           );
@@ -142,15 +127,6 @@ export function DirectoryFilters({
           ))}
         </SelectContent>
       </Select>
-
-      <div className="flex items-center gap-2 rounded-md border bg-background px-3 py-1.5">
-        <span className="text-sm whitespace-nowrap">Incentive</span>
-        <Switch
-          checked={incentiveOnly}
-          onCheckedChange={setIncentiveOnly}
-          aria-label="Toggle incentive stations only"
-        />
-      </div>
     </div>
   );
 }

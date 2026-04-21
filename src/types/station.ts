@@ -80,6 +80,5 @@ export interface StationListFilters {
   componentTypes?: ComponentType[];
   facilityTypes?: FacilityType[];
   positionTypes?: PositionType[];
-  incentiveOnly?: boolean;
   sortOrder?: "asc" | "desc";
 }

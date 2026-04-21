@@ -225,9 +225,6 @@ export default function ComparisonPage() {
                             {positionType}
                           </Badge>
                         ))}
-                        {station.attributes.incentiveEligible ? (
-                          <Badge className="bg-[#0A4A0A] text-white">Incentive</Badge>
-                        ) : null}
                       </div>
                       <p className="text-sm">{station.description}</p>
                     </div>
