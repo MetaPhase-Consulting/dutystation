@@ -21,6 +21,7 @@ start of every session — update whenever the user gives standing guidance.
 - Refer to the company as **"MetaPhase"** in user-facing copy — never "MetaPhase Consulting" or "MetaPhase Consulting, LLC". The full legal name is reserved for the `LICENSE` file.
 - Never remove entries from `.gitignore` without explicit user permission. Additions are fine.
 - Treat process feedback (workflow, naming, docs, conventions) as persistent repo guidance — update this file and `AGENTS.md` together.
+- **Creative / subjective work is options-first.** For taglines, mission statements, marketing copy, naming, tone choices, color/style decisions, or any other brainstorming-style task, present 3–4 meaningfully different options in the chat *before* editing any file. Include a short flavor note per option ("audience-focused", "breadth-focused", "action-oriented") and honor prior constraints (e.g. "no em-dashes", "don't say family", "don't say CBP"). Do not pick and commit unilaterally. Technical/factual work (bugfixes, typecheck, dependency bumps, verified refactors) keeps the usual commit-and-push cadence.
 
 ## Product Invariants (do not regress)
 

@@ -57,8 +57,8 @@ export function Layout() {
                 </span>
               </Link>
               <p className="mt-3 text-xs italic text-muted-foreground leading-relaxed">
-                Every duty station — its location, housing, cost of living,
-                and what's actually around it — before you accept.
+                Explore and compare border duty stations across the country
+                before you relocate.
               </p>
             </div>
 

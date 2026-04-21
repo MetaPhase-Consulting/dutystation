@@ -47,6 +47,7 @@ Before making changes, read in this order:
 - Refer to the company as **"MetaPhase"** in user-facing copy. Full legal name ("MetaPhase Consulting, LLC") only in `LICENSE`.
 - Never remove entries from `.gitignore` without explicit user permission.
 - Keep `CLAUDE.md` and this file in sync when recording new guidance.
+- **Creative / subjective work is options-first.** Taglines, mission statements, marketing copy, naming, tone choices, color/style decisions, and other brainstorming-style tasks get 3–4 meaningfully different options in chat first. Include a short flavor note per option. Honor prior constraints (e.g. "no em-dashes", "don't say family", "don't say CBP"). Do not pick and commit unilaterally. Bugfixes / verified refactors / dep bumps keep the commit-and-push cadence.
 
 ## Tech Stack
 
