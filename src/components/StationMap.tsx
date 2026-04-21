@@ -15,6 +15,7 @@ import { X } from "lucide-react";
 import { DutyStation } from "@/types/station";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { componentAccent } from "@/lib/componentColors";
 
 interface StationMapProps {
   locations?: DutyStation[];
@@ -233,7 +234,9 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
         {selectedStation ? (
           <div className="w-64 rounded-md border bg-white shadow-lg">
             <div className="flex items-start justify-between gap-2 p-3 pb-2">
-              <h3 className="font-semibold text-[#0A4A0A] leading-tight">
+              <h3
+                className={`font-semibold leading-tight ${componentAccent[selectedStation.componentType].text}`}
+              >
                 {selectedStation.name}
               </h3>
               <button
@@ -260,7 +263,7 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
               <Button
                 type="button"
                 size="sm"
-                className="w-full mt-1"
+                className={`w-full mt-1 ${componentAccent[selectedStation.componentType].buttonClass}`}
                 onClick={() => navigate(`/station/${selectedStation.id}`)}
               >
                 View Details

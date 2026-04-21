@@ -22,6 +22,7 @@ import { useStationByIdQuery, useTravelResourcesQuery } from "@/lib/data/queryHo
 import { StationLinkCategory } from "@/types/station";
 import { trackUsageEvent } from "@/lib/data/usageTracking";
 import { getSourceName } from "@/lib/sourceName";
+import { componentAccent } from "@/lib/componentColors";
 
 const linkIconByCategory: Record<StationLinkCategory, typeof Home> = {
   realEstate: Home,
@@ -106,7 +107,11 @@ export default function StationDetailPage() {
             <Button variant="ghost" size="icon" onClick={() => navigate("/directory")} aria-label="Back to directory">
               <ArrowLeft className="h-4 w-4" />
             </Button>
-            <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">{station.name}</h1>
+            <h1
+              className={`text-3xl font-bold tracking-tight ${componentAccent[station.componentType].text}`}
+            >
+              {station.name}
+            </h1>
           </div>
           <div className="flex items-center text-muted-foreground">
             <MapPin className="h-4 w-4 mr-1" />
@@ -143,7 +148,7 @@ export default function StationDetailPage() {
                   </Button>
                   <Button
                     onClick={() => navigate(`/compare?station1=${station.id}`)}
-                    className="flex items-center gap-2"
+                    className={`flex items-center gap-2 ${componentAccent[station.componentType].buttonClass}`}
                   >
                     <ArrowRightLeft className="h-4 w-4" />
                     Compare This Location
@@ -202,7 +207,9 @@ export default function StationDetailPage() {
               <Card>
                 <CardContent className="p-6">
                   <h2 className="text-xl font-semibold mb-4 text-[#222222] flex items-center gap-2">
-                    <Trees className="h-5 w-5 text-[#0A4A0A]" />
+                    <Trees
+                      className={`h-5 w-5 ${componentAccent[station.componentType].iconClass}`}
+                    />
                     Recreation
                   </h2>
                   <div className="grid gap-3">

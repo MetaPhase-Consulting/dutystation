@@ -4,6 +4,7 @@ import { MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { componentAccent } from "@/lib/componentColors";
 import {
   Card,
   CardContent,
@@ -26,7 +27,7 @@ export function StationCard({ station }: StationCardProps) {
     <Card className="overflow-hidden">
       <CardHeader className="pb-3">
         <CardTitle
-          className="text-[#0A4A0A] hover:underline cursor-pointer"
+          className={`hover:underline cursor-pointer ${componentAccent[station.componentType].text}`}
           onClick={handleNavigate}
         >
           {station.name}
