@@ -22,9 +22,9 @@ export default function DataSourcesPage() {
     <div className="container px-4 py-8 mx-auto">
       <div className="flex flex-col space-y-6">
         <div className="space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">CBP Duty Location Data Sources</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Data Sources</h1>
           <p className="text-muted-foreground">
-            Data sources used to provide accurate and helpful information for CBP duty locations across USBP, OFO,
+            Data sources used to provide accurate and helpful information for duty stations across USBP, OFO,
             and AMO.
           </p>
         </div>
@@ -380,7 +380,7 @@ export default function DataSourcesPage() {
                 <div className="p-2 rounded-md bg-[#0A4A0A]">
                   <Plane className="h-5 w-5 text-white" />
                 </div>
-                Pre-Academy Travel Resources
+                Travel
               </CardTitle>
               <CardDescription>External travel planning references</CardDescription>
             </CardHeader>
@@ -433,7 +433,8 @@ export default function DataSourcesPage() {
                 href="https://metaphase.tech/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-orange-800 underline underline-offset-2 hover:no-underline"
+                data-brand="metaphase"
+                className="text-orange-500 font-semibold hover:underline"
               >
                 MetaPhase
               </a>{' '}

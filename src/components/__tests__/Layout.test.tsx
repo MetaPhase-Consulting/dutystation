@@ -10,13 +10,13 @@ const renderWithRouter = (component: React.ReactElement) => {
 describe('Layout Component', () => {
   it('should render the footer with correct content', () => {
     renderWithRouter(<Layout />)
-    
-    // Check for subtitle
-    expect(screen.getByText('Explore and compare CBP duty locations')).toBeInTheDocument()
-    
+
+    // Brand title renders in both nav and footer
+    expect(screen.getAllByText('Duty Station Relocation').length).toBeGreaterThan(0)
+
     // Check for Open Source link
     expect(screen.getByText('Open Source')).toBeInTheDocument()
-    
+
     // Check for MetaPhase link
     expect(screen.getByText(/Built by/)).toBeInTheDocument()
     expect(screen.getByText('MetaPhase')).toBeInTheDocument()
@@ -48,14 +48,14 @@ describe('Layout Component', () => {
 
   it('should have proper styling classes', () => {
     renderWithRouter(<Layout />)
-    
-    // Find the footer title specifically by looking for the subtitle first, then finding the title in the same container
-    const subtitle = screen.getByText('Explore and compare CBP duty locations')
-    const footerContainer = subtitle.closest('a')
-    const footerTitle = footerContainer?.querySelector('span.font-bold')
-    
-    expect(footerTitle).toBeInTheDocument()
-    expect(footerTitle).toHaveClass('font-bold')
-    expect(footerTitle).toHaveClass('text-[#1F631A]')
+
+    // The footer brand mark lives inside an anchor to the MetaPhase link-less
+    // home link; pick the one inside the <footer> element.
+    const footer = screen.getAllByText('Duty Station Relocation').find((el) =>
+      el.closest('footer') !== null
+    )
+    expect(footer).toBeDefined()
+    expect(footer!).toHaveClass('font-bold')
+    expect(footer!).toHaveClass('text-[#1F631A]')
   })
 }) 

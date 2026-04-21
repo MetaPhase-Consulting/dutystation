@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  AlertTriangle,
   ArrowLeft,
   ArrowRightLeft,
   Car,
@@ -23,7 +22,6 @@ import StationDetailMap from "@/components/StationDetailMap";
 import { useStationByIdQuery, useTravelResourcesQuery } from "@/lib/data/queryHooks";
 import { StationLinkCategory } from "@/types/station";
 import { trackUsageEvent } from "@/lib/data/usageTracking";
-import { LEGAL_DISCLAIMER_POINTS, LEGAL_DISCLAIMER_TITLE } from "@/content/legal";
 
 const linkIconByCategory: Record<StationLinkCategory, typeof Home> = {
   realEstate: Home,
@@ -54,18 +52,6 @@ const linkDescriptionByCategory: Record<StationLinkCategory, string> = {
   transit: "View transportation and commute resources",
   movingTips: "Review moving guidance and checklists",
 };
-
-function statusMessage(status: boolean | null) {
-  if (status === true) {
-    return null;
-  }
-
-  if (status === false) {
-    return "Link may be unavailable";
-  }
-
-  return "Link quality unverified";
-}
 
 export default function StationDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -142,22 +128,6 @@ export default function StationDetailPage() {
           </div>
         </div>
 
-        {station.attributes.disclaimerApplies ? (
-          <Card className="border-amber-300 bg-amber-50">
-            <CardContent className="p-4 text-sm">
-              <h2 className="font-semibold text-amber-900 mb-2">{LEGAL_DISCLAIMER_TITLE}</h2>
-              <ul className="space-y-2">
-                {LEGAL_DISCLAIMER_POINTS.map((point) => (
-                  <li key={point} className="flex items-start gap-2 text-amber-900">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 text-amber-700" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        ) : null}
-
         <div className="flex flex-col md:flex-row gap-6">
           <div className="w-full md:w-2/3 space-y-6">
             <Card>
@@ -223,81 +193,78 @@ export default function StationDetailPage() {
             <Card>
               <CardContent className="p-6">
                 <h2 className="text-xl font-semibold mb-4 text-[#222222]">External Resources</h2>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Link quality is monitored. Entries marked as unverified or unavailable are retained for transparency.
-                </p>
 
                 <div className="grid gap-3">
-                  {resourceLinks.map((resource) => {
-                    const warning = statusMessage(resource.link.isValid);
-
-                    return (
-                      <a
-                        key={resource.category}
-                        href={resource.link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
-                        onClick={() => {
-                          trackUsageEvent({
-                            eventName: "external_resource_click",
-                            stationId: station.id,
-                            eventMetadata: {
-                              category: resource.category,
-                              url: resource.link.url,
-                            },
-                          });
-                        }}
-                      >
-                        <div className="bg-muted p-2 rounded-md">
-                          <resource.icon className="h-5 w-5" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-medium text-[#222222] group-hover:text-primary transition-colors">
-                            {resource.name}
-                          </h3>
-                          <p className="text-sm text-muted-foreground">{resource.description}</p>
-                          {resource.link.isRemediated ? (
-                            <p className="text-xs text-blue-700 mt-1">Updated source</p>
-                          ) : null}
-                          {warning ? (
-                            <p className="text-xs text-amber-700 mt-1">{warning}</p>
-                          ) : null}
-                        </div>
-                      </a>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4 text-[#222222]">Pre-Academy Travel Resources</h2>
-                <div className="grid gap-3">
-                  {travelResources.map((resource) => (
+                  {resourceLinks.map((resource) => (
                     <a
-                      key={resource.id}
-                      href={resource.url}
+                      key={resource.category}
+                      href={resource.link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-md border p-3 hover:border-primary transition-colors"
+                      className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
+                      onClick={() => {
+                        trackUsageEvent({
+                          eventName: "external_resource_click",
+                          stationId: station.id,
+                          eventMetadata: {
+                            category: resource.category,
+                            url: resource.link.url,
+                          },
+                        });
+                      }}
                     >
-                      <div className="flex items-center gap-2 text-[#0A4A0A] font-medium">
-                        {resource.category === "hotel" ? <Hotel className="h-4 w-4" /> : null}
-                        {resource.category === "flight" ? <Plane className="h-4 w-4" /> : null}
-                        {resource.category === "car-rental" ? <Car className="h-4 w-4" /> : null}
-                        {resource.category === "trip-planner" ? <Plane className="h-4 w-4" /> : null}
-                        {resource.name}
+                      <div className="bg-muted p-2 rounded-md">
+                        <resource.icon className="h-5 w-5" />
                       </div>
-                      <p className="text-sm text-muted-foreground mt-1">{resource.description}</p>
+                      <div className="flex-1">
+                        <h3 className="font-medium text-[#222222] group-hover:text-primary transition-colors">
+                          {resource.name}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">{resource.description}</p>
+                      </div>
                     </a>
                   ))}
                 </div>
               </CardContent>
             </Card>
+
+            {travelResources.length ? (
+              <Card>
+                <CardContent className="p-6">
+                  <h2 className="text-xl font-semibold mb-4 text-[#222222]">Travel</h2>
+                  <div className="grid gap-3">
+                    {travelResources.map((resource) => (
+                      <a
+                        key={resource.id}
+                        href={resource.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors"
+                      >
+                        <div className="bg-muted p-2 rounded-md">
+                          {resource.category === "hotel" ? <Hotel className="h-5 w-5" /> : null}
+                          {resource.category === "flight" ? <Plane className="h-5 w-5" /> : null}
+                          {resource.category === "car-rental" ? <Car className="h-5 w-5" /> : null}
+                          {resource.category === "trip-planner" ? <Plane className="h-5 w-5" /> : null}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-medium text-[#222222]">{resource.name}</h3>
+                          <p className="text-sm text-muted-foreground">{resource.description}</p>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ) : null}
           </div>
         </div>
+
+        {station.attributes.disclaimerApplies ? (
+          <p className="text-xs text-muted-foreground pt-4 border-t">
+            CBP is not responsible for relocation costs. Information is provided for planning reference only.
+          </p>
+        ) : null}
       </div>
     </div>
   );

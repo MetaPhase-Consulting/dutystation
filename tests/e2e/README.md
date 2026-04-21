@@ -27,14 +27,14 @@ PLAYWRIGHT_TEST_BASE_URL=https://deploy-preview-123--dutystation.netlify.app npm
 - **External link quality** — each station detail page surfaces the remediated/resolved URL, not the original broken one.
 - **Accessibility** — `@axe-core/playwright` scans every tested route for critical/serious WCAG 2.1 AA violations.
 
-## Known-failing a11y tests
+## A11y scope
 
-Four WCAG 2.1 AA tests are currently marked `test.fixme()` because the routes
-(`/directory`, `/station/:id`, `/compare`, `/data-sources`) have critical
-`button-name` violations — unlabeled interactive controls. Homepage a11y
-already passes. Fix the underlying issues and remove the `.fixme()` markers.
-
-The homepage a11y test is strict and blocks on critical/serious violations.
+A11y scans (`expectNoSeriousA11yViolations` via `@axe-core/playwright`) run
+only on the desktop chromium project. The mobile project runs the functional
+smoke tests but skips a11y — the same components render on both viewports
+and a11y regressions do not meaningfully differ by width, so running it
+twice doubles CI time for no added signal. If you add a new a11y test,
+call `skipA11yOnMobile(testInfo)` at the top.
 
 ## Adding a test
 

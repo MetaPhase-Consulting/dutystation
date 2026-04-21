@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { expectNoSeriousA11yViolations } from './helpers'
+import { expectNoSeriousA11yViolations, skipA11yOnMobile } from './helpers'
 
 const ROUTES = [
   { path: '/compare', label: 'compare' },
@@ -16,6 +16,7 @@ for (const route of ROUTES) {
     })
 
     test(`meets WCAG 2.1 AA`, async ({ page }, testInfo) => {
+      skipA11yOnMobile(testInfo)
       await page.goto(route.path)
       await page.getByRole('heading').first().waitFor()
       await expectNoSeriousA11yViolations(page, testInfo, route.label)

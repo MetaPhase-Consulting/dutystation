@@ -31,8 +31,8 @@ describe('App Component', () => {
     // Check for main content area
     expect(await screen.findByRole('main')).toBeInTheDocument()
     
-    // Check for footer subtitle instead of title to avoid duplicates
-    expect(screen.getByText('Explore and compare CBP duty locations')).toBeInTheDocument()
+    // Brand title renders in both nav and footer
+    expect(screen.getAllByText('Duty Station Relocation').length).toBeGreaterThan(0)
   })
 
   it('should have proper routing setup', async () => {

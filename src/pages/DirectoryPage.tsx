@@ -124,9 +124,9 @@ export default function DirectoryPage() {
     <div className="container px-4 py-8 mx-auto">
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">CBP Duty Location Directory</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Duty Station Directory</h1>
           <p className="text-muted-foreground">
-            Explore CBP duty locations across USBP, OFO (ports and field offices), and AMO assignments.
+            Explore duty stations across USBP, OFO (ports and field offices), and AMO assignments.
           </p>
         </div>
 

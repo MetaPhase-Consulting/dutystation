@@ -119,8 +119,8 @@ export default function ComparisonPage() {
     <div className="container px-4 py-8 mx-auto">
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Compare CBP Duty Locations</h1>
-          <p className="text-muted-foreground">Select two CBP duty locations to compare side by side.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Compare Duty Stations</h1>
+          <p className="text-muted-foreground">Select two duty stations to compare side by side.</p>
         </div>
 
         <div className="rounded-md border p-3">
@@ -242,7 +242,6 @@ export default function ComparisonPage() {
                       <div key={category.key} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {[station1, station2].map((station) => {
                           const link = station.links[category.key];
-                          const warning = link.isValid === false ? "(Link may be unavailable)" : "";
 
                           return (
                             <a
@@ -260,10 +259,6 @@ export default function ComparisonPage() {
                                   {category.name}: {station.name}
                                 </h4>
                                 <p className="text-xs text-muted-foreground">{category.description}</p>
-                                {link.isRemediated ? (
-                                  <p className="text-xs text-blue-700 mt-1">Updated source</p>
-                                ) : null}
-                                {warning ? <p className="text-xs text-amber-700 mt-1">{warning}</p> : null}
                               </div>
                             </a>
                           );
