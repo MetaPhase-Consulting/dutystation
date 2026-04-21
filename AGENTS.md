@@ -62,7 +62,7 @@ Before making changes, read in this order:
 - Lighthouse CI (performance + a11y budgets)
 - CodeQL + gitleaks + Trivy (SAST / secrets / vulnerable deps)
 - Node 20 (pinned in `.nvmrc`, `package.json#engines`, Netlify build env)
-- Both `package-lock.json` (npm, local/CI) and `bun.lockb` (Netlify) committed — keep in sync.
+- `package-lock.json` is the single lockfile (npm for local/CI/Netlify).
 
 ## Data & Environment Safety
 
@@ -98,7 +98,7 @@ Every PR must pass:
 - Typecheck, lint, unit tests (Vitest)
 - Accessibility (axe-core CLI via `test:a11y`; `@axe-core/playwright` in E2E)
 - E2E smoke (Playwright on desktop + mobile Chrome)
-- Production build (Vite; both `npm run build` and `bun run build`)
+- Production build (`npm run build`)
 - `npm audit --omit=dev` → 0 vulnerabilities
 - Link-audit validation (`data:validate:link-audit`)
 

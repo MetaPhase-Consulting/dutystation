@@ -2,12 +2,12 @@
 # Site ID: 322b89fe-7d36-4c3f-a73f-3fb97adbaf4a
 
 [build]
-  command = "bun run build"
+  command = "npm ci --legacy-peer-deps && npm run build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
-  BUN_VERSION = "1.1"
+  NPM_FLAGS = "--legacy-peer-deps"
 
 # SPA fallback — every unmatched route serves index.html so React Router
 # handles client-side routing.

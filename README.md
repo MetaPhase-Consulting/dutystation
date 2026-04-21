@@ -71,7 +71,6 @@ endorsement — this is a CivicTech contribution.
 
 - [Node.js 20](https://nodejs.org/) (use [`.nvmrc`](.nvmrc) via `nvm use`)
 - npm 10+ (ships with Node 20)
-- Optional: [Bun](https://bun.sh/) if you want to match the Netlify build locally
 
 ### Steps
 
@@ -195,8 +194,9 @@ Required repository secrets:
 ## Deployment
 
 Production deploys to [Netlify](https://app.netlify.com/projects/dutystation) from
-`main`. Pull requests get automatic deploy previews. The build command is
-`bun run build` with publish directory `dist`.
+`main`. Pull requests get automatic deploy previews. Netlify runs
+`npm ci --legacy-peer-deps && npm run build` and publishes the `dist/`
+directory — see `netlify.toml` for the full build + headers config.
 
 Because the app ships with a bundled dataset fallback, the production artifact
 is a self-contained static SPA and can also be hosted anywhere that serves

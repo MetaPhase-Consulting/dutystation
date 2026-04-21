@@ -8,7 +8,7 @@ start of every session — update whenever the user gives standing guidance.
 - **Repo:** dutystation ([MetaPhase-Consulting/dutystation](https://github.com/MetaPhase-Consulting/dutystation))
 - **Product:** Public, map-first directory of U.S. Customs and Border Protection (CBP) duty stations — Border Patrol, Office of Field Operations, and Air & Marine Operations.
 - **License:** MIT (`LICENSE`). This is an open-source CivicTech project — keep it that way.
-- **Hosting:** Netlify (`dutystation.us`, site id `322b89fe-7d36-4c3f-a73f-3fb97adbaf4a`) with `bun run build`. Supabase backs the data layer when configured.
+- **Hosting:** Netlify (`dutystation.us`, site id `322b89fe-7d36-4c3f-a73f-3fb97adbaf4a`) with `npm run build`. Build config in `netlify.toml`. Supabase backs the data layer when configured.
 - **Audience:** Public. Anything added to the site is assumed to be read by prospective CBP employees, their families, and the general public.
 
 ## Standing Preferences
@@ -44,7 +44,7 @@ start of every session — update whenever the user gives standing guidance.
 - Lighthouse CI for performance + a11y budgets
 - CodeQL + gitleaks + Trivy for SAST/secret/dep scanning
 - Node 20 (pinned via `.nvmrc` and `package.json#engines`)
-- Both `package-lock.json` (local/CI) and `bun.lockb` (Netlify build) are committed — keep them in sync when bumping deps.
+- `package-lock.json` is the single lockfile (used by local/CI/Netlify). No `bun.lockb` — if you see one, remove it.
 
 ## Data & Environment Safety
 
