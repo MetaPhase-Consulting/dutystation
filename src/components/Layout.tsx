@@ -41,20 +41,26 @@ export function Layout() {
       <footer className="border-t bg-muted/40 print:hidden" role="contentinfo">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-10">
-            {/* Left: brand */}
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground shrink-0"
-            >
-              <img
-                src="/greencompassimg.png"
-                alt="Compass Icon"
-                className="h-5 w-5"
-              />
-              <span className="font-bold text-[#1F631A]">
-                Duty Station Relocation
-              </span>
-            </Link>
+            {/* Left: brand + tagline */}
+            <div className="shrink-0 lg:max-w-xs">
+              <Link
+                to="/"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+              >
+                <img
+                  src="/greencompassimg.png"
+                  alt="Compass Icon"
+                  className="h-5 w-5"
+                />
+                <span className="font-bold text-[#1F631A]">
+                  Duty Station Relocation
+                </span>
+              </Link>
+              <p className="mt-3 text-xs italic text-muted-foreground leading-relaxed">
+                Explore and compare duty stations before you relocate. Make
+                informed assignment decisions with trusted resources.
+              </p>
+            </div>
 
             {/* Middle: nav columns */}
             <div className="flex flex-wrap gap-10 sm:gap-14 flex-1">
