@@ -206,10 +206,10 @@ export default function StationDetailPage() {
 
           <div className="w-full md:w-1/3 space-y-6">
             <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4 text-[#222222]">External Resources</h2>
+              <CardContent className="p-4">
+                <h2 className="text-base font-semibold mb-2 text-[#222222]">External Resources</h2>
 
-                <div className="grid gap-3">
+                <div className="grid gap-1.5">
                   {resourceLinks.map((resource) => {
                     const source = getSourceName(resource.url);
                     return (
@@ -218,7 +218,7 @@ export default function StationDetailPage() {
                         href={resource.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
+                        className="flex items-center gap-2.5 p-2 rounded-md border hover:border-primary transition-colors group"
                         onClick={() => {
                           trackUsageEvent({
                             eventName: "external_resource_click",
@@ -230,16 +230,16 @@ export default function StationDetailPage() {
                           });
                         }}
                       >
-                        <div className="bg-muted p-2 rounded-md">
-                          <resource.icon className="h-5 w-5" />
+                        <div className="bg-muted p-1.5 rounded-md shrink-0">
+                          <resource.icon className="h-4 w-4" />
                         </div>
-                        <div className="flex-1">
-                          <h3 className="font-medium text-[#222222] group-hover:text-primary transition-colors">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-sm font-medium text-[#222222] group-hover:text-primary transition-colors leading-tight">
                             {resource.name}
                           </h3>
-                          <p className="text-sm text-muted-foreground">{resource.description}</p>
+                          <p className="text-xs text-muted-foreground leading-snug">{resource.description}</p>
                           {source ? (
-                            <p className="text-[11px] text-muted-foreground mt-1">Source: {source}</p>
+                            <p className="text-[10px] text-muted-foreground/80 mt-0.5">Source: {source}</p>
                           ) : null}
                         </div>
                       </a>
@@ -253,9 +253,8 @@ export default function StationDetailPage() {
 
         <p className="text-xs text-muted-foreground pt-4 border-t">
           This website is an informational, non-official resource and is not an
-          official U.S. government system. CBP is not responsible for
-          relocation costs. Information is provided for planning reference
-          only.{" "}
+          official U.S. government system. Information is provided for
+          planning reference only.{" "}
           <Link
             to="/disclaimer"
             className="underline underline-offset-2 hover:text-foreground"

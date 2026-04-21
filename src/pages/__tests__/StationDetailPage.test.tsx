@@ -77,13 +77,13 @@ describe("StationDetailPage", () => {
       </MemoryRouter>
     );
 
-    // Disclaimer appears at the bottom of the station page (footer has no
-    // site-wide one; it lives here instead).
+    // Disclaimer appears at the bottom of the station page.
     expect(
-      screen.getByText(/CBP is not responsible for relocation costs/i)
+      screen.getByText(/informational, non-official resource/i)
     ).toBeInTheDocument();
+    // Travel + Recreation now render inline in the External Resources list.
     expect(screen.getAllByText("Travel").length).toBeGreaterThan(0);
-    expect(screen.getByText("Recreation")).toBeInTheDocument();
+    expect(screen.getAllByText(/Recreation/).length).toBeGreaterThan(0);
     // Source attribution (derived from URL hostname) now shows under each link.
     expect(screen.getAllByText(/Source:/).length).toBeGreaterThan(0);
 
