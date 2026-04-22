@@ -1,0 +1,36 @@
+name: Secret Scan
+
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [dev, main]
+  schedule:
+    - cron: "0 7 * * 1" # Mondays, 07:00 UTC
+
+permissions:
+  contents: read
+
+jobs:
+  trufflehog:
+    name: TruffleHog scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Run TruffleHog
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          # Derive base/head from the event. On a PR, diff between the PR's
+          # base and head. On push, diff from the previous commit to HEAD.
+          # Previously this used github.event.repository.default_branch for
+          # both base and head, which fails on a dev->main PR since the
+          # default branch (dev) is the same tip as HEAD ("BASE and HEAD
+          # commits are the same").
+          base: ${{ github.event.pull_request.base.sha || github.event.before }}
+          head: ${{ github.event.pull_request.head.sha || github.sha }}
+          extra_args: --only-verified

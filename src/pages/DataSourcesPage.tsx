@@ -1,8 +1,8 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { PageMeta } from "@/components/PageMeta";
 import { 
   ExternalLink, 
   Map,
@@ -13,17 +13,25 @@ import {
   BookOpen,
   CloudSun,
   TrainFront,
-  Truck
+  Truck,
+  Plane
 } from "lucide-react";
+import { LEGAL_DISCLAIMER_POINTS, LEGAL_DISCLAIMER_TITLE } from "@/content/legal";
 
 export default function DataSourcesPage() {
   return (
     <div className="container px-4 py-8 mx-auto">
+      <PageMeta
+        title="Data Sources"
+        description="Third-party sources used to provide duty station information — housing, schools, crime, cost of living, weather, transit, and travel references."
+        path="/data-sources"
+      />
       <div className="flex flex-col space-y-6">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Data Sources</h1>
           <p className="text-muted-foreground">
-            Data used to provide accurate and helpful information about border duty stations.
+            Data sources used to provide accurate and helpful information for duty stations across USBP, OFO,
+            and AMO.
           </p>
         </div>
 
@@ -36,7 +44,7 @@ export default function DataSourcesPage() {
                 <div className="p-2 rounded-md bg-[#1F631A]">
                   <Map className="h-5 w-5 text-white" />
                 </div>
-                Duty Station Data
+                Duty Location Data
               </CardTitle>
               <CardDescription>Official CBP location information</CardDescription>
             </CardHeader>
@@ -49,7 +57,7 @@ export default function DataSourcesPage() {
                       href="https://www.cbp.gov/about/contact/ports" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       CBP Ports of Entry
                     </a>
@@ -63,7 +71,7 @@ export default function DataSourcesPage() {
                       href="https://www.cbp.gov/border-security/along-us-borders/border-patrol-sectors" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       Border Patrol Sectors
                     </a>
@@ -82,7 +90,7 @@ export default function DataSourcesPage() {
                 </div>
                 Applicant Resources
               </CardTitle>
-              <CardDescription>Information for Border Patrol applicants</CardDescription>
+              <CardDescription>Information for CBP applicants across components</CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-3">
@@ -93,11 +101,11 @@ export default function DataSourcesPage() {
                       href="https://www.honorfirst.com/for-usbp-applicants.html" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
-                      Honor First - For USBP Applicants
+                      Honor First - USBP Applicant Community
                     </a>
-                    <p className="text-sm text-muted-foreground">Resources for Border Patrol applicants</p>
+                    <p className="text-sm text-muted-foreground">Unofficial third-party community resource for USBP applicants</p>
                   </div>
                 </li>
                 <li className="flex gap-2">
@@ -107,7 +115,7 @@ export default function DataSourcesPage() {
                       href="https://careers.cbp.gov/s/" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       CBP Careers
                     </a>
@@ -137,7 +145,7 @@ export default function DataSourcesPage() {
                       href="https://openlayers.org" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       OpenLayers
                     </a>
@@ -151,7 +159,7 @@ export default function DataSourcesPage() {
                       href="https://www.openstreetmap.org" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       OpenStreetMap
                     </a>
@@ -181,7 +189,7 @@ export default function DataSourcesPage() {
                       href="https://www.realtor.com" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       Realtor.com
                     </a>
@@ -208,14 +216,14 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.greatschools.org" 
+                      href="https://nces.ed.gov/ccd/schoolsearch/" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
-                      GreatSchools
+                      NCES School Search
                     </a>
-                    <p className="text-sm text-muted-foreground">School ratings and educational resources</p>
+                    <p className="text-sm text-muted-foreground">Federal school directory and educational reference data</p>
                   </div>
                 </li>
               </ul>
@@ -238,14 +246,14 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.neighborhoodscout.com" 
+                      href="https://www.city-data.com/crime/" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
-                      NeighborhoodScout
+                      City-Data Crime
                     </a>
-                    <p className="text-sm text-muted-foreground">Neighborhood crime statistics and safety ratings</p>
+                    <p className="text-sm text-muted-foreground">Public crime-data reference pages by location</p>
                   </div>
                 </li>
               </ul>
@@ -271,7 +279,7 @@ export default function DataSourcesPage() {
                       href="https://www.bestplaces.net" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
                       BestPlaces
                     </a>
@@ -298,14 +306,14 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://weatherspark.com" 
+                      href="https://www.weather.gov/" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
-                      WeatherSpark
+                      National Weather Service
                     </a>
-                    <p className="text-sm text-muted-foreground">Detailed weather data and climate information</p>
+                    <p className="text-sm text-muted-foreground">Official U.S. weather forecasts and alerts</p>
                   </div>
                 </li>
               </ul>
@@ -328,14 +336,14 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.rome2rio.com" 
+                      href="https://www.google.com/maps/search/public+transit" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
-                      Rome2Rio
+                      Google Maps Transit Search
                     </a>
-                    <p className="text-sm text-muted-foreground">Transportation routes and options between locations</p>
+                    <p className="text-sm text-muted-foreground">Public transit discovery and route planning reference</p>
                   </div>
                 </li>
               </ul>
@@ -358,14 +366,39 @@ export default function DataSourcesPage() {
                   <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                   <div>
                     <a 
-                      href="https://www.moving.com/tips/" 
+                      href="https://www.usa.gov/moving" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-blue-700 underline underline-offset-2 hover:no-underline"
                     >
-                      Moving.com
+                      USA.gov Moving Guide
                     </a>
-                    <p className="text-sm text-muted-foreground">Moving tips and relocation guides</p>
+                    <p className="text-sm text-muted-foreground">Federal relocation and moving guidance</p>
+                  </div>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <div className="p-2 rounded-md bg-[#0A4A0A]">
+                  <Plane className="h-5 w-5 text-white" />
+                </div>
+                Travel
+              </CardTitle>
+              <CardDescription>External travel planning references</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                <li className="flex gap-2">
+                  <ExternalLink className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                  <div>
+                    <a href="https://www.kayak.com/" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline underline-offset-2 hover:no-underline">
+                      Travel planner
+                    </a>
+                    <p className="text-sm text-muted-foreground">Flights, hotels, and rental cars for relocation planning</p>
                   </div>
                 </li>
               </ul>
@@ -376,21 +409,23 @@ export default function DataSourcesPage() {
         <Separator className="my-6" />
         
         <div className="bg-muted/30 p-6 rounded-lg border">
-          <h2 className="text-xl font-semibold mb-4">Disclaimers</h2>
+          <h2 className="text-xl font-semibold mb-4">{LEGAL_DISCLAIMER_TITLE}</h2>
           <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">
-              This is not an official government website. Duty Station Relocation is an open-source project designed to help individuals make informed decisions about border duty station relocations.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              The data presented on this website is sourced from various third-party providers. All external data, copyrights, and trademarks belong to their respective owners. We make no claims of ownership over any third-party content.
-            </p>
+            <ul className="space-y-2">
+              {LEGAL_DISCLAIMER_POINTS.map((point) => (
+                <li key={point} className="text-sm text-muted-foreground">
+                  {point}
+                </li>
+              ))}
+            </ul>
             <p className="text-sm text-muted-foreground">
               This project was built by{' '}
               <a 
-                href="https://metaphaseconsulting.com/" 
+                href="https://metaphase.tech/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-[#F97316] hover:underline"
+                data-brand="metaphase"
+                className="text-orange-500 font-semibold hover:underline"
               >
                 MetaPhase
               </a>{' '}
@@ -399,7 +434,7 @@ export default function DataSourcesPage() {
                 href="https://github.com/MetaPhase-Consulting/dutystation/blob/main/LICENSE" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-blue-600 hover:underline"
+                className="text-blue-700 underline underline-offset-2 hover:no-underline"
               >
                 MIT License
               </a>.

@@ -1,0 +1,173 @@
+name: Data Maintenance
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 6 * * *"
+    - cron: "45 6 * * 0"
+
+permissions:
+  contents: write
+
+jobs:
+  link-remediation-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate required secrets
+        id: validate
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping link remediation sync because required secrets are missing."
+            exit 0
+          fi
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout
+        if: steps.validate.outputs.ready == 'true'
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        if: steps.validate.outputs.ready == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.validate.outputs.ready == 'true'
+        run: npm ci
+
+      - name: Apply link remediations
+        if: steps.validate.outputs.ready == 'true'
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run data:remediate:links:apply -- --out docs/progress/link-remediation-latest.json
+
+      - name: Commit remediation report
+        if: steps.validate.outputs.ready == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet docs/progress/link-remediation-latest.json; then
+            echo "No link remediation changes to commit"
+            exit 0
+          fi
+          git add docs/progress/link-remediation-latest.json
+          git commit -m "chore(data): refresh link remediation report"
+          git push
+
+  link-audit-sync:
+    runs-on: ubuntu-latest
+    needs: link-remediation-sync
+
+    steps:
+      - name: Validate required secrets
+        id: validate
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping link audit sync because required secrets are missing."
+            exit 0
+          fi
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout
+        if: steps.validate.outputs.ready == 'true'
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        if: steps.validate.outputs.ready == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.validate.outputs.ready == 'true'
+        run: npm ci
+
+      - name: Sync external link audit
+        if: steps.validate.outputs.ready == 'true'
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run data:audit:links:sync -- --out docs/progress/link-audit-latest.json
+
+      - name: Validate remediation policy thresholds
+        if: steps.validate.outputs.ready == 'true'
+        run: npm run data:validate:link-audit -- --report docs/progress/link-audit-latest.json --maxUnknownRate 0.35
+
+      - name: Commit audit report
+        if: steps.validate.outputs.ready == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet docs/progress/link-audit-latest.json; then
+            echo "No link audit changes to commit"
+            exit 0
+          fi
+          git add docs/progress/link-audit-latest.json
+          git commit -m "chore(data): refresh external link audit report"
+          git push
+
+  enrichment-sync:
+    runs-on: ubuntu-latest
+    needs: link-audit-sync
+
+    steps:
+      - name: Validate required secrets
+        id: validate
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping enrichment sync because required secrets are missing."
+            exit 0
+          fi
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout
+        if: steps.validate.outputs.ready == 'true'
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        if: steps.validate.outputs.ready == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.validate.outputs.ready == 'true'
+        run: npm ci
+
+      - name: Enrich and sync CSV stations
+        if: steps.validate.outputs.ready == 'true'
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run data:enrich:csv:sync -- --out supabase/seed/enriched_stations.json
+
+      - name: Commit enriched seed
+        if: steps.validate.outputs.ready == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet supabase/seed/enriched_stations.json; then
+            echo "No enrichment changes to commit"
+            exit 0
+          fi
+          git add supabase/seed/enriched_stations.json
+          git commit -m "chore(data): refresh enriched station seed"
+          git push

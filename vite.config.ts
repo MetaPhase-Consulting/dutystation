@@ -1,22 +1,68 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  define: {
+    __APP_VERSION__: JSON.stringify(process.env.npm_package_version ?? "dev"),
+  },
   server: {
-    host: "::",
+    host: mode === 'development' ? 'localhost' : '::',
     port: 8080,
+    headers: {
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'X-XSS-Protection': '1; mode=block',
+      'Cross-Origin-Resource-Policy': 'same-origin',
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'X-DNS-Prefetch-Control': 'off',
+      'Content-Security-Policy': mode === 'development'
+        // Dev CSP — looser to accommodate Vite HMR (ws://) and Google
+        // Analytics (gtag). Production CSP lives in netlify.toml and is
+        // stricter.
+        ? "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https: ws://localhost:* ws://127.0.0.1:*; object-src 'none'; frame-ancestors 'none'; base-uri 'self';"
+        // Kept for `vite preview` only; Netlify applies its own CSP at the
+        // edge via netlify.toml.
+        : "default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; upgrade-insecure-requests;",
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
+      'Permissions-Policy': 'geolocation=(), microphone=(), camera=()',
+    },
+    // Additional security for development server
+    hmr: {
+      port: 24678,
+    },
+    // Restrict CORS for development
+    cors: false,
+    // Disable directory listing
+    fs: {
+      strict: true,
+      allow: ['..'],
+    },
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
-  ].filter(Boolean),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  // Additional build security
+  build: {
+    rollupOptions: {
+      output: {
+        // Vite 8 ships rolldown which requires manualChunks as a function
+        // (the object shorthand is no longer supported). Keep the same
+        // vendor/ui split: react + react-dom as "vendor", all Radix UI
+        // packages as "ui".
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return undefined;
+          if (id.includes('/react/') || id.includes('/react-dom/')) return 'vendor';
+          if (id.includes('/@radix-ui/')) return 'ui';
+          return undefined;
+        },
+      },
     },
   },
 }));

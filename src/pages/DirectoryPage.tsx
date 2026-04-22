@@ -1,132 +1,360 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { DutyStation, searchDutyStations } from "@/data/dutyStations";
-import { Map, MapPin } from "lucide-react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { List, Map as MapIcon } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DirectoryFilters } from "@/components/directory/DirectoryFilters";
+import { MapLegend } from "@/components/directory/MapLegend";
+import { SortControl } from "@/components/directory/SortControl";
 import { StationsList } from "@/components/directory/StationsList";
 import StationMap from "@/components/StationMap";
+import { useStationsQuery } from "@/lib/data/queryHooks";
+import { filterStations, sanitizeSearchTerm, uniqueSorted } from "@/lib/data/stationFilters";
+import { ComponentType } from "@/types/station";
+import { trackUsageEvent } from "@/lib/data/usageTracking";
+import { PageMeta } from "@/components/PageMeta";
 
-// Get unique values from the data to ensure we're using correct values
-const allStations = searchDutyStations("");
-const uniqueSectors = ["All Sectors", ...new Set(allStations.map(station => station.sector))].sort();
-const uniqueRegions = ["All Regions", ...new Set(allStations.map(station => station.region))].sort();
+type MapView = { lng: number; lat: number; zoom: number };
 
-// Get unique states from the data, ensuring "All States" is first
-const uniqueStates = [
-  "All States",
-  ...new Set(allStations.map(station => station.state))
-].sort((a, b) => {
-  if (a === "All States") return -1;
-  if (b === "All States") return 1;
-  return a.localeCompare(b);
-});
+const isComponentType = (value: string): value is ComponentType =>
+  value === "USBP" || value === "OFO" || value === "AMO";
 
 export default function DirectoryPage() {
-  const [stations, setStations] = useState<DutyStation[]>([]);
-  const [activeView, setActiveView] = useState("list");
-  const [selectedSector, setSelectedSector] = useState("All Sectors");
-  const [selectedRegion, setSelectedRegion] = useState("All Regions");
-  const [selectedState, setSelectedState] = useState("All States");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // For debugging
-  useEffect(() => {
-    console.info("Selected sector:", selectedSector);
-    console.info("Selected region:", selectedRegion);
-    console.info("Selected state:", selectedState);
-  }, [selectedSector, selectedRegion, selectedState]);
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const queryParam = params.get("search") || "";
-    
-    const allStations = searchDutyStations(queryParam);
-    console.info("Initial stations count:", allStations.length);
-    
-    let filteredStations = [...allStations];
-    
-    // Apply sector filter if not "All Sectors"
-    if (selectedSector !== "All Sectors") {
-      filteredStations = filteredStations.filter(
-        station => station.sector === selectedSector
-      );
-      console.info("After sector filter, stations count:", filteredStations.length);
+  // Initial state is hydrated from the URL once, on mount. Subsequent state
+  // changes flow the other direction (state -> URL), see the sync effect
+  // below. This keeps the URL as the durable "share-this-view" link without
+  // binding every state read through useSearchParams.
+  const initialQuery = useMemo(
+    () => sanitizeSearchTerm(searchParams.get("search") ?? ""),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+  const [activeView, setActiveView] = useState<"map" | "list">(
+    () => (searchParams.get("view") === "list" ? "list" : "map")
+  );
+  const [selectedSector, setSelectedSector] = useState(
+    () => searchParams.get("sector") ?? "All Sectors"
+  );
+  const [selectedRegion, setSelectedRegion] = useState(
+    () => searchParams.get("region") ?? "All Regions"
+  );
+  const [selectedState, setSelectedState] = useState(
+    () => searchParams.get("state") ?? "All States"
+  );
+  const [selectedFacilityType, setSelectedFacilityType] = useState(
+    () => searchParams.get("facility") ?? "All Facility Types"
+  );
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">(
+    () => (searchParams.get("sort") === "desc" ? "desc" : "asc")
+  );
+  const [selectedComponents, setSelectedComponents] = useState<ComponentType[]>(
+    () => {
+      const raw = searchParams.get("component");
+      if (!raw) return [];
+      return raw.split(",").filter(isComponentType) as ComponentType[];
     }
-
-    // Apply region filter if not "All Regions"
-    if (selectedRegion !== "All Regions") {
-      filteredStations = filteredStations.filter(
-        station => station.region === selectedRegion
-      );
-      console.info("After region filter, stations count:", filteredStations.length);
+  );
+  const [mapView, setMapView] = useState<MapView | null>(() => {
+    // IMPORTANT: params absent -> null (so StationMap falls back to CONUS).
+    // Previous version used Number(searchParams.get(...)) which coerces the
+    // null param to 0 and passes isFinite(), incorrectly seeding the initial
+    // view with {lat:0, lng:0, zoom:0} — a world view centered off the
+    // coast of Africa. Guard against that by checking the raw string first.
+    const latRaw = searchParams.get("lat");
+    const lngRaw = searchParams.get("lng");
+    const zoomRaw = searchParams.get("zoom");
+    if (latRaw === null || lngRaw === null || zoomRaw === null) {
+      return null;
     }
-
-    // Apply state filter if not "All States"
-    if (selectedState !== "All States") {
-      filteredStations = filteredStations.filter(
-        station => station.state === selectedState
-      );
-      console.info("After state filter, stations count:", filteredStations.length);
+    const lat = Number(latRaw);
+    const lng = Number(lngRaw);
+    const zoom = Number(zoomRaw);
+    if (!Number.isFinite(lat) || !Number.isFinite(lng) || !Number.isFinite(zoom)) {
+      return null;
     }
+    return { lat, lng, zoom };
+  });
+  // Captured once on mount — used to seed StationMap's initial viewport so
+  // the map doesn't reset on every filter re-render.
+  const [initialMapView] = useState<MapView | null>(() => mapView);
 
-    // Sort stations by name
-    filteredStations.sort((a, b) => {
-      const compareResult = a.name.localeCompare(b.name);
-      return sortOrder === "asc" ? compareResult : -compareResult;
+  const { data: stations = [], isLoading } = useStationsQuery();
+
+  // queryParam stays read-through on `?search` so NavBar search still flows
+  // into the directory.
+  const queryParam = useMemo(
+    () => sanitizeSearchTerm(searchParams.get("search") ?? initialQuery),
+    [searchParams, initialQuery]
+  );
+
+  const sectorComponents = useMemo(() => {
+    const map = new Map<string, ComponentType>();
+    stations.forEach((station) => {
+      if (!map.has(station.sector)) {
+        map.set(station.sector, station.componentType);
+      }
     });
+    return map;
+  }, [stations]);
 
-    setStations(filteredStations);
-  }, [location.search, selectedSector, selectedRegion, selectedState, sortOrder]);
+  const sectorOptions = useMemo(() => {
+    const raw = Array.from(sectorComponents.entries());
+    const filtered =
+      selectedComponents.length === 0
+        ? raw
+        : raw.filter(([, component]) => selectedComponents.includes(component));
+    return [
+      { value: "All Sectors", label: "All Sectors" },
+      ...filtered
+        .map(([sector, component]) => {
+          const cleaned = sector.split(" Sector ")[0] + " Sector";
+          return { value: sector, label: `${cleaned} (${component})` };
+        })
+        .sort((a, b) => a.label.localeCompare(b.label)),
+    ];
+  }, [sectorComponents, selectedComponents]);
+
+  useEffect(() => {
+    if (
+      selectedSector !== "All Sectors" &&
+      !sectorOptions.some((option) => option.value === selectedSector)
+    ) {
+      setSelectedSector("All Sectors");
+    }
+  }, [sectorOptions, selectedSector]);
+
+  const regions = useMemo(
+    () => uniqueSorted(stations.map((station) => station.region), "All Regions"),
+    [stations]
+  );
+  const states = useMemo(
+    () => uniqueSorted(stations.map((station) => station.state), "All States"),
+    [stations]
+  );
+  // Facility types scoped to the currently selected components. When no
+  // component filter is active, surface every facility type in the dataset.
+  const facilityTypes = useMemo(() => {
+    const relevantStations =
+      selectedComponents.length === 0
+        ? stations
+        : stations.filter((station) => selectedComponents.includes(station.componentType));
+    return uniqueSorted(
+      relevantStations.map((station) => station.facilityType),
+      "All Facility Types"
+    );
+  }, [stations, selectedComponents]);
+
+  // Reset facility selection if it's no longer available under the current
+  // component filter (mirrors the sector-reset effect above).
+  useEffect(() => {
+    if (
+      selectedFacilityType !== "All Facility Types" &&
+      !facilityTypes.includes(selectedFacilityType)
+    ) {
+      setSelectedFacilityType("All Facility Types");
+    }
+  }, [facilityTypes, selectedFacilityType]);
+
+  const filteredStations = useMemo(
+    () =>
+      filterStations(stations, {
+        query: queryParam,
+        sector: selectedSector,
+        region: selectedRegion,
+        state: selectedState,
+        facilityTypes:
+          selectedFacilityType === "All Facility Types"
+            ? []
+            : [selectedFacilityType as "Station" | "Port of Entry" | "Field Office" | "Sector" | "Other"],
+        componentTypes: selectedComponents,
+        positionTypes: [],
+        sortOrder,
+      }),
+    [
+      queryParam,
+      selectedComponents,
+      selectedFacilityType,
+      selectedRegion,
+      selectedSector,
+      selectedState,
+      sortOrder,
+      stations,
+    ]
+  );
+
+  // Build the canonical search string from current state. Keeps URL tidy by
+  // omitting default values ("All X", "asc", "map"). Map viewport lives on
+  // separate keys so the same builder can be used for filter-only pushes
+  // and map-only replaces.
+  const buildParams = useCallback(
+    (view: MapView | null): URLSearchParams => {
+      const next = new URLSearchParams();
+      if (queryParam) next.set("search", queryParam);
+      if (selectedComponents.length) next.set("component", selectedComponents.join(","));
+      if (selectedRegion !== "All Regions") next.set("region", selectedRegion);
+      if (selectedSector !== "All Sectors") next.set("sector", selectedSector);
+      if (selectedState !== "All States") next.set("state", selectedState);
+      if (selectedFacilityType !== "All Facility Types") next.set("facility", selectedFacilityType);
+      if (sortOrder !== "asc") next.set("sort", sortOrder);
+      if (activeView !== "map") next.set("view", activeView);
+      if (view) {
+        next.set("lat", view.lat.toFixed(4));
+        next.set("lng", view.lng.toFixed(4));
+        next.set("zoom", view.zoom.toFixed(2));
+      }
+      return next;
+    },
+    [
+      activeView,
+      queryParam,
+      selectedComponents,
+      selectedFacilityType,
+      selectedRegion,
+      selectedSector,
+      selectedState,
+      sortOrder,
+    ]
+  );
+
+  // Filter/sort/view sync — push history so the back button walks through
+  // filter changes. Keeps the map viewport in sync too (same params), but
+  // the map-specific effect below (replace: true) handles the frequent
+  // pan/zoom case so we don't spam history.
+  useEffect(() => {
+    const next = buildParams(mapView);
+    if (next.toString() !== searchParams.toString()) {
+      setSearchParams(next, { replace: false });
+    }
+  }, [buildParams, mapView, searchParams, setSearchParams]);
+
+  // Map viewport callback from StationMap. Replace history so the back
+  // button doesn't step through every pan.
+  const handleMapViewChange = useCallback(
+    (view: MapView) => {
+      setMapView((prev) => {
+        if (
+          prev &&
+          Math.abs(prev.lat - view.lat) < 0.0001 &&
+          Math.abs(prev.lng - view.lng) < 0.0001 &&
+          Math.abs(prev.zoom - view.zoom) < 0.01
+        ) {
+          return prev;
+        }
+        const next = buildParams(view);
+        if (next.toString() !== searchParams.toString()) {
+          setSearchParams(next, { replace: true });
+        }
+        return view;
+      });
+    },
+    [buildParams, searchParams, setSearchParams]
+  );
+
+  useEffect(() => {
+    trackUsageEvent({
+      eventName: "directory_filter_change",
+      eventMetadata: {
+        queryParam,
+        selectedSector,
+        selectedRegion,
+        selectedState,
+        selectedFacilityType,
+        selectedComponents,
+        sortOrder,
+      },
+    });
+  }, [
+    queryParam,
+    selectedComponents,
+    selectedFacilityType,
+    selectedRegion,
+    selectedSector,
+    selectedState,
+    sortOrder,
+  ]);
 
   return (
     <div className="container px-4 py-8 mx-auto">
+      <PageMeta
+        title="Duty Station Directory"
+        description="Map and list of every U.S. Customs and Border Protection duty station across USBP, OFO, and AMO. Filter by component, region, sector, state, or facility type."
+        path="/directory"
+      />
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">Duty Station Directory</h1>
           <p className="text-muted-foreground">
-            Browse and search CBP duty stations across the United States.
+            Browse and search duty stations, including ports, field offices, and stations across USBP, OFO, and AMO.
           </p>
         </div>
 
-        <Tabs defaultValue="list" value={activeView} onValueChange={setActiveView}>
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="list">
-              <MapPin className="h-4 w-4 mr-2" />
-              List
-            </TabsTrigger>
-            <TabsTrigger value="map">
-              <Map className="h-4 w-4 mr-2" />
-              Map
-            </TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="list">
-            <DirectoryFilters
-              selectedSector={selectedSector}
-              setSelectedSector={setSelectedSector}
-              selectedRegion={selectedRegion}
-              setSelectedRegion={setSelectedRegion}
-              selectedState={selectedState}
-              setSelectedState={setSelectedState}
-              sortOrder={sortOrder}
-              setSortOrder={setSortOrder}
-              sectors={uniqueSectors}
-              regions={uniqueRegions}
-              states={uniqueStates}
-            />
-            <StationsList
-              stations={stations}
-              setSelectedSector={setSelectedSector}
-              setSelectedState={setSelectedState}
-            />
+        <DirectoryFilters
+          selectedSector={selectedSector}
+          setSelectedSector={setSelectedSector}
+          selectedRegion={selectedRegion}
+          setSelectedRegion={setSelectedRegion}
+          selectedState={selectedState}
+          setSelectedState={setSelectedState}
+          selectedFacilityType={selectedFacilityType}
+          setSelectedFacilityType={setSelectedFacilityType}
+          facilityTypes={facilityTypes}
+          sectorOptions={sectorOptions}
+          regions={regions}
+          states={states}
+          selectedComponents={selectedComponents}
+          setSelectedComponents={setSelectedComponents}
+        />
+
+        <Tabs value={activeView} onValueChange={(value) => setActiveView(value as "map" | "list")}>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <TabsList className="grid w-full max-w-sm grid-cols-2 text-slate-700">
+              <TabsTrigger value="map">
+                <MapIcon className="h-4 w-4 mr-2" />
+                Map
+              </TabsTrigger>
+              <TabsTrigger value="list">
+                <List className="h-4 w-4 mr-2" />
+                List
+              </TabsTrigger>
+            </TabsList>
+
+            {activeView === "map" ? (
+              <MapLegend />
+            ) : (
+              <SortControl sortOrder={sortOrder} setSortOrder={setSortOrder} />
+            )}
+          </div>
+
+          <TabsContent value="map" className="mt-4">
+            {isLoading ? (
+              <div className="aspect-[16/10] flex items-center justify-center text-muted-foreground border rounded-lg">
+                Loading map data...
+              </div>
+            ) : (
+              <div className="rounded-lg overflow-hidden border shadow-sm">
+                <StationMap
+                  locations={filteredStations}
+                  className="h-[70vh]"
+                  initialView={initialMapView}
+                  onViewChange={handleMapViewChange}
+                />
+              </div>
+            )}
           </TabsContent>
 
-          <TabsContent value="map" className="mt-6">
-            <div className="aspect-[16/10] rounded-lg overflow-hidden border">
-              <StationMap locations={stations} />
-            </div>
+          <TabsContent value="list" className="mt-4">
+            {isLoading ? (
+              <div className="rounded-md border p-8 text-center text-muted-foreground">
+                Loading duty stations…
+              </div>
+            ) : (
+              <StationsList
+                stations={filteredStations}
+                setSelectedSector={setSelectedSector}
+                setSelectedState={setSelectedState}
+              />
+            )}
           </TabsContent>
         </Tabs>
       </div>

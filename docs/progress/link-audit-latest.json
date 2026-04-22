@@ -1,0 +1,57 @@
+{
+  "generatedAt": "2026-02-19T14:27:39.912Z",
+  "totals": {
+    "checkedLinks": 4165,
+    "uniqueUrls": 1824,
+    "valid": 3525,
+    "invalid": 0,
+    "unknown": 640
+  },
+  "failures": [
+    {
+      "stationId": "buffalo-station",
+      "stationName": "Buffalo Station",
+      "city": "Buffalo",
+      "state": "NY",
+      "category": "transit",
+      "url": "https://nfta.com/metro",
+      "stationDbId": "9d95dc0a-9d85-4ab6-97e4-ff2999d51e02",
+      "checkedAt": "2026-02-19T14:27:39.912Z",
+      "statusCode": null,
+      "resolvedUrl": null,
+      "isValid": null,
+      "responseTimeMs": 168,
+      "errorMessage": "fetch failed"
+    },
+    {
+      "stationId": "brownsville-station",
+      "stationName": "Brownsville Station",
+      "city": "Brownsville",
+      "state": "TX",
+      "category": "transit",
+      "url": "https://www.cob.us/592/Brownsville-Metro",
+      "stationDbId": "6850588e-1819-49d3-bd68-f878f9897c83",
+      "checkedAt": "2026-02-19T14:27:39.912Z",
+      "statusCode": null,
+      "resolvedUrl": null,
+      "isValid": null,
+      "responseTimeMs": 31,
+      "errorMessage": "fetch failed"
+    },
+    {
+      "stationId": "niagara-falls-station",
+      "stationName": "Niagara Falls Station",
+      "city": "Niagara Falls",
+      "state": "NY",
+      "category": "transit",
+      "url": "https://www.nfta.com/",
+      "stationDbId": "7e085b64-12a4-4437-9250-d879ef187082",
+      "checkedAt": "2026-02-19T14:27:39.912Z",
+      "statusCode": null,
+      "resolvedUrl": null,
+      "isValid": null,
+      "responseTimeMs": 131,
+      "errorMessage": "fetch failed"
+    }
+  ]
+}

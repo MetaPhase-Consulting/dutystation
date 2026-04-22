@@ -1,35 +1,85 @@
-import React, { useEffect, useRef } from 'react';
-import Map from 'ol/Map';
-import View from 'ol/View';
-import TileLayer from 'ol/layer/Tile';
-import OSM from 'ol/source/OSM';
-import { fromLonLat } from 'ol/proj';
-import 'ol/ol.css';
-import VectorLayer from 'ol/layer/Vector';
-import VectorSource from 'ol/source/Vector';
-import Feature from 'ol/Feature';
-import Point from 'ol/geom/Point';
-import { Style, Icon } from 'ol/style';
-import { DutyStation } from '@/data/dutyStations';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useMemo, useRef, useState } from "react";
+import OLMap from "ol/Map";
+import Overlay from "ol/Overlay";
+import View from "ol/View";
+import TileLayer from "ol/layer/Tile";
+import OSM from "ol/source/OSM";
+import { fromLonLat, toLonLat } from "ol/proj";
+import "ol/ol.css";
+import VectorLayer from "ol/layer/Vector";
+import VectorSource from "ol/source/Vector";
+import Feature from "ol/Feature";
+import Point from "ol/geom/Point";
+import { Style, Icon } from "ol/style";
+import { X } from "lucide-react";
+import { DutyStation } from "@/types/station";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { componentAccent } from "@/lib/componentColors";
+
+interface MapView {
+  lng: number;
+  lat: number;
+  zoom: number;
+}
 
 interface StationMapProps {
   locations?: DutyStation[];
   lat?: number;
   lng?: number;
   className?: string;
+  // Optional viewport restore from URL (directory page only).
+  initialView?: MapView | null;
+  // Fires after the user pans/zooms, debounced to ~400ms, so the parent can
+  // persist the viewport into the URL.
+  onViewChange?: (view: MapView) => void;
 }
 
-const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) => {
+// Continental US center, zoom sized to show CONUS comfortably at ~1280x720.
+const CONUS_CENTER: [number, number] = [-98.5795, 39.8283];
+const CONUS_ZOOM = 4;
+const SELECTED_ZOOM = 10;
+
+const StationMap = ({
+  locations,
+  lat,
+  lng,
+  className = "",
+  initialView,
+  onViewChange,
+}: StationMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstance = useRef<Map | null>(null);
+  const hoverTooltipRef = useRef<HTMLDivElement>(null);
+  const selectedCardRef = useRef<HTMLDivElement>(null);
+  const mapInstance = useRef<OLMap | null>(null);
+  const selectedOverlayRef = useRef<Overlay | null>(null);
+  const [hoveredStationId, setHoveredStationId] = useState<string | null>(null);
+  const [selectedStationId, setSelectedStationId] = useState<string | null>(null);
   const navigate = useNavigate();
 
+  // Keep the latest onViewChange in a ref so moveend handlers (captured in
+  // a long-lived OL map) don't need to tear down and rebuild when the
+  // callback identity changes.
+  const onViewChangeRef = useRef(onViewChange);
   useEffect(() => {
-    if (!mapRef.current) return;
+    onViewChangeRef.current = onViewChange;
+  }, [onViewChange]);
 
-    // Create the map instance
-    const map = new Map({
+  const stationById = useMemo(() => {
+    return new globalThis.Map((locations ?? []).map((location) => [location.id, location]));
+  }, [locations]);
+
+  useEffect(() => {
+    if (!mapRef.current) {
+      return;
+    }
+
+    const startCenter: [number, number] = initialView
+      ? [initialView.lng, initialView.lat]
+      : CONUS_CENTER;
+    const startZoom = initialView?.zoom ?? CONUS_ZOOM;
+
+    const map = new OLMap({
       target: mapRef.current,
       layers: [
         new TileLayer({
@@ -37,125 +87,254 @@ const StationMap = ({ locations, lat, lng, className = "" }: StationMapProps) =>
         }),
       ],
       view: new View({
-        center: fromLonLat([-98.5795, 39.8283]), // Center of USA
-        zoom: 4,
+        center: fromLonLat(startCenter),
+        zoom: startZoom,
       }),
     });
 
-    // Custom map cursor style
-    const targetElement = map.getTarget();
-    if (targetElement && targetElement instanceof HTMLElement) {
-      targetElement.style.cursor = 'default';
-    }
+    const hoverOverlay = new Overlay({
+      element: hoverTooltipRef.current ?? undefined,
+      offset: [0, -16],
+      positioning: "bottom-center",
+      stopEvent: false,
+    });
+    map.addOverlay(hoverOverlay);
 
-    // Create the marker style using Border Patrol green
-    const createMarkerStyle = () => {
+    const selectedOverlay = new Overlay({
+      element: selectedCardRef.current ?? undefined,
+      offset: [0, -44],
+      positioning: "bottom-center",
+      // Swallow clicks so View Details / close don't bubble to the map.
+      stopEvent: true,
+    });
+    map.addOverlay(selectedOverlay);
+    selectedOverlayRef.current = selectedOverlay;
+
+    const componentColorMap: Record<string, string> = {
+      USBP: "#0A4A0A",
+      OFO: "#0B4A8B",
+      AMO: "#0F766E",
+    };
+
+    const createMarkerStyle = (componentType: string) => {
+      const pinColor = componentColorMap[componentType] ?? "#0A4A0A";
       return new Style({
         image: new Icon({
           anchor: [0.5, 1],
           src: `data:image/svg+xml;utf8,${encodeURIComponent(
-            '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="48" viewBox="0 0 32 48">' +
-            '<path d="M16 0 C 7.2 0 0 7.2 0 16 C 0 24.8 16 48 16 48 C 16 48 32 24.8 32 16 C 32 7.2 24.8 0 16 0 Z" fill="#0A4A0A"/>' + // Changed to Border Patrol green
-            '<circle cx="16" cy="16" r="8" fill="white"/>' +
-            '</svg>'
+            `<svg xmlns='http://www.w3.org/2000/svg' width='32' height='48' viewBox='0 0 32 48'>` +
+              `<path d='M16 0 C 7.2 0 0 7.2 0 16 C 0 24.8 16 48 16 48 C 16 48 32 24.8 32 16 C 32 7.2 24.8 0 16 0 Z' fill='${pinColor}'/>` +
+              "<circle cx='16' cy='16' r='8' fill='white'/>" +
+            "</svg>"
           )}`,
           scale: 0.7,
         }),
       });
     };
 
-    if (locations && locations.length > 0) {
-      // Create features for all locations
-      const features = locations.map(location => {
+    if (locations?.length) {
+      const features = locations.map((location) => {
         const feature = new Feature({
           geometry: new Point(fromLonLat([location.lng, location.lat])),
+          id: location.id,
           name: location.name,
-          id: location.id, // Add station ID to the feature
+          city: location.city,
+          state: location.state,
+          componentType: location.componentType,
         });
 
-        feature.setStyle(createMarkerStyle());
+        feature.setStyle(createMarkerStyle(location.componentType));
         return feature;
       });
 
-      // Add all markers to the map
       const vectorLayer = new VectorLayer({
-        source: new VectorSource({
-          features: features,
-        }),
+        source: new VectorSource({ features }),
       });
 
       map.addLayer(vectorLayer);
 
-      // Add click handler with cursor change
-      map.on('pointermove', (event) => {
-        const hit = map.forEachFeatureAtPixel(event.pixel, () => true);
-        const target = map.getTarget();
-        if (target && target instanceof HTMLElement) {
-          target.style.cursor = hit ? 'pointer' : 'default';
+      map.on("pointermove", (event) => {
+        const feature = map.forEachFeatureAtPixel(event.pixel, (selectedFeature) => selectedFeature as Feature);
+        const target = map.getTargetElement();
+
+        if (target) {
+          target.style.cursor = feature ? "pointer" : "default";
         }
+
+        if (!feature) {
+          setHoveredStationId(null);
+          hoverOverlay.setPosition(undefined);
+          return;
+        }
+
+        const stationId = feature.get("id") as string;
+        setHoveredStationId(stationId);
+        hoverOverlay.setPosition(event.coordinate);
       });
 
-      // Add click handler to navigate
-      map.on('click', (event) => {
+      map.on("click", (event) => {
+        let matched = false;
         map.forEachFeatureAtPixel(event.pixel, (feature) => {
-          const id = feature.get('id');
-          if (id) {
-            navigate(`/station/${id}`);
-          }
-        });
-      });
+          const id = feature.get("id") as string;
+          if (!id) return;
+          matched = true;
 
-      // Fit the view to show all markers
-      const vectorSource = vectorLayer.getSource();
-      if (vectorSource) {
-        const sourceExtent = vectorSource.getExtent();
-        if (sourceExtent) {
-          map.getView().fit(sourceExtent, {
-            padding: [50, 50, 50, 50],
-            maxZoom: 16,
+          setSelectedStationId(id);
+          // Hover tooltip would overlap the selected card — clear it.
+          setHoveredStationId(null);
+          hoverOverlay.setPosition(undefined);
+
+          const coord = (feature.getGeometry() as Point).getCoordinates();
+          selectedOverlay.setPosition(coord);
+          map.getView().animate({
+            center: coord,
+            zoom: Math.max(map.getView().getZoom() ?? SELECTED_ZOOM, SELECTED_ZOOM),
+            duration: 400,
           });
+        });
+
+        if (!matched) {
+          // Clicked empty map space — dismiss any open selection.
+          setSelectedStationId(null);
+          selectedOverlay.setPosition(undefined);
         }
-      }
+      });
     } else if (lat !== undefined && lng !== undefined) {
-      // Single location mode - Display a single marker at the specified coordinates
-      console.log("Rendering single location map:", lat, lng);
-      
       const feature = new Feature({
         geometry: new Point(fromLonLat([lng, lat])),
       });
 
-      feature.setStyle(createMarkerStyle());
+      feature.setStyle(createMarkerStyle("USBP"));
 
-      const vectorLayer = new VectorLayer({
-        source: new VectorSource({
-          features: [feature],
-        }),
-      });
+      map.addLayer(
+        new VectorLayer({
+          source: new VectorSource({ features: [feature] }),
+        })
+      );
 
-      map.addLayer(vectorLayer);
-      
-      // Set center and zoom for the single location
       map.getView().setCenter(fromLonLat([lng, lat]));
       map.getView().setZoom(12);
     }
 
+    // Emit viewport changes (pan/zoom) to the parent, debounced so we don't
+    // flood the URL on every inertial scroll tick.
+    //
+    // Suppress the first moveend after mount: OL fires it once when the
+    // initial view materializes, even with no user interaction. Emitting
+    // then would pollute the URL with the CONUS defaults on every fresh
+    // /directory visit.
+    let moveTimer: ReturnType<typeof setTimeout> | null = null;
+    let hasInteracted = false;
+    map.on("moveend", () => {
+      if (!onViewChangeRef.current) return;
+      if (!hasInteracted) {
+        hasInteracted = true;
+        return;
+      }
+      if (moveTimer) clearTimeout(moveTimer);
+      moveTimer = setTimeout(() => {
+        const view = map.getView();
+        const center = view.getCenter();
+        const zoom = view.getZoom();
+        if (!center || zoom === undefined) return;
+        const [lng, lat] = toLonLat(center);
+        onViewChangeRef.current?.({ lng, lat, zoom });
+      }, 350);
+    });
+
     mapInstance.current = map;
 
-    // Clean up on unmount
     return () => {
+      if (moveTimer) clearTimeout(moveTimer);
       if (mapInstance.current) {
         mapInstance.current.setTarget(undefined);
       }
       mapInstance.current = null;
+      selectedOverlayRef.current = null;
     };
-  }, [locations, lat, lng, navigate]);
+    // `initialView` is intentionally excluded — it's a first-render snapshot
+    // and shouldn't re-create the map instance on URL changes we're emitting
+    // ourselves.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lat, lng, locations, navigate]);
+
+  const hoveredStation = hoveredStationId ? stationById.get(hoveredStationId) : null;
+  const selectedStation = selectedStationId ? stationById.get(selectedStationId) : null;
+
+  const closeSelected = () => {
+    setSelectedStationId(null);
+    selectedOverlayRef.current?.setPosition(undefined);
+  };
 
   return (
-    <div 
-      ref={mapRef} 
-      className={`w-full h-full min-h-[400px] ${className}`}
-      data-testid="station-map"
-    />
+    <div className="relative">
+      <div
+        ref={mapRef}
+        className={`w-full min-h-[400px] ${className}`}
+        data-testid="station-map"
+        role="application"
+        aria-label="Duty station map"
+      />
+
+      {/* Hover tooltip (cheap quick label). */}
+      <div
+        ref={hoverTooltipRef}
+        className={`pointer-events-none rounded-md bg-black/80 px-3 py-2 text-xs text-white shadow ${
+          hoveredStation && !selectedStation ? "block" : "hidden"
+        }`}
+        aria-hidden={!hoveredStation || !!selectedStation}
+      >
+        {hoveredStation ? `${hoveredStation.name} (${hoveredStation.city}, ${hoveredStation.state})` : ""}
+      </div>
+
+      {/* Click-selected station card. OL positions this via Overlay. */}
+      <div
+        ref={selectedCardRef}
+        className={selectedStation ? "block" : "hidden"}
+        aria-live="polite"
+      >
+        {selectedStation ? (
+          <div className="w-64 rounded-md border bg-white shadow-lg">
+            <div className="flex items-start justify-between gap-2 p-3 pb-2">
+              <h3
+                className={`font-semibold leading-tight ${componentAccent[selectedStation.componentType].text}`}
+              >
+                {selectedStation.name}
+              </h3>
+              <button
+                type="button"
+                onClick={closeSelected}
+                aria-label="Close station info"
+                className="text-muted-foreground hover:text-foreground"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="px-3 pb-3 space-y-2">
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                {selectedStation.city}, {selectedStation.state} · {selectedStation.region} Region
+              </p>
+              <div className="flex flex-wrap gap-1">
+                <span className="text-[11px] bg-muted rounded px-2 py-0.5 font-medium">
+                  {selectedStation.componentType}
+                </span>
+                <span className="text-[11px] bg-muted rounded px-2 py-0.5 font-medium">
+                  {selectedStation.facilityType}
+                </span>
+              </div>
+              <Button
+                type="button"
+                size="sm"
+                className={`w-full mt-1 ${componentAccent[selectedStation.componentType].buttonClass}`}
+                onClick={() => navigate(`/station/${selectedStation.id}`)}
+              >
+                View Details
+              </Button>
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 
-import { DutyStation } from "@/data/dutyStations";
+import { DutyStation } from "@/types/station";
 import { Button } from "@/components/ui/button";
 import { StationCard } from "./StationCard";
 import { useNavigate } from "react-router-dom";
