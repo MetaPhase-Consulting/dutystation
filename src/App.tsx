@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { Spinner } from "@/components/Spinner";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 const HomePage = lazy(() => import("@/pages/HomePage"));
 const DirectoryPage = lazy(() => import("@/pages/DirectoryPage"));
@@ -52,6 +53,7 @@ const App = () => (
           v7_relativeSplatPath: true,
         }}
       >
+        <ScrollToTop />
         <Suspense fallback={<RouteLoadingFallback />}>
           <Routes>
             <Route element={<Layout />}>
