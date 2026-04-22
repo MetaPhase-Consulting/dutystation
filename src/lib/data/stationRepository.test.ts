@@ -219,4 +219,80 @@ describe("stationRepository", () => {
     const resources = await stationRepository.getTravelResources();
     expect(resources).toEqual(DEFAULT_TRAVEL_RESOURCES);
   });
+
+  it("dedupes duplicate stations by name+city+state, preferring the short legacy id", async () => {
+    const base = {
+      name: "Alpine Station",
+      city: "Alpine",
+      state: "TX",
+      zip_code: "79830",
+      sector: "Big Bend Sector Texas",
+      lat: 30.36,
+      lng: -103.66,
+      region: "South",
+      description: "Test alpine",
+      component_type: "USBP",
+      facility_type: "Station",
+      source_type: null,
+      source_parent: null,
+      source_url: null,
+      station_attributes: null,
+      station_positions: null,
+      station_links: null,
+      recreation_resources: null,
+    };
+
+    // Supabase returns both seed variants: the CBP-prefixed long id AND the
+    // short legacy id. They differ only in legacy_id.
+    const chain = makeFromChain({
+      data: [
+        { ...base, legacy_id: "cbp-alpine-station-tx-79830" },
+        { ...base, legacy_id: "alpine-station" },
+      ],
+      error: null,
+    });
+    getSupabaseClientMock.mockReturnValue({ from: chain.from });
+
+    const { stationRepository } = await import("./stationRepository");
+    const stations = await stationRepository.getStations();
+
+    expect(stations).toHaveLength(1);
+    expect(stations[0].id).toBe("alpine-station");
+  });
+
+  it("keeps CBP-prefixed id when only that variant exists", async () => {
+    const chain = makeFromChain({
+      data: [
+        {
+          legacy_id: "cbp-nogales-station-az-85621",
+          name: "Nogales Station",
+          city: "Nogales",
+          state: "AZ",
+          zip_code: "85621",
+          sector: "Tucson Sector Arizona",
+          lat: 31.34,
+          lng: -110.94,
+          region: "South",
+          description: "Test",
+          component_type: "USBP",
+          facility_type: "Station",
+          source_type: null,
+          source_parent: null,
+          source_url: null,
+          station_attributes: null,
+          station_positions: null,
+          station_links: null,
+          recreation_resources: null,
+        },
+      ],
+      error: null,
+    });
+    getSupabaseClientMock.mockReturnValue({ from: chain.from });
+
+    const { stationRepository } = await import("./stationRepository");
+    const stations = await stationRepository.getStations();
+
+    expect(stations).toHaveLength(1);
+    expect(stations[0].id).toBe("cbp-nogales-station-az-85621");
+  });
 });

@@ -111,6 +111,34 @@ function mapRecreationRows(rows: StationRow["recreation_resources"]): Recreation
   }));
 }
 
+// Supabase currently holds two seed imports of the same stations: a short-id
+// seed ("presidio-station") and a longer CBP-prefixed seed
+// ("cbp-presidio-station-tx-79845"). ~100 stations exist under both ids,
+// which would otherwise render as duplicate dropdown entries. Prefer the
+// short id when both exist because that's the id pattern the app's URL
+// routing + sitemap already use.
+//
+// Long-term fix: clean up the Supabase stations table so only one seed
+// remains. Tracked in docs/backlog/icebox.md.
+function dedupeByNameCityState(stations: DutyStation[]): DutyStation[] {
+  const byKey = new Map<string, DutyStation>();
+  for (const station of stations) {
+    const key = `${station.name}|${station.city}|${station.state}`.toLowerCase();
+    const existing = byKey.get(key);
+    if (!existing) {
+      byKey.set(key, station);
+      continue;
+    }
+    // Prefer the non-"cbp-" id (the short legacy-id pattern the app routes on).
+    const existingIsCbp = existing.id.startsWith("cbp-");
+    const incomingIsCbp = station.id.startsWith("cbp-");
+    if (existingIsCbp && !incomingIsCbp) {
+      byKey.set(key, station);
+    }
+  }
+  return Array.from(byKey.values());
+}
+
 function mapStationRow(row: StationRow): DutyStation {
   const links = createDefaultLinks();
 
@@ -233,7 +261,7 @@ class SupabaseStationRepository implements StationRepository {
       return this.localRepository.getStations();
     }
 
-    return (data as StationRow[]).map(mapStationRow);
+    return dedupeByNameCityState((data as StationRow[]).map(mapStationRow));
   }
 
   async getStationById(id: string): Promise<DutyStation | null> {

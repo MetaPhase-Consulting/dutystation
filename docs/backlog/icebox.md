@@ -4,6 +4,39 @@ Ideas that were scoped out of the current build but may be worth revisiting.
 Each entry should document *why it was deferred* so future maintainers don't
 re-litigate the same trade-off from scratch.
 
+## Supabase `stations` table has two overlapping seeds
+
+**Status:** Mitigated in code; DB cleanup still pending.
+
+**Problem:** The Supabase `stations` table contains 595 rows across two
+import patterns:
+
+- Short-id seed (~129 rows): `legacy_id` values like `presidio-station`,
+  `alpine-station`. Matches the app's `/station/:id` URL pattern and is what
+  the sitemap generator emits.
+- CBP-prefixed seed (~466 rows): `legacy_id` values like
+  `cbp-presidio-station-tx-79845`. Richer / more complete but uses a
+  different id convention.
+
+About 102 stations exist under *both* ids (same name + city + state), which
+caused the /compare dropdown — and any UI listing stations — to show each of
+those stations twice.
+
+**Mitigation in code (in `src/lib/data/stationRepository.ts`):**
+`dedupeByNameCityState()` collapses duplicates after the Supabase query
+returns. When a collision is found, prefer the short legacy id so existing
+routes, shareable URLs, and the sitemap keep working. Two unit tests in
+`stationRepository.test.ts` lock in the behavior.
+
+**Real fix (DB side, owner TBD):** collapse the two seeds. Options:
+1. Delete the CBP-prefixed rows where a short-id equivalent exists.
+2. Standardize on one id convention and migrate any references.
+
+Either way this should run as a Supabase migration so the change is
+reviewable and reversible. Once the DB is clean, `dedupeByNameCityState()`
+becomes a defensive no-op — leave it in; it's cheap and keeps a future
+regression from silently surfacing.
+
 ## Incentive-eligible station flagging
 
 **Status:** Deferred (removed from UI on `hardening/deps-and-testing`
