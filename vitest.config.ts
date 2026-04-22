@@ -24,11 +24,16 @@ export default defineConfig({
         'src/components/ui/**',
         'src/hooks/use-toast.ts',
       ],
+      // vitest 4 + @vitest/coverage-v8 v4 count branches more aggressively
+      // than v3 (every optional chain / nullish-coalesce / short-circuit
+      // logical op registers). The same test suite dropped from ~78% to
+      // ~47% branch coverage on the upgrade with zero real regression.
+      // Thresholds re-baselined against the current measurement.
       thresholds: {
         lines: 50,
         statements: 50,
         functions: 50,
-        branches: 65,
+        branches: 40,
       },
     },
   },
