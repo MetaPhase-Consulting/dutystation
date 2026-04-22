@@ -52,9 +52,15 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          ui: ['@radix-ui/react-accordion', '@radix-ui/react-alert-dialog'],
+        // Vite 8 ships rolldown which requires manualChunks as a function
+        // (the object shorthand is no longer supported). Keep the same
+        // vendor/ui split: react + react-dom as "vendor", all Radix UI
+        // packages as "ui".
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return undefined;
+          if (id.includes('/react/') || id.includes('/react-dom/')) return 'vendor';
+          if (id.includes('/@radix-ui/')) return 'ui';
+          return undefined;
         },
       },
     },

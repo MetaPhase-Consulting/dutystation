@@ -122,16 +122,28 @@ function chunkArray(values, chunkSize) {
   return chunks;
 }
 
+// Compare the URL's hostname exactly. The substring form "url.includes(host)"
+// can match attacker-controlled paths like "https://evil.com/moving.com/",
+// which CodeQL's js/incomplete-url-substring-sanitization rule flags.
+function hostIs(url, host) {
+  try {
+    const h = new URL(url).hostname.toLowerCase().replace(/^www\./, "");
+    return h === host.toLowerCase();
+  } catch {
+    return false;
+  }
+}
+
 function inferLinkHealth(url) {
   if (!url) {
     return { is_valid: false, http_status: 0 };
   }
 
-  if (url.includes("moving.com") || url.includes("/y/9999/")) {
+  if (hostIs(url, "moving.com") || url.includes("/y/9999/")) {
     return { is_valid: false, http_status: 404 };
   }
 
-  if (url.includes("rome2rio.com")) {
+  if (hostIs(url, "rome2rio.com")) {
     return { is_valid: null, http_status: null };
   }
 
