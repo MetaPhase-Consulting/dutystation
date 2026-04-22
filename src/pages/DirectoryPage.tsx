@@ -56,12 +56,24 @@ export default function DirectoryPage() {
     }
   );
   const [mapView, setMapView] = useState<MapView | null>(() => {
-    const lat = Number(searchParams.get("lat"));
-    const lng = Number(searchParams.get("lng"));
-    const zoom = Number(searchParams.get("zoom"));
-    return Number.isFinite(lat) && Number.isFinite(lng) && Number.isFinite(zoom)
-      ? { lat, lng, zoom }
-      : null;
+    // IMPORTANT: params absent -> null (so StationMap falls back to CONUS).
+    // Previous version used Number(searchParams.get(...)) which coerces the
+    // null param to 0 and passes isFinite(), incorrectly seeding the initial
+    // view with {lat:0, lng:0, zoom:0} — a world view centered off the
+    // coast of Africa. Guard against that by checking the raw string first.
+    const latRaw = searchParams.get("lat");
+    const lngRaw = searchParams.get("lng");
+    const zoomRaw = searchParams.get("zoom");
+    if (latRaw === null || lngRaw === null || zoomRaw === null) {
+      return null;
+    }
+    const lat = Number(latRaw);
+    const lng = Number(lngRaw);
+    const zoom = Number(zoomRaw);
+    if (!Number.isFinite(lat) || !Number.isFinite(lng) || !Number.isFinite(zoom)) {
+      return null;
+    }
+    return { lat, lng, zoom };
   });
   // Captured once on mount — used to seed StationMap's initial viewport so
   // the map doesn't reset on every filter re-render.

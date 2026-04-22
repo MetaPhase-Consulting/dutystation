@@ -218,9 +218,19 @@ const StationMap = ({
 
     // Emit viewport changes (pan/zoom) to the parent, debounced so we don't
     // flood the URL on every inertial scroll tick.
+    //
+    // Suppress the first moveend after mount: OL fires it once when the
+    // initial view materializes, even with no user interaction. Emitting
+    // then would pollute the URL with the CONUS defaults on every fresh
+    // /directory visit.
     let moveTimer: ReturnType<typeof setTimeout> | null = null;
+    let hasInteracted = false;
     map.on("moveend", () => {
       if (!onViewChangeRef.current) return;
+      if (!hasInteracted) {
+        hasInteracted = true;
+        return;
+      }
       if (moveTimer) clearTimeout(moveTimer);
       moveTimer = setTimeout(() => {
         const view = map.getView();
