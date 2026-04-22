@@ -4,6 +4,7 @@ import { MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { componentAccent } from "@/lib/componentColors";
 import {
   Card,
   CardContent,
@@ -25,17 +26,12 @@ export function StationCard({ station }: StationCardProps) {
   return (
     <Card className="overflow-hidden">
       <CardHeader className="pb-3">
-        <div className="flex items-start justify-between gap-2">
-          <CardTitle
-            className="text-[#0A4A0A] hover:underline cursor-pointer"
-            onClick={handleNavigate}
-          >
-            {station.name}
-          </CardTitle>
-          {station.attributes.incentiveEligible && (
-            <Badge className="bg-[#0A4A0A] text-white">{station.attributes.incentiveLabel ?? "Incentive"}</Badge>
-          )}
-        </div>
+        <CardTitle
+          className={`hover:underline cursor-pointer ${componentAccent[station.componentType].text}`}
+          onClick={handleNavigate}
+        >
+          {station.name}
+        </CardTitle>
         <CardDescription className="flex items-center">
           <MapPin className="h-3 w-3 mr-1" />
           {station.city}, {station.state}

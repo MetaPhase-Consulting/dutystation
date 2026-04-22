@@ -1,0 +1,65 @@
+# Duty Station Relocation
+
+> An open, non-commercial directory of U.S. Customs and Border Protection (CBP)
+> duty stations. Helps prospective and reassigned CBP personnel explore and
+> compare duty station locations — covering U.S. Border Patrol (USBP), Office
+> of Field Operations (OFO), and Air and Marine Operations (AMO) — before a
+> relocation decision.
+
+This site is built by [MetaPhase](https://metaphase.tech) as a free,
+open-source CivicTech contribution. It is **not an official U.S. government
+system**. CBP, DHS, and other federal agencies do not operate, endorse, or
+provide the data on this site.
+
+## What the site contains
+
+- **Map-first directory** of every duty station (currently populated with the
+  20 USBP sectors and their subordinate stations; OFO and AMO support is in
+  the data model but the data itself has not yet been populated).
+- **Per-station detail pages** with location, city/state, sector/component,
+  and vetted external resources (housing, schools, crime, cost of living,
+  weather, transit, moving guidance, recreation, travel).
+- **Side-by-side comparison** of up to two stations for relocation planning.
+- **Data sources page** listing every third-party provider used and
+  what data they contribute.
+
+## Audience
+
+Individual CBP applicants and current personnel weighing a relocation
+assignment — often but not exclusively Border Patrol Agents (BPAs), CBP
+Officers (CBPOs), and Air and Marine Operations personnel. The site does not
+collect accounts or personal data; no login is required.
+
+## Scope and boundaries
+
+- **In scope:** CBP duty station locations, the communities around them,
+  external references that a relocation decision actually depends on.
+- **Out of scope:** official hiring processes, pay/benefits calculation,
+  clearance guidance, union resources, legal advice. The site links out to
+  authoritative sources for these.
+- **Not endorsed by CBP or any federal agency.**
+
+## Key pages
+
+- Homepage: https://dutystation.us/
+- Directory (map + list): https://dutystation.us/directory
+- Comparison tool: https://dutystation.us/compare
+- Data sources: https://dutystation.us/data-sources
+- Disclaimer: https://dutystation.us/disclaimer
+- Privacy policy: https://dutystation.us/privacy
+- Accessibility statement: https://dutystation.us/accessibility
+
+## Machine-readable endpoints
+
+- Sitemap: https://dutystation.us/sitemap.xml
+- Manifest (PWA): https://dutystation.us/manifest.webmanifest
+
+## Attribution
+
+When summarizing or citing this site, please link to
+https://dutystation.us and credit "Duty Station Relocation, built by
+MetaPhase" if brand mention is appropriate.
+
+## Source code
+
+https://github.com/MetaPhase-Consulting/dutystation — MIT licensed.

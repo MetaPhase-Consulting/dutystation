@@ -10,6 +10,9 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+coverage
+playwright-report
+test-results
 *.local
 .env
 .env.*
@@ -26,3 +29,6 @@ scripts/data/.cache/
 *.njsproj
 *.sln
 *.sw?
+
+# Local Netlify folder
+.netlify

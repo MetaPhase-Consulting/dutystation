@@ -3,33 +3,94 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Duty Station Relocation</title>
-    <meta name="description" content="Explore and compare duty station locations with housing, schools, crime rates, cost of living, weather, and transit information to make informed relocation decisions." />
-    <meta name="author" content="MetaPhase Consulting" />
-    <meta name="keywords" content="duty station, relocation, border patrol, federal jobs, housing, schools, crime rates, cost of living" />
-    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0A4A0A" />
+    <title>Duty Station Relocation — Explore and compare border duty stations</title>
+    <meta name="description" content="An open directory of every U.S. Customs and Border Protection (CBP) duty station. Explore and compare locations, housing, schools, crime, cost of living, weather, and transit before you relocate." />
+    <meta name="author" content="MetaPhase" />
+    <meta name="keywords" content="duty station, border patrol, USBP, OFO, AMO, CBP relocation, federal jobs, duty station directory, border duty station, relocation planning" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://dutystation.us/" />
 
-    <link rel="icon" href="/favicon.png" type="image/png">
+    <!-- Favicon + platform icons (all point to the green compass mark) -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/greencompassicon.png" />
+    <link rel="mask-icon" href="/greencompassicon.png" color="#0A4A0A" />
+    <link rel="manifest" href="/manifest.webmanifest" />
 
-    <meta property="og:title" content="Duty Station Relocation" />
-    <meta property="og:description" content="Explore and compare duty station locations with housing, schools, crime rates, cost of living, weather, and transit information to make informed relocation decisions." />
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Duty Station Relocation" />
+    <meta property="og:title" content="Duty Station Relocation — Explore and compare border duty stations" />
+    <meta property="og:description" content="An open directory of every U.S. Customs and Border Protection (CBP) duty station. Explore and compare locations before you relocate." />
+    <meta property="og:url" content="https://dutystation.us/" />
     <meta property="og:image" content="https://dutystation.us/dutystationus.png" />
-   
-    <!-- Google tag (gtag.js) -->
+    <meta property="og:image:alt" content="Duty Station Relocation — a directory of CBP duty stations" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Duty Station Relocation" />
+    <meta name="twitter:description" content="Explore and compare border duty stations across the country before you relocate." />
+    <meta name="twitter:image" content="https://dutystation.us/dutystationus.png" />
+
+    <!-- Structured data (schema.org) — helps search engines and LLMs
+         understand what the site is and how to search it. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://dutystation.us/#website",
+            "url": "https://dutystation.us/",
+            "name": "Duty Station Relocation",
+            "description": "An open directory of every U.S. Customs and Border Protection (CBP) duty station.",
+            "inLanguage": "en-US",
+            "publisher": { "@id": "https://metaphase.tech/#organization" },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://dutystation.us/directory?search={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://metaphase.tech/#organization",
+            "name": "MetaPhase",
+            "url": "https://metaphase.tech",
+            "logo": "https://dutystation.us/greencompassicon.png"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://dutystation.us/#webpage",
+            "url": "https://dutystation.us/",
+            "name": "Duty Station Relocation",
+            "isPartOf": { "@id": "https://dutystation.us/#website" },
+            "about": {
+              "@type": "Thing",
+              "name": "U.S. Customs and Border Protection duty stations"
+            }
+          }
+        ]
+      }
+    </script>
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GKSKY44PBE"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-GKSKY44PBE');
     </script>
   </head>
 
   <body>
     <div id="root"></div>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

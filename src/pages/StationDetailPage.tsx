@@ -1,7 +1,6 @@
 import { useMemo } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
-  AlertTriangle,
   ArrowLeft,
   ArrowRightLeft,
   Car,
@@ -9,7 +8,6 @@ import {
   DollarSign,
   GraduationCap,
   Home,
-  Hotel,
   MapPin,
   Package,
   Plane,
@@ -23,7 +21,9 @@ import StationDetailMap from "@/components/StationDetailMap";
 import { useStationByIdQuery, useTravelResourcesQuery } from "@/lib/data/queryHooks";
 import { StationLinkCategory } from "@/types/station";
 import { trackUsageEvent } from "@/lib/data/usageTracking";
-import { LEGAL_DISCLAIMER_POINTS, LEGAL_DISCLAIMER_TITLE } from "@/content/legal";
+import { getSourceName } from "@/lib/sourceName";
+import { componentAccent } from "@/lib/componentColors";
+import { PageMeta } from "@/components/PageMeta";
 
 const linkIconByCategory: Record<StationLinkCategory, typeof Home> = {
   realEstate: Home,
@@ -55,18 +55,6 @@ const linkDescriptionByCategory: Record<StationLinkCategory, string> = {
   movingTips: "Review moving guidance and checklists",
 };
 
-function statusMessage(status: boolean | null) {
-  if (status === true) {
-    return null;
-  }
-
-  if (status === false) {
-    return "Link may be unavailable";
-  }
-
-  return "Link quality unverified";
-}
-
 export default function StationDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { data: station, isLoading } = useStationByIdQuery(id);
@@ -78,14 +66,56 @@ export default function StationDetailPage() {
       return [];
     }
 
-    return (Object.keys(station.links) as StationLinkCategory[]).map((category) => ({
-      category,
-      name: linkLabelByCategory[category],
-      description: linkDescriptionByCategory[category],
-      icon: linkIconByCategory[category],
-      link: station.links[category],
-    }));
-  }, [station]);
+    type ResourceRow = {
+      key: string;
+      trackingCategory: string;
+      name: string;
+      description: string;
+      icon: typeof Home;
+      url: string;
+    };
+
+    const rows: ResourceRow[] = (Object.keys(station.links) as StationLinkCategory[]).map(
+      (category) => ({
+        key: `link-${category}`,
+        trackingCategory: category,
+        name: linkLabelByCategory[category],
+        description: linkDescriptionByCategory[category],
+        icon: linkIconByCategory[category],
+        url: station.links[category].url,
+      })
+    );
+
+    // Fold recreation + travel into the same list so every external
+    // resource renders with identical chrome and a "Source: X" footer.
+    // Recreation can have multiple entries per station — take the first
+    // as the representative link. Travel is a single global resource.
+    const firstRecreation = station.recreation[0];
+    if (firstRecreation?.url) {
+      rows.push({
+        key: `recreation-${firstRecreation.id}`,
+        trackingCategory: "recreation",
+        name: "Recreation",
+        description: firstRecreation.description || "Parks, trails, and outdoor activities nearby",
+        icon: Trees,
+        url: firstRecreation.url,
+      });
+    }
+
+    const firstTravel = travelResources[0];
+    if (firstTravel?.url) {
+      rows.push({
+        key: `travel-${firstTravel.id}`,
+        trackingCategory: "travel",
+        name: "Travel",
+        description: firstTravel.description || "Flights, hotels, and rental cars",
+        icon: Plane,
+        url: firstTravel.url,
+      });
+    }
+
+    return rows;
+  }, [station, travelResources]);
 
   if (isLoading) {
     return (
@@ -114,16 +144,22 @@ export default function StationDetailPage() {
 
   return (
     <div className="container px-4 py-8 mx-auto">
+      <PageMeta
+        title={`${station.name} (${station.city}, ${station.state})`}
+        description={`${station.name} is a ${station.componentType} ${station.facilityType.toLowerCase()} in ${station.city}, ${station.state}. Explore housing, schools, cost of living, and other local resources.`}
+        path={`/station/${station.id}`}
+      />
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon" onClick={() => navigate("/directory")} aria-label="Back to directory">
               <ArrowLeft className="h-4 w-4" />
             </Button>
-            <h1 className="text-3xl font-bold tracking-tight text-[#0A4A0A]">{station.name}</h1>
-            {station.attributes.incentiveEligible ? (
-              <Badge className="bg-[#0A4A0A] text-white">{station.attributes.incentiveLabel ?? "Incentive Eligible"}</Badge>
-            ) : null}
+            <h1
+              className={`text-3xl font-bold tracking-tight ${componentAccent[station.componentType].text}`}
+            >
+              {station.name}
+            </h1>
           </div>
           <div className="flex items-center text-muted-foreground">
             <MapPin className="h-4 w-4 mr-1" />
@@ -134,29 +170,8 @@ export default function StationDetailPage() {
           <div className="flex flex-wrap gap-2">
             <Badge variant="outline">{station.componentType}</Badge>
             <Badge variant="outline">{station.facilityType}</Badge>
-            {station.positionTypes.map((positionType) => (
-              <Badge key={positionType} variant="secondary">
-                {positionType}
-              </Badge>
-            ))}
           </div>
         </div>
-
-        {station.attributes.disclaimerApplies ? (
-          <Card className="border-amber-300 bg-amber-50">
-            <CardContent className="p-4 text-sm">
-              <h2 className="font-semibold text-amber-900 mb-2">{LEGAL_DISCLAIMER_TITLE}</h2>
-              <ul className="space-y-2">
-                {LEGAL_DISCLAIMER_POINTS.map((point) => (
-                  <li key={point} className="flex items-start gap-2 text-amber-900">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 text-amber-700" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        ) : null}
 
         <div className="flex flex-col md:flex-row gap-6">
           <div className="w-full md:w-2/3 space-y-6">
@@ -166,7 +181,11 @@ export default function StationDetailPage() {
                 <p className="mb-6">{station.description}</p>
 
                 <div className="mb-6 rounded-md overflow-hidden">
-                  <StationDetailMap lat={station.lat} lng={station.lng} />
+                  <StationDetailMap
+                    lat={station.lat}
+                    lng={station.lng}
+                    componentType={station.componentType}
+                  />
                 </div>
 
                 <div className="flex justify-between">
@@ -176,7 +195,7 @@ export default function StationDetailPage() {
                   </Button>
                   <Button
                     onClick={() => navigate(`/compare?station1=${station.id}`)}
-                    className="flex items-center gap-2"
+                    className={`flex items-center gap-2 ${componentAccent[station.componentType].buttonClass}`}
                   >
                     <ArrowRightLeft className="h-4 w-4" />
                     Compare This Location
@@ -184,84 +203,44 @@ export default function StationDetailPage() {
                 </div>
               </CardContent>
             </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4 text-[#222222] flex items-center gap-2">
-                  <Trees className="h-5 w-5 text-[#0A4A0A]" />
-                  Recreation Highlights
-                </h2>
-                {station.recreation.length ? (
-                  <div className="grid gap-3">
-                    {station.recreation.map((resource) => (
-                      <a
-                        key={resource.id}
-                        href={resource.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-md border p-3 hover:border-primary transition-colors"
-                      >
-                        <div className="flex items-center justify-between gap-2">
-                          <h3 className="font-medium text-[#222222]">{resource.name}</h3>
-                          <Badge variant="outline">{resource.category}</Badge>
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-1">{resource.description}</p>
-                        {resource.distanceMiles !== null ? (
-                          <p className="text-xs text-muted-foreground mt-2">Approx. {resource.distanceMiles} miles</p>
-                        ) : null}
-                      </a>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-sm text-muted-foreground">Recreation information is being expanded for this location.</p>
-                )}
-              </CardContent>
-            </Card>
           </div>
 
           <div className="w-full md:w-1/3 space-y-6">
             <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4 text-[#222222]">External Resources</h2>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Link quality is monitored. Entries marked as unverified or unavailable are retained for transparency.
-                </p>
+              <CardContent className="p-4">
+                <h2 className="text-base font-semibold mb-2 text-[#222222]">External Resources</h2>
 
-                <div className="grid gap-3">
+                <div className="grid gap-1.5">
                   {resourceLinks.map((resource) => {
-                    const warning = statusMessage(resource.link.isValid);
-
+                    const source = getSourceName(resource.url);
                     return (
                       <a
-                        key={resource.category}
-                        href={resource.link.url}
+                        key={resource.key}
+                        href={resource.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-start gap-3 p-3 rounded-md border hover:border-primary transition-colors group"
+                        className="flex items-center gap-2.5 p-2 rounded-md border hover:border-primary transition-colors group"
                         onClick={() => {
                           trackUsageEvent({
                             eventName: "external_resource_click",
                             stationId: station.id,
                             eventMetadata: {
-                              category: resource.category,
-                              url: resource.link.url,
+                              category: resource.trackingCategory,
+                              url: resource.url,
                             },
                           });
                         }}
                       >
-                        <div className="bg-muted p-2 rounded-md">
-                          <resource.icon className="h-5 w-5" />
+                        <div className="bg-muted p-1.5 rounded-md shrink-0">
+                          <resource.icon className="h-4 w-4" />
                         </div>
-                        <div className="flex-1">
-                          <h3 className="font-medium text-[#222222] group-hover:text-primary transition-colors">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-sm font-medium text-[#222222] group-hover:text-primary transition-colors leading-tight">
                             {resource.name}
                           </h3>
-                          <p className="text-sm text-muted-foreground">{resource.description}</p>
-                          {resource.link.isRemediated ? (
-                            <p className="text-xs text-blue-700 mt-1">Updated source</p>
-                          ) : null}
-                          {warning ? (
-                            <p className="text-xs text-amber-700 mt-1">{warning}</p>
+                          <p className="text-xs text-muted-foreground leading-snug">{resource.description}</p>
+                          {source ? (
+                            <p className="text-[10px] text-muted-foreground/80 mt-0.5">Source: {source}</p>
                           ) : null}
                         </div>
                       </a>
@@ -270,34 +249,21 @@ export default function StationDetailPage() {
                 </div>
               </CardContent>
             </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4 text-[#222222]">Pre-Academy Travel Resources</h2>
-                <div className="grid gap-3">
-                  {travelResources.map((resource) => (
-                    <a
-                      key={resource.id}
-                      href={resource.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-md border p-3 hover:border-primary transition-colors"
-                    >
-                      <div className="flex items-center gap-2 text-[#0A4A0A] font-medium">
-                        {resource.category === "hotel" ? <Hotel className="h-4 w-4" /> : null}
-                        {resource.category === "flight" ? <Plane className="h-4 w-4" /> : null}
-                        {resource.category === "car-rental" ? <Car className="h-4 w-4" /> : null}
-                        {resource.category === "trip-planner" ? <Plane className="h-4 w-4" /> : null}
-                        {resource.name}
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-1">{resource.description}</p>
-                    </a>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
+
+        <p className="text-xs text-muted-foreground pt-4 border-t">
+          This website is an informational, non-official resource and is not an
+          official U.S. government system. Information is provided for
+          planning reference only.{" "}
+          <Link
+            to="/disclaimer"
+            className="underline underline-offset-2 hover:text-foreground"
+          >
+            Full disclaimer
+          </Link>
+          .
+        </p>
       </div>
     </div>
   );

@@ -56,11 +56,11 @@ vi.mock("@/lib/data/queryHooks", () => ({
   useTravelResourcesQuery: () => ({
     data: [
       {
-        id: "travel-expedia",
-        category: "flight",
-        name: "Expedia",
-        description: "Travel planning",
-        url: "https://www.expedia.com/",
+        id: "travel",
+        category: "trip-planner",
+        name: "Travel",
+        description: "Compare flights, hotels, and rental cars for relocation planning.",
+        url: "https://www.kayak.com/",
         displayOrder: 1,
       },
     ],
@@ -68,7 +68,7 @@ vi.mock("@/lib/data/queryHooks", () => ({
 }));
 
 describe("StationDetailPage", () => {
-  it("renders disclaimer, travel resources, and link warning", () => {
+  it("renders disclaimer, travel resources, and recreation", () => {
     render(
       <MemoryRouter initialEntries={["/station/test-station"]}>
         <Routes>
@@ -77,11 +77,21 @@ describe("StationDetailPage", () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText("Legal and Disclaimer Notice")).toBeInTheDocument();
-    expect(screen.getByText("Pre-Academy Travel Resources")).toBeInTheDocument();
-    expect(screen.getByText("Expedia")).toBeInTheDocument();
-    expect(screen.getByText("Link may be unavailable")).toBeInTheDocument();
-    expect(screen.getByText("Updated source")).toBeInTheDocument();
-    expect(screen.getByText("Recreation Highlights")).toBeInTheDocument();
+    // Disclaimer appears at the bottom of the station page.
+    expect(
+      screen.getByText(/informational, non-official resource/i)
+    ).toBeInTheDocument();
+    // Travel + Recreation now render inline in the External Resources list.
+    expect(screen.getAllByText("Travel").length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Recreation/).length).toBeGreaterThan(0);
+    // Source attribution (derived from URL hostname) now shows under each link.
+    expect(screen.getAllByText(/Source:/).length).toBeGreaterThan(0);
+
+    // The removed "Link may be unavailable" / "Updated source" UI should no
+    // longer render — bad links are remediated in the data pipeline, not
+    // flagged in the UI.
+    expect(screen.queryByText("Link may be unavailable")).toBeNull();
+    expect(screen.queryByText("Link quality unverified")).toBeNull();
+    expect(screen.queryByText("Updated source")).toBeNull();
   });
 });

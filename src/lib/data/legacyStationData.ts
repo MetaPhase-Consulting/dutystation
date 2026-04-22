@@ -10,20 +10,10 @@ import {
 
 const DEFAULT_POSITION_TYPES: PositionType[] = ["BPA"];
 
-const INCENTIVE_STATIONS = new Set([
-  "ajo-station",
-  "douglas-station",
-  "three-points-station",
-  "rangeley-station",
-  "warroad-station",
-  "sanderson-station",
-  "presidio-station",
-  "sonoita-station",
-  "houlton-station",
-  "havre-station",
-  "blythe-station",
-  "fort-kent-station",
-]);
+// Incentive-eligible station flagging was removed from the UI in April 2026
+// pending an authoritative public list. See docs/backlog/icebox.md for
+// context and the surfaces to restore if/when a sourced list is available.
+const INCENTIVE_STATIONS = new Set<string>();
 
 const REGION_RECREATION: Record<
   string,
@@ -92,28 +82,12 @@ const REGION_RECREATION: Record<
 
 export const DEFAULT_TRAVEL_RESOURCES: TravelResource[] = [
   {
-    id: "travel-expedia",
-    category: "flight",
-    name: "Expedia",
-    description: "Flight search and booking options for pre-academy travel planning.",
-    url: "https://www.expedia.com/",
-    displayOrder: 1,
-  },
-  {
-    id: "travel-travelocity",
-    category: "hotel",
-    name: "Travelocity",
-    description: "Hotel and lodging options for pre-academy relocation travel.",
-    url: "https://www.travelocity.com/",
-    displayOrder: 2,
-  },
-  {
-    id: "travel-kayak",
-    category: "car-rental",
-    name: "Kayak",
-    description: "Rental car and transportation comparison across carriers.",
+    id: "travel",
+    category: "trip-planner",
+    name: "Travel",
+    description: "Compare flights, hotels, and rental cars for relocation planning.",
     url: "https://www.kayak.com/",
-    displayOrder: 3,
+    displayOrder: 1,
   },
 ];
 
