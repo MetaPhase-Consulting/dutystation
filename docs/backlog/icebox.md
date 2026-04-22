@@ -4,6 +4,42 @@ Ideas that were scoped out of the current build but may be worth revisiting.
 Each entry should document *why it was deferred* so future maintainers don't
 re-litigate the same trade-off from scratch.
 
+## Seed-import quality audit for U.S. territory stations
+
+**Status:** 11 specific rows fixed in April 2026. Broader audit still
+worth running.
+
+The same city-name-only geocode that produced the two overlapping seeds
+also produced coordinate bugs in the CBP-prefixed seed. Eleven stations
+in U.S. territories landed in wildly wrong places:
+
+- `Saipan, Northern Mariana Islands - 3211` -> Dandan, Somalia
+- `Rota, Northern Mariana Islands - 3213` -> somewhere in west Texas
+- `Tinian, Northern Mariana Islands - 3212` -> somewhere in New Mexico
+- `Ponce, Puerto Rico - 4908` -> north Florida panhandle
+- `Fajardo, Puerto Rico - 4904` -> southern Spain (Puerto Real, Cádiz)
+- `Ramey Station` (Aguadilla, PR) -> central Pennsylvania
+- `San Juan` (PR) and the San Juan airport and area port -> south Texas
+- `Cruz Bay (St. John), Virgin Islands - 5102` -> central Texas
+- `Charlotte Amalie (St. Thomas), Virgin Islands - 5101` -> southwestern Ontario
+
+Root cause: the seed script geocoded by city name alone. "Dandan",
+"Puerto Real", "Cruz Bay", "Ramey" all have hits globally; without state
+or country context the geocoder picked the wrong one.
+
+**Fix applied:** `scripts/data/remediate-territory-coords.mjs` with
+hand-verified coordinates for each of the 11 rows. Run once in April
+2026 with --apply. The script is idempotent (a re-run finds no drift)
+and reviewable.
+
+**Broader audit still outstanding:** no systematic check has been run on
+CONUS rows. If one city-name-only geocode drifted for territories, a
+CONUS row with an ambiguous city name (e.g. there are multiple "Buffalo"
+and "Portland" towns) could be pointing at the wrong state. A good
+follow-up is a per-row sanity check against state bounding boxes across
+all 595 rows. When that runs, extend the script pattern established
+here.
+
 ## Supabase `stations` table has two overlapping seeds
 
 **Status:** Mitigated in code; DB cleanup still pending.
