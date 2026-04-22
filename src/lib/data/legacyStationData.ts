@@ -113,16 +113,29 @@ function createDefaultLinks(): Record<(typeof STATION_LINK_CATEGORIES)[number], 
   );
 }
 
+// Parse the URL and compare the hostname to a known value. Avoids the
+// CodeQL js/incomplete-url-substring-sanitization pattern that can match
+// attacker-controlled paths like "https://evil.com/moving.com/".
+function hostIs(url: string, host: string): boolean {
+  try {
+    const parsed = new URL(url);
+    const h = parsed.hostname.toLowerCase().replace(/^www\./, "");
+    return h === host.toLowerCase();
+  } catch {
+    return false;
+  }
+}
+
 function inferLinkHealth(url: string): Pick<StationLink, "isValid" | "statusCode"> {
   if (!url) {
     return { isValid: false, statusCode: 0 };
   }
 
-  if (url.includes("moving.com")) {
+  if (hostIs(url, "moving.com")) {
     return { isValid: false, statusCode: 404 };
   }
 
-  if (url.includes("rome2rio.com")) {
+  if (hostIs(url, "rome2rio.com")) {
     return { isValid: null, statusCode: null };
   }
 

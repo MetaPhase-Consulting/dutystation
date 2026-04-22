@@ -235,9 +235,24 @@ function generatedLinks(city, state) {
   };
 }
 
+function hostIs(url, host) {
+  try {
+    const h = new URL(url).hostname.toLowerCase().replace(/^www\./, "");
+    return h === host.toLowerCase();
+  } catch {
+    return false;
+  }
+}
+
 function inferLinkStatus(url) {
   if (!url) return { is_valid: false, http_status: 0 };
-  if (url.includes("weather.gov") || url.includes("google.com/maps/search")) {
+  // Hostname match avoids CodeQL's js/incomplete-url-substring-sanitization
+  // pattern (substring check can match attacker-controlled paths).
+  if (
+    hostIs(url, "weather.gov") ||
+    (hostIs(url, "google.com") && url.includes("/maps/search")) ||
+    (hostIs(url, "maps.google.com") && url.includes("/maps/search"))
+  ) {
     return { is_valid: true, http_status: 200 };
   }
   return { is_valid: null, http_status: null };
