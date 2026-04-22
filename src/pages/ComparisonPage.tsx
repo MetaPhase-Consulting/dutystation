@@ -2,16 +2,10 @@ import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   ArrowLeftRight,
-  Car,
-  CloudSun,
-  DollarSign,
-  GraduationCap,
-  Home,
   MapPin,
-  Package,
   Plane,
-  Shield,
   Trees,
+  type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -20,35 +14,38 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import {
   ComponentType,
   DutyStation,
+  STATION_LINK_CATEGORIES,
   StationLinkCategory,
 } from "@/types/station";
 import { useStationsQuery, useTravelResourcesQuery } from "@/lib/data/queryHooks";
 import { PageMeta } from "@/components/PageMeta";
 import { componentAccent } from "@/lib/componentColors";
 import { getSourceName } from "@/lib/sourceName";
+import { CATEGORY_META } from "@/lib/categoryMeta";
+import { ComparisonDashboard } from "@/components/compare/ComparisonDashboard";
 
 const COMPONENT_OPTIONS: ComponentType[] = ["USBP", "OFO", "AMO"];
 
+// Categories to render in the "open external sources" row-by-row grid below
+// the head-to-head dashboard. Uses the same ordering as the sidebar on the
+// station detail page.
 const linkCategories: {
   key: StationLinkCategory;
   name: string;
   description: string;
-  icon: typeof Home;
-}[] = [
-  { key: "realEstate", name: "Real Estate", description: "Housing options and property listings", icon: Home },
-  { key: "schools", name: "Schools", description: "Information about local schools", icon: GraduationCap },
-  { key: "crime", name: "Crime", description: "Crime statistics for the area", icon: Shield },
-  { key: "costOfLiving", name: "Cost of Living", description: "Cost of living metrics", icon: DollarSign },
-  { key: "weather", name: "Weather", description: "Local climate and weather patterns", icon: CloudSun },
-  { key: "transit", name: "Transit", description: "Transportation options and commute info", icon: Car },
-  { key: "movingTips", name: "Moving Tips", description: "Moving information for this location", icon: Package },
-];
+  icon: LucideIcon;
+}[] = STATION_LINK_CATEGORIES.map((key) => ({
+  key,
+  name: CATEGORY_META[key].label,
+  description: CATEGORY_META[key].description,
+  icon: CATEGORY_META[key].icon,
+}));
 
 interface ResourceCell {
   key: string;
   name: string;
   description: string;
-  icon: typeof Home;
+  icon: LucideIcon;
   url: string;
 }
 
@@ -59,13 +56,15 @@ function buildStationResources(
   travelUrl: string | undefined,
   travelDescription: string | undefined
 ): ResourceCell[] {
-  const cells: ResourceCell[] = linkCategories.map((category) => ({
-    key: `${station.id}-${category.key}`,
-    name: category.name,
-    description: category.description,
-    icon: category.icon,
-    url: station.links[category.key].url,
-  }));
+  const cells: ResourceCell[] = linkCategories
+    .filter((category) => Boolean(station.links[category.key]?.url))
+    .map((category) => ({
+      key: `${station.id}-${category.key}`,
+      name: category.name,
+      description: category.description,
+      icon: category.icon,
+      url: station.links[category.key].url,
+    }));
 
   const rec = station.recreation[0];
   if (rec?.url) {
@@ -271,6 +270,9 @@ export default function ComparisonPage() {
                     </div>
                   ))}
                 </div>
+
+                {/* Head-to-head summary dashboard */}
+                <ComparisonDashboard stationA={station1} stationB={station2} />
 
                 {/* External resources row-by-row */}
                 <div>

@@ -40,6 +40,9 @@ vi.mock("@/lib/data/queryHooks", () => ({
         weather: { category: "weather", url: "https://example.com/weather", originalUrl: "https://example.com/weather", isRemediated: false, remediationReason: null, remediatedAt: null, isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
         transit: { category: "transit", url: "https://example.com/transit", originalUrl: "https://example.com/transit", isRemediated: true, remediationReason: "Updated source", remediatedAt: "2026-02-12T00:00:00.000Z", isValid: false, lastCheckedAt: null, statusCode: 404, resolvedUrl: null },
         movingTips: { category: "movingTips", url: "https://example.com/moving", originalUrl: "https://example.com/moving", isRemediated: false, remediationReason: null, remediatedAt: null, isValid: true, lastCheckedAt: null, statusCode: 200, resolvedUrl: null },
+        demographics: { category: "demographics", url: "", originalUrl: null, isRemediated: false, remediationReason: null, remediatedAt: null, isValid: null, lastCheckedAt: null, statusCode: null, resolvedUrl: null },
+        healthcare: { category: "healthcare", url: "", originalUrl: null, isRemediated: false, remediationReason: null, remediatedAt: null, isValid: null, lastCheckedAt: null, statusCode: null, resolvedUrl: null },
+        jobs: { category: "jobs", url: "", originalUrl: null, isRemediated: false, remediationReason: null, remediatedAt: null, isValid: null, lastCheckedAt: null, statusCode: null, resolvedUrl: null },
       },
       recreation: [
         {
@@ -51,6 +54,17 @@ vi.mock("@/lib/data/queryHooks", () => ({
           distanceMiles: 12,
         },
       ],
+      streetAddress: null,
+      streetAddress2: null,
+      preciseLat: null,
+      preciseLng: null,
+      countyName: null,
+      countyFips: null,
+      placeName: null,
+      placeFips: null,
+      addressGeocodedAt: null,
+      addressGeocodeSource: null,
+      summaries: {},
     },
   }),
   useTravelResourcesQuery: () => ({

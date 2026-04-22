@@ -1,12 +1,18 @@
 import { legacyStations, DEFAULT_TRAVEL_RESOURCES } from "@/lib/data/legacyStationData";
 import { getSupabaseClient } from "@/lib/supabase/client";
 import {
+  AreaScope,
+  CategorySummary,
+  CategorySummaryDataMap,
   ComponentType,
   DutyStation,
   FacilityType,
   RecreationResource,
   STATION_LINK_CATEGORIES,
   StationLink,
+  StationSummaries,
+  SUMMARY_CATEGORIES,
+  SummaryCategory,
   TravelResource,
 } from "@/types/station";
 
@@ -26,6 +32,16 @@ interface StationRow {
   source_type: string | null;
   source_parent: string | null;
   source_url: string | null;
+  street_address: string | null;
+  street_address_2: string | null;
+  precise_lat: number | null;
+  precise_lng: number | null;
+  county_name: string | null;
+  county_fips: string | null;
+  place_name: string | null;
+  place_fips: string | null;
+  address_geocoded_at: string | null;
+  address_geocode_source: string | null;
   station_attributes:
     | {
         incentive_eligible: boolean;
@@ -63,6 +79,20 @@ interface StationRow {
         distance_miles: number | null;
       }>
     | null;
+  station_category_summaries:
+    | Array<{
+        category: string;
+        area_scope: string;
+        area_value: string;
+        area_key: string | null;
+        radius_miles: number | string | null;
+        summary_data: unknown;
+        data_source: string;
+        source_url: string | null;
+        fetched_at: string;
+        expires_at: string | null;
+      }>
+    | null;
 }
 
 interface TravelResourceRow {
@@ -94,6 +124,65 @@ function createDefaultLinks(): Record<(typeof STATION_LINK_CATEGORIES)[number], 
     },
     {} as Record<(typeof STATION_LINK_CATEGORIES)[number], StationLink>
   );
+}
+
+const AREA_SCOPES = new Set<AreaScope>([
+  "zip",
+  "county",
+  "place",
+  "msa",
+  "radius",
+  "custom",
+]);
+
+function mapSummaryRows(
+  rows: StationRow["station_category_summaries"]
+): StationSummaries {
+  if (!rows?.length) {
+    return {};
+  }
+
+  const summaries: StationSummaries = {};
+
+  for (const row of rows) {
+    if (!SUMMARY_CATEGORIES.includes(row.category as SummaryCategory)) {
+      continue;
+    }
+
+    if (!AREA_SCOPES.has(row.area_scope as AreaScope)) {
+      continue;
+    }
+
+    const category = row.category as SummaryCategory;
+    const radius =
+      row.radius_miles == null
+        ? null
+        : typeof row.radius_miles === "string"
+          ? Number(row.radius_miles)
+          : row.radius_miles;
+
+    const entry = {
+      category,
+      areaScope: row.area_scope as AreaScope,
+      areaValue: row.area_value,
+      areaKey: row.area_key,
+      radiusMiles: Number.isFinite(radius as number) ? (radius as number) : null,
+      // summary_data is jsonb — trust the scraper's schema, but cast narrowly
+      // so consumers get the typed shape per category.
+      summaryData: row.summary_data as CategorySummaryDataMap[SummaryCategory],
+      dataSource: row.data_source,
+      sourceUrl: row.source_url,
+      fetchedAt: row.fetched_at,
+      expiresAt: row.expires_at,
+    } as CategorySummary;
+
+    // Assignment-cast is needed because `category` is a union and the indexed
+    // value type is `CategorySummary<typeof category>`; the jsonb came back
+    // untyped, so there's no safer narrowing here.
+    (summaries as Record<SummaryCategory, CategorySummary>)[category] = entry;
+  }
+
+  return summaries;
 }
 
 function mapRecreationRows(rows: StationRow["recreation_resources"]): RecreationResource[] {
@@ -197,6 +286,17 @@ function mapStationRow(row: StationRow): DutyStation {
     },
     links,
     recreation: mapRecreationRows(row.recreation_resources),
+    streetAddress: row.street_address,
+    streetAddress2: row.street_address_2,
+    preciseLat: row.precise_lat,
+    preciseLng: row.precise_lng,
+    countyName: row.county_name,
+    countyFips: row.county_fips,
+    placeName: row.place_name,
+    placeFips: row.place_fips,
+    addressGeocodedAt: row.address_geocoded_at,
+    addressGeocodeSource: row.address_geocode_source,
+    summaries: mapSummaryRows(row.station_category_summaries),
   };
 }
 
@@ -248,10 +348,21 @@ class SupabaseStationRepository implements StationRepository {
         source_type,
         source_parent,
         source_url,
+        street_address,
+        street_address_2,
+        precise_lat,
+        precise_lng,
+        county_name,
+        county_fips,
+        place_name,
+        place_fips,
+        address_geocoded_at,
+        address_geocode_source,
         station_attributes(incentive_eligible,incentive_label,disclaimer_applies),
         station_positions(position_type),
         station_links(category,url,original_url,is_remediated,remediation_reason,remediated_at,is_valid,last_checked_at,http_status,resolved_url),
-        recreation_resources(id,category,name,description,url,distance_miles)
+        recreation_resources(id,category,name,description,url,distance_miles),
+        station_category_summaries(category,area_scope,area_value,area_key,radius_miles,summary_data,data_source,source_url,fetched_at,expires_at)
       `
       )
       .order("name", { ascending: true });

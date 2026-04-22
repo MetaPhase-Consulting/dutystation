@@ -16,4 +16,10 @@ test.describe('Station detail', () => {
     await page.getByRole('heading', { name: /presidio/i }).first().waitFor()
     await expectNoSeriousA11yViolations(page, testInfo, 'station-detail')
   })
+
+  test('renders the area-summary dashboard region', async ({ page }) => {
+    await page.goto(`/station/${SMOKE_STATION_ID}`)
+    const dashboard = page.getByRole('region', { name: /area snapshot/i })
+    await expect(dashboard).toBeVisible()
+  })
 })

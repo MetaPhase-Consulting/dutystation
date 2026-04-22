@@ -30,6 +30,9 @@ const categories: StationLinkCategory[] = [
   "weather",
   "transit",
   "movingTips",
+  "demographics",
+  "healthcare",
+  "jobs",
 ];
 
 function createStation(overrides: Partial<DutyStation>): DutyStation {
@@ -75,6 +78,17 @@ function createStation(overrides: Partial<DutyStation>): DutyStation {
     },
     links,
     recreation: [],
+    streetAddress: null,
+    streetAddress2: null,
+    preciseLat: null,
+    preciseLng: null,
+    countyName: null,
+    countyFips: null,
+    placeName: null,
+    placeFips: null,
+    addressGeocodedAt: null,
+    addressGeocodeSource: null,
+    summaries: {},
     ...overrides,
   };
 }

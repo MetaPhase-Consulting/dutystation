@@ -214,5 +214,16 @@ export const legacyStations: DutyStation[] = legacyDutyStations
       },
       links,
       recreation: mapRecreation(station.region, station.id),
+      streetAddress: null,
+      streetAddress2: null,
+      preciseLat: null,
+      preciseLng: null,
+      countyName: null,
+      countyFips: null,
+      placeName: null,
+      placeFips: null,
+      addressGeocodedAt: null,
+      addressGeocodeSource: null,
+      summaries: {},
     } satisfies DutyStation;
   });
