@@ -22,4 +22,12 @@ test.describe('Station detail', () => {
     const dashboard = page.getByRole('region', { name: /area snapshot/i })
     await expect(dashboard).toBeVisible()
   })
+
+  test('renders real alpha-seed summary data for Abilene', async ({ page }) => {
+    await page.goto('/station/abilene-station')
+    // Abilene ZIP 79602 median home price from the alpha seed.
+    await expect(page.getByText('$225,212')).toBeVisible()
+    // Weather card — Abilene annual avg daily high in °F.
+    await expect(page.getByText('79°F')).toBeVisible()
+  })
 })

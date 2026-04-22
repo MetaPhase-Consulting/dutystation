@@ -1,10 +1,15 @@
 import { dutyStations as legacyDutyStations } from "@/data/dutyStations";
+import alphaSeed from "../../../supabase/seed/summary-alpha.json";
 import {
+  CategorySummary,
+  CategorySummaryDataMap,
   DutyStation,
   PositionType,
   RecreationResource,
   STATION_LINK_CATEGORIES,
   StationLink,
+  StationSummaries,
+  SummaryCategory,
   TravelResource,
 } from "@/types/station";
 
@@ -167,9 +172,70 @@ function mapRecreation(region: string, stationId: string): RecreationResource[] 
   }));
 }
 
+// Alpha seed merged at import time so stations render real summary data even
+// without a configured Supabase backend. Once the scraper (Phase 3) ships and
+// the DB is the source of truth, this fallback remains as a zero-config dev /
+// offline path.
+interface AlphaEntry {
+  stationId: string;
+  address: {
+    streetAddress: string | null;
+    preciseLat: number | null;
+    preciseLng: number | null;
+    countyName: string | null;
+    countyFips: string | null;
+    placeName: string | null;
+    placeFips: string | null;
+    zip?: string | null;
+    source?: string | null;
+  };
+  summaries: Record<
+    string,
+    {
+      areaScope: string;
+      areaValue: string;
+      areaKey: string | null;
+      radiusMiles?: number | null;
+      summaryData: unknown;
+      dataSource: string;
+      sourceUrl: string | null;
+    }
+  >;
+}
+
+const ALPHA_BY_ID = new Map<string, AlphaEntry>(
+  (alphaSeed.stations as AlphaEntry[]).map((entry) => [entry.stationId, entry])
+);
+const ALPHA_FETCHED_AT = (alphaSeed as { _as_of?: string })._as_of
+  ? `${(alphaSeed as { _as_of: string })._as_of}T00:00:00.000Z`
+  : new Date().toISOString();
+
+function buildAlphaSummaries(alpha: AlphaEntry | undefined): StationSummaries {
+  if (!alpha) return {};
+  const summaries: StationSummaries = {};
+  for (const [category, entry] of Object.entries(alpha.summaries)) {
+    const cat = category as SummaryCategory;
+    const parsed: CategorySummary = {
+      category: cat,
+      areaScope: entry.areaScope as CategorySummary["areaScope"],
+      areaValue: entry.areaValue,
+      areaKey: entry.areaKey,
+      radiusMiles: entry.radiusMiles ?? null,
+      summaryData: entry.summaryData as CategorySummaryDataMap[SummaryCategory],
+      dataSource: entry.dataSource,
+      sourceUrl: entry.sourceUrl,
+      fetchedAt: ALPHA_FETCHED_AT,
+      expiresAt: null,
+    };
+    (summaries as Record<SummaryCategory, CategorySummary>)[cat] = parsed;
+  }
+  return summaries;
+}
+
 export const legacyStations: DutyStation[] = legacyDutyStations
   .filter((station) => station.lat !== null && station.lng !== null)
   .map((station) => {
+    const alpha = ALPHA_BY_ID.get(station.id);
     const links = createDefaultLinks();
 
     STATION_LINK_CATEGORIES.forEach((category) => {
@@ -214,16 +280,16 @@ export const legacyStations: DutyStation[] = legacyDutyStations
       },
       links,
       recreation: mapRecreation(station.region, station.id),
-      streetAddress: null,
+      streetAddress: alpha?.address.streetAddress ?? null,
       streetAddress2: null,
-      preciseLat: null,
-      preciseLng: null,
-      countyName: null,
-      countyFips: null,
-      placeName: null,
-      placeFips: null,
-      addressGeocodedAt: null,
-      addressGeocodeSource: null,
-      summaries: {},
+      preciseLat: alpha?.address.preciseLat ?? null,
+      preciseLng: alpha?.address.preciseLng ?? null,
+      countyName: alpha?.address.countyName ?? null,
+      countyFips: alpha?.address.countyFips ?? null,
+      placeName: alpha?.address.placeName ?? null,
+      placeFips: alpha?.address.placeFips ?? null,
+      addressGeocodedAt: alpha ? ALPHA_FETCHED_AT : null,
+      addressGeocodeSource: alpha?.address.source ?? null,
+      summaries: buildAlphaSummaries(alpha),
     } satisfies DutyStation;
   });

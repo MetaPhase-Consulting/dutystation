@@ -1,0 +1,1030 @@
+{
+  "_readme": "Alpha pilot seed — hand-curated summary data for the first 10 alphabetical Border Patrol stations. Weather / demographics / unemployment numbers come from free government APIs (Open-Meteo ERA5, Census ACS 5-year 2023, BLS LAUS 2024 annual averages). Crime, real estate, schools, cost-of-living, walk score, and healthcare distances were hand-compiled from public sources cited per category (Niche, NeighborhoodScout, Zillow, BestPlaces, Homefacts, VA Facility Locator, etc.) and are marked as manual data_sources. Replace these with scraped/official values once Phase 3 ships.",
+  "_as_of": "2026-04-22",
+  "_defaults": {
+    "us_violent_per_100k": 380,
+    "us_property_per_100k": 1950
+  },
+  "stations": [
+    {
+      "stationId": "abilene-station",
+      "address": {
+        "streetAddress": "1945 Industrial Blvd",
+        "preciseLat": 32.401314,
+        "preciseLng": -99.746837,
+        "countyName": "Taylor",
+        "countyFips": "48441",
+        "placeName": "Abilene",
+        "placeFips": "4801000",
+        "zip": "79602",
+        "source": "census-geocoder"
+      },
+      "summaries": {
+        "weather": {
+          "areaScope": "radius",
+          "areaValue": "Abilene, TX",
+          "areaKey": "79602",
+          "radiusMiles": 25,
+          "dataSource": "Open-Meteo ERA5 (2022-2024)",
+          "sourceUrl": "https://open-meteo.com/en/docs/historical-weather-api",
+          "summaryData": {
+            "avgHighF": 79.3, "avgLowF": 57.9, "summerHighF": 98.5, "winterLowF": 38.6,
+            "annualPrecipIn": 19.9, "annualSnowIn": 0.6, "sunnyDays": 166,
+            "climateLabel": "Hot semi-arid"
+          }
+        },
+        "demographics": {
+          "areaScope": "place",
+          "areaValue": "Abilene, TX",
+          "areaKey": "4801000",
+          "dataSource": "US Census ACS 5-year (2023)",
+          "sourceUrl": "https://data.census.gov/profile/Abilene_city,_Texas?g=160XX00US4801000",
+          "summaryData": {
+            "population": 127130, "medianAge": 32.8, "medianHouseholdIncome": 62720,
+            "householdSize": 2.46, "pctEnglishOnly": 81.9
+          }
+        },
+        "jobs": {
+          "areaScope": "county",
+          "areaValue": "Taylor County, TX",
+          "areaKey": "48441",
+          "dataSource": "BLS LAUS 2024 annual avg + manual",
+          "sourceUrl": "https://www.bls.gov/lau/",
+          "summaryData": {
+            "unemploymentRate": 3.4, "laborForce": 72812,
+            "topIndustries": ["Healthcare", "Education", "Retail trade"],
+            "medianWageAll": 42000
+          }
+        },
+        "crime": {
+          "areaScope": "place",
+          "areaValue": "Abilene, TX",
+          "areaKey": "4801000",
+          "dataSource": "manual:2026-04 (NeighborhoodScout / Abilene PD)",
+          "sourceUrl": "https://www.neighborhoodscout.com/tx/abilene/crime",
+          "summaryData": {
+            "violentPer100k": 469, "propertyPer100k": 3850,
+            "usViolentPer100k": 380, "usPropertyPer100k": 1950,
+            "safetyIndex0to100": 55, "asOfYear": 2024
+          }
+        },
+        "realEstate": {
+          "areaScope": "zip",
+          "areaValue": "79602",
+          "areaKey": "79602",
+          "dataSource": "manual:2026-04 (Zillow/Redfin)",
+          "sourceUrl": "https://www.zillow.com/home-values/398211/79602/",
+          "summaryData": {
+            "medianHomePrice": 225212, "medianRent2br": 1250, "pricePerSqft": 125,
+            "yoyChangePct": 1.8, "asOfMonth": "2025-02"
+          }
+        },
+        "schools": {
+          "areaScope": "place",
+          "areaValue": "Abilene ISD / Wylie ISD",
+          "areaKey": "4801000",
+          "dataSource": "manual:2026-04 (Niche / GreatSchools)",
+          "sourceUrl": "https://www.niche.com/places-to-live/abilene-taylor-tx/",
+          "summaryData": {
+            "avgRating0to10": 6.5, "numK12": 42, "numDistricts": 2,
+            "gradRatePct": 89, "studentTeacherRatio": 14.5
+          }
+        },
+        "costOfLiving": {
+          "areaScope": "place",
+          "areaValue": "Abilene, TX",
+          "areaKey": "4801000",
+          "dataSource": "manual:2026-04 (BestPlaces)",
+          "sourceUrl": "https://www.bestplaces.net/cost_of_living/city/texas/abilene",
+          "summaryData": {
+            "overallIndexUs100": 88, "housingIndex": 79, "groceriesIndex": 95,
+            "utilitiesIndex": 102, "transportIndex": 95, "asOf": "2024-Q4"
+          }
+        },
+        "transit": {
+          "areaScope": "place",
+          "areaValue": "Abilene, TX",
+          "areaKey": "4801000",
+          "dataSource": "manual:2026-04 (Walk Score / OpenFlights)",
+          "sourceUrl": "https://www.walkscore.com/TX/Abilene",
+          "summaryData": {
+            "nearestAirportIata": "ABI", "airportDistanceMi": 5,
+            "walkScore": 31, "transitScore": 18, "bikeScore": 40
+          }
+        },
+        "healthcare": {
+          "areaScope": "radius",
+          "areaValue": "within 25 mi of station",
+          "areaKey": null,
+          "radiusMiles": 25,
+          "dataSource": "manual:2026-04 (HIFLD hospitals + VA Facility Locator)",
+          "sourceUrl": "https://www.va.gov/find-locations",
+          "summaryData": {
+            "hospitalsWithin25mi": 5, "nearestHospitalName": "Hendrick Medical Center",
+            "nearestHospitalMi": 3, "nearestVaMi": 4
+          }
+        }
+      }
+    },
+    {
+      "stationId": "ajo-station",
+      "address": {
+        "streetAddress": "850 N State Highway 85",
+        "preciseLat": 32.372,
+        "preciseLng": -112.8591,
+        "countyName": "Pima",
+        "countyFips": "04019",
+        "placeName": "Ajo",
+        "placeFips": "0400870",
+        "zip": "85321",
+        "source": "census-geocoder-approx"
+      },
+      "summaries": {
+        "weather": {
+          "areaScope": "radius", "areaValue": "Ajo, AZ", "areaKey": "85321", "radiusMiles": 25,
+          "dataSource": "Open-Meteo ERA5 (2022-2024)",
+          "sourceUrl": "https://open-meteo.com/en/docs/historical-weather-api",
+          "summaryData": {
+            "avgHighF": 84, "avgLowF": 61.2, "summerHighF": 101.6, "winterLowF": 45.2,
+            "annualPrecipIn": 6.2, "annualSnowIn": 0.2, "sunnyDays": 242,
+            "climateLabel": "Hot desert"
+          }
+        },
+        "demographics": {
+          "areaScope": "place", "areaValue": "Ajo CDP, AZ", "areaKey": "0400870",
+          "dataSource": "US Census ACS 5-year (2023)",
+          "sourceUrl": "https://data.census.gov/profile/Ajo_CDP,_Arizona?g=160XX00US0400870",
+          "summaryData": {
+            "population": 3783, "medianAge": 47.4, "medianHouseholdIncome": 56364,
+            "householdSize": 2.29, "pctEnglishOnly": 79.6
+          }
+        },
+        "jobs": {
+          "areaScope": "county", "areaValue": "Pima County, AZ", "areaKey": "04019",
+          "dataSource": "BLS LAUS 2024 annual avg + manual",
+          "sourceUrl": "https://www.bls.gov/lau/",
+          "summaryData": {
+            "unemploymentRate": 3.6, "laborForce": 493094,
+            "topIndustries": ["Healthcare", "Education", "Public sector"],
+            "medianWageAll": 41000
+          }
+        },
+        "crime": {
+          "areaScope": "place", "areaValue": "Ajo CDP, AZ", "areaKey": "0400870",
+          "dataSource": "manual:2026-04 (NeighborhoodScout / BestPlaces)",
+          "sourceUrl": "https://www.neighborhoodscout.com/az/ajo/crime",
+          "summaryData": {
+            "violentPer100k": 300, "propertyPer100k": 1900,
+            "usViolentPer100k": 380, "usPropertyPer100k": 1950,
+            "safetyIndex0to100": 60, "asOfYear": 2024
+          }
+        },
+        "realEstate": {
+          "areaScope": "zip", "areaValue": "85321", "areaKey": "85321",
+          "dataSource": "manual:2026-04 (BestPlaces / Guaranteed Rate)",
+          "sourceUrl": "https://www.rate.com/research/ajo-az-85321",
+          "summaryData": {
+            "medianHomePrice": 126500, "medianRent2br": 900, "pricePerSqft": 100,
+            "yoyChangePct": 3.5, "asOfMonth": "2025-02"
+          }
+        },
+        "schools": {
+          "areaScope": "place", "areaValue": "Ajo USD", "areaKey": "0400870",
+          "dataSource": "manual:2026-04 (Homefacts / GreatSchools)",
+          "sourceUrl": "https://www.greatschools.org/arizona/ajo/",
+          "summaryData": {
+            "avgRating0to10": 4.5, "numK12": 2, "numDistricts": 1,
+            "gradRatePct": 81, "studentTeacherRatio": 13.0
+          }
+        },
+        "costOfLiving": {
+          "areaScope": "zip", "areaValue": "Ajo, AZ 85321", "areaKey": "85321",
+          "dataSource": "manual:2026-04 (BestPlaces)",
+          "sourceUrl": "https://www.bestplaces.net/cost_of_living/zip-code/arizona/ajo/85321",
+          "summaryData": {
+            "overallIndexUs100": 83.6, "housingIndex": 62, "groceriesIndex": 98,
+            "utilitiesIndex": 112, "transportIndex": 96, "asOf": "2024-12"
+          }
+        },
+        "transit": {
+          "areaScope": "place", "areaValue": "Ajo, AZ", "areaKey": "0400870",
+          "dataSource": "manual:2026-04",
+          "sourceUrl": "https://www.walkscore.com/",
+          "summaryData": {
+            "nearestAirportIata": "TUS", "airportDistanceMi": 140,
+            "walkScore": 20, "transitScore": null, "bikeScore": 30
+          }
+        },
+        "healthcare": {
+          "areaScope": "radius", "areaValue": "within 25 mi of station", "areaKey": null, "radiusMiles": 25,
+          "dataSource": "manual:2026-04 (HIFLD / VA Facility Locator)",
+          "sourceUrl": "https://www.va.gov/find-locations",
+          "summaryData": {
+            "hospitalsWithin25mi": 0, "nearestHospitalName": "Copper Queen Community Hospital (Green Valley)",
+            "nearestHospitalMi": 95, "nearestVaMi": 140
+          }
+        }
+      }
+    },
+    {
+      "stationId": "alpine-station",
+      "address": {
+        "streetAddress": "3003 US Highway 90",
+        "preciseLat": 30.346188,
+        "preciseLng": -103.703635,
+        "countyName": "Brewster",
+        "countyFips": "48043",
+        "placeName": "Alpine",
+        "placeFips": "4802104",
+        "zip": "79830",
+        "source": "census-geocoder"
+      },
+      "summaries": {
+        "weather": {
+          "areaScope": "radius", "areaValue": "Alpine, TX", "areaKey": "79830", "radiusMiles": 25,
+          "dataSource": "Open-Meteo ERA5 (2022-2024)",
+          "sourceUrl": "https://open-meteo.com/en/docs/historical-weather-api",
+          "summaryData": {
+            "avgHighF": 76.8, "avgLowF": 54.4, "summerHighF": 91.4, "winterLowF": 39.4,
+            "annualPrecipIn": 8.5, "annualSnowIn": 1.4, "sunnyDays": 202,
+            "climateLabel": "Cold semi-arid (high desert)"
+          }
+        },
+        "demographics": {
+          "areaScope": "place", "areaValue": "Alpine, TX", "areaKey": "4802104",
+          "dataSource": "US Census ACS 5-year (2023)",
+          "sourceUrl": "https://data.census.gov/profile/Alpine_city,_Texas?g=160XX00US4802104",
+          "summaryData": {
+            "population": 6003, "medianAge": 44, "medianHouseholdIncome": 54503,
+            "householdSize": 1.76, "pctEnglishOnly": 68.7
+          }
+        },
+        "jobs": {
+          "areaScope": "county", "areaValue": "Brewster County, TX", "areaKey": "48043",
+          "dataSource": "BLS LAUS 2024 annual avg + manual",
+          "sourceUrl": "https://www.bls.gov/lau/",
+          "summaryData": {
+            "unemploymentRate": 2.9, "laborForce": 5517,
+            "topIndustries": ["Education", "Tourism & hospitality", "Ranching"],
+            "medianWageAll": 39000
+          }
+        },
+        "crime": {
+          "areaScope": "place", "areaValue": "Alpine, TX", "areaKey": "4802104",
+          "dataSource": "manual:2026-04 (NeighborhoodScout)",
+          "sourceUrl": "https://www.neighborhoodscout.com/tx/alpine/crime",
+          "summaryData": {
+            "violentPer100k": 120, "propertyPer100k": 1400,
+            "usViolentPer100k": 380, "usPropertyPer100k": 1950,
+            "safetyIndex0to100": 78, "asOfYear": 2024
+          }
+        },
+        "realEstate": {
+          "areaScope": "zip", "areaValue": "79830", "areaKey": "79830",
+          "dataSource": "manual:2026-04 (Zillow / ZIP code data)",
+          "sourceUrl": "https://www.zip-codes.com/zip-code/79830/zip-code-79830.asp",
+          "summaryData": {
+            "medianHomePrice": 229400, "medianRent2br": 1100, "pricePerSqft": 165,
+            "yoyChangePct": 2.0, "asOfMonth": "2024-10"
+          }
+        },
+        "schools": {
+          "areaScope": "place", "areaValue": "Alpine ISD", "areaKey": "4802104",
+          "dataSource": "manual:2026-04 (Niche / TEA)",
+          "sourceUrl": "https://www.niche.com/places-to-live/alpine-brewster-tx/",
+          "summaryData": {
+            "avgRating0to10": 6.8, "numK12": 4, "numDistricts": 1,
+            "gradRatePct": 92, "studentTeacherRatio": 13.2
+          }
+        },
+        "costOfLiving": {
+          "areaScope": "place", "areaValue": "Alpine, TX", "areaKey": "4802104",
+          "dataSource": "manual:2026-04 (BestPlaces / Movemap)",
+          "sourceUrl": "https://www.movemap.io/explore/us/tx/brewster_county/alpine",
+          "summaryData": {
+            "overallIndexUs100": 80, "housingIndex": 72, "groceriesIndex": 94,
+            "utilitiesIndex": 100, "transportIndex": 90, "asOf": "2024-Q4"
+          }
+        },
+        "transit": {
+          "areaScope": "place", "areaValue": "Alpine, TX", "areaKey": "4802104",
+          "dataSource": "manual:2026-04",
+          "sourceUrl": "https://www.walkscore.com/",
+          "summaryData": {
+            "nearestAirportIata": "MAF", "airportDistanceMi": 150,
+            "walkScore": 45, "transitScore": null, "bikeScore": 55
+          }
+        },
+        "healthcare": {
+          "areaScope": "radius", "areaValue": "within 25 mi of station", "areaKey": null, "radiusMiles": 25,
+          "dataSource": "manual:2026-04 (HIFLD / VA Facility Locator)",
+          "sourceUrl": "https://www.va.gov/find-locations",
+          "summaryData": {
+            "hospitalsWithin25mi": 1, "nearestHospitalName": "Big Bend Regional Medical Center",
+            "nearestHospitalMi": 1, "nearestVaMi": 220
+          }
+        }
+      }
+    },
+    {
+      "stationId": "baton-rouge-station",
+      "address": {
+        "streetAddress": "11655 Southfork Ave",
+        "preciseLat": 30.421762,
+        "preciseLng": -91.053356,
+        "countyName": "East Baton Rouge",
+        "countyFips": "22033",
+        "placeName": "Baton Rouge",
+        "placeFips": "2205000",
+        "zip": "70816",
+        "source": "census-geocoder"
+      },
+      "summaries": {
+        "weather": {
+          "areaScope": "radius", "areaValue": "Baton Rouge, LA", "areaKey": "70816", "radiusMiles": 25,
+          "dataSource": "Open-Meteo ERA5 (2022-2024)",
+          "sourceUrl": "https://open-meteo.com/en/docs/historical-weather-api",
+          "summaryData": {
+            "avgHighF": 79.2, "avgLowF": 61.4, "summerHighF": 92.3, "winterLowF": 46.6,
+            "annualPrecipIn": 59.5, "annualSnowIn": 0, "sunnyDays": 114,
+            "climateLabel": "Humid subtropical"
+          }
+        },
+        "demographics": {
+          "areaScope": "place", "areaValue": "Baton Rouge, LA", "areaKey": "2205000",
+          "dataSource": "US Census ACS 5-year (2023)",
+          "sourceUrl": "https://data.census.gov/profile/Baton_Rouge_city,_Louisiana?g=160XX00US2205000",
+          "summaryData": {
+            "population": 223699, "medianAge": 31.8, "medianHouseholdIncome": 49944,
+            "householdSize": 2.41, "pctEnglishOnly": 90.3
+          }
+        },
+        "jobs": {
+          "areaScope": "county", "areaValue": "East Baton Rouge Parish, LA", "areaKey": "22033",
+          "dataSource": "BLS LAUS 2024 annual avg + manual",
+          "sourceUrl": "https://www.bls.gov/lau/",
+          "summaryData": {
+            "unemploymentRate": 4.2, "laborForce": 225721,
+            "topIndustries": ["Government", "Petrochemical", "Healthcare"],
+            "medianWageAll": 46000
+          }
+        },
+        "crime": {
+          "areaScope": "place", "areaValue": "Baton Rouge, LA", "areaKey": "2205000",
+          "dataSource": "manual:2026-04 (NeighborhoodScout / Baton Rouge PD)",
+          "sourceUrl": "https://www.neighborhoodscout.com/la/baton-rouge/crime",
+          "summaryData": {
+            "violentPer100k": 2087, "propertyPer100k": 10580,
+            "usViolentPer100k": 380, "usPropertyPer100k": 1950,
+            "safetyIndex0to100": 12, "asOfYear": 2024
+          }
+        },
+        "realEstate": {
+          "areaScope": "place", "areaValue": "Baton Rouge, LA", "areaKey": "2205000",
+          "dataSource": "manual:2026-04 (Homes.com / FRED)",
+          "sourceUrl": "https://www.homes.com/baton-rouge-la/",
+          "summaryData": {
+            "medianHomePrice": 279000, "medianRent2br": 1250, "pricePerSqft": 140,
+            "yoyChangePct": 0.5, "asOfMonth": "2025-02"
+          }
+        },
+        "schools": {
+          "areaScope": "place", "areaValue": "East Baton Rouge Parish Schools", "areaKey": "2205000",
+          "dataSource": "manual:2026-04 (Niche / Louisiana DOE)",
+          "sourceUrl": "https://www.niche.com/places-to-live/baton-rouge-east-baton-rouge-la/",
+          "summaryData": {
+            "avgRating0to10": 5.5, "numK12": 116, "numDistricts": 4,
+            "gradRatePct": 82, "studentTeacherRatio": 16.0
+          }
+        },
+        "costOfLiving": {
+          "areaScope": "place", "areaValue": "Baton Rouge, LA", "areaKey": "2205000",
+          "dataSource": "manual:2026-04 (ERI / BestPlaces)",
+          "sourceUrl": "https://www.erieri.com/cost-of-living/united-states/louisiana/baton-rouge",
+          "summaryData": {
+            "overallIndexUs100": 95, "housingIndex": 90, "groceriesIndex": 96,
+            "utilitiesIndex": 101, "transportIndex": 97, "asOf": "2024-Q4"
+          }
+        },
+        "transit": {
+          "areaScope": "place", "areaValue": "Baton Rouge, LA", "areaKey": "2205000",
+          "dataSource": "manual:2026-04 (Walk Score / OpenFlights)",
+          "sourceUrl": "https://www.walkscore.com/LA/Baton_Rouge",
+          "summaryData": {
+            "nearestAirportIata": "BTR", "airportDistanceMi": 7,
+            "walkScore": 37, "transitScore": 28, "bikeScore": 45
+          }
+        },
+        "healthcare": {
+          "areaScope": "radius", "areaValue": "within 25 mi of station", "areaKey": null, "radiusMiles": 25,
+          "dataSource": "manual:2026-04 (HIFLD / VA)",
+          "sourceUrl": "https://www.va.gov/find-locations",
+          "summaryData": {
+            "hospitalsWithin25mi": 12, "nearestHospitalName": "Baton Rouge General Medical Center",
+            "nearestHospitalMi": 6, "nearestVaMi": 5
+          }
+        }
+      }
+    },
+    {
+      "stationId": "beecher-falls-station",
+      "address": {
+        "streetAddress": "288 VT Route 114",
+        "preciseLat": 45.003432,
+        "preciseLng": -71.552245,
+        "countyName": "Essex",
+        "countyFips": "50009",
+        "placeName": "Canaan",
+        "placeFips": "5011725",
+        "zip": "05903",
+        "source": "census-geocoder"
+      },
+      "summaries": {
+        "weather": {
+          "areaScope": "radius", "areaValue": "Canaan, VT", "areaKey": "05903", "radiusMiles": 25,
+          "dataSource": "Open-Meteo ERA5 (2022-2024)",
+          "sourceUrl": "https://open-meteo.com/en/docs/historical-weather-api",
+          "summaryData": {
+            "avgHighF": 53.1, "avgLowF": 35.8, "summerHighF": 73.8, "winterLowF": 13,
+            "annualPrecipIn": 50.3, "annualSnowIn": 32.2, "sunnyDays": 34,
+            "climateLabel": "Humid continental (cold winters)"
+          }
+        },
+        "demographics": {
+          "areaScope": "county", "areaValue": "Essex County, VT", "areaKey": "50009",
+          "dataSource": "US Census ACS 5-year (2023)",
+          "sourceUrl": "https://www.census.gov/quickfacts/fact/table/essexcountyvermont/PST045223",
+          "summaryData": {
+            "population": 5972, "medianAge": 51.4, "medianHouseholdIncome": 58985,
+            "householdSize": 2.18, "pctEnglishOnly": 94.0
+          }
+        },
+        "jobs": {
+          "areaScope": "county", "areaValue": "Essex County, VT", "areaKey": "50009",
+          "dataSource": "BLS LAUS 2024 annual avg + manual",
+          "sourceUrl": "https://www.bls.gov/lau/",
+          "summaryData": {
+            "unemploymentRate": 3.3, "laborForce": 2870,
+            "topIndustries": ["Forestry & logging", "Healthcare", "Manufacturing"],
+            "medianWageAll": 44000
+          }
+        },
+        "crime": {
+          "areaScope": "county", "areaValue": "Essex County, VT", "areaKey": "50009",
+          "dataSource": "manual:2026-04 (Vermont Crime Reports / Homefacts)",
+          "sourceUrl": "https://www.homefacts.com/crime/Vermont/Essex-County/Beecher-Falls.html",
+          "summaryData": {
+            "violentPer100k": 90, "propertyPer100k": 850,
+            "usViolentPer100k": 380, "usPropertyPer100k": 1950,
+            "safetyIndex0to100": 85, "asOfYear": 2023
+          }
+        },
+        "realEstate": {
+          "areaScope": "county", "areaValue": "Essex County, VT", "areaKey": "50009",
+          "dataSource": "manual:2026-04 (Vermont real estate / NELandmark)",
+          "sourceUrl": "https://www.nelandmark.com/vermont-cost-of-living-guide/",
+          "summaryData": {
+            "medianHomePrice": 175000, "medianRent2br": 950, "pricePerSqft": 115,
+            "yoyChangePct": 3.0, "asOfMonth": "2025-01"
+          }
+        },
+        "schools": {
+          "areaScope": "place", "areaValue": "Canaan Schools (Canaan Memorial)", "areaKey": "5011725",
+          "dataSource": "manual:2026-04 (Vermont AOE / GreatSchools)",
+          "sourceUrl": "https://www.greatschools.org/vermont/canaan/",
+          "summaryData": {
+            "avgRating0to10": 5.5, "numK12": 2, "numDistricts": 1,
+            "gradRatePct": 86, "studentTeacherRatio": 9.5
+          }
+        },
+        "costOfLiving": {
+          "areaScope": "county", "areaValue": "Essex County, VT", "areaKey": "50009",
+          "dataSource": "manual:2026-04 (BestPlaces / NE Landmark)",
+          "sourceUrl": "https://www.nelandmark.com/vermont-cost-of-living-guide/",
+          "summaryData": {
+            "overallIndexUs100": 95, "housingIndex": 88, "groceriesIndex": 104,
+            "utilitiesIndex": 112, "transportIndex": 98, "asOf": "2024-Q4"
+          }
+        },
+        "transit": {
+          "areaScope": "county", "areaValue": "Essex County, VT", "areaKey": "50009",
+          "dataSource": "manual:2026-04 (OpenFlights)",
+          "sourceUrl": "https://openflights.org/",
+          "summaryData": {
+            "nearestAirportIata": "BTV", "airportDistanceMi": 140,
+            "walkScore": 12, "transitScore": null, "bikeScore": 18
+          }
+        },
+        "healthcare": {
+          "areaScope": "radius", "areaValue": "within 25 mi of station", "areaKey": null, "radiusMiles": 25,
+          "dataSource": "manual:2026-04 (HIFLD / VA)",
+          "sourceUrl": "https://www.va.gov/find-locations",
+          "summaryData": {
+            "hospitalsWithin25mi": 0, "nearestHospitalName": "Weeks Medical Center (Lancaster, NH)",
+            "nearestHospitalMi": 35, "nearestVaMi": 155
+          }
+        }
+      }
+    },
+    {
+      "stationId": "bellingham-station",
+      "address": {
+        "streetAddress": "1431 Sunset Ave",
+        "preciseLat": 48.822514,
+        "preciseLng": -122.559312,
+        "countyName": "Whatcom",
+        "countyFips": "53073",
+        "placeName": "Ferndale",
+        "placeFips": "5323620",
+        "zip": "98248",
+        "source": "census-geocoder"
+      },
+      "summaries": {
+        "weather": {
+          "areaScope": "radius", "areaValue": "Ferndale/Bellingham, WA", "areaKey": "98248", "radiusMiles": 25,
+          "dataSource": "Open-Meteo ERA5 (2022-2024)",
+          "sourceUrl": "https://open-meteo.com/en/docs/historical-weather-api",
+          "summaryData": {
+            "avgHighF": 57.4, "avgLowF": 43.6, "summerHighF": 71.5, "winterLowF": 34,
+            "annualPrecipIn": 51, "annualSnowIn": 9.3, "sunnyDays": 64,
+            "climateLabel": "Temperate oceanic"
+          }
+        },
+        "demographics": {
+          "areaScope": "place", "areaValue": "Ferndale, WA", "areaKey": "5323620",
+          "dataSource": "US Census ACS 5-year (2023)",
+          "sourceUrl": "https://data.census.gov/profile/Ferndale_city,_Washington?g=160XX00US5323620",
+          "summaryData": {
+            "population": 15447, "medianAge": 33.6, "medianHouseholdIncome": 83839,
+            "householdSize": 2.79, "pctEnglishOnly": 78.4
+          }
+        },
+        "jobs": {
+          "areaScope": "county", "areaValue": "Whatcom County, WA", "areaKey": "53073",
+          "dataSource": "BLS LAUS 2024 annual avg + manual",
+          "sourceUrl": "https://www.bls.gov/lau/",
+          "summaryData": {
+            "unemploymentRate": 4.5, "laborForce": 113797,
+            "topIndustries": ["Trade & logistics", "Healthcare", "Education"],
+            "medianWageAll": 55000
+          }
+        },
+        "crime": {
+          "areaScope": "place", "areaValue": "Ferndale, WA", "areaKey": "5323620",
+          "dataSource": "manual:2026-04 (NeighborhoodScout / Ferndale PD)",
+          "sourceUrl": "https://www.neighborhoodscout.com/wa/ferndale/crime",
+          "summaryData": {
+            "violentPer100k": 177, "propertyPer100k": 2795,
+            "usViolentPer100k": 380, "usPropertyPer100k": 1950,
+            "safetyIndex0to100": 62, "asOfYear": 2024
+          }
+        },
+        "realEstate": {
+          "areaScope": "zip", "areaValue": "Ferndale, WA 98248", "areaKey": "98248",
+          "dataSource": "manual:2026-04 (Redfin / Homes.com)",
+          "sourceUrl": "https://www.homes.com/local-guide/ferndale-wa/",
+          "summaryData": {
+            "medianHomePrice": 640000, "medianRent2br": 1950, "pricePerSqft": 330,
+            "yoyChangePct": 2.4, "asOfMonth": "2025-02"
+          }
+        },
+        "schools": {
+          "areaScope": "place", "areaValue": "Ferndale School District", "areaKey": "5323620",
+          "dataSource": "manual:2026-04 (Niche)",
+          "sourceUrl": "https://www.niche.com/k12/d/ferndale-school-district-wa/",
+          "summaryData": {
+            "avgRating0to10": 6.0, "numK12": 8, "numDistricts": 1,
+            "gradRatePct": 84, "studentTeacherRatio": 17.5
+          }
+        },
+        "costOfLiving": {
+          "areaScope": "place", "areaValue": "Ferndale, WA", "areaKey": "5323620",
+          "dataSource": "manual:2026-04 (BestPlaces)",
+          "sourceUrl": "https://www.bestplaces.net/cost_of_living/city/washington/ferndale",
+          "summaryData": {
+            "overallIndexUs100": 116, "housingIndex": 135, "groceriesIndex": 105,
+            "utilitiesIndex": 90, "transportIndex": 112, "asOf": "2024-Q4"
+          }
+        },
+        "transit": {
+          "areaScope": "place", "areaValue": "Bellingham/Ferndale, WA", "areaKey": "5323620",
+          "dataSource": "manual:2026-04 (Walk Score)",
+          "sourceUrl": "https://www.walkscore.com/WA/Ferndale",
+          "summaryData": {
+            "nearestAirportIata": "BLI", "airportDistanceMi": 8,
+            "walkScore": 35, "transitScore": 24, "bikeScore": 50
+          }
+        },
+        "healthcare": {
+          "areaScope": "radius", "areaValue": "within 25 mi of station", "areaKey": null, "radiusMiles": 25,
+          "dataSource": "manual:2026-04 (HIFLD / VA)",
+          "sourceUrl": "https://www.va.gov/find-locations",
+          "summaryData": {
+            "hospitalsWithin25mi": 2, "nearestHospitalName": "PeaceHealth St. Joseph Medical Center",
+            "nearestHospitalMi": 9, "nearestVaMi": 7
+          }
+        }
+      }
+    },
+    {
+      "stationId": "blaine-station",
+      "address": {
+        "streetAddress": "1580 H St",
+        "preciseLat": 48.994026,
+        "preciseLng": -122.730405,
+        "countyName": "Whatcom",
+        "countyFips": "53073",
+        "placeName": "Blaine",
+        "placeFips": "5306505",
+        "zip": "98230",
+        "source": "census-geocoder"
+      },
+      "summaries": {
+        "weather": {
+          "areaScope": "radius", "areaValue": "Blaine, WA", "areaKey": "98230", "radiusMiles": 25,
+          "dataSource": "Open-Meteo ERA5 (2022-2024)",
+          "sourceUrl": "https://open-meteo.com/en/docs/historical-weather-api",
+          "summaryData": {
+            "avgHighF": 57, "avgLowF": 44.2, "summerHighF": 71.3, "winterLowF": 35.2,
+            "annualPrecipIn": 52, "annualSnowIn": 9.1, "sunnyDays": 55,
+            "climateLabel": "Temperate oceanic"
+          }
+        },
+        "demographics": {
+          "areaScope": "place", "areaValue": "Blaine, WA", "areaKey": "5306505",
+          "dataSource": "US Census ACS 5-year (2023)",
+          "sourceUrl": "https://data.census.gov/profile/Blaine_city,_Washington?g=160XX00US5306505",
+          "summaryData": {
+            "population": 5982, "medianAge": 41.6, "medianHouseholdIncome": 81559,
+            "householdSize": 2.44, "pctEnglishOnly": 88.1
+          }
+        },
+        "jobs": {
+          "areaScope": "county", "areaValue": "Whatcom County, WA", "areaKey": "53073",
+          "dataSource": "BLS LAUS 2024 annual avg + manual",
+          "sourceUrl": "https://www.bls.gov/lau/",
+          "summaryData": {
+            "unemploymentRate": 4.5, "laborForce": 113797,
+            "topIndustries": ["Trade & logistics", "Healthcare", "Education"],
+            "medianWageAll": 55000
+          }
+        },
+        "crime": {
+          "areaScope": "place", "areaValue": "Blaine, WA", "areaKey": "5306505",
+          "dataSource": "manual:2026-04 (NeighborhoodScout / Blaine PD)",
+          "sourceUrl": "https://www.neighborhoodscout.com/wa/blaine/crime",
+          "summaryData": {
+            "violentPer100k": 220, "propertyPer100k": 2150,
+            "usViolentPer100k": 380, "usPropertyPer100k": 1950,
+            "safetyIndex0to100": 55, "asOfYear": 2024
+          }
+        },
+        "realEstate": {
+          "areaScope": "zip", "areaValue": "Blaine, WA 98230", "areaKey": "98230",
+          "dataSource": "manual:2026-04 (Redfin / Zillow)",
+          "sourceUrl": "https://www.zillow.com/home-values/44497/blaine-wa/",
+          "summaryData": {
+            "medianHomePrice": 600000, "medianRent2br": 1875, "pricePerSqft": 342,
+            "yoyChangePct": 3.7, "asOfMonth": "2025-02"
+          }
+        },
+        "schools": {
+          "areaScope": "place", "areaValue": "Blaine School District", "areaKey": "5306505",
+          "dataSource": "manual:2026-04 (Niche)",
+          "sourceUrl": "https://www.niche.com/k12/d/blaine-school-district-wa/",
+          "summaryData": {
+            "avgRating0to10": 6.2, "numK12": 4, "numDistricts": 1,
+            "gradRatePct": 88, "studentTeacherRatio": 15.0
+          }
+        },
+        "costOfLiving": {
+          "areaScope": "place", "areaValue": "Blaine, WA", "areaKey": "5306505",
+          "dataSource": "manual:2026-04 (ERI)",
+          "sourceUrl": "https://www.erieri.com/cost-of-living/united-states/washington/blaine",
+          "summaryData": {
+            "overallIndexUs100": 107, "housingIndex": 122, "groceriesIndex": 104,
+            "utilitiesIndex": 92, "transportIndex": 108, "asOf": "2024-Q4"
+          }
+        },
+        "transit": {
+          "areaScope": "place", "areaValue": "Blaine, WA", "areaKey": "5306505",
+          "dataSource": "manual:2026-04 (Walk Score / OpenFlights)",
+          "sourceUrl": "https://www.walkscore.com/WA/Blaine",
+          "summaryData": {
+            "nearestAirportIata": "BLI", "airportDistanceMi": 18,
+            "walkScore": 38, "transitScore": 22, "bikeScore": 55
+          }
+        },
+        "healthcare": {
+          "areaScope": "radius", "areaValue": "within 25 mi of station", "areaKey": null, "radiusMiles": 25,
+          "dataSource": "manual:2026-04 (HIFLD / VA)",
+          "sourceUrl": "https://www.va.gov/find-locations",
+          "summaryData": {
+            "hospitalsWithin25mi": 1, "nearestHospitalName": "PeaceHealth St. Joseph Medical Center (Bellingham)",
+            "nearestHospitalMi": 22, "nearestVaMi": 20
+          }
+        }
+      }
+    },
+    {
+      "stationId": "blythe-station",
+      "address": {
+        "streetAddress": "16870 W Hobsonway",
+        "preciseLat": 33.609617,
+        "preciseLng": -114.706351,
+        "countyName": "Riverside",
+        "countyFips": "06065",
+        "placeName": "Blythe",
+        "placeFips": "0607218",
+        "zip": "92225",
+        "source": "census-geocoder"
+      },
+      "summaries": {
+        "weather": {
+          "areaScope": "radius", "areaValue": "Blythe, CA", "areaKey": "92225", "radiusMiles": 25,
+          "dataSource": "Open-Meteo ERA5 (2022-2024)",
+          "sourceUrl": "https://open-meteo.com/en/docs/historical-weather-api",
+          "summaryData": {
+            "avgHighF": 88.5, "avgLowF": 63.7, "summerHighF": 108.6, "winterLowF": 45.8,
+            "annualPrecipIn": 2.1, "annualSnowIn": 0, "sunnyDays": 252,
+            "climateLabel": "Hot desert"
+          }
+        },
+        "demographics": {
+          "areaScope": "place", "areaValue": "Blythe, CA", "areaKey": "0607218",
+          "dataSource": "US Census ACS 5-year (2023)",
+          "sourceUrl": "https://data.census.gov/profile/Blythe_city,_California?g=160XX00US0607218",
+          "summaryData": {
+            "population": 17824, "medianAge": 36.6, "medianHouseholdIncome": 51984,
+            "householdSize": 2.78, "pctEnglishOnly": 55.2
+          }
+        },
+        "jobs": {
+          "areaScope": "county", "areaValue": "Riverside County, CA", "areaKey": "06065",
+          "dataSource": "BLS LAUS 2024 annual avg + manual",
+          "sourceUrl": "https://www.bls.gov/lau/",
+          "summaryData": {
+            "unemploymentRate": 5.3, "laborForce": 1181346,
+            "topIndustries": ["Corrections", "Agriculture", "Logistics"],
+            "medianWageAll": 46000
+          }
+        },
+        "crime": {
+          "areaScope": "place", "areaValue": "Blythe, CA", "areaKey": "0607218",
+          "dataSource": "manual:2026-04 (NeighborhoodScout / Blythe PD)",
+          "sourceUrl": "https://www.neighborhoodscout.com/ca/blythe/crime",
+          "summaryData": {
+            "violentPer100k": 780, "propertyPer100k": 2048,
+            "usViolentPer100k": 380, "usPropertyPer100k": 1950,
+            "safetyIndex0to100": 22, "asOfYear": 2024
+          }
+        },
+        "realEstate": {
+          "areaScope": "zip", "areaValue": "Blythe, CA 92225", "areaKey": "92225",
+          "dataSource": "manual:2026-04 (Zillow / Redfin)",
+          "sourceUrl": "https://www.zillow.com/home-values/24895/blythe-ca/",
+          "summaryData": {
+            "medianHomePrice": 240000, "medianRent2br": 1150, "pricePerSqft": 170,
+            "yoyChangePct": 5.0, "asOfMonth": "2025-02"
+          }
+        },
+        "schools": {
+          "areaScope": "place", "areaValue": "Palo Verde USD", "areaKey": "0607218",
+          "dataSource": "manual:2026-04 (GreatSchools / CA DOE)",
+          "sourceUrl": "https://www.greatschools.org/california/blythe/",
+          "summaryData": {
+            "avgRating0to10": 4.5, "numK12": 8, "numDistricts": 1,
+            "gradRatePct": 78, "studentTeacherRatio": 18.0
+          }
+        },
+        "costOfLiving": {
+          "areaScope": "zip", "areaValue": "Blythe, CA 92225", "areaKey": "92225",
+          "dataSource": "manual:2026-04 (BestPlaces)",
+          "sourceUrl": "https://www.bestplaces.net/cost_of_living/zip-code/california/blythe/92225",
+          "summaryData": {
+            "overallIndexUs100": 104, "housingIndex": 90, "groceriesIndex": 110,
+            "utilitiesIndex": 120, "transportIndex": 115, "asOf": "2024-Q4"
+          }
+        },
+        "transit": {
+          "areaScope": "place", "areaValue": "Blythe, CA", "areaKey": "0607218",
+          "dataSource": "manual:2026-04 (Walk Score / OpenFlights)",
+          "sourceUrl": "https://www.walkscore.com/CA/Blythe",
+          "summaryData": {
+            "nearestAirportIata": "PSP", "airportDistanceMi": 100,
+            "walkScore": 42, "transitScore": 22, "bikeScore": 55
+          }
+        },
+        "healthcare": {
+          "areaScope": "radius", "areaValue": "within 25 mi of station", "areaKey": null, "radiusMiles": 25,
+          "dataSource": "manual:2026-04 (HIFLD / VA)",
+          "sourceUrl": "https://www.va.gov/find-locations",
+          "summaryData": {
+            "hospitalsWithin25mi": 1, "nearestHospitalName": "Palo Verde Hospital",
+            "nearestHospitalMi": 3, "nearestVaMi": 100
+          }
+        }
+      }
+    },
+    {
+      "stationId": "bonners-ferry-station",
+      "address": {
+        "streetAddress": "Bonners Ferry, ID (station lookup pending)",
+        "preciseLat": 48.6915,
+        "preciseLng": -116.3166,
+        "countyName": "Boundary",
+        "countyFips": "16021",
+        "placeName": "Bonners Ferry",
+        "placeFips": "1609370",
+        "zip": "83805",
+        "source": "city-centroid"
+      },
+      "summaries": {
+        "weather": {
+          "areaScope": "radius", "areaValue": "Bonners Ferry, ID", "areaKey": "83805", "radiusMiles": 25,
+          "dataSource": "Open-Meteo ERA5 (2022-2024)",
+          "sourceUrl": "https://open-meteo.com/en/docs/historical-weather-api",
+          "summaryData": {
+            "avgHighF": 59.1, "avgLowF": 39.4, "summerHighF": 81.9, "winterLowF": 24.6,
+            "annualPrecipIn": 22.6, "annualSnowIn": 14.6, "sunnyDays": 85,
+            "climateLabel": "Warm summer continental"
+          }
+        },
+        "demographics": {
+          "areaScope": "place", "areaValue": "Bonners Ferry, ID", "areaKey": "1609370",
+          "dataSource": "US Census ACS 5-year (2023)",
+          "sourceUrl": "https://data.census.gov/profile/Bonners_Ferry_city,_Idaho?g=160XX00US1609370",
+          "summaryData": {
+            "population": 2615, "medianAge": 39.1, "medianHouseholdIncome": 54107,
+            "householdSize": 2.59, "pctEnglishOnly": 89.8
+          }
+        },
+        "jobs": {
+          "areaScope": "county", "areaValue": "Boundary County, ID", "areaKey": "16021",
+          "dataSource": "BLS LAUS 2024 annual avg + manual",
+          "sourceUrl": "https://www.bls.gov/lau/",
+          "summaryData": {
+            "unemploymentRate": 5.4, "laborForce": 5902,
+            "topIndustries": ["Forestry", "Manufacturing", "Retail trade"],
+            "medianWageAll": 40000
+          }
+        },
+        "crime": {
+          "areaScope": "place", "areaValue": "Bonners Ferry, ID", "areaKey": "1609370",
+          "dataSource": "manual:2026-04 (NeighborhoodScout / Idaho UCR)",
+          "sourceUrl": "https://www.localobserverdaily.com/idaho/bonners-ferry/1903",
+          "summaryData": {
+            "violentPer100k": 210, "propertyPer100k": 680,
+            "usViolentPer100k": 380, "usPropertyPer100k": 1950,
+            "safetyIndex0to100": 72, "asOfYear": 2024
+          }
+        },
+        "realEstate": {
+          "areaScope": "zip", "areaValue": "Bonners Ferry, ID 83805", "areaKey": "83805",
+          "dataSource": "manual:2026-04 (Zillow / city-data)",
+          "sourceUrl": "https://www.city-data.com/city/Bonners-Ferry-Idaho.html",
+          "summaryData": {
+            "medianHomePrice": 300000, "medianRent2br": 1200, "pricePerSqft": 205,
+            "yoyChangePct": 4.0, "asOfMonth": "2024-12"
+          }
+        },
+        "schools": {
+          "areaScope": "place", "areaValue": "Boundary County School District", "areaKey": "1609370",
+          "dataSource": "manual:2026-04 (Niche / Idaho SDE)",
+          "sourceUrl": "https://www.niche.com/places-to-live/bonners-ferry-boundary-id/",
+          "summaryData": {
+            "avgRating0to10": 6.5, "numK12": 5, "numDistricts": 1,
+            "gradRatePct": 88, "studentTeacherRatio": 14.0
+          }
+        },
+        "costOfLiving": {
+          "areaScope": "place", "areaValue": "Bonners Ferry, ID", "areaKey": "1609370",
+          "dataSource": "manual:2026-04 (ERI / BestPlaces)",
+          "sourceUrl": "https://www.erieri.com/cost-of-living/united-states/idaho/bonners-ferry",
+          "summaryData": {
+            "overallIndexUs100": 88.1, "housingIndex": 95, "groceriesIndex": 100,
+            "utilitiesIndex": 85, "transportIndex": 96, "asOf": "2024-12"
+          }
+        },
+        "transit": {
+          "areaScope": "place", "areaValue": "Bonners Ferry, ID", "areaKey": "1609370",
+          "dataSource": "manual:2026-04 (Walk Score / OpenFlights)",
+          "sourceUrl": "https://www.walkscore.com/ID/Bonners_Ferry",
+          "summaryData": {
+            "nearestAirportIata": "GEG", "airportDistanceMi": 100,
+            "walkScore": 55, "transitScore": null, "bikeScore": 50
+          }
+        },
+        "healthcare": {
+          "areaScope": "radius", "areaValue": "within 25 mi of station", "areaKey": null, "radiusMiles": 25,
+          "dataSource": "manual:2026-04 (HIFLD / VA)",
+          "sourceUrl": "https://www.va.gov/find-locations",
+          "summaryData": {
+            "hospitalsWithin25mi": 1, "nearestHospitalName": "Boundary Community Hospital",
+            "nearestHospitalMi": 1, "nearestVaMi": 90
+          }
+        }
+      }
+    },
+    {
+      "stationId": "bottineau-station",
+      "address": {
+        "streetAddress": "1235 11th St E",
+        "preciseLat": 48.8261,
+        "preciseLng": -100.4469,
+        "countyName": "Bottineau",
+        "countyFips": "38009",
+        "placeName": "Bottineau",
+        "placeFips": "3808460",
+        "zip": "58318",
+        "source": "city-centroid"
+      },
+      "summaries": {
+        "weather": {
+          "areaScope": "radius", "areaValue": "Bottineau, ND", "areaKey": "58318", "radiusMiles": 25,
+          "dataSource": "Open-Meteo ERA5 (2022-2024)",
+          "sourceUrl": "https://open-meteo.com/en/docs/historical-weather-api",
+          "summaryData": {
+            "avgHighF": 49, "avgLowF": 31.6, "summerHighF": 75.9, "winterLowF": 5.2,
+            "annualPrecipIn": 22.7, "annualSnowIn": 16.5, "sunnyDays": 78,
+            "climateLabel": "Humid continental (very cold winters)"
+          }
+        },
+        "demographics": {
+          "areaScope": "place", "areaValue": "Bottineau, ND", "areaKey": "3808460",
+          "dataSource": "US Census ACS 5-year (2023)",
+          "sourceUrl": "https://data.census.gov/profile/Bottineau_city,_North_Dakota?g=160XX00US3808460",
+          "summaryData": {
+            "population": 2063, "medianAge": 35.9, "medianHouseholdIncome": 70882,
+            "householdSize": 2.12, "pctEnglishOnly": 96.8
+          }
+        },
+        "jobs": {
+          "areaScope": "county", "areaValue": "Bottineau County, ND", "areaKey": "38009",
+          "dataSource": "BLS LAUS 2024 annual avg + manual",
+          "sourceUrl": "https://www.bls.gov/lau/",
+          "summaryData": {
+            "unemploymentRate": 2.9, "laborForce": 3204,
+            "topIndustries": ["Agriculture", "Healthcare", "Energy"],
+            "medianWageAll": 48000
+          }
+        },
+        "crime": {
+          "areaScope": "place", "areaValue": "Bottineau, ND", "areaKey": "3808460",
+          "dataSource": "manual:2026-04 (NeighborhoodScout / ND UCR)",
+          "sourceUrl": "https://crimegrade.org/safest-places-in-bottineau-nd/",
+          "summaryData": {
+            "violentPer100k": 95, "propertyPer100k": 760,
+            "usViolentPer100k": 380, "usPropertyPer100k": 1950,
+            "safetyIndex0to100": 80, "asOfYear": 2024
+          }
+        },
+        "realEstate": {
+          "areaScope": "zip", "areaValue": "Bottineau, ND 58318", "areaKey": "58318",
+          "dataSource": "manual:2026-04 (Redfin / Rocket Homes)",
+          "sourceUrl": "https://rocket.com/homes/market-reports/nd/bottineau",
+          "summaryData": {
+            "medianHomePrice": 183000, "medianRent2br": 850, "pricePerSqft": 115,
+            "yoyChangePct": 2.5, "asOfMonth": "2025-01"
+          }
+        },
+        "schools": {
+          "areaScope": "place", "areaValue": "Bottineau Public Schools", "areaKey": "3808460",
+          "dataSource": "manual:2026-04 (GreatSchools / Niche)",
+          "sourceUrl": "https://www.niche.com/places-to-live/bottineau-bottineau-nd/",
+          "summaryData": {
+            "avgRating0to10": 6.0, "numK12": 3, "numDistricts": 1,
+            "gradRatePct": 91, "studentTeacherRatio": 11.0
+          }
+        },
+        "costOfLiving": {
+          "areaScope": "zip", "areaValue": "Bottineau, ND 58318", "areaKey": "58318",
+          "dataSource": "manual:2026-04 (BestPlaces)",
+          "sourceUrl": "https://www.bestplaces.net/cost_of_living/zip-code/north_dakota/bottineau/58318",
+          "summaryData": {
+            "overallIndexUs100": 79.5, "housingIndex": 68, "groceriesIndex": 94,
+            "utilitiesIndex": 92, "transportIndex": 91, "asOf": "2024-12"
+          }
+        },
+        "transit": {
+          "areaScope": "place", "areaValue": "Bottineau, ND", "areaKey": "3808460",
+          "dataSource": "manual:2026-04 (Walk Score / OpenFlights)",
+          "sourceUrl": "https://www.walkscore.com/ND/Bottineau",
+          "summaryData": {
+            "nearestAirportIata": "MOT", "airportDistanceMi": 75,
+            "walkScore": 50, "transitScore": null, "bikeScore": 55
+          }
+        },
+        "healthcare": {
+          "areaScope": "radius", "areaValue": "within 25 mi of station", "areaKey": null, "radiusMiles": 25,
+          "dataSource": "manual:2026-04 (HIFLD / VA)",
+          "sourceUrl": "https://www.va.gov/find-locations",
+          "summaryData": {
+            "hospitalsWithin25mi": 1, "nearestHospitalName": "St. Andrew's Health Center",
+            "nearestHospitalMi": 1, "nearestVaMi": 75
+          }
+        }
+      }
+    }
+  ]
+}

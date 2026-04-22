@@ -37,7 +37,9 @@
     "data:audit:links:sync": "node scripts/data/audit-external-links.mjs --sync",
     "data:remediate:links": "node scripts/data/remediate-links.mjs",
     "data:remediate:links:apply": "node scripts/data/remediate-links.mjs --apply",
-    "data:validate:link-audit": "node scripts/data/validate-link-audit.mjs"
+    "data:validate:link-audit": "node scripts/data/validate-link-audit.mjs",
+    "data:seed:alpha": "node scripts/data/seed-summary-alpha.mjs",
+    "data:seed:alpha:apply": "node scripts/data/seed-summary-alpha.mjs --apply"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
