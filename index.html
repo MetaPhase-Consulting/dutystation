@@ -79,7 +79,12 @@
       }
     </script>
 
-    <!-- Google Analytics -->
+    <!-- Google Analytics (gtag.js) — official snippet, unchanged.
+         CSP allows the inline init block via a SHA-256 hash in
+         script-src (netlify.toml). If you edit the block below, the
+         hash must be regenerated with:
+           printf '%s' "<script-body>" | openssl dgst -binary -sha256 | openssl base64
+         and the new sha256-... value dropped into netlify.toml. -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GKSKY44PBE"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
