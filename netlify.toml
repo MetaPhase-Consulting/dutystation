@@ -32,7 +32,13 @@
     # Content Security Policy — allow Google Analytics (gtag) and Supabase.
     # OpenStreetMap tiles load as images from *.tile.openstreetmap.org and are
     # covered by img-src https:.
-    Content-Security-Policy = "default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://tile.openstreetmap.org https:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+    # script-src allows the inline gtag() init block in index.html via its
+    # SHA-256 hash (Google's recommended CSP pattern, hash approach — nonces
+    # would require per-request server-side rendering, which Netlify's
+    # static CDN doesn't give us). If the inline block in index.html is
+    # ever edited, regenerate the hash and update it here. See the comment
+    # above the inline <script> in index.html for the one-liner.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-vZ9eQEZniiBD4N++gJFOLHb4IReAmmtN6xiVlTaS6dY=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://tile.openstreetmap.org https:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
 
 # Long-lived cache for hashed Vite assets.
 [[headers]]
