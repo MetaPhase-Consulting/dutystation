@@ -28,4 +28,9 @@ Object.defineProperty(window, 'matchMedia', {
     removeEventListener: vi.fn(),
     dispatchEvent: vi.fn(),
   })),
-}) 
+})
+
+// jsdom 29 doesn't implement window.scrollTo; silence the noisy "Not
+// implemented" stderr from the ScrollToTop component by stubbing it.
+window.scrollTo = vi.fn() as unknown as typeof window.scrollTo
+
