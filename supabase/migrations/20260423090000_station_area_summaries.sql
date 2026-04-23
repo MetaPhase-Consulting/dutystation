@@ -28,30 +28,18 @@ create index if not exists idx_stations_county_fips on public.stations (county_f
 create index if not exists idx_stations_place_fips on public.stations (place_fips);
 
 -- Extend the station_links category CHECK to include the three new categories
--- that will also have summaries. The original constraint was inline + unnamed,
--- so resolve its system name and drop it before re-adding.
-do $$
-declare
-  existing_constraint text;
-begin
-  select conname into existing_constraint
-  from pg_constraint
-  where conrelid = 'public.station_links'::regclass
-    and contype = 'c'
-    and pg_get_constraintdef(oid) ilike '%category%in%realEstate%';
+-- that will also have summaries. The original was an inline anonymous CHECK;
+-- Postgres auto-names it <table>_<column>_check, which is what we drop below.
+alter table public.station_links
+  drop constraint if exists station_links_category_check;
 
-  if existing_constraint is not null then
-    execute format('alter table public.station_links drop constraint %I', existing_constraint);
-  end if;
-
-  alter table public.station_links
-    add constraint station_links_category_check
-    check (category in (
-      'realEstate', 'schools', 'crime', 'costOfLiving',
-      'weather', 'transit', 'movingTips',
-      'demographics', 'healthcare', 'jobs'
-    ));
-end $$;
+alter table public.station_links
+  add constraint station_links_category_check
+  check (category in (
+    'realEstate', 'schools', 'crime', 'costOfLiving',
+    'weather', 'transit', 'movingTips',
+    'demographics', 'healthcare', 'jobs'
+  ));
 
 create table if not exists public.station_category_summaries (
   id uuid primary key default gen_random_uuid(),
