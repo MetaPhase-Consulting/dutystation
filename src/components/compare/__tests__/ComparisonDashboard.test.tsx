@@ -15,7 +15,7 @@ function mutateSummaries(
 }
 
 describe("ComparisonDashboard", () => {
-  it("renders metric rows with directional winners", () => {
+  it("bolds the winning value on directional metrics", () => {
     const stationA = makeStation({
       id: "laredo-station",
       name: "Laredo Station",
@@ -39,17 +39,17 @@ describe("ComparisonDashboard", () => {
 
     render(<ComparisonDashboard stationA={stationA} stationB={stationB} />);
 
-    const crimeRow = screen.getByTestId("compare-row-crime.violent");
-    expect(within(crimeRow).getByText("Laredo Station")).toBeInTheDocument();
-
-    const homeRow = screen.getByTestId("compare-row-realEstate.medianHome");
-    expect(within(homeRow).getByText("Laredo Station")).toBeInTheDocument();
-
-    const unempRow = screen.getByTestId("compare-row-jobs.unemployment");
-    expect(within(unempRow).getByText("Laredo Station")).toBeInTheDocument();
+    // Station A wins (data-winner on the A cell) in each of these directional rows.
+    for (const metricId of ["crime.violent", "realEstate.medianHome", "jobs.unemployment"]) {
+      const row = screen.getByTestId(`compare-row-${metricId}`);
+      const cells = within(row).getAllByRole("cell");
+      // cells = [label, A, B]
+      expect(cells[1].getAttribute("data-winner")).toBe("true");
+      expect(cells[2].getAttribute("data-winner")).toBeNull();
+    }
   });
 
-  it("omits the winner chip for neutral metrics like temperature", () => {
+  it("does not flag a winner on neutral metrics like temperature", () => {
     const stationA = makeStation({ id: "a", summaries: sampleSummaries });
     const stationB = makeStation({
       id: "b",
@@ -62,11 +62,11 @@ describe("ComparisonDashboard", () => {
     render(<ComparisonDashboard stationA={stationA} stationB={stationB} />);
 
     const tempRow = screen.getByTestId("compare-row-weather.summerHigh");
-    // Neither station name should appear in the "Better" column for a
-    // neutral metric — just the em dash placeholder.
-    const betterCells = within(tempRow).getAllByRole("cell");
-    const betterCell = betterCells[betterCells.length - 1];
-    expect(betterCell).toHaveTextContent("—");
+    const cells = within(tempRow).getAllByRole("cell");
+    // Label cell + 2 value cells, and neither value cell is flagged as winner.
+    expect(cells).toHaveLength(3);
+    expect(cells[1].getAttribute("data-winner")).toBeNull();
+    expect(cells[2].getAttribute("data-winner")).toBeNull();
   });
 
   it("falls back to an empty-state message when neither station has data", () => {

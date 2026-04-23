@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { Check } from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -10,7 +11,6 @@ import {
   YAxis,
 } from "recharts";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { componentAccent } from "@/lib/componentColors";
 import { COMPARE_METRICS, computeWinner, type CompareMetric } from "@/lib/compareMetrics";
 import type { DutyStation } from "@/types/station";
@@ -22,28 +22,15 @@ interface ComparisonDashboardProps {
 
 type Side = "a" | "b";
 
-function winnerLabel(
-  metric: CompareMetric,
-  valueA: number | null,
-  valueB: number | null,
-  stationA: DutyStation,
-  stationB: DutyStation
-): string | null {
-  const winner = computeWinner(metric, valueA, valueB);
-  if (!winner || winner === "tie") return null;
-  return winner === "a" ? stationA.name : stationB.name;
-}
-
-function cellClass(
+function isWinnerCell(
   metric: CompareMetric,
   side: Side,
   winner: ReturnType<typeof computeWinner>
-): string {
+): boolean {
   if (!winner || winner === "tie" || metric.direction === "neutral") {
-    return "text-[#222222]";
+    return false;
   }
-  const isWinner = winner === side;
-  return isWinner ? "text-[#0A4A0A] font-semibold" : "text-muted-foreground";
+  return winner === side;
 }
 
 export function ComparisonDashboard({ stationA, stationB }: ComparisonDashboardProps) {
@@ -105,9 +92,10 @@ export function ComparisonDashboard({ stationA, stationB }: ComparisonDashboardP
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
               <caption className="sr-only">
-                Comparison of area metrics for {stationA.name} and {stationB.name}. Green
-                values indicate the station that scores better in the direction that typically
-                benefits a relocating household.
+                Comparison of area metrics for {stationA.name} and {stationB.name}.
+                Bolded values with a check mark indicate the station that scores better in
+                the direction that typically benefits a relocating household. Neutral
+                metrics such as temperature or population are shown without emphasis.
               </caption>
               <thead>
                 <tr className="text-left border-b">
@@ -124,18 +112,12 @@ export function ComparisonDashboard({ stationA, stationB }: ComparisonDashboardP
                   >
                     {stationB.name}
                   </th>
-                  <th className="py-2 pl-3 font-medium text-muted-foreground">Better</th>
                 </tr>
               </thead>
               <tbody>
                 {rows.map((row) => {
-                  const better = winnerLabel(
-                    row.metric,
-                    row.valueA,
-                    row.valueB,
-                    stationA,
-                    stationB
-                  );
+                  const aWins = isWinnerCell(row.metric, "a", row.winner);
+                  const bWins = isWinnerCell(row.metric, "b", row.winner);
                   return (
                     <tr
                       key={row.metric.id}
@@ -146,24 +128,33 @@ export function ComparisonDashboard({ stationA, stationB }: ComparisonDashboardP
                         {row.metric.label}
                       </td>
                       <td
-                        className={`py-2 px-3 tabular-nums ${cellClass(row.metric, "a", row.winner)}`}
+                        className="py-2 px-3 tabular-nums"
+                        data-winner={aWins ? "true" : undefined}
                       >
-                        {row.displayA}
+                        {aWins ? (
+                          <span className="inline-flex items-center gap-1 font-semibold text-[#0A4A0A]">
+                            <Check className="h-3.5 w-3.5" aria-hidden="true" />
+                            <span aria-label={`${row.displayA} — better for a relocating household`}>
+                              {row.displayA}
+                            </span>
+                          </span>
+                        ) : (
+                          <span className="text-[#222222]">{row.displayA}</span>
+                        )}
                       </td>
                       <td
-                        className={`py-2 px-3 tabular-nums ${cellClass(row.metric, "b", row.winner)}`}
+                        className="py-2 px-3 tabular-nums"
+                        data-winner={bWins ? "true" : undefined}
                       >
-                        {row.displayB}
-                      </td>
-                      <td className="py-2 pl-3">
-                        {row.winner === "tie" ? (
-                          <Badge variant="outline" className="text-[10px]">Tie</Badge>
-                        ) : better ? (
-                          <span className="text-xs text-[#0A4A0A]">{better}</span>
-                        ) : (
-                          <span className="text-xs text-muted-foreground" aria-hidden="true">
-                            —
+                        {bWins ? (
+                          <span className="inline-flex items-center gap-1 font-semibold text-[#0A4A0A]">
+                            <Check className="h-3.5 w-3.5" aria-hidden="true" />
+                            <span aria-label={`${row.displayB} — better for a relocating household`}>
+                              {row.displayB}
+                            </span>
                           </span>
+                        ) : (
+                          <span className="text-[#222222]">{row.displayB}</span>
                         )}
                       </td>
                     </tr>
@@ -173,9 +164,9 @@ export function ComparisonDashboard({ stationA, stationB }: ComparisonDashboardP
             </table>
           </div>
           <p className="text-[11px] text-muted-foreground mt-2">
-            &ldquo;Better&rdquo; reflects the direction that typically benefits a relocating
-            household (lower rent, higher school rating, etc.) and is omitted for
-            neutral metrics like temperature or population.
+            Bolded values with a check mark reflect the direction that typically benefits a
+            relocating household (lower rent, higher school rating, etc.). Neutral metrics
+            like temperature or population are shown without emphasis.
           </p>
         </div>
 

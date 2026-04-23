@@ -1,94 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  ArrowLeftRight,
-  MapPin,
-  Plane,
-  Trees,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowLeftRight, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import {
-  ComponentType,
-  DutyStation,
-  STATION_LINK_CATEGORIES,
-  StationLinkCategory,
-} from "@/types/station";
-import { useStationsQuery, useTravelResourcesQuery } from "@/lib/data/queryHooks";
+import { ComponentType } from "@/types/station";
+import { useStationsQuery } from "@/lib/data/queryHooks";
 import { PageMeta } from "@/components/PageMeta";
 import { componentAccent } from "@/lib/componentColors";
-import { getSourceName } from "@/lib/sourceName";
-import { CATEGORY_META } from "@/lib/categoryMeta";
 import { ComparisonDashboard } from "@/components/compare/ComparisonDashboard";
+import StationDetailMap from "@/components/StationDetailMap";
 
 const COMPONENT_OPTIONS: ComponentType[] = ["USBP", "OFO", "AMO"];
-
-// Categories to render in the "open external sources" row-by-row grid below
-// the head-to-head dashboard. Uses the same ordering as the sidebar on the
-// station detail page.
-const linkCategories: {
-  key: StationLinkCategory;
-  name: string;
-  description: string;
-  icon: LucideIcon;
-}[] = STATION_LINK_CATEGORIES.map((key) => ({
-  key,
-  name: CATEGORY_META[key].label,
-  description: CATEGORY_META[key].description,
-  icon: CATEGORY_META[key].icon,
-}));
-
-interface ResourceCell {
-  key: string;
-  name: string;
-  description: string;
-  icon: LucideIcon;
-  url: string;
-}
-
-// Build the ordered list of resource cells for one station: the 7 station-link
-// categories, then Recreation (first entry), then Travel (first entry).
-function buildStationResources(
-  station: DutyStation,
-  travelUrl: string | undefined,
-  travelDescription: string | undefined
-): ResourceCell[] {
-  const cells: ResourceCell[] = linkCategories
-    .filter((category) => Boolean(station.links[category.key]?.url))
-    .map((category) => ({
-      key: `${station.id}-${category.key}`,
-      name: category.name,
-      description: category.description,
-      icon: category.icon,
-      url: station.links[category.key].url,
-    }));
-
-  const rec = station.recreation[0];
-  if (rec?.url) {
-    cells.push({
-      key: `${station.id}-recreation`,
-      name: "Recreation",
-      description: rec.description || "Parks, trails, and outdoor activities nearby",
-      icon: Trees,
-      url: rec.url,
-    });
-  }
-
-  if (travelUrl) {
-    cells.push({
-      key: `${station.id}-travel`,
-      name: "Travel",
-      description: travelDescription || "Flights, hotels, and rental cars",
-      icon: Plane,
-      url: travelUrl,
-    });
-  }
-
-  return cells;
-}
 
 export default function ComparisonPage() {
   const [station1Id, setStation1Id] = useState<string | null>(null);
@@ -97,7 +21,6 @@ export default function ComparisonPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const { data: stations = [], isLoading } = useStationsQuery();
-  const { data: travelResources = [] } = useTravelResourcesQuery();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -144,16 +67,6 @@ export default function ComparisonPage() {
     }
     setSelectedComponents([...selectedComponents, component]);
   };
-
-  const firstTravel = travelResources[0];
-  const resources1 = station1
-    ? buildStationResources(station1, firstTravel?.url, firstTravel?.description)
-    : [];
-  const resources2 = station2
-    ? buildStationResources(station2, firstTravel?.url, firstTravel?.description)
-    : [];
-  // Both stations share the same ordered category list, so we can zip them.
-  const rowCount = Math.max(resources1.length, resources2.length);
 
   return (
     <div className="container px-4 py-8 mx-auto">
@@ -246,81 +159,42 @@ export default function ComparisonPage() {
               </h2>
 
               <div className="grid grid-cols-1 gap-6">
-                {/* Summary row */}
+                {/* Summary row: station name + metadata on top, mini map below each */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b pb-6">
                   {[station1, station2].map((station) => (
-                    <div key={`summary-${station.id}`}>
-                      <h3
-                        className={`font-medium text-lg mb-2 ${componentAccent[station.componentType].text}`}
-                      >
-                        {station.name}
-                      </h3>
-                      <div className="flex items-center mb-1">
-                        <MapPin className="h-4 w-4 mr-1 text-muted-foreground" />
-                        <span className="text-muted-foreground text-sm">
-                          {station.city}, {station.state}
-                        </span>
+                    <div key={`summary-${station.id}`} className="space-y-3">
+                      <div>
+                        <h3
+                          className={`font-medium text-lg mb-2 ${componentAccent[station.componentType].text}`}
+                        >
+                          {station.name}
+                        </h3>
+                        <div className="flex items-center mb-1">
+                          <MapPin className="h-4 w-4 mr-1 text-muted-foreground" />
+                          <span className="text-muted-foreground text-sm">
+                            {station.city}, {station.state}
+                          </span>
+                        </div>
+                        <div className="text-sm mb-2">Region: {station.region}</div>
+                        <div className="mb-3 flex flex-wrap gap-2">
+                          <Badge variant="outline">{station.componentType}</Badge>
+                          <Badge variant="outline">{station.facilityType}</Badge>
+                        </div>
+                        <p className="text-sm">{station.description}</p>
                       </div>
-                      <div className="text-sm mb-2">Region: {station.region}</div>
-                      <div className="mb-3 flex flex-wrap gap-2">
-                        <Badge variant="outline">{station.componentType}</Badge>
-                        <Badge variant="outline">{station.facilityType}</Badge>
-                      </div>
-                      <p className="text-sm">{station.description}</p>
+                      <StationDetailMap
+                        lat={station.preciseLat ?? station.lat}
+                        lng={station.preciseLng ?? station.lng}
+                        componentType={station.componentType}
+                        height={220}
+                        showLayerToggle={false}
+                      />
                     </div>
                   ))}
                 </div>
 
                 {/* Head-to-head summary dashboard */}
                 <ComparisonDashboard stationA={station1} stationB={station2} />
-
-                {/* External resources row-by-row */}
-                <div>
-                  <h3 className="text-base font-semibold mb-2 text-[#222222]">External Resources</h3>
-                  <div className="grid gap-1.5">
-                    {Array.from({ length: rowCount }).map((_, index) => {
-                      const r1 = resources1[index];
-                      const r2 = resources2[index];
-                      return (
-                        <div
-                          key={`row-${index}`}
-                          className="grid grid-cols-1 md:grid-cols-2 gap-1.5"
-                        >
-                          {[r1, r2].map((resource, col) => {
-                            if (!resource) return <div key={`empty-${col}`} />;
-                            const source = getSourceName(resource.url);
-                            return (
-                              <a
-                                key={resource.key}
-                                href={resource.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2.5 p-2 rounded-md border hover:border-primary transition-colors group"
-                              >
-                                <div className="bg-muted p-1.5 rounded-md shrink-0">
-                                  <resource.icon className="h-4 w-4" />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                  <h4 className="text-sm font-medium text-[#222222] group-hover:text-primary transition-colors leading-tight">
-                                    {resource.name}
-                                  </h4>
-                                  <p className="text-xs text-muted-foreground leading-snug">
-                                    {resource.description}
-                                  </p>
-                                  {source ? (
-                                    <p className="text-[10px] text-muted-foreground/80 mt-0.5">
-                                      Source: {source}
-                                    </p>
-                                  ) : null}
-                                </div>
-                              </a>
-                            );
-                          })}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
               </div>
             </CardContent>
           </Card>

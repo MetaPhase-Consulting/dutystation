@@ -19,6 +19,8 @@ interface StationDetailMapProps {
   lat: number;
   lng: number;
   componentType?: ComponentType;
+  height?: number;
+  showLayerToggle?: boolean;
 }
 
 const STREET_URL = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -41,7 +43,13 @@ const createMarkerStyle = (pinColor: string) =>
     }),
   });
 
-const StationDetailMap = ({ lat, lng, componentType = "USBP" }: StationDetailMapProps) => {
+const StationDetailMap = ({
+  lat,
+  lng,
+  componentType = "USBP",
+  height = 400,
+  showLayerToggle = true,
+}: StationDetailMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<Map | null>(null);
   const tileLayerRef = useRef<TileLayer<XYZ> | null>(null);
@@ -98,23 +106,25 @@ const StationDetailMap = ({ lat, lng, componentType = "USBP" }: StationDetailMap
 
   return (
     <div className="relative rounded-lg overflow-hidden border border-border">
-      <div ref={mapRef} className="w-full h-[400px]" />
-      <div className="absolute top-4 right-4 flex gap-2">
-        <Button
-          size="sm"
-          variant={mapType === "street" ? "default" : "secondary"}
-          onClick={() => switchMapLayer("street")}
-        >
-          Street
-        </Button>
-        <Button
-          size="sm"
-          variant={mapType === "satellite" ? "default" : "secondary"}
-          onClick={() => switchMapLayer("satellite")}
-        >
-          Satellite
-        </Button>
-      </div>
+      <div ref={mapRef} className="w-full" style={{ height: `${height}px` }} />
+      {showLayerToggle ? (
+        <div className="absolute top-4 right-4 flex gap-2">
+          <Button
+            size="sm"
+            variant={mapType === "street" ? "default" : "secondary"}
+            onClick={() => switchMapLayer("street")}
+          >
+            Street
+          </Button>
+          <Button
+            size="sm"
+            variant={mapType === "satellite" ? "default" : "secondary"}
+            onClick={() => switchMapLayer("satellite")}
+          >
+            Satellite
+          </Button>
+        </div>
+      ) : null}
     </div>
   );
 };
