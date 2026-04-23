@@ -6,7 +6,10 @@ const options = parseArgs();
 const reportPath = path.resolve(process.cwd(), options.report ?? "docs/progress/link-audit-latest.json");
 const maxUnknownRate = Number(options.maxUnknownRate ?? 0.35);
 
-const FALLBACK_CATEGORIES = new Set([
+// Station-link categories that are user-facing on the site and therefore block
+// a release on hard failure. Keep in sync with the station_links category
+// CHECK constraint in supabase/migrations/.
+const BLOCKING_STATION_LINK_CATEGORIES = new Set([
   "movingTips",
   "weather",
   "transit",
@@ -14,7 +17,21 @@ const FALLBACK_CATEGORIES = new Set([
   "crime",
   "costOfLiving",
   "realEstate",
+  "demographics",
+  "healthcare",
+  "jobs",
 ]);
+
+// summary:* entries are URLs from station_category_summaries.source_url,
+// which appear as the "Source: …" outbound link on each dashboard card.
+// Any hard failure there must block a release for the same reason.
+const SUMMARY_CATEGORY_PREFIX = "summary:";
+
+function isBlockingCategory(category) {
+  if (typeof category !== "string") return false;
+  if (category.startsWith(SUMMARY_CATEGORY_PREFIX)) return true;
+  return BLOCKING_STATION_LINK_CATEGORIES.has(category);
+}
 
 function isHardFailure(failure) {
   if (failure?.isValid === false) {
@@ -39,7 +56,7 @@ function run() {
   const failures = Array.isArray(report?.failures) ? report.failures : [];
 
   const unresolvedHardFailures = failures.filter(
-    (failure) => FALLBACK_CATEGORIES.has(failure?.category) && isHardFailure(failure)
+    (failure) => isBlockingCategory(failure?.category) && isHardFailure(failure)
   );
 
   const checkedLinks = Number(totals.checkedLinks ?? 0);
