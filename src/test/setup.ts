@@ -8,12 +8,14 @@ global.IntersectionObserver = vi.fn().mockImplementation(() => ({
   disconnect: vi.fn(),
 }))
 
-// Mock ResizeObserver
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}))
+// Mock ResizeObserver — must be a class so libraries that call `new ResizeObserver(cb)`
+// (e.g. Recharts ResponsiveContainer) don't fail with "not a constructor".
+class MockResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+global.ResizeObserver = MockResizeObserver as unknown as typeof ResizeObserver
 
 // Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {

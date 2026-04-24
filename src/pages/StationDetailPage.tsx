@@ -3,57 +3,23 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft,
   ArrowRightLeft,
-  Car,
-  CloudSun,
-  DollarSign,
-  GraduationCap,
-  Home,
   MapPin,
-  Package,
   Plane,
-  Shield,
   Trees,
+  type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import StationDetailMap from "@/components/StationDetailMap";
+import { AreaSummaryDashboard } from "@/components/station/AreaSummaryDashboard";
 import { useStationByIdQuery, useTravelResourcesQuery } from "@/lib/data/queryHooks";
 import { StationLinkCategory } from "@/types/station";
 import { trackUsageEvent } from "@/lib/data/usageTracking";
 import { getSourceName } from "@/lib/sourceName";
 import { componentAccent } from "@/lib/componentColors";
+import { CATEGORY_META } from "@/lib/categoryMeta";
 import { PageMeta } from "@/components/PageMeta";
-
-const linkIconByCategory: Record<StationLinkCategory, typeof Home> = {
-  realEstate: Home,
-  schools: GraduationCap,
-  crime: Shield,
-  costOfLiving: DollarSign,
-  weather: CloudSun,
-  transit: Car,
-  movingTips: Package,
-};
-
-const linkLabelByCategory: Record<StationLinkCategory, string> = {
-  realEstate: "Real Estate",
-  schools: "Schools",
-  crime: "Crime",
-  costOfLiving: "Cost of Living",
-  weather: "Weather",
-  transit: "Transit",
-  movingTips: "Moving Tips",
-};
-
-const linkDescriptionByCategory: Record<StationLinkCategory, string> = {
-  realEstate: "Explore housing options and property listings",
-  schools: "Find information about local schools",
-  crime: "Review available crime and safety metrics",
-  costOfLiving: "Compare local cost of living information",
-  weather: "Check local climate and weather patterns",
-  transit: "View transportation and commute resources",
-  movingTips: "Review moving guidance and checklists",
-};
 
 export default function StationDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -71,20 +37,26 @@ export default function StationDetailPage() {
       trackingCategory: string;
       name: string;
       description: string;
-      icon: typeof Home;
+      icon: LucideIcon;
       url: string;
     };
 
-    const rows: ResourceRow[] = (Object.keys(station.links) as StationLinkCategory[]).map(
-      (category) => ({
-        key: `link-${category}`,
-        trackingCategory: category,
-        name: linkLabelByCategory[category],
-        description: linkDescriptionByCategory[category],
-        icon: linkIconByCategory[category],
-        url: station.links[category].url,
-      })
-    );
+    // Sidebar link list: only include categories that actually have a URL.
+    // The new dashboard surfaces the summary numbers; the sidebar is the
+    // quick-jump to the upstream source.
+    const rows: ResourceRow[] = (Object.keys(station.links) as StationLinkCategory[])
+      .filter((category) => Boolean(station.links[category]?.url))
+      .map((category) => {
+        const meta = CATEGORY_META[category];
+        return {
+          key: `link-${category}`,
+          trackingCategory: category,
+          name: meta.label,
+          description: meta.description,
+          icon: meta.icon,
+          url: station.links[category].url,
+        };
+      });
 
     // Fold recreation + travel into the same list so every external
     // resource renders with identical chrome and a "Source: X" footer.
@@ -251,6 +223,8 @@ export default function StationDetailPage() {
             </Card>
           </div>
         </div>
+
+        <AreaSummaryDashboard station={station} />
 
         <p className="text-xs text-muted-foreground pt-4 border-t">
           This website is an informational, non-official resource and is not an
