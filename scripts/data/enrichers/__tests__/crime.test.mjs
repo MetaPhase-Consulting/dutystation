@@ -4,12 +4,12 @@ import { buildSummary, fetchForStation } from "../crime.mjs";
 let originalKey;
 
 beforeEach(() => {
-  originalKey = process.env.FBI_DATA_GOV_KEY;
+  originalKey = process.env.DATA_GOV_API_KEY;
 });
 
 afterEach(() => {
-  if (originalKey === undefined) delete process.env.FBI_DATA_GOV_KEY;
-  else process.env.FBI_DATA_GOV_KEY = originalKey;
+  if (originalKey === undefined) delete process.env.DATA_GOV_API_KEY;
+  else process.env.DATA_GOV_API_KEY = originalKey;
 });
 
 const ATLANTA = {
@@ -26,7 +26,7 @@ const FALLBACK_YEAR = new Date().getUTCFullYear() - 2;
 
 describe("crime enricher", () => {
   it("computes per-100k rates from state + national totals", async () => {
-    process.env.FBI_DATA_GOV_KEY = "test-key";
+    process.env.DATA_GOV_API_KEY = "test-key";
     const politeFetch = vi.fn().mockImplementation((url) => {
       if (url.includes("/state/GA")) {
         return Promise.resolve(
@@ -70,7 +70,7 @@ describe("crime enricher", () => {
   });
 
   it("falls back to the prior year when the most recent has no data", async () => {
-    process.env.FBI_DATA_GOV_KEY = "test-key";
+    process.env.DATA_GOV_API_KEY = "test-key";
     let call = 0;
     const politeFetch = vi.fn().mockImplementation(() => {
       call += 1;
@@ -94,7 +94,7 @@ describe("crime enricher", () => {
   });
 
   it("returns null when state code is invalid", async () => {
-    process.env.FBI_DATA_GOV_KEY = "test-key";
+    process.env.DATA_GOV_API_KEY = "test-key";
     const politeFetch = vi.fn();
     expect(
       await fetchForStation({ state: "INVALID" }, { politeFetch })
@@ -102,11 +102,11 @@ describe("crime enricher", () => {
     expect(politeFetch).not.toHaveBeenCalled();
   });
 
-  it("throws when FBI_DATA_GOV_KEY is unset", async () => {
-    delete process.env.FBI_DATA_GOV_KEY;
+  it("throws when DATA_GOV_API_KEY is unset", async () => {
+    delete process.env.DATA_GOV_API_KEY;
     await expect(
       fetchForStation(ATLANTA, { politeFetch: vi.fn() })
-    ).rejects.toThrow(/FBI_DATA_GOV_KEY/);
+    ).rejects.toThrow(/DATA_GOV_API_KEY/);
   });
 
   it("returns null when state estimate is missing entirely", () => {

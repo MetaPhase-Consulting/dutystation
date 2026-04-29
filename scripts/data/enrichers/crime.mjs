@@ -26,10 +26,10 @@ export const category = "crime";
 const VALID_STATE = /^[A-Z]{2}$/;
 
 export async function fetchForStation(station, ctx) {
-  const apiKey = process.env.FBI_DATA_GOV_KEY;
+  const apiKey = process.env.DATA_GOV_API_KEY;
   if (!apiKey) {
     throw new Error(
-      "FBI_DATA_GOV_KEY env var required (free signup at https://api.data.gov/signup/)"
+      "DATA_GOV_API_KEY env var required (free signup at https://api.data.gov/signup/)"
     );
   }
   const stateAbbr = (station.state ?? "").toUpperCase();

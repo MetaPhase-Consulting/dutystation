@@ -89,8 +89,9 @@ section below.
   `asOfYear`.
 - **Endpoint**: `https://api.usa.gov/crime/fbi/cde/estimate/state/<STATE>`
   and `/estimate/national`.
-- **Auth**: free `FBI_DATA_GOV_KEY` from https://api.data.gov/signup/
-  (instant, email-based — same key works for any api.data.gov endpoint).
+- **Auth**: free `DATA_GOV_API_KEY` from https://api.data.gov/signup/
+  (instant, email-based — same key works for any agency proxied through
+  api.data.gov).
 - **License / ToS**: U.S. government public domain.
 - **Refresh**: yearly, ~9 months in arrears. Cache TTL: 90 days.
 - **Granularity**: state. County-level rollups in CDE require

@@ -184,7 +184,7 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
           BLS_API_KEY: ${{ secrets.BLS_API_KEY }}
-          FBI_DATA_GOV_KEY: ${{ secrets.FBI_DATA_GOV_KEY }}
+          DATA_GOV_API_KEY: ${{ secrets.DATA_GOV_API_KEY }}
           BEA_API_KEY: ${{ secrets.BEA_API_KEY }}
           NOAA_CDO_TOKEN: ${{ secrets.NOAA_CDO_TOKEN }}
         run: |
@@ -193,7 +193,7 @@ jobs:
           [ -z "$SUPABASE_SERVICE_ROLE_KEY" ] && missing+=("SUPABASE_SERVICE_ROLE_KEY")
           [ -z "$CENSUS_API_KEY" ] && missing+=("CENSUS_API_KEY")
           [ -z "$BLS_API_KEY" ] && missing+=("BLS_API_KEY")
-          [ -z "$FBI_DATA_GOV_KEY" ] && missing+=("FBI_DATA_GOV_KEY")
+          [ -z "$DATA_GOV_API_KEY" ] && missing+=("DATA_GOV_API_KEY")
           [ -z "$BEA_API_KEY" ] && missing+=("BEA_API_KEY")
           [ -z "$NOAA_CDO_TOKEN" ] && missing+=("NOAA_CDO_TOKEN")
           if [ ${#missing[@]} -gt 0 ]; then
@@ -225,7 +225,7 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
           BLS_API_KEY: ${{ secrets.BLS_API_KEY }}
-          FBI_DATA_GOV_KEY: ${{ secrets.FBI_DATA_GOV_KEY }}
+          DATA_GOV_API_KEY: ${{ secrets.DATA_GOV_API_KEY }}
           BEA_API_KEY: ${{ secrets.BEA_API_KEY }}
           NOAA_CDO_TOKEN: ${{ secrets.NOAA_CDO_TOKEN }}
         run: npm run data:enrich:summaries:apply -- --out docs/progress/summary-enrichment-latest.json
