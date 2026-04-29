@@ -227,6 +227,47 @@ describe("createPoliteFetch", () => {
   it("requires cacheDir", () => {
     expect(() => createPoliteFetch({})).toThrow(/cacheDir/);
   });
+
+  it("supports POST with a body and dedupes by cacheKey", async () => {
+    const fetchImpl = vi
+      .fn()
+      .mockImplementationOnce(() => Promise.resolve(jsonResponse({ first: true })))
+      .mockImplementationOnce(() => Promise.resolve(jsonResponse({ second: true })));
+
+    const clock = makeClock();
+    const politeFetch = createPoliteFetch({
+      cacheDir,
+      fetchImpl,
+      now: clock.now,
+      sleep: makeSleep(clock),
+    });
+
+    const url = "https://api.example.test/bls";
+    const a = await politeFetch(url, {
+      method: "POST",
+      body: JSON.stringify({ payload: "A" }),
+      cacheKey: "payload-a",
+    });
+    const b = await politeFetch(url, {
+      method: "POST",
+      body: JSON.stringify({ payload: "B" }),
+      cacheKey: "payload-b",
+    });
+    const aAgain = await politeFetch(url, {
+      method: "POST",
+      body: JSON.stringify({ payload: "A" }),
+      cacheKey: "payload-a",
+    });
+
+    expect(a).toEqual({ first: true });
+    expect(b).toEqual({ second: true });
+    expect(aAgain).toEqual({ first: true });
+    expect(fetchImpl).toHaveBeenCalledTimes(2);
+    // Verify the POST body is forwarded.
+    const firstCallInit = fetchImpl.mock.calls[0][1];
+    expect(firstCallInit.method).toBe("POST");
+    expect(firstCallInit.body).toBe(JSON.stringify({ payload: "A" }));
+  });
 });
 
 describe("parseRobotsTxt", () => {

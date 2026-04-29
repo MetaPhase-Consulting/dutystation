@@ -97,16 +97,20 @@ export function createPoliteFetch({
     fs.writeFileSync(file, JSON.stringify(entry, null, 2));
   }
 
-  async function fetchOnce(url, { headers, timeoutMs }) {
+  async function fetchOnce(url, { headers, timeoutMs, method, body }) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
-      return await fetchImpl(url, {
-        method: "GET",
+      const init = {
+        method: method ?? "GET",
         redirect: "follow",
         signal: controller.signal,
         headers: { "user-agent": userAgent, ...headers },
-      });
+      };
+      if (body !== null && body !== undefined) {
+        init.body = body;
+      }
+      return await fetchImpl(url, init);
     } finally {
       clearTimeout(timer);
     }
@@ -121,6 +125,9 @@ export function createPoliteFetch({
       parser = "json",
       honorRobots = false,
       bypassCache = false,
+      method = "GET",
+      body = null,
+      cacheKey = null,
     } = opts;
 
     if (honorRobots) {
@@ -130,7 +137,11 @@ export function createPoliteFetch({
       }
     }
 
-    const cached = bypassCache ? null : readCacheEntry(url);
+    // For POST/PUT requests the URL alone is not unique — callers must
+    // pass cacheKey so distinct payloads don't collide on disk.
+    const cacheUrl = cacheKey ? `${url}#${cacheKey}` : url;
+
+    const cached = bypassCache ? null : readCacheEntry(cacheUrl);
     if (cached && now() - cached.fetchedAt < ttlMs) {
       return parseBody(cached.body, parser);
     }
@@ -145,10 +156,12 @@ export function createPoliteFetch({
         const response = await fetchOnce(url, {
           headers: { ...conditionalHeaders, ...headers },
           timeoutMs,
+          method,
+          body,
         });
 
         if (response.status === 304 && cached) {
-          writeCacheEntry(url, { ...cached, fetchedAt: now() });
+          writeCacheEntry(cacheUrl, { ...cached, fetchedAt: now() });
           return parseBody(cached.body, parser);
         }
 
@@ -165,10 +178,10 @@ export function createPoliteFetch({
           throw new Error(`polite-fetch: ${response.status} ${response.statusText} for ${url}`);
         }
 
-        const body = await response.text();
+        const responseBody = await response.text();
         const etag = response.headers.get("etag") ?? null;
-        writeCacheEntry(url, { fetchedAt: now(), etag, body });
-        return parseBody(body, parser);
+        writeCacheEntry(cacheUrl, { fetchedAt: now(), etag, body: responseBody });
+        return parseBody(responseBody, parser);
       } catch (error) {
         lastError = error;
         log({ url, attempt, error: String(error?.message ?? error) });
