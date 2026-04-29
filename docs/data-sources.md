@@ -37,9 +37,18 @@ section below.
 - **What we extract**: `precise_lat`, `precise_lng`, `county_name`,
   `county_fips`, `place_name`, `place_fips` for each station, written
   to the `stations` table.
-- **Endpoint**: `https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress`
+- **Primary endpoint**:
+  `https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress`
   (benchmark `Public_AR_Current`, vintage `Current_Current`; falls back
   to `Public_AR_Census2020` / `Census2020_Current`).
+- **Reverse-geocode endpoint** (used for stations whose street address
+  cannot be matched — border crossings, "no personnel on site" entries,
+  ports of entry on water):
+  `https://geocoding.geo.census.gov/geocoder/geographies/coordinates?x=<lng>&y=<lat>`
+  with the same benchmark/vintage pair. Backfills `county_fips` and
+  `place_fips` from the legacy `precise_lat / precise_lng` so every
+  station has the geographic identifiers downstream enrichers need.
+  Run via `npm run data:backfill:station-geo:apply`.
 - **Auth**: none.
 - **License / ToS**: U.S. government public domain (17 USC § 105).
   Census's own ToS asks for reasonable rate limits — we send ≤4
@@ -49,6 +58,24 @@ section below.
 - **Fallback when no match**: `supabase/seed/address-overrides.json` —
   hand-curated entries keyed by station `legacy_id`. Used for AMO
   airbases on military land and similar addresses Census cannot resolve.
+
+## CBSA / Metropolitan Statistical Area mapping
+
+- **What we store**: `cbsa_code` and `cbsa_title` on every station whose
+  `county_fips` falls inside a Metropolitan Statistical Area.
+- **Source**: U.S. Census Bureau OMB CBSA delineation files
+  (https://www.census.gov/geographies/reference-files.html). Bundled as a
+  static crosswalk at `scripts/data/static/county-cbsa.mjs` (1,252
+  metropolitan counties → 393 MSAs). Micropolitan Statistical Areas are
+  excluded — BEA only publishes Regional Price Parities for metros.
+- **Backfill**: `npm run data:backfill:cbsa:apply` reads each station's
+  `county_fips`, looks up the CBSA, and writes `cbsa_code` /
+  `cbsa_title`. Stations in non-metro counties keep both columns null
+  and downstream enrichers (currently only costOfLiving) fall back to
+  state-level data.
+- **Refresh**: every 5–10 years when OMB publishes new delineation.
+  Regenerate the static file from the latest `list1_<year>.xlsx` and
+  re-run the backfill.
 
 ## Demographics — U.S. Census American Community Survey (5-year)
 
@@ -82,39 +109,64 @@ section below.
   `pricePerSqft` and `yoyChangePct`. Pending review of Realtor.com ToS
   for automated access; will land in a follow-up if cleared.
 
-## Crime — FBI Crime Data Explorer (CDE)
+## Crime — FBI Crime Data Explorer (CDE), agency-level
 
 - **What we extract**: `violentPer100k`, `propertyPer100k`,
   `usViolentPer100k`, `usPropertyPer100k`, `safetyIndex0to100`,
+  `agencyOri`, `agencyName`, `agencyType`, `agencyDistanceMi`,
   `asOfYear`.
-- **Endpoint**: `https://api.usa.gov/crime/fbi/cde/estimate/state/<STATE>`
-  and `/estimate/national`.
+- **Endpoints**:
+  - Agency listing per state:
+    `https://cde.ucr.cjis.gov/LATEST/agency/byStateAbbr/<STATE>`
+  - Per-agency monthly rates:
+    `https://cde.ucr.cjis.gov/LATEST/summarized/agency/<ORI>/<offense>?from=01-YYYY&to=12-YYYY`
+  - National baseline:
+    `https://cde.ucr.cjis.gov/LATEST/summarized/national/<offense>?from=01-YYYY&to=12-YYYY`
+  - `<offense>` is `violent-crime` or `property-crime`.
 - **Auth**: free `DATA_GOV_API_KEY` from https://api.data.gov/signup/
   (instant, email-based — same key works for any agency proxied through
   api.data.gov).
 - **License / ToS**: U.S. government public domain.
-- **Refresh**: yearly, ~9 months in arrears. Cache TTL: 90 days.
-- **Granularity**: state. County-level rollups in CDE require
-  aggregating per-agency NIBRS reports, which is unreliable when
-  reporting is incomplete.
-- **safetyIndex0to100**: derived from the state vs. national ratio.
+- **Refresh**: monthly publication; ~6 month lag for most agencies.
+  Cache TTL: 90 days.
+- **Granularity**: agency (city PD or county sheriff). For each station
+  we cache the per-state agency listing and pick the nearest
+  NIBRS-reporting agency to the station's `precise_lat / precise_lng`,
+  preferring city PDs over county sheriffs and state police.
+  `agencyDistanceMi` is recorded so consumers can see how representative
+  the chosen agency is of the station's location.
+- **Annualisation**: CDE returns 12 monthly per-100k rates; we sum and
+  scale partial-year reporters up to a 12-month-equivalent rate.
+  Verified against published BJS state-level annual rates.
+- **safetyIndex0to100**: derived from the agency vs. national ratio.
   Not a clinical measure — purely a UX hint, documented as such in
   `src/types/station.ts`.
+- **Stripped from public source URL**: `api_key=` parameter.
 
 ## Cost of living — BEA Regional Price Parities (RPPs)
 
-- **What we extract**: `overallIndexUs100`, `housingIndex` (rents).
-  `groceriesIndex`, `utilitiesIndex`, `transportIndex` stay null;
-  BEA RPPs do not break those out at the state level.
-- **Endpoint**: `https://apps.bea.gov/api/data` (dataset `Regional`,
-  table `SARPP`).
+- **What we extract**: `overallIndexUs100`, `housingIndex` (rents),
+  `goodsIndex`, `servicesIndex`. `groceriesIndex`, `utilitiesIndex`,
+  `transportIndex` stay null; BEA RPPs are aggregated and don't break
+  those out.
+- **Endpoint**: `https://apps.bea.gov/api/data` (dataset `Regional`).
+  - `TableName=MARPP` for stations whose county sits inside a
+    Metropolitan Statistical Area (CBSA).
+  - `TableName=SARPP` (state) for stations in non-metro counties as a
+    fallback so we publish a value for every station rather than null.
 - **Auth**: free `BEA_API_KEY` from https://apps.bea.gov/API/signup/
   (instant, email-based).
 - **License / ToS**: U.S. government public domain.
 - **Refresh**: yearly, ~18 months in arrears. Cache TTL: 90 days.
-- **Granularity**: state. BEA does not publish county-level RPPs;
-  we tag `area_scope = "custom"` with the 2-digit state FIPS so the
-  scope is unambiguous in the database.
+- **Granularity**:
+  - **Metro stations** (≈2/3 of the dataset): MSA-level RPP, indexed by
+    the station's `cbsa_code` column. We tag `area_scope = "msa"` and
+    `area_value = "cbsa:<5-digit>"` so the scope is unambiguous.
+  - **Non-metro stations** (≈1/3): state-level RPP fallback. Tagged
+    `area_scope = "custom"` and `area_value = "state:<2-digit>"`.
+  - The station-to-CBSA crosswalk lives in
+    `scripts/data/static/county-cbsa.mjs` and is generated from the
+    U.S. Census OMB delineation file (`list1_<year>.xlsx`).
 - **Stripped from public source URL**: `UserID=` parameter.
 
 ## Jobs — BLS Local Area Unemployment Statistics (LAUS)

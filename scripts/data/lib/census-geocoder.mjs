@@ -23,6 +23,57 @@ export async function geocodeAddress({ politeFetch, address }) {
   return fallback;
 }
 
+// Reverse-geocode lat/lng to FIPS identifiers — used to backfill county /
+// place codes for stations whose street address could not be matched
+// (border crossings, ports of entry on water, "no personnel on site"
+// entries) but for which we still have coordinates from the legacy
+// import or a manual override.
+const COORD_ENDPOINT = "https://geocoding.geo.census.gov/geocoder/geographies/coordinates";
+
+export async function geocodeCoordinates({ politeFetch, lat, lng }) {
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+
+  const primary = await tryReverse(politeFetch, lat, lng, PRIMARY_BENCHMARK, PRIMARY_VINTAGE);
+  if (primary) return primary;
+  return tryReverse(politeFetch, lat, lng, FALLBACK_BENCHMARK, FALLBACK_VINTAGE);
+}
+
+async function tryReverse(politeFetch, lat, lng, benchmark, vintage) {
+  const params = new URLSearchParams({
+    x: String(lng),
+    y: String(lat),
+    benchmark,
+    vintage,
+    format: "json",
+  });
+  const url = `${COORD_ENDPOINT}?${params.toString()}`;
+  let body;
+  try {
+    body = await politeFetch(url, { ttlMs: 365 * 24 * 60 * 60 * 1000 });
+  } catch {
+    return null;
+  }
+
+  const geos = body?.result?.geographies ?? {};
+  const county = (geos["Counties"] ?? [])[0];
+  if (!county?.GEOID) return null;
+  const incorporatedPlace = (geos["Incorporated Places"] ?? [])[0];
+  const cdp = (geos["Census Designated Places"] ?? [])[0];
+  const place = incorporatedPlace ?? cdp ?? null;
+
+  return {
+    lat,
+    lng,
+    matchedAddress: null,
+    countyFips: county.GEOID,
+    countyName: cleanCensusName(county.NAME),
+    placeFips: place?.GEOID ?? null,
+    placeName: cleanCensusName(place?.NAME),
+    source: `census-geocoder-coords:${benchmark}/${vintage}`,
+    sourceUrl: url,
+  };
+}
+
 async function tryGeocode(politeFetch, address, benchmark, vintage) {
   const url = buildUrl(address, benchmark, vintage);
   let body;
