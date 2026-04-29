@@ -1,25 +1,34 @@
-// Crime enricher — FBI Crime Data Explorer (CDE) state-level estimates.
+// Crime enricher — FBI Crime Data Explorer (CDE) agency-level summaries.
 //
-// API: https://api.usa.gov/crime/fbi/cde/...
-//   /estimate/state/<STATE_ABBR>?api_key=...&from=YYYY&to=YYYY
-//   /estimate/national?api_key=...&from=YYYY&to=YYYY
+// API: https://cde.ucr.cjis.gov/LATEST/summarized/agency/{ORI}/{offense}
+//   from / to are MM-YYYY (we always span Jan–Dec of a single year).
+// Offenses: violent-crime, property-crime.
 //
-// State-level granularity is the cleanest free option — county-level
-// numbers in CDE require aggregating per-agency reports, which is
-// noisy because not every agency reports every year. The state
-// estimates already include per-state population so we compute
-// per-100k rates without an extra ACS lookup.
+// Granularity is agency (city PD or county sheriff) — meaningfully better
+// than the deprecated state-level /estimate endpoints. We pick the
+// nearest NIBRS-reporting agency to the station's precise coordinates,
+// preferring city PDs over sheriffs and state police. National rates are
+// pulled from /summarized/national/{offense} for the same year so we can
+// derive a comparable safetyIndex0to100 against the U.S. baseline.
 //
-// Coverage: every U.S. state + DC. Stations whose `state` field is
-// not a 2-letter abbreviation (e.g., territories without FBI estimates)
-// will return null.
+// Coverage: not every state's small agencies are NIBRS reporters yet.
+// When the nearest agency returns empty rates we walk a couple of
+// fallback agencies before giving up. Stations with no precise lat/lng
+// or no agency within maxRadius miles return null.
 
-const CDE_BASE = "https://api.usa.gov/crime/fbi/cde";
+import { listAgenciesForState, findNearestAgency } from "../lib/cde-agency.mjs";
+
+const CDE_BASE = "https://cde.ucr.cjis.gov/LATEST";
 const CRIME_TTL_MS = 90 * 24 * 60 * 60 * 1000;
 
-// FBI CDE updates UCR/NIBRS once a year, ~9 months in arrears.
+// CDE updates monthly with ~6 month lag for most agencies, so prefer the
+// previous calendar year and fall back another year if the agency hasn't
+// reported.
 const PRIMARY_YEAR_OFFSET = 1;
 const FALLBACK_YEAR_OFFSET = 2;
+
+const SEARCH_RADIUS_MI = 50;
+const FALLBACK_AGENCIES_TO_TRY = 3;
 
 export const category = "crime";
 
@@ -34,76 +43,85 @@ export async function fetchForStation(station, ctx) {
   }
   const stateAbbr = (station.state ?? "").toUpperCase();
   if (!VALID_STATE.test(stateAbbr)) return null;
+  if (!Number.isFinite(station.preciseLat) || !Number.isFinite(station.preciseLng)) {
+    return null;
+  }
+
+  const agencies = await listAgenciesForState({
+    politeFetch: ctx.politeFetch,
+    apiKey,
+    stateAbbr,
+  });
+  if (!agencies.length) return null;
+
+  const candidates = collectCandidates(station, agencies);
+  if (!candidates.length) return null;
 
   const currentYear = new Date().getUTCFullYear();
-  const candidateYears = [currentYear - PRIMARY_YEAR_OFFSET, currentYear - FALLBACK_YEAR_OFFSET];
+  const candidateYears = [
+    currentYear - PRIMARY_YEAR_OFFSET,
+    currentYear - FALLBACK_YEAR_OFFSET,
+  ];
 
   for (const year of candidateYears) {
-    const result = await fetchYear({ politeFetch: ctx.politeFetch, apiKey, stateAbbr, year });
-    if (result) return result;
+    for (const candidate of candidates) {
+      const result = await fetchAgencyYear({
+        politeFetch: ctx.politeFetch,
+        apiKey,
+        agency: candidate.agency,
+        distance: candidate.distance,
+        year,
+      });
+      if (result) return result;
+    }
   }
   return null;
 }
 
-async function fetchYear({ politeFetch, apiKey, stateAbbr, year }) {
-  const stateUrl = `${CDE_BASE}/estimate/state/${stateAbbr}?api_key=${encodeURIComponent(apiKey)}&from=${year}&to=${year}`;
-  const nationalUrl = `${CDE_BASE}/estimate/national?api_key=${encodeURIComponent(apiKey)}&from=${year}&to=${year}`;
+function collectCandidates(station, agencies) {
+  const candidates = [];
+  const seen = new Set();
+  let pool = agencies.slice();
 
-  let stateBody;
-  let nationalBody;
+  for (let i = 0; i < FALLBACK_AGENCIES_TO_TRY; i += 1) {
+    const best = findNearestAgency(station, pool, { maxMiles: SEARCH_RADIUS_MI });
+    if (!best || seen.has(best.agency.ori)) break;
+    seen.add(best.agency.ori);
+    candidates.push(best);
+    pool = pool.filter((a) => a.ori !== best.agency.ori);
+  }
+  return candidates;
+}
+
+async function fetchAgencyYear({ politeFetch, apiKey, agency, distance, year }) {
+  const violentUrl = buildAgencyUrl(agency.ori, "violent-crime", year, apiKey);
+  const propertyUrl = buildAgencyUrl(agency.ori, "property-crime", year, apiKey);
+  const nationalViolentUrl = buildNationalUrl("violent-crime", year, apiKey);
+  const nationalPropertyUrl = buildNationalUrl("property-crime", year, apiKey);
+
+  let violentBody;
+  let propertyBody;
+  let nationalViolentBody;
+  let nationalPropertyBody;
+
   try {
-    [stateBody, nationalBody] = await Promise.all([
-      politeFetch(stateUrl, { ttlMs: CRIME_TTL_MS }),
-      politeFetch(nationalUrl, { ttlMs: CRIME_TTL_MS }),
+    [violentBody, propertyBody, nationalViolentBody, nationalPropertyBody] = await Promise.all([
+      politeFetch(violentUrl, { ttlMs: CRIME_TTL_MS }),
+      politeFetch(propertyUrl, { ttlMs: CRIME_TTL_MS }),
+      politeFetch(nationalViolentUrl, { ttlMs: CRIME_TTL_MS }),
+      politeFetch(nationalPropertyUrl, { ttlMs: CRIME_TTL_MS }),
     ]);
   } catch {
     return null;
   }
 
-  const summary = buildSummary(stateBody, nationalBody, year);
-  if (!summary) return null;
+  const violentPer100k = annualizeAgencyRate(violentBody, agency.name);
+  const propertyPer100k = annualizeAgencyRate(propertyBody, agency.name);
+  const usViolentPer100k = annualizeNationalRate(nationalViolentBody);
+  const usPropertyPer100k = annualizeNationalRate(nationalPropertyBody);
 
-  return {
-    areaScope: "custom",
-    areaValue: `state:${stateAbbr}`,
-    areaKey: stateAbbr,
-    radiusMiles: null,
-    summaryData: summary,
-    dataSource: `FBI Crime Data Explorer (state estimates, ${year})`,
-    sourceUrl: stripKey(stateUrl),
-  };
-}
+  if (violentPer100k === null && propertyPer100k === null) return null;
 
-export function buildSummary(stateBody, nationalBody, year) {
-  const stateRow = pickRow(stateBody, year);
-  const nationalRow = pickRow(nationalBody, year);
-  if (!stateRow) return null;
-
-  const violent = numberOrNull(stateRow.violent_crime);
-  const property = numberOrNull(stateRow.property_crime);
-  const population = numberOrNull(stateRow.population);
-  const usViolent = numberOrNull(nationalRow?.violent_crime);
-  const usProperty = numberOrNull(nationalRow?.property_crime);
-  const usPopulation = numberOrNull(nationalRow?.population);
-
-  const violentPer100k = perHundredK(violent, population);
-  const propertyPer100k = perHundredK(property, population);
-  const usViolentPer100k = perHundredK(usViolent, usPopulation);
-  const usPropertyPer100k = perHundredK(usProperty, usPopulation);
-
-  if (
-    violentPer100k === null &&
-    propertyPer100k === null &&
-    usViolentPer100k === null &&
-    usPropertyPer100k === null
-  ) {
-    return null;
-  }
-
-  // Safety index: 100 if both violent and property rates are well below
-  // the U.S. baseline, 0 if both are far above. Linear interpolation on
-  // the ratio, clamped — purely a UX-affordance and we record asOfYear
-  // so consumers can recompute differently if needed.
   const safetyIndex = computeSafetyIndex(
     violentPer100k,
     propertyPer100k,
@@ -112,38 +130,77 @@ export function buildSummary(stateBody, nationalBody, year) {
   );
 
   return {
-    violentPer100k,
-    propertyPer100k,
-    usViolentPer100k,
-    usPropertyPer100k,
-    safetyIndex0to100: safetyIndex,
-    asOfYear: year,
+    areaScope: "custom",
+    areaValue: `agency:${agency.ori}`,
+    areaKey: agency.ori,
+    radiusMiles: distance !== null && distance !== undefined ? Number(distance.toFixed(1)) : null,
+    summaryData: {
+      violentPer100k,
+      propertyPer100k,
+      usViolentPer100k,
+      usPropertyPer100k,
+      safetyIndex0to100: safetyIndex,
+      asOfYear: year,
+      agencyOri: agency.ori,
+      agencyName: agency.name,
+      agencyType: agency.type,
+      agencyDistanceMi: distance !== null && distance !== undefined ? Number(distance.toFixed(1)) : null,
+    },
+    dataSource: `FBI Crime Data Explorer (${agency.name}, ${year})`,
+    sourceUrl: stripKey(violentUrl),
   };
 }
 
-function pickRow(body, year) {
-  const rows = body?.results ?? body?.data ?? [];
-  if (!Array.isArray(rows) || rows.length === 0) return null;
-  return rows.find((row) => Number(row.year) === year) ?? rows[0];
+function buildAgencyUrl(ori, offense, year, apiKey) {
+  return `${CDE_BASE}/summarized/agency/${ori}/${offense}?from=01-${year}&to=12-${year}&api_key=${encodeURIComponent(apiKey)}`;
 }
 
-function numberOrNull(value) {
-  if (value === null || value === undefined || value === "") return null;
-  const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : null;
+function buildNationalUrl(offense, year, apiKey) {
+  return `${CDE_BASE}/summarized/national/${offense}?from=01-${year}&to=12-${year}&api_key=${encodeURIComponent(apiKey)}`;
 }
 
-function perHundredK(count, population) {
-  if (count === null || population === null || !population) return null;
-  return Number(((count / population) * 100_000).toFixed(1));
+// CDE returns monthly per-100k rates keyed by lines like
+//   { offenses: { rates: { "<Agency> Offenses": { "01-2022": 32.6, ... } } } }
+// Plus state and U.S. context lines we ignore here. Annualised rate is
+// the sum of the 12 monthly per-100k rates (verified against published
+// BJS state-level annual rates).
+export function annualizeAgencyRate(body, agencyName) {
+  if (!body || !agencyName) return null;
+  const lineKey = `${agencyName} Offenses`;
+  return sumMonthlyRates(body?.offenses?.rates?.[lineKey]);
 }
 
-function computeSafetyIndex(violent, property, usViolent, usProperty) {
+export function annualizeNationalRate(body) {
+  if (!body) return null;
+  const rates = body?.offenses?.rates ?? {};
+  const usKey = Object.keys(rates).find((key) => key.startsWith("United States"));
+  if (!usKey) return null;
+  return sumMonthlyRates(rates[usKey]);
+}
+
+function sumMonthlyRates(monthly) {
+  if (!monthly || typeof monthly !== "object") return null;
+  let total = 0;
+  let count = 0;
+  for (const value of Object.values(monthly)) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) {
+      total += parsed;
+      count += 1;
+    }
+  }
+  if (count === 0) return null;
+  // Scale partial-year reporting up to a 12-month rate so a station with
+  // only 6 reported months isn't artificially low.
+  const annualised = (total / count) * 12;
+  return Number(annualised.toFixed(1));
+}
+
+export function computeSafetyIndex(violent, property, usViolent, usProperty) {
   if (violent === null || property === null || !usViolent || !usProperty) return null;
   const violentRatio = violent / usViolent;
   const propertyRatio = property / usProperty;
   const avgRatio = (violentRatio + propertyRatio) / 2;
-  // ratio 1 → 50 (national avg), ratio 0.5 → 75, ratio 1.5 → 25, clamped.
   const score = 100 - Math.min(100, Math.max(0, avgRatio * 50));
   return Math.round(score);
 }

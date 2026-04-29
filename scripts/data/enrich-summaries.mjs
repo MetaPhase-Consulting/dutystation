@@ -98,7 +98,7 @@ async function loadStations(supabase) {
     const { data, error } = await supabase
       .from("stations")
       .select(
-        "id, legacy_id, name, city, state, zip_code, precise_lat, precise_lng, lat, lng, county_name, county_fips, place_name, place_fips"
+        "id, legacy_id, name, city, state, zip_code, precise_lat, precise_lng, lat, lng, county_name, county_fips, place_name, place_fips, cbsa_code, cbsa_title"
       )
       .range(offset, offset + pageSize - 1);
     if (error) throw new Error(`stations select: ${error.message}`);
@@ -124,6 +124,8 @@ function toEnricherStation(row) {
     countyName: row.county_name ?? null,
     placeFips: row.place_fips ?? null,
     placeName: row.place_name ?? null,
+    cbsaCode: row.cbsa_code ?? null,
+    cbsaTitle: row.cbsa_title ?? null,
   };
 }
 

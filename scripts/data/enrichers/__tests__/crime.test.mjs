@@ -1,10 +1,17 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { buildSummary, fetchForStation } from "../crime.mjs";
+import {
+  fetchForStation,
+  annualizeAgencyRate,
+  annualizeNationalRate,
+  computeSafetyIndex,
+} from "../crime.mjs";
+import { clearAgencyCache } from "../../lib/cde-agency.mjs";
 
 let originalKey;
 
 beforeEach(() => {
   originalKey = process.env.DATA_GOV_API_KEY;
+  clearAgencyCache();
 });
 
 afterEach(() => {
@@ -12,92 +19,207 @@ afterEach(() => {
   else process.env.DATA_GOV_API_KEY = originalKey;
 });
 
-const ATLANTA = {
-  legacyId: "cbp-atlanta-ga-30344",
-  state: "GA",
+const PRIMARY_YEAR = new Date().getUTCFullYear() - 1;
+
+const GLOBE = {
+  legacyId: "cbp-globe-az",
+  state: "AZ",
+  preciseLat: 33.395,
+  preciseLng: -110.788,
 };
 
-function fbiResponse(rows) {
-  return { results: rows };
+function monthlyRates(annualSum) {
+  // Spread an annual rate across 12 equal monthly entries so
+  // sumMonthlyRates × (12/12) reproduces it exactly.
+  const monthly = annualSum / 12;
+  const out = {};
+  for (let m = 1; m <= 12; m += 1) {
+    out[`${String(m).padStart(2, "0")}-${PRIMARY_YEAR}`] = monthly;
+  }
+  return out;
 }
 
-const PRIMARY_YEAR = new Date().getUTCFullYear() - 1;
-const FALLBACK_YEAR = new Date().getUTCFullYear() - 2;
+function agencyResponse({ agencyName, agencyAnnualRate, stateName, stateRate, usRate }) {
+  return {
+    offenses: {
+      rates: {
+        [`${agencyName} Offenses`]: monthlyRates(agencyAnnualRate),
+        [`${stateName} Offenses`]: monthlyRates(stateRate),
+        "United States Offenses": monthlyRates(usRate),
+      },
+    },
+    populations: { population: {} },
+  };
+}
 
-describe("crime enricher", () => {
-  it("computes per-100k rates from state + national totals", async () => {
+function nationalResponse(rate) {
+  return {
+    offenses: {
+      rates: {
+        "United States Offenses": monthlyRates(rate),
+      },
+    },
+  };
+}
+
+function agencyListing() {
+  return {
+    GILA: [
+      {
+        ori: "AZ0040100",
+        agency_name: "Globe Police Department",
+        agency_type_name: "City",
+        counties: "GILA",
+        latitude: 33.395485,
+        longitude: -110.788,
+        state_abbr: "AZ",
+        state_name: "Arizona",
+        is_nibrs: true,
+        nibrs_start_date: "2023-01-01",
+      },
+      {
+        ori: "AZ0040000",
+        agency_name: "Gila County Sheriff",
+        agency_type_name: "County",
+        counties: "GILA",
+        latitude: 33.789,
+        longitude: -110.811,
+        state_abbr: "AZ",
+        state_name: "Arizona",
+        is_nibrs: true,
+      },
+    ],
+  };
+}
+
+describe("crime enricher (agency-level)", () => {
+  it("picks the nearest NIBRS-reporting city PD and reports per-100k rates", async () => {
     process.env.DATA_GOV_API_KEY = "test-key";
+
     const politeFetch = vi.fn().mockImplementation((url) => {
-      if (url.includes("/state/GA")) {
+      if (url.includes("/agency/byStateAbbr/AZ")) {
+        return Promise.resolve(agencyListing());
+      }
+      if (url.includes("/summarized/agency/AZ0040100/violent-crime")) {
         return Promise.resolve(
-          fbiResponse([
-            {
-              year: PRIMARY_YEAR,
-              state_abbr: "GA",
-              population: 10_000_000,
-              violent_crime: 30000,
-              property_crime: 200000,
-            },
-          ])
+          agencyResponse({
+            agencyName: "Globe Police Department",
+            agencyAnnualRate: 240,
+            stateName: "Arizona",
+            stateRate: 480,
+            usRate: 360,
+          })
         );
       }
-      return Promise.resolve(
-        fbiResponse([
-          {
-            year: PRIMARY_YEAR,
-            population: 332_000_000,
-            violent_crime: 1_200_000,
-            property_crime: 6_500_000,
-          },
-        ])
-      );
+      if (url.includes("/summarized/agency/AZ0040100/property-crime")) {
+        return Promise.resolve(
+          agencyResponse({
+            agencyName: "Globe Police Department",
+            agencyAnnualRate: 1800,
+            stateName: "Arizona",
+            stateRate: 2400,
+            usRate: 1900,
+          })
+        );
+      }
+      if (url.includes("/summarized/national/violent-crime")) {
+        return Promise.resolve(nationalResponse(360));
+      }
+      if (url.includes("/summarized/national/property-crime")) {
+        return Promise.resolve(nationalResponse(1900));
+      }
+      throw new Error(`unexpected url: ${url}`);
     });
 
-    const result = await fetchForStation(ATLANTA, { politeFetch });
+    const result = await fetchForStation(GLOBE, { politeFetch });
 
+    expect(result?.areaScope).toBe("custom");
+    expect(result?.areaKey).toBe("AZ0040100");
     expect(result?.summaryData).toMatchObject({
-      violentPer100k: 300,
-      propertyPer100k: 2000,
-      usViolentPer100k: 361.4,
-      usPropertyPer100k: 1957.8,
+      agencyOri: "AZ0040100",
+      agencyName: "Globe Police Department",
+      agencyType: "City",
+      violentPer100k: 240,
+      propertyPer100k: 1800,
+      usViolentPer100k: 360,
+      usPropertyPer100k: 1900,
       asOfYear: PRIMARY_YEAR,
     });
-    // 300 / 361.4 ≈ 0.83 ; 2000 / 1957.8 ≈ 1.02 ; avg ≈ 0.925 → score ~54.
-    expect(result?.summaryData.safetyIndex0to100).toBeGreaterThan(50);
-    expect(result?.summaryData.safetyIndex0to100).toBeLessThan(60);
-    expect(result?.areaKey).toBe("GA");
+    // (240/360 + 1800/1900) / 2 ≈ 0.81 → 100 - 40.5 ≈ 59-60.
+    expect(result?.summaryData.safetyIndex0to100).toBeGreaterThan(55);
+    expect(result?.summaryData.safetyIndex0to100).toBeLessThan(65);
     expect(result?.sourceUrl).not.toContain("api_key=");
   });
 
-  it("falls back to the prior year when the most recent has no data", async () => {
+  it("falls back to the next nearest agency when the first returns empty rates", async () => {
     process.env.DATA_GOV_API_KEY = "test-key";
-    let call = 0;
-    const politeFetch = vi.fn().mockImplementation(() => {
-      call += 1;
-      if (call <= 2) return Promise.resolve(fbiResponse([]));
-      const isState = call === 3;
-      return Promise.resolve(
-        fbiResponse([
-          {
-            year: FALLBACK_YEAR,
-            state_abbr: "GA",
-            population: isState ? 10_000_000 : 332_000_000,
-            violent_crime: isState ? 30000 : 1_200_000,
-            property_crime: isState ? 200000 : 6_500_000,
-          },
-        ])
-      );
+
+    const politeFetch = vi.fn().mockImplementation((url) => {
+      if (url.includes("/agency/byStateAbbr/AZ")) {
+        return Promise.resolve(agencyListing());
+      }
+      // Globe PD: empty rates for both offenses
+      if (url.includes("/summarized/agency/AZ0040100/")) {
+        return Promise.resolve({ offenses: { rates: {} } });
+      }
+      // Gila County Sheriff: returns data
+      if (url.includes("/summarized/agency/AZ0040000/violent-crime")) {
+        return Promise.resolve(
+          agencyResponse({
+            agencyName: "Gila County Sheriff",
+            agencyAnnualRate: 180,
+            stateName: "Arizona",
+            stateRate: 480,
+            usRate: 360,
+          })
+        );
+      }
+      if (url.includes("/summarized/agency/AZ0040000/property-crime")) {
+        return Promise.resolve(
+          agencyResponse({
+            agencyName: "Gila County Sheriff",
+            agencyAnnualRate: 1500,
+            stateName: "Arizona",
+            stateRate: 2400,
+            usRate: 1900,
+          })
+        );
+      }
+      if (url.includes("/summarized/national/violent-crime")) {
+        return Promise.resolve(nationalResponse(360));
+      }
+      if (url.includes("/summarized/national/property-crime")) {
+        return Promise.resolve(nationalResponse(1900));
+      }
+      throw new Error(`unexpected url: ${url}`);
     });
 
-    const result = await fetchForStation(ATLANTA, { politeFetch });
-    expect(result?.summaryData.asOfYear).toBe(FALLBACK_YEAR);
+    const result = await fetchForStation(GLOBE, { politeFetch });
+    expect(result?.summaryData.agencyOri).toBe("AZ0040000");
+    expect(result?.summaryData.agencyType).toBe("County");
+  });
+
+  it("returns null when no agencies are within range", async () => {
+    process.env.DATA_GOV_API_KEY = "test-key";
+    const politeFetch = vi.fn().mockResolvedValue({});
+    const result = await fetchForStation(GLOBE, { politeFetch });
+    expect(result).toBeNull();
   });
 
   it("returns null when state code is invalid", async () => {
     process.env.DATA_GOV_API_KEY = "test-key";
     const politeFetch = vi.fn();
     expect(
-      await fetchForStation({ state: "INVALID" }, { politeFetch })
+      await fetchForStation({ state: "INVALID", preciseLat: 0, preciseLng: 0 }, { politeFetch })
+    ).toBeNull();
+    expect(politeFetch).not.toHaveBeenCalled();
+  });
+
+  it("returns null when station has no precise coordinates", async () => {
+    process.env.DATA_GOV_API_KEY = "test-key";
+    const politeFetch = vi.fn();
+    expect(
+      await fetchForStation({ state: "AZ" }, { politeFetch })
     ).toBeNull();
     expect(politeFetch).not.toHaveBeenCalled();
   });
@@ -105,22 +227,41 @@ describe("crime enricher", () => {
   it("throws when DATA_GOV_API_KEY is unset", async () => {
     delete process.env.DATA_GOV_API_KEY;
     await expect(
-      fetchForStation(ATLANTA, { politeFetch: vi.fn() })
+      fetchForStation(GLOBE, { politeFetch: vi.fn() })
     ).rejects.toThrow(/DATA_GOV_API_KEY/);
   });
 
-  it("returns null when state estimate is missing entirely", () => {
-    expect(buildSummary(fbiResponse([]), fbiResponse([]), PRIMARY_YEAR)).toBeNull();
+  it("annualizes by scaling the monthly average to 12 months", () => {
+    const body = {
+      offenses: {
+        rates: {
+          "Globe Police Department Offenses": {
+            "01-2024": 30,
+            "02-2024": 30,
+            "03-2024": 30,
+            // partial year (only 3 months reported) — should still annualise to ~360
+          },
+        },
+      },
+    };
+    expect(annualizeAgencyRate(body, "Globe Police Department")).toBe(360);
   });
 
-  it("computes per-100k even when the national row is missing", () => {
-    const summary = buildSummary(
-      fbiResponse([{ year: PRIMARY_YEAR, population: 10_000_000, violent_crime: 30000, property_crime: 200000 }]),
-      fbiResponse([]),
-      PRIMARY_YEAR
-    );
-    expect(summary?.violentPer100k).toBe(300);
-    expect(summary?.usViolentPer100k).toBeNull();
-    expect(summary?.safetyIndex0to100).toBeNull(); // can't compute without national baseline
+  it("computes the safety index symmetrically", () => {
+    expect(computeSafetyIndex(180, 950, 360, 1900)).toBe(75); // half the U.S. rate → 75
+    expect(computeSafetyIndex(360, 1900, 360, 1900)).toBe(50); // exactly U.S. baseline
+    expect(computeSafetyIndex(720, 3800, 360, 1900)).toBe(0); // double the rate → clamped 0
+  });
+
+  it("annualizeNationalRate finds the United States line in mixed responses", () => {
+    const body = {
+      offenses: {
+        rates: {
+          "United States Offenses": monthlyRates(360),
+          "Arizona Offenses": monthlyRates(480),
+        },
+      },
+    };
+    expect(annualizeNationalRate(body)).toBe(360);
   });
 });
