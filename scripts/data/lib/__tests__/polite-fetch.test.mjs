@@ -133,7 +133,9 @@ describe("createPoliteFetch", () => {
   });
 
   it("throws after exhausting retries on persistent 5xx", async () => {
-    const fetchImpl = vi.fn().mockResolvedValue(new Response("boom", { status: 503 }));
+    const fetchImpl = vi
+      .fn()
+      .mockImplementation(() => Promise.resolve(new Response("boom", { status: 503 })));
     const clock = makeClock();
     const politeFetch = createPoliteFetch({
       cacheDir,
@@ -145,6 +147,25 @@ describe("createPoliteFetch", () => {
 
     await expect(politeFetch("https://example.test/api", { retries: 2 })).rejects.toThrow(/503/);
     expect(fetchImpl).toHaveBeenCalledTimes(3);
+  });
+
+  it("does not retry 4xx (e.g., URL fragment '1500' must not trigger retry on 400)", async () => {
+    const fetchImpl = vi
+      .fn()
+      .mockImplementation(() => Promise.resolve(new Response("bad request", { status: 400 })));
+    const clock = makeClock();
+    const politeFetch = createPoliteFetch({
+      cacheDir,
+      fetchImpl,
+      now: clock.now,
+      sleep: makeSleep(clock),
+      randomJitter: () => 0,
+    });
+
+    await expect(
+      politeFetch("https://example.test/path?address=1500+Main+St", { retries: 3 })
+    ).rejects.toThrow(/400/);
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
   });
 
   it("enforces per-host throttle between consecutive calls", async () => {

@@ -195,7 +195,10 @@ function isRetryable(error) {
   if (!error) return false;
   if (error.name === "AbortError") return true;
   const message = String(error.message ?? error);
-  return /429|5\d\d|ECONNRESET|ETIMEDOUT|ENETUNREACH|EAI_AGAIN/.test(message);
+  // Match status codes only when the polite-fetch prefix tags them as such,
+  // so URL fragments like "1500" don't false-trigger a retry on a 400.
+  if (/^polite-fetch:\s*(429|5\d\d)\b/.test(message)) return true;
+  return /\b(ECONNRESET|ETIMEDOUT|ENETUNREACH|EAI_AGAIN)\b/.test(message);
 }
 
 function parseBody(body, parser) {

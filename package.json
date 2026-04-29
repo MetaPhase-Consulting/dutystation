@@ -39,7 +39,9 @@
     "data:remediate:links:apply": "node scripts/data/remediate-links.mjs --apply",
     "data:validate:link-audit": "node scripts/data/validate-link-audit.mjs",
     "data:seed:alpha": "node scripts/data/seed-summary-alpha.mjs",
-    "data:seed:alpha:apply": "node scripts/data/seed-summary-alpha.mjs --apply"
+    "data:seed:alpha:apply": "node scripts/data/seed-summary-alpha.mjs --apply",
+    "data:enrich:addresses": "node scripts/data/enrich-addresses.mjs",
+    "data:enrich:addresses:apply": "node scripts/data/enrich-addresses.mjs --apply"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
