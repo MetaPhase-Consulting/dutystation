@@ -73,9 +73,13 @@ function pickTarget(station) {
   }
   const stateFips = pickStateFips(station);
   if (!stateFips) return null;
+  // SARPP requires the 5-digit state-padded GeoFips ("27000") rather
+  // than the bare 2-digit state FIPS ("27") — passing the latter trips
+  // BEA error 40.
+  const stateGeoFips = `${stateFips}000`;
   return {
     table: "SARPP",
-    geoFips: stateFips,
+    geoFips: stateGeoFips,
     areaScope: "custom",
     areaValue: `state:${stateFips}`,
     areaKey: stateFips,
@@ -89,15 +93,29 @@ function pickStateFips(station) {
   return null;
 }
 
+// BEA only allows a single LineCode per request for the metropolitan
+// (MARPP) table — passing "1,2,3,4" trips API error 41 — so we issue
+// one request per LineCode. The four lines map to:
+//   1 = All items, 2 = Goods, 3 = Services-Rents (housing), 4 = Services-Other.
+// The Code field in MARPP rows is "MARPP-1"/"MARPP-2"/etc. and in SARPP
+// rows is "RPPALL"/"RPPGOOD"/"RPPRENT"/"RPPSER", so rather than parse it
+// we tag each response with the LineCode we asked for.
+const LINE_CODES = ["1", "2", "3", "4"];
+
 async function fetchYear({ politeFetch, apiKey, target, year }) {
-  const url = buildUrl(apiKey, target, year);
-  let body;
-  try {
-    body = await politeFetch(url, { ttlMs: BEA_TTL_MS });
-  } catch {
-    return null;
+  const urls = LINE_CODES.map((line) => buildUrl(apiKey, target, year, line));
+  const settled = await Promise.all(
+    urls.map((url) =>
+      politeFetch(url, { ttlMs: BEA_TTL_MS }).catch(() => null)
+    )
+  );
+  const valuesByLine = {};
+  for (let i = 0; i < LINE_CODES.length; i += 1) {
+    const line = LINE_CODES[i];
+    const body = settled[i];
+    valuesByLine[line] = pickFirstValue(body);
   }
-  const summary = buildSummary(body);
+  const summary = buildSummary(valuesByLine);
   if (!summary) return null;
   return {
     areaScope: target.areaScope,
@@ -106,17 +124,17 @@ async function fetchYear({ politeFetch, apiKey, target, year }) {
     radiusMiles: null,
     summaryData: { ...summary, asOf: String(year), areaLabel: target.label },
     dataSource: `BEA Regional Price Parities (${target.table === "MARPP" ? "MSA" : "state"}, ${year})`,
-    sourceUrl: stripBeaKey(url),
+    sourceUrl: stripBeaKey(urls[0]),
   };
 }
 
-function buildUrl(apiKey, target, year) {
+function buildUrl(apiKey, target, year, lineCode) {
   const params = new URLSearchParams({
     UserID: apiKey,
     method: "GetData",
     datasetname: "Regional",
     TableName: target.table,
-    LineCode: "1,2,3,4",
+    LineCode: lineCode,
     GeoFips: target.geoFips,
     Year: String(year),
     ResultFormat: "json",
@@ -130,24 +148,20 @@ function stripBeaKey(url) {
   return u.toString();
 }
 
-export function buildSummary(body) {
-  const rows = body?.BEAAPI?.Results?.Data ?? [];
-  if (!Array.isArray(rows) || rows.length === 0) return null;
-
-  // BEA returns one row per (LineCode, GeoFips, TimePeriod). The LineCode
-  // identifier is in the `Code` field:
-  //   RPPALL  = All items (overall index)
-  //   RPPGOOD = Goods
-  //   RPPRENT = Services - rents (housing proxy)
-  //   RPPSER  = Services - other
-  const overall = pickValue(rows, "RPPALL");
-  const housing = pickValue(rows, "RPPRENT");
-  const goods = pickValue(rows, "RPPGOOD");
-  const services = pickValue(rows, "RPPSER");
+// `valuesByLine` is { "1": <number|null>, "2": ..., "3": ..., "4": ... }
+// where each key is the BEA LineCode we requested and each value is the
+// DataValue from the first row of that response. This isolates the
+// shape difference between MARPP ("MARPP-1") and SARPP ("RPPALL") Code
+// fields — we no longer parse Code at all.
+export function buildSummary(valuesByLine) {
+  if (!valuesByLine || typeof valuesByLine !== "object") return null;
+  const overall = valuesByLine["1"] ?? null;
+  const goods = valuesByLine["2"] ?? null;
+  const housing = valuesByLine["3"] ?? null;
+  const services = valuesByLine["4"] ?? null;
   if (overall === null && housing === null && goods === null && services === null) {
     return null;
   }
-
   return {
     overallIndexUs100: overall,
     housingIndex: housing,
@@ -159,10 +173,10 @@ export function buildSummary(body) {
   };
 }
 
-function pickValue(rows, code) {
-  const row = rows.find((entry) => entry?.Code === code);
-  if (!row) return null;
-  const raw = String(row.DataValue ?? "").replace(/,/g, "");
+function pickFirstValue(body) {
+  const rows = body?.BEAAPI?.Results?.Data ?? [];
+  if (!Array.isArray(rows) || rows.length === 0) return null;
+  const raw = String(rows[0].DataValue ?? "").replace(/,/g, "");
   const parsed = Number(raw);
   return Number.isFinite(parsed) ? parsed : null;
 }

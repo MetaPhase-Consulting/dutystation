@@ -34,18 +34,35 @@ function beaRows(rows) {
 describe("cost-of-living enricher", () => {
   it("uses BEA MARPP at MSA granularity when the station has a CBSA code", async () => {
     process.env.BEA_API_KEY = "test-key";
-    const politeFetch = vi.fn().mockResolvedValue(
-      beaRows([
-        { GeoFips: "38060", GeoName: "Phoenix-Mesa-Chandler, AZ", Code: "RPPALL", TimePeriod: "2022", DataValue: "103.9" },
-        { GeoFips: "38060", Code: "RPPGOOD", TimePeriod: "2022", DataValue: "100.2" },
-        { GeoFips: "38060", Code: "RPPRENT", TimePeriod: "2022", DataValue: "108.1" },
-        { GeoFips: "38060", Code: "RPPSER", TimePeriod: "2022", DataValue: "102.4" },
-      ])
-    );
+    // BEA MARPP only allows one LineCode per request, so the enricher
+    // issues four parallel requests and the mock has to satisfy each.
+    const politeFetch = vi.fn().mockImplementation((url) => {
+      if (url.includes("LineCode=1")) {
+        return Promise.resolve(beaRows([
+          { GeoFips: "38060", GeoName: "Phoenix-Mesa-Chandler, AZ", Code: "RPPALL", TimePeriod: "2022", DataValue: "103.9" },
+        ]));
+      }
+      if (url.includes("LineCode=2")) {
+        return Promise.resolve(beaRows([
+          { GeoFips: "38060", Code: "RPPGOOD", TimePeriod: "2022", DataValue: "100.2" },
+        ]));
+      }
+      if (url.includes("LineCode=3")) {
+        return Promise.resolve(beaRows([
+          { GeoFips: "38060", Code: "RPPRENT", TimePeriod: "2022", DataValue: "108.1" },
+        ]));
+      }
+      if (url.includes("LineCode=4")) {
+        return Promise.resolve(beaRows([
+          { GeoFips: "38060", Code: "RPPSER", TimePeriod: "2022", DataValue: "102.4" },
+        ]));
+      }
+      throw new Error(`unexpected url: ${url}`);
+    });
 
     const result = await fetchForStation(PHOENIX_METRO, { politeFetch });
 
-    expect(politeFetch).toHaveBeenCalledTimes(1);
+    expect(politeFetch).toHaveBeenCalledTimes(4);
     expect(politeFetch.mock.calls[0][0]).toContain("TableName=MARPP");
     expect(politeFetch.mock.calls[0][0]).toContain("GeoFips=38060");
     expect(result?.areaScope).toBe("msa");
@@ -66,16 +83,23 @@ describe("cost-of-living enricher", () => {
 
   it("falls back to BEA SARPP at state granularity for non-metro stations", async () => {
     process.env.BEA_API_KEY = "test-key";
-    const politeFetch = vi.fn().mockResolvedValue(
-      beaRows([
-        { GeoFips: "04", GeoName: "Arizona", Code: "RPPALL", TimePeriod: "2022", DataValue: "97.2" },
-        { GeoFips: "04", Code: "RPPRENT", TimePeriod: "2022", DataValue: "95.8" },
-      ])
-    );
+    const politeFetch = vi.fn().mockImplementation((url) => {
+      if (url.includes("LineCode=1")) {
+        return Promise.resolve(beaRows([
+          { GeoFips: "04", GeoName: "Arizona", Code: "RPPALL", TimePeriod: "2022", DataValue: "97.2" },
+        ]));
+      }
+      if (url.includes("LineCode=3")) {
+        return Promise.resolve(beaRows([
+          { GeoFips: "04", Code: "RPPRENT", TimePeriod: "2022", DataValue: "95.8" },
+        ]));
+      }
+      return Promise.resolve(beaRows([]));
+    });
 
     const result = await fetchForStation(NON_METRO, { politeFetch });
     expect(politeFetch.mock.calls[0][0]).toContain("TableName=SARPP");
-    expect(politeFetch.mock.calls[0][0]).toContain("GeoFips=04");
+    expect(politeFetch.mock.calls[0][0]).toContain("GeoFips=04000");
     expect(result?.areaScope).toBe("custom");
     expect(result?.areaKey).toBe("04");
     expect(result?.summaryData.overallIndexUs100).toBe(97.2);
@@ -84,18 +108,27 @@ describe("cost-of-living enricher", () => {
 
   it("falls back to the prior year when the most recent has no data", async () => {
     process.env.BEA_API_KEY = "test-key";
-    const politeFetch = vi
-      .fn()
-      .mockResolvedValueOnce(beaRows([]))
-      .mockResolvedValueOnce(
-        beaRows([
+    let calls = 0;
+    const politeFetch = vi.fn().mockImplementation((url) => {
+      calls += 1;
+      // First 4 calls (Year=primary): empty
+      if (calls <= 4) return Promise.resolve(beaRows([]));
+      // Next 4 calls (Year=fallback): partial data
+      if (url.includes("LineCode=1")) {
+        return Promise.resolve(beaRows([
           { GeoFips: "38060", Code: "RPPALL", TimePeriod: "2021", DataValue: "102.1" },
+        ]));
+      }
+      if (url.includes("LineCode=3")) {
+        return Promise.resolve(beaRows([
           { GeoFips: "38060", Code: "RPPRENT", TimePeriod: "2021", DataValue: "104.5" },
-        ])
-      );
+        ]));
+      }
+      return Promise.resolve(beaRows([]));
+    });
 
     const result = await fetchForStation(PHOENIX_METRO, { politeFetch });
-    expect(politeFetch).toHaveBeenCalledTimes(2);
+    expect(politeFetch).toHaveBeenCalledTimes(8);
     expect(result?.summaryData.overallIndexUs100).toBe(102.1);
   });
 
@@ -114,9 +147,20 @@ describe("cost-of-living enricher", () => {
   });
 
   it("returns null when none of the rate codes have values", () => {
-    expect(buildSummary(beaRows([]))).toBeNull();
-    expect(
-      buildSummary(beaRows([{ Code: "UNKNOWN", DataValue: "100" }]))
-    ).toBeNull();
+    expect(buildSummary(null)).toBeNull();
+    expect(buildSummary({})).toBeNull();
+    expect(buildSummary({ "1": null, "2": null, "3": null, "4": null })).toBeNull();
+  });
+
+  it("buildSummary maps LineCodes to canonical fields", () => {
+    expect(buildSummary({ "1": 103.9, "2": 100.2, "3": 108.1, "4": 102.4 })).toEqual({
+      overallIndexUs100: 103.9,
+      housingIndex: 108.1,
+      goodsIndex: 100.2,
+      servicesIndex: 102.4,
+      groceriesIndex: null,
+      utilitiesIndex: null,
+      transportIndex: null,
+    });
   });
 });
