@@ -18,6 +18,7 @@ test-results
 .env.*
 !.env.example
 scripts/data/.cache/
+src/data/*.db
 
 # Editor directories and files
 .vscode/*

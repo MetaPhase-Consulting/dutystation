@@ -419,21 +419,34 @@ export default function DataSourcesPage() {
               ))}
             </ul>
             <p className="text-sm text-muted-foreground">
+              For complete provenance — every endpoint we call, the licensing
+              posture for each source, the refresh cadence, and the polite-fetch
+              policy our scripts use — see the{' '}
+              <a
+                href="https://github.com/MetaPhase-Consulting/dutystation/blob/main/docs/data-sources.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-700 underline underline-offset-2 hover:no-underline"
+              >
+                data sources reference
+              </a>.
+            </p>
+            <p className="text-sm text-muted-foreground">
               This project was built by{' '}
-              <a 
-                href="https://metaphase.tech/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://metaphase.tech/"
+                target="_blank"
+                rel="noopener noreferrer"
                 data-brand="metaphase"
                 className="text-orange-500 font-semibold hover:underline"
               >
                 MetaPhase
               </a>{' '}
               and is free open source software available to the public under the{' '}
-              <a 
-                href="https://github.com/MetaPhase-Consulting/dutystation/blob/main/LICENSE" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://github.com/MetaPhase-Consulting/dutystation/blob/main/LICENSE"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-700 underline underline-offset-2 hover:no-underline"
               >
                 MIT License

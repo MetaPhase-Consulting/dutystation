@@ -39,7 +39,16 @@
     "data:remediate:links:apply": "node scripts/data/remediate-links.mjs --apply",
     "data:validate:link-audit": "node scripts/data/validate-link-audit.mjs",
     "data:seed:alpha": "node scripts/data/seed-summary-alpha.mjs",
-    "data:seed:alpha:apply": "node scripts/data/seed-summary-alpha.mjs --apply"
+    "data:seed:alpha:apply": "node scripts/data/seed-summary-alpha.mjs --apply",
+    "data:enrich:addresses": "node scripts/data/enrich-addresses.mjs",
+    "data:enrich:addresses:apply": "node scripts/data/enrich-addresses.mjs --apply",
+    "data:enrich:summaries": "node scripts/data/enrich-summaries.mjs",
+    "data:enrich:summaries:apply": "node scripts/data/enrich-summaries.mjs --apply",
+    "data:validate:summary-coverage": "node scripts/data/validate-summary-coverage.mjs",
+    "data:backfill:station-geo": "node scripts/data/backfill-station-geo.mjs",
+    "data:backfill:station-geo:apply": "node scripts/data/backfill-station-geo.mjs --apply",
+    "data:backfill:cbsa": "node scripts/data/backfill-cbsa.mjs",
+    "data:backfill:cbsa:apply": "node scripts/data/backfill-cbsa.mjs --apply"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

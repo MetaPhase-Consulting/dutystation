@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-04-30T12:34:20.006Z",
+  "applied": true,
+  "stations": 5,
+  "categories": [
+    "costOfLiving"
+  ],
+  "byCategory": {
+    "costOfLiving": {
+      "attempted": 5,
+      "succeeded": 5,
+      "nullResults": 0,
+      "errors": 0,
+      "coverage": 1
+    }
+  },
+  "errors": []
+}

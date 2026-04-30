@@ -1,0 +1,1349 @@
+{
+  "generatedAt": "2026-04-29T15:52:52.713Z",
+  "applied": true,
+  "totals": {
+    "attempted": 268,
+    "matched": 266,
+    "unmatched": 2
+  },
+  "results": [
+    {
+      "legacyId": "cbp-atlanta-ga-30344",
+      "countyFips": "13121",
+      "placeFips": "1304000"
+    },
+    {
+      "legacyId": "cbp-myrtle-beach-international-airport-south-carolina-1681-sc-29577",
+      "countyFips": "45051",
+      "placeFips": "4549075"
+    },
+    {
+      "legacyId": "cbp-georgetown-south-carolina-1602-sc-29442",
+      "countyFips": "45043",
+      "placeFips": "4528870"
+    },
+    {
+      "legacyId": "cbp-raleigh-durham-north-carolina-1503-nc-27560",
+      "countyFips": "37183",
+      "placeFips": "3744520"
+    },
+    {
+      "legacyId": "cbp-front-royal-virginia-1410-va-22630",
+      "countyFips": "51187",
+      "placeFips": "5129968"
+    },
+    {
+      "legacyId": "cbp-jackman-maine-0104-me-04945",
+      "countyFips": "23027",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-madawaska-maine-0109-me-04756",
+      "countyFips": "23003",
+      "placeFips": "2310565"
+    },
+    {
+      "legacyId": "cbp-houlton-maine-0106-me-04730",
+      "countyFips": "23003",
+      "placeFips": "2333945"
+    },
+    {
+      "legacyId": "cbp-portsmouth-new-hampshire-0131-nh-03801",
+      "countyFips": "33015",
+      "placeFips": "3362900"
+    },
+    {
+      "legacyId": "cbp-providence-rhode-island-0502-ri-02886",
+      "countyFips": "44003",
+      "placeFips": "4474300"
+    },
+    {
+      "legacyId": "cbp-newport-rhode-island-0501-ri-02886",
+      "countyFips": "44003",
+      "placeFips": "4474300"
+    },
+    {
+      "legacyId": "cbp-bridgeport-connecticut-0410-ct-06457",
+      "countyFips": "09130",
+      "placeFips": "0947290"
+    },
+    {
+      "legacyId": "cbp-new-london-new-haven-connecticut-0413-ct-06457",
+      "countyFips": "09130",
+      "placeFips": "0947290"
+    },
+    {
+      "legacyId": "cbp-hartford-connecticut-0411-ct-06096",
+      "countyFips": "09110",
+      "placeFips": "0987140"
+    },
+    {
+      "legacyId": "cbp-new-haven-connecticut-0412-ct-06457",
+      "countyFips": "09130",
+      "placeFips": "0947290"
+    },
+    {
+      "legacyId": "cbp-buffalo-ny-14225",
+      "countyFips": "36029",
+      "placeFips": "3611000"
+    },
+    {
+      "legacyId": "cbp-syracuse-new-york-0906-ny-13212",
+      "countyFips": "36025",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-champlain-new-york-0712-ny-12919",
+      "countyFips": "36019",
+      "placeFips": "3613739"
+    },
+    {
+      "legacyId": "cbp-massena-new-york-0704-ny-13683",
+      "countyFips": "36089",
+      "placeFips": "3600457"
+    },
+    {
+      "legacyId": "cbp-ogdensburg-new-york-0701-ny-13669",
+      "countyFips": "36089",
+      "placeFips": "3654485"
+    },
+    {
+      "legacyId": "cbp-south-dakota-sioux-falls-regional-airport-joe-foss-field-3502-sd-57104",
+      "countyFips": "46099",
+      "placeFips": "4659020"
+    },
+    {
+      "legacyId": "cbp-kansas-city-missouri-4501-mo-64153",
+      "countyFips": "29095",
+      "placeFips": "2938000"
+    },
+    {
+      "legacyId": "cbp-duluth-mn-and-superior-wi-minnesota-3510-mn-55802",
+      "countyFips": "27137",
+      "placeFips": "2717000"
+    },
+    {
+      "legacyId": "cbp-rochester-international-airport-rochester-minnesota-3581-mn-55902",
+      "countyFips": "27109",
+      "placeFips": "2754880"
+    },
+    {
+      "legacyId": "cbp-fort-wayne-indiana-4183-in-46809",
+      "countyFips": "18003",
+      "placeFips": "1825000"
+    },
+    {
+      "legacyId": "jackman-station",
+      "countyFips": "23025",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-louisville-kentucky-4115-ky-40209",
+      "countyFips": "21111",
+      "placeFips": "2148000"
+    },
+    {
+      "legacyId": "cbp-lexington-kentucky-4184-ky-40510",
+      "countyFips": "21067",
+      "placeFips": "2146027"
+    },
+    {
+      "legacyId": "cbp-erie-pennsylvania-4106-pa-16505",
+      "countyFips": "42049",
+      "placeFips": "4224000"
+    },
+    {
+      "legacyId": "cbp-peoria-illinois-3902-il-61607",
+      "countyFips": "17143",
+      "placeFips": "1759000"
+    },
+    {
+      "legacyId": "cbp-chicago-illinois-3901-il-60018",
+      "countyFips": "17031",
+      "placeFips": "1765819"
+    },
+    {
+      "legacyId": "cbp-midamerica-st-louis-airport-mascoutah-illinois-4581-il-62258",
+      "countyFips": "17163",
+      "placeFips": "1747423"
+    },
+    {
+      "legacyId": "cbp-waukegan-national-airport-waukegan-illinois-3981-il-60087",
+      "countyFips": "17097",
+      "placeFips": "1779293"
+    },
+    {
+      "legacyId": "cbp-dupage-airport-west-chicago-illinois-3984-il-60185",
+      "countyFips": "17031",
+      "placeFips": "1714000"
+    },
+    {
+      "legacyId": "cbp-gary-chicago-international-airport-gary-indiana-3905-in-46406",
+      "countyFips": "18089",
+      "placeFips": "1827000"
+    },
+    {
+      "legacyId": "cbp-university-of-illinois-willard-airport-3987-il-61874",
+      "countyFips": "17019",
+      "placeFips": "1767860"
+    },
+    {
+      "legacyId": "cbp-south-bend-international-airport-south-bend-indiana-3986-in-46628",
+      "countyFips": "53049",
+      "placeFips": "5365625"
+    },
+    {
+      "legacyId": "cbp-sheboygan-county-memorial-airport-wisconsin-3782-wi-53085",
+      "countyFips": "55117",
+      "placeFips": "5573025"
+    },
+    {
+      "legacyId": "cbp-sault-sainte-marie-michigan-3803-mi-49783",
+      "countyFips": "26033",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-detroit-metropolitan-airport-michigan-3807-mi-48242",
+      "countyFips": "26163",
+      "placeFips": "2622000"
+    },
+    {
+      "legacyId": "cbp-columbus-new-mexico-2406-nm-88029",
+      "countyFips": "35029",
+      "placeFips": "3517050"
+    },
+    {
+      "legacyId": "cbp-presidio-texas-2403-tx-79845",
+      "countyFips": "48377",
+      "placeFips": "4859396"
+    },
+    {
+      "legacyId": "cbp-marcelino-serna-tornillo-texas-2404-tx-79853",
+      "countyFips": "48141",
+      "placeFips": "4873376"
+    },
+    {
+      "legacyId": "cbp-el-paso-texas-2402-tx-79905",
+      "countyFips": "48141",
+      "placeFips": "4824000"
+    },
+    {
+      "legacyId": "cbp-lubbock-texas-5503-tx-79403",
+      "countyFips": "48303",
+      "placeFips": "4845000"
+    },
+    {
+      "legacyId": "malta-station",
+      "countyFips": "30071",
+      "placeFips": "3047425"
+    },
+    {
+      "legacyId": "cbp-laredo-texas-2304-tx-78040",
+      "countyFips": "48479",
+      "placeFips": "4841464"
+    },
+    {
+      "legacyId": "cbp-del-rio-texas-2302-tx-78840",
+      "countyFips": "48465",
+      "placeFips": "4819792"
+    },
+    {
+      "legacyId": "cbp-brownsville-texas-2301-tx-78521",
+      "countyFips": "48061",
+      "placeFips": "4810768"
+    },
+    {
+      "legacyId": "cbp-progreso-texas-2309-tx-78579",
+      "countyFips": "48215",
+      "placeFips": "4859636"
+    },
+    {
+      "legacyId": "cbp-south-texas-international-airport-at-edinburg-2381-tx-78542",
+      "countyFips": "48215",
+      "placeFips": "4822660"
+    },
+    {
+      "legacyId": "scoby-station",
+      "countyFips": "30091",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-harlingen-airport-valley-international-airport-2383-tx-78550",
+      "countyFips": "48061",
+      "placeFips": "4832372"
+    },
+    {
+      "legacyId": "cbp-miami-international-airport-florida-5206-fl-33122",
+      "countyFips": "12086",
+      "placeFips": "1245000"
+    },
+    {
+      "legacyId": "cbp-key-west-florida-5202-fl-33040",
+      "countyFips": "12087",
+      "placeFips": "1236550"
+    },
+    {
+      "legacyId": "cbp-port-everglades-fort-lauderdale-florida-5203-fl-33316",
+      "countyFips": "12011",
+      "placeFips": "1224000"
+    },
+    {
+      "legacyId": "cbp-birmingham-alabama-1904-al-35212",
+      "countyFips": "01073",
+      "placeFips": "0107000"
+    },
+    {
+      "legacyId": "cbp-knoxville-tennessee-2016-tn-37902",
+      "countyFips": "47093",
+      "placeFips": "4740000"
+    },
+    {
+      "legacyId": "cbp-tri-cities-tennessee-2027-tn-37617",
+      "countyFips": "47163",
+      "placeFips": "4706740"
+    },
+    {
+      "legacyId": "cbp-shreveport-bossier-city-louisiana-2018-la-71109",
+      "countyFips": "22017",
+      "placeFips": "2270000"
+    },
+    {
+      "legacyId": "cbp-astoria-oregon-2901-or-97103",
+      "countyFips": "41007",
+      "placeFips": "4103150"
+    },
+    {
+      "legacyId": "cbp-eagle-county-regional-airport-colorado-3385-co-81637",
+      "countyFips": "08037",
+      "placeFips": "0833695"
+    },
+    {
+      "legacyId": "cbp-andrade-class-a-california-2502-ca-92283",
+      "countyFips": "06025",
+      "placeFips": "0686020"
+    },
+    {
+      "legacyId": "cbp-hagatna-guam-guam-3207-gu-96913",
+      "countyFips": "66010",
+      "placeFips": "6609500"
+    },
+    {
+      "legacyId": "cbp-salt-lake-city-utah-3303-ut-84112",
+      "countyFips": "49035",
+      "placeFips": "4967000"
+    },
+    {
+      "legacyId": "cbp-nawiliwili-port-allen-hawaii-3204-hi-96766",
+      "countyFips": "15007",
+      "placeFips": "1545200"
+    },
+    {
+      "legacyId": "cbp-kona-hawaii-3206-hi-96740",
+      "countyFips": "15001",
+      "placeFips": "1523000"
+    },
+    {
+      "legacyId": "cbp-kahului-hawaii-3203-hi-96732",
+      "countyFips": "15009",
+      "placeFips": "1522700"
+    },
+    {
+      "legacyId": "cbp-rota-northern-mariana-islands-3213-mp-96951",
+      "countyFips": "69100",
+      "placeFips": "6900400"
+    },
+    {
+      "legacyId": "cbp-tinian-northern-mariana-islands-3212-mp-96950",
+      "countyFips": "69120",
+      "placeFips": "6989300"
+    },
+    {
+      "legacyId": "cbp-saint-croix-virgin-islands-5104-vi-00850",
+      "countyFips": "78010",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-eastport-id-idaho-3302-id-83826",
+      "countyFips": "16021",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-porthill-id-idaho-3308-id-83853",
+      "countyFips": "16021",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-baudette-minnesota-3424-mn-56623",
+      "countyFips": "27077",
+      "placeFips": "2704024"
+    },
+    {
+      "legacyId": "cbp-turner-mt-montana-3306-mt-59542",
+      "countyFips": "30005",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-willow-creek-montana-3325-mt-59501",
+      "countyFips": "30041",
+      "placeFips": "3035050"
+    },
+    {
+      "legacyId": "cbp-raymond-montana-3301-mt-59256",
+      "countyFips": "30091",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-cruz-bay-st-john-virgin-islands-5102-vi-00830",
+      "countyFips": "78020",
+      "placeFips": "7828000"
+    },
+    {
+      "legacyId": "cbp-charlotte-amalie-area-port-of-st-thomas-virgin-islands-5101-vi-00802",
+      "countyFips": "78030",
+      "placeFips": "7816300"
+    },
+    {
+      "legacyId": "cbp-piegan-mt-montana-3316-mt-59411",
+      "countyFips": "30035",
+      "placeFips": "3003250"
+    },
+    {
+      "legacyId": "cbp-glacier-park-international-airport-montana-kalispell-3324-mt-59901",
+      "countyFips": "30029",
+      "placeFips": "3040075"
+    },
+    {
+      "legacyId": "cbp-saint-john-north-dakota-3405-nd-58369",
+      "countyFips": "48453",
+      "placeFips": "4805000"
+    },
+    {
+      "legacyId": "cbp-portal-north-dakota-3403-nd-58772",
+      "countyFips": "38013",
+      "placeFips": "3863740"
+    },
+    {
+      "legacyId": "cbp-new-river-valley-airport-virginia-1412-va-24084",
+      "countyFips": "51155",
+      "placeFips": "5123648"
+    },
+    {
+      "legacyId": "cbp-saipan-northern-mariana-islands-3211-mp-96950",
+      "countyFips": "69110",
+      "placeFips": "6908000"
+    },
+    {
+      "legacyId": "cbp-hannah-north-dakota-3408-nd-58239",
+      "countyFips": "38019",
+      "placeFips": "3835060"
+    },
+    {
+      "legacyId": "cbp-noonan-north-dakota-3420-nd-58765",
+      "countyFips": "38023",
+      "placeFips": "3857220"
+    },
+    {
+      "legacyId": "cbp-williston-basin-international-airport-williston-nd-3433-nd-58801",
+      "countyFips": "38105",
+      "placeFips": "3886220"
+    },
+    {
+      "legacyId": "cbp-fortuna-north-dakota-3417-nd-58844",
+      "countyFips": "38023",
+      "placeFips": "3827820"
+    },
+    {
+      "legacyId": "cbp-panama-city-florida-1818-fl-32407",
+      "countyFips": "12005",
+      "placeFips": "1254725"
+    },
+    {
+      "legacyId": "cbp-naples-florida-1880-fl-34104",
+      "countyFips": "12021",
+      "placeFips": "1247625"
+    },
+    {
+      "legacyId": "cbp-st-petersburg-florida-1814-fl-33762",
+      "countyFips": "12103",
+      "placeFips": "1212875"
+    },
+    {
+      "legacyId": "cbp-san-luis-arizona-2608-az-85349",
+      "countyFips": "04027",
+      "placeFips": "0463470"
+    },
+    {
+      "legacyId": "cbp-sasabe-arizona-2606-az-85633",
+      "countyFips": "04019",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-lukeville-arizona-2602-az-85341",
+      "countyFips": "04019",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-presidio-station-tx-79845",
+      "countyFips": "48377",
+      "placeFips": "4859396"
+    },
+    {
+      "legacyId": "cbp-sierra-blanca-station-tx-79851",
+      "countyFips": "48229",
+      "placeFips": "4867772"
+    },
+    {
+      "legacyId": "cbp-marfa-station-tx-79843",
+      "countyFips": "48377",
+      "placeFips": "4846620"
+    },
+    {
+      "legacyId": "cbp-sanderson-station-tx-79848",
+      "countyFips": "48443",
+      "placeFips": "4865084"
+    },
+    {
+      "legacyId": "cbp-wellesley-island-station-ny-13640",
+      "countyFips": "36045",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-del-rio-station-tx-78840",
+      "countyFips": "48465",
+      "placeFips": "4819792"
+    },
+    {
+      "legacyId": "cbp-brackettville-station-tx-78832",
+      "countyFips": "48271",
+      "placeFips": "4809868"
+    },
+    {
+      "legacyId": "cbp-comstock-station-tx-78837",
+      "countyFips": "48465",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-eagle-pass-south-station-tx-78852",
+      "countyFips": "48323",
+      "placeFips": "4821892"
+    },
+    {
+      "legacyId": "cbp-donna-m-doss-station-tx-78880",
+      "countyFips": "48027",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-carrizo-springs-station-tx-78834",
+      "countyFips": "48127",
+      "placeFips": "4812988"
+    },
+    {
+      "legacyId": "cbp-uvalde-station-tx-78801",
+      "countyFips": "48463",
+      "placeFips": "4874588"
+    },
+    {
+      "legacyId": "cbp-marysville-station-mi-48040",
+      "countyFips": "26147",
+      "placeFips": "2652080"
+    },
+    {
+      "legacyId": "cbp-indio-station-ca-92201",
+      "countyFips": "06065",
+      "placeFips": "0636448"
+    },
+    {
+      "legacyId": "cbp-international-falls-station-mn-56649",
+      "countyFips": "27071",
+      "placeFips": "2731040"
+    },
+    {
+      "legacyId": "cbp-bottineau-station-nd-58318",
+      "countyFips": "38009",
+      "placeFips": "3808460"
+    },
+    {
+      "legacyId": "cbp-freer-station-tx-78357",
+      "countyFips": "48131",
+      "placeFips": "4827432"
+    },
+    {
+      "legacyId": "cbp-harrisburg-pennsylvania-1109-pa-17055",
+      "countyFips": "42041",
+      "placeFips": "4248376"
+    },
+    {
+      "legacyId": "cbp-new-orleans-station-la-70174",
+      "countyFips": "22071",
+      "placeFips": "2255000"
+    },
+    {
+      "legacyId": "cbp-fort-brown-station-tx-78521",
+      "countyFips": "48061",
+      "placeFips": "4810768"
+    },
+    {
+      "legacyId": "cbp-kingsville-station-tx-78363",
+      "countyFips": "48273",
+      "placeFips": "4839352"
+    },
+    {
+      "legacyId": "cbp-ramey-station-pr-00604",
+      "countyFips": "72005",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-pittsburgh-pennsylvania-1104-pa-15231",
+      "countyFips": "42003",
+      "placeFips": "4261000"
+    },
+    {
+      "legacyId": "cbp-derby-line-vermont-0209-vt-05830",
+      "countyFips": "50019",
+      "placeFips": "5017500"
+    },
+    {
+      "legacyId": "cbp-norton-vermont-0211-vt-05907",
+      "countyFips": "50009",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-beecher-falls-vermont-0206-vt-05902",
+      "countyFips": "50009",
+      "placeFips": "5004150"
+    },
+    {
+      "legacyId": "cbp-chula-vista-station-ca-91921",
+      "countyFips": "06073",
+      "placeFips": "0613392"
+    },
+    {
+      "legacyId": "cbp-beecher-falls-station-vt-05903",
+      "countyFips": "50009",
+      "placeFips": "5004150"
+    },
+    {
+      "legacyId": "cbp-highgate-springs-vermont-0212-vt-05460",
+      "countyFips": "50011",
+      "placeFips": "5033325"
+    },
+    {
+      "legacyId": "cbp-logan-airport-massachusetts-0417-ma-02128",
+      "countyFips": "25025",
+      "placeFips": "2507000"
+    },
+    {
+      "legacyId": "calais-station",
+      "countyFips": "23029",
+      "placeFips": "2309585"
+    },
+    {
+      "legacyId": "cbp-burke-station-ny-12953",
+      "countyFips": "36033",
+      "placeFips": "3611154"
+    },
+    {
+      "legacyId": "cbp-newport-station-vt-05829",
+      "countyFips": "20173",
+      "placeFips": "2017800"
+    },
+    {
+      "legacyId": "cbp-richford-station-vt-05476",
+      "countyFips": "50011",
+      "placeFips": "5059050"
+    },
+    {
+      "legacyId": "cbp-ajo-station-az-85321",
+      "countyFips": "04019",
+      "placeFips": "0400870"
+    },
+    {
+      "legacyId": "cbp-gloucester-massachusetts-0404-ma-01915",
+      "countyFips": "25009",
+      "placeFips": "2505595"
+    },
+    {
+      "legacyId": "cbp-salem-gloucester-massachusetts-0408-ma-01915",
+      "countyFips": "25009",
+      "placeFips": "2505595"
+    },
+    {
+      "legacyId": "cbp-worcester-massachusetts-0403-ma-01608",
+      "countyFips": "25027",
+      "placeFips": "2582000"
+    },
+    {
+      "legacyId": "cbp-lawrence-gloucester-massachusetts-0416-ma-01915",
+      "countyFips": "25009",
+      "placeFips": "2505595"
+    },
+    {
+      "legacyId": "cbp-van-buren-maine-0108-me-04785",
+      "countyFips": "23003",
+      "placeFips": "2378535"
+    },
+    {
+      "legacyId": "presidio-station",
+      "countyFips": "48377",
+      "placeFips": "4859396"
+    },
+    {
+      "legacyId": "van-horn-station",
+      "countyFips": "48109",
+      "placeFips": "4875032"
+    },
+    {
+      "legacyId": "sierra-blanca-station",
+      "countyFips": "48229",
+      "placeFips": "4867772"
+    },
+    {
+      "legacyId": "fort-stockton-station",
+      "countyFips": "48371",
+      "placeFips": "4826808"
+    },
+    {
+      "legacyId": "marfa-station",
+      "countyFips": "48377",
+      "placeFips": "4846620"
+    },
+    {
+      "legacyId": "sanderson-station",
+      "countyFips": "48443",
+      "placeFips": "4865084"
+    },
+    {
+      "legacyId": "sumas-station",
+      "countyFips": "53073",
+      "placeFips": "5368330"
+    },
+    {
+      "legacyId": "zapata-station",
+      "countyFips": "48505",
+      "placeFips": "4880716"
+    },
+    {
+      "legacyId": "port-angeles-station",
+      "countyFips": "53009",
+      "placeFips": "5355365"
+    },
+    {
+      "legacyId": "buffalo-station",
+      "countyFips": "36029",
+      "placeFips": "3611000"
+    },
+    {
+      "legacyId": "erie-station",
+      "countyFips": "42049",
+      "placeFips": "4224000"
+    },
+    {
+      "legacyId": "oswego-station",
+      "countyFips": "36075",
+      "placeFips": "3655574"
+    },
+    {
+      "legacyId": "del-rio-station",
+      "countyFips": "48465",
+      "placeFips": "4819792"
+    },
+    {
+      "legacyId": "detroit-station",
+      "countyFips": "26163",
+      "placeFips": "2622000"
+    },
+    {
+      "legacyId": "gibraltar-station",
+      "countyFips": "26163",
+      "placeFips": "2632020"
+    },
+    {
+      "legacyId": "marysville-station",
+      "countyFips": "26147",
+      "placeFips": "2652080"
+    },
+    {
+      "legacyId": "sault-ste-marie-station",
+      "countyFips": "26033",
+      "placeFips": "2671740"
+    },
+    {
+      "legacyId": "el-paso-station",
+      "countyFips": "48141",
+      "placeFips": "4824000"
+    },
+    {
+      "legacyId": "ysleta-station",
+      "countyFips": "48141",
+      "placeFips": "4824000"
+    },
+    {
+      "legacyId": "santa-teresa-station",
+      "countyFips": "35013",
+      "placeFips": "3575640"
+    },
+    {
+      "legacyId": "grand-forks-station",
+      "countyFips": "38035",
+      "placeFips": "3832060"
+    },
+    {
+      "legacyId": "pembina-station",
+      "countyFips": "38067",
+      "placeFips": "3861580"
+    },
+    {
+      "legacyId": "havre-station",
+      "countyFips": "30041",
+      "placeFips": "3035050"
+    },
+    {
+      "legacyId": "saint-mary-station",
+      "countyFips": "30035",
+      "placeFips": null
+    },
+    {
+      "legacyId": "houlton-station",
+      "countyFips": "23003",
+      "placeFips": "2333945"
+    },
+    {
+      "legacyId": "fort-fairfield-station",
+      "countyFips": "23003",
+      "placeFips": "2325580"
+    },
+    {
+      "legacyId": "laredo-north-station",
+      "countyFips": "48479",
+      "placeFips": "4841464"
+    },
+    {
+      "legacyId": "laredo-south-station",
+      "status": "unmatched"
+    },
+    {
+      "legacyId": "miami-station",
+      "countyFips": "12086",
+      "placeFips": "1245000"
+    },
+    {
+      "legacyId": "west-palm-beach-station",
+      "countyFips": "12099",
+      "placeFips": "1276600"
+    },
+    {
+      "legacyId": "new-orleans-station",
+      "countyFips": "22071",
+      "placeFips": "2255000"
+    },
+    {
+      "legacyId": "mobile-station",
+      "countyFips": "01097",
+      "placeFips": "0150000"
+    },
+    {
+      "legacyId": "mcallen-station",
+      "countyFips": "48215",
+      "placeFips": "4845384"
+    },
+    {
+      "legacyId": "brownsville-station",
+      "countyFips": "48061",
+      "placeFips": "4810768"
+    },
+    {
+      "legacyId": "spokane-station",
+      "countyFips": "53063",
+      "placeFips": "5367000"
+    },
+    {
+      "legacyId": "swanton-station",
+      "countyFips": "50011",
+      "placeFips": null
+    },
+    {
+      "legacyId": "tucson-station",
+      "countyFips": "04019",
+      "placeFips": "0477000"
+    },
+    {
+      "legacyId": "cbp-sonoita-station-az-85637",
+      "countyFips": "04023",
+      "placeFips": null
+    },
+    {
+      "legacyId": "douglas-station",
+      "countyFips": "04003",
+      "placeFips": "0420050"
+    },
+    {
+      "legacyId": "yuma-station",
+      "countyFips": "04027",
+      "placeFips": "0485540"
+    },
+    {
+      "legacyId": "wellton-station",
+      "countyFips": "04027",
+      "placeFips": "0481480"
+    },
+    {
+      "legacyId": "rochester-station",
+      "countyFips": "36055",
+      "placeFips": "3637737"
+    },
+    {
+      "legacyId": "niagara-falls-station",
+      "countyFips": "36063",
+      "placeFips": "3651055"
+    },
+    {
+      "legacyId": "brackettville-station",
+      "countyFips": "48271",
+      "placeFips": "4809868"
+    },
+    {
+      "legacyId": "comstock-station",
+      "countyFips": "48465",
+      "placeFips": null
+    },
+    {
+      "legacyId": "eagle-pass-station",
+      "countyFips": "48323",
+      "placeFips": "4821892"
+    },
+    {
+      "legacyId": "eagle-pass-south-station",
+      "status": "unmatched"
+    },
+    {
+      "legacyId": "carrizo-springs-station",
+      "countyFips": "48127",
+      "placeFips": "4812988"
+    },
+    {
+      "legacyId": "sandusky-bay-station",
+      "countyFips": "39123",
+      "placeFips": "3964150"
+    },
+    {
+      "legacyId": "calexico-station",
+      "countyFips": "06025",
+      "placeFips": "0609710"
+    },
+    {
+      "legacyId": "indio-station",
+      "countyFips": "06065",
+      "placeFips": "0636448"
+    },
+    {
+      "legacyId": "international-station",
+      "countyFips": "12086",
+      "placeFips": "1245200"
+    },
+    {
+      "legacyId": "portal-station",
+      "countyFips": "38023",
+      "placeFips": null
+    },
+    {
+      "legacyId": "warroad-station",
+      "countyFips": "27135",
+      "placeFips": "2768224"
+    },
+    {
+      "legacyId": "grand-marais-station",
+      "countyFips": "27031",
+      "placeFips": "2724992"
+    },
+    {
+      "legacyId": "duluth-station",
+      "countyFips": "27137",
+      "placeFips": "2717000"
+    },
+    {
+      "legacyId": "st-mary-station",
+      "countyFips": "30035",
+      "placeFips": "3065425"
+    },
+    {
+      "legacyId": "hebbronville-station",
+      "countyFips": "48247",
+      "placeFips": "4833008"
+    },
+    {
+      "legacyId": "freer-station",
+      "countyFips": "48131",
+      "placeFips": "4827432"
+    },
+    {
+      "legacyId": "cotulla-south-station",
+      "countyFips": "48283",
+      "placeFips": "4817216"
+    },
+    {
+      "legacyId": "rio-grande-city-station",
+      "countyFips": "48427",
+      "placeFips": "4862168"
+    },
+    {
+      "legacyId": "falfurrias-station",
+      "countyFips": "48047",
+      "placeFips": "4825368"
+    },
+    {
+      "legacyId": "kingsville-station",
+      "countyFips": "48273",
+      "placeFips": "4839352"
+    },
+    {
+      "legacyId": "harlingen-station",
+      "countyFips": "48061",
+      "placeFips": "4832372"
+    },
+    {
+      "legacyId": "fort-brown-station",
+      "countyFips": "48061",
+      "placeFips": "4810768"
+    },
+    {
+      "legacyId": "weslaco-station",
+      "countyFips": "48215",
+      "placeFips": "4877272"
+    },
+    {
+      "legacyId": "wellesley-island-station",
+      "countyFips": "36045",
+      "placeFips": null
+    },
+    {
+      "legacyId": "san-angelo-station",
+      "countyFips": "48451",
+      "placeFips": "4864472"
+    },
+    {
+      "legacyId": "donna-m-doss-station",
+      "countyFips": "48137",
+      "placeFips": "4862816"
+    },
+    {
+      "legacyId": "uvalde-station",
+      "countyFips": "48463",
+      "placeFips": "4874588"
+    },
+    {
+      "legacyId": "sault-sainte-marie-station",
+      "countyFips": "26033",
+      "placeFips": "2671740"
+    },
+    {
+      "legacyId": "el-centro-station",
+      "countyFips": "06025",
+      "placeFips": "0621782"
+    },
+    {
+      "legacyId": "international-falls-station",
+      "countyFips": "27071",
+      "placeFips": "2731040"
+    },
+    {
+      "legacyId": "plentywood-station",
+      "countyFips": "30091",
+      "placeFips": "3058375"
+    },
+    {
+      "legacyId": "scobey-station",
+      "countyFips": "30091",
+      "placeFips": null
+    },
+    {
+      "legacyId": "sweetgrass-station",
+      "countyFips": "30101",
+      "placeFips": null
+    },
+    {
+      "legacyId": "van-buren-station",
+      "countyFips": "23003",
+      "placeFips": "2360825"
+    },
+    {
+      "legacyId": "rangeley-station",
+      "countyFips": "23007",
+      "placeFips": null
+    },
+    {
+      "legacyId": "dallas-station",
+      "countyFips": "48439",
+      "placeFips": "4824768"
+    },
+    {
+      "legacyId": "laredo-west-station",
+      "countyFips": "48479",
+      "placeFips": "4841464"
+    },
+    {
+      "legacyId": "san-antonio-station",
+      "countyFips": "48029",
+      "placeFips": "4865000"
+    },
+    {
+      "legacyId": "tampa-station",
+      "countyFips": "12057",
+      "placeFips": "1271000"
+    },
+    {
+      "legacyId": "marathon-station",
+      "countyFips": "12087",
+      "placeFips": "1243000"
+    },
+    {
+      "legacyId": "jacksonville-station",
+      "countyFips": "12031",
+      "placeFips": "1235000"
+    },
+    {
+      "legacyId": "dania-beach-station",
+      "countyFips": "12011",
+      "placeFips": "1216335"
+    },
+    {
+      "legacyId": "orlando-station",
+      "countyFips": "12095",
+      "placeFips": "1253000"
+    },
+    {
+      "legacyId": "gulfport-station",
+      "countyFips": "28047",
+      "placeFips": "2829700"
+    },
+    {
+      "legacyId": "lake-charles-station",
+      "countyFips": "22019",
+      "placeFips": "2241155"
+    },
+    {
+      "legacyId": "ramey-station",
+      "countyFips": "72005",
+      "placeFips": null
+    },
+    {
+      "legacyId": "corpus-christi-station",
+      "countyFips": "48355",
+      "placeFips": "4817000"
+    },
+    {
+      "legacyId": "imperial-beach-station",
+      "countyFips": "06073",
+      "placeFips": "0636294"
+    },
+    {
+      "legacyId": "brown-field-station",
+      "countyFips": "06073",
+      "placeFips": "0666000"
+    },
+    {
+      "legacyId": "campo-station",
+      "countyFips": "06073",
+      "placeFips": "0610508"
+    },
+    {
+      "legacyId": "san-clemente-station",
+      "countyFips": "06059",
+      "placeFips": "0665084"
+    },
+    {
+      "legacyId": "el-cajon-station",
+      "countyFips": "06073",
+      "placeFips": "0621712"
+    },
+    {
+      "legacyId": "theodore-l-newton-jr-and-george-f-azrak-station",
+      "countyFips": "06065",
+      "placeFips": "0650076"
+    },
+    {
+      "legacyId": "chula-vista-station",
+      "countyFips": "06073",
+      "placeFips": "0613392"
+    },
+    {
+      "legacyId": "boulevard-station",
+      "countyFips": "06073",
+      "placeFips": "0607694"
+    },
+    {
+      "legacyId": "colville-station",
+      "countyFips": "53065",
+      "placeFips": "5314170"
+    },
+    {
+      "legacyId": "curlew-station",
+      "countyFips": "53019",
+      "placeFips": "5316165"
+    },
+    {
+      "legacyId": "eureka-station",
+      "countyFips": "30053",
+      "placeFips": null
+    },
+    {
+      "legacyId": "metaline-falls-station",
+      "countyFips": "53051",
+      "placeFips": "5345285"
+    },
+    {
+      "legacyId": "oroville-station",
+      "countyFips": "53047",
+      "placeFips": "5351970"
+    },
+    {
+      "legacyId": "whitefish-station",
+      "countyFips": "30029",
+      "placeFips": "3079825"
+    },
+    {
+      "legacyId": "massena-station",
+      "countyFips": "36089",
+      "placeFips": "3646019"
+    },
+    {
+      "legacyId": "ogdensburg-station",
+      "countyFips": "36089",
+      "placeFips": "3654485"
+    },
+    {
+      "legacyId": "champlain-station",
+      "countyFips": "36019",
+      "placeFips": "3613739"
+    },
+    {
+      "legacyId": "burke-station",
+      "countyFips": "36033",
+      "placeFips": null
+    },
+    {
+      "legacyId": "newport-station",
+      "countyFips": "50019",
+      "placeFips": "5048850"
+    },
+    {
+      "legacyId": "richford-station",
+      "countyFips": "50011",
+      "placeFips": "5059050"
+    },
+    {
+      "legacyId": "nogales-station",
+      "countyFips": "04023",
+      "placeFips": "0449640"
+    },
+    {
+      "legacyId": "brian-a-terry-station",
+      "countyFips": "04003",
+      "placeFips": "0466845"
+    },
+    {
+      "legacyId": "sonoita-station",
+      "countyFips": "04023",
+      "placeFips": "0468220"
+    },
+    {
+      "legacyId": "willcox-station",
+      "countyFips": "04003",
+      "placeFips": "0483090"
+    },
+    {
+      "legacyId": "casa-grande-station",
+      "countyFips": "04021",
+      "placeFips": "0410530"
+    },
+    {
+      "legacyId": "three-points-station",
+      "countyFips": "04019",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-port-of-jackson-2015-ms-39232",
+      "countyFips": "28121",
+      "placeFips": "2825100"
+    },
+    {
+      "legacyId": "cbp-pascagoula-mississippi-1903-ms-39595",
+      "countyFips": "28059",
+      "placeFips": "2855360"
+    },
+    {
+      "legacyId": "cbp-new-york-ny-10007",
+      "countyFips": "36061",
+      "placeFips": "3651000"
+    },
+    {
+      "legacyId": "cbp-aguadilla-puerto-rico-4901-pr-00604",
+      "countyFips": "72005",
+      "placeFips": "7200745"
+    },
+    {
+      "legacyId": "cbp-mayaguez-puerto-rico-4907-pr-00680",
+      "countyFips": "72097",
+      "placeFips": "7252431"
+    },
+    {
+      "legacyId": "cbp-fajardo-puerto-rico-4904-pr-00740",
+      "countyFips": "72053",
+      "placeFips": "7227964"
+    },
+    {
+      "legacyId": "cbp-warroad-station-mn-56763",
+      "countyFips": "27135",
+      "placeFips": "2768224"
+    },
+    {
+      "legacyId": "cbp-st-mary-station-mt-59411",
+      "countyFips": "13039",
+      "placeFips": "1367984"
+    },
+    {
+      "legacyId": "cbp-malta-station-mt-59538",
+      "countyFips": "30071",
+      "placeFips": "3047425"
+    },
+    {
+      "legacyId": "cbp-laredo-west-station-tx-78045",
+      "countyFips": "48027",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-john-f-kennedy-international-airport-new-york-4701-ny-11430",
+      "countyFips": "36081",
+      "placeFips": "3651000"
+    },
+    {
+      "legacyId": "cbp-ketchikan-alaska-3102-ak-99901",
+      "countyFips": "02130",
+      "placeFips": "0238970"
+    },
+    {
+      "legacyId": "cbp-alcan-alaska-3104-ak-99780",
+      "countyFips": "02240",
+      "placeFips": "0201390"
+    },
+    {
+      "legacyId": "cbp-sweetgrass-station-mt-59482",
+      "countyFips": "30101",
+      "placeFips": "3073075"
+    },
+    {
+      "legacyId": "cbp-van-buren-station-me-04785",
+      "countyFips": "23003",
+      "placeFips": "2378535"
+    },
+    {
+      "legacyId": "cbp-calais-station-me-04694",
+      "countyFips": "23029",
+      "placeFips": null
+    },
+    {
+      "legacyId": "cbp-wellton-station-az-85356",
+      "countyFips": "04027",
+      "placeFips": "0481480"
+    }
+  ]
+}
